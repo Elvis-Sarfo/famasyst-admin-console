@@ -22,6 +22,8 @@ class DesktopFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // height: 20,
+      alignment: Alignment.bottomCenter,
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
       child: Row(
         children: <Widget>[

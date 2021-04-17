@@ -7,9 +7,6 @@ import 'package:flutter_web/screens/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
-import 'menu_item.dart';
-
 class Header extends StatelessWidget {
   // final Widget rootContainerContent;
   const Header({
@@ -20,7 +17,19 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      alignment: Alignment.topCenter,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 40),
       child: Row(
         children: <Widget>[
           Image.asset(
@@ -33,29 +42,31 @@ class Header extends StatelessWidget {
             style: GoogleFonts.reenieBeanie(fontSize: 18),
           ),
           Spacer(),
-          TopNavBar(
-            navMap: [
-              {
-                'title': 'Home',
-                'onTapCallback': () =>
-                    context.read<PageRouter>().route(HomeScreen()),
-              },
-              {
-                'title': 'Farms',
-                'onTapCallback': () =>
-                    context.read<PageRouter>().route(FarmScreen()),
-              },
-              {
-                'title': 'Investors',
-                'onTapCallback': () =>
-                    context.read<PageRouter>().route(HomeScreen()),
-              },
-              {
-                'title': 'Supervisors',
-                'onTapCallback': () =>
-                    context.read<PageRouter>().route(HomeScreen()),
-              }
-            ],
+          Expanded(
+            child: TopNavBar(
+              navMap: [
+                {
+                  'title': 'Home',
+                  'onTapCallback': () =>
+                      context.read<PageRouter>().route(HomeScreen()),
+                },
+                {
+                  'title': 'Farms',
+                  'onTapCallback': () =>
+                      context.read<PageRouter>().route(FarmScreen()),
+                },
+                {
+                  'title': 'Investors',
+                  'onTapCallback': () =>
+                      context.read<PageRouter>().route(HomeScreen()),
+                },
+                {
+                  'title': 'Supervisors',
+                  'onTapCallback': () =>
+                      context.read<PageRouter>().route(HomeScreen()),
+                }
+              ],
+            ),
           ),
         ],
       ),

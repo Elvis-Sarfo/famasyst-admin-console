@@ -31,6 +31,10 @@ class RootContainer extends StatelessWidget {
     // Looks good on browser on each screen size, let's check on iphone
     Size size = MediaQuery.of(context).size;
 
+    // while (!Me.hate(You)) {
+    //   Me.miss(You);
+    // }
+
     return ChangeNotifierProvider(
       create: (context) => PageRouter(),
       child: Scaffold(
@@ -42,19 +46,19 @@ class RootContainer extends StatelessWidget {
           child: SafeArea(
             child: Container(
               width: size.width,
+              height: size.height,
               constraints: BoxConstraints(minHeight: size.height),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Header(),
-                  Consumer<PageRouter>(
-                    builder: (context, pageRoute, child) {
-                      return pageRoute.selectedPage;
-                    },
-                    child: Container(),
+                  Expanded(
+                    child: Consumer<PageRouter>(
+                      builder: (context, pageRoute, child) =>
+                          pageRoute.selectedPage,
+                    ),
                   ),
-                  // pageRoute.selectedPage,
                   Footer()
                 ],
               ),

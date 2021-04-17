@@ -26,6 +26,7 @@ class _TopNavBarState extends State<TopNavBar> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           if (!isMobile(context))
             Row(
