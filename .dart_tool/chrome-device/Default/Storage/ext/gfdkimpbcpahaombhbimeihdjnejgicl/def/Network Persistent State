@@ -1,1 +1,1 @@
-{"net":{"http_server_properties":{"servers":[],"version":5},"network_qualities":{"CAISABiAgICA+P////8B":"3G"}}}
+{"net":{"http_server_properties":{"servers":[{"isolation":[],"server":"https://dns.quad9.net","supports_spdy":true},{"alternative_service":[{"advertised_versions":[50],"expiration":"13265735832207886","port":443,"protocol_str":"quic"}],"isolation":[],"server":"https://dns.google","supports_spdy":true}],"version":5},"network_qualities":{"CAISABiAgICA+P////8B":"3G"}}}
