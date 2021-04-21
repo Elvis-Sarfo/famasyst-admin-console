@@ -1,1 +1,8 @@
-2021/04/17-15:38:48.721 15ec Reusing MANIFEST C:\Users\Bravo\AppData\Local\Temp\flutter_tools.452e7af9\flutter_tools_chrome_device.2f12d842\Default\Feature Engagement Tracker\AvailabilityDB/MANIFEST-000001
+2021/04/20-21:36:58.753 790 Reusing MANIFEST C:\Users\Bravo\AppData\Local\Temp\flutter_tools.767b1b3f\flutter_tools_chrome_device.61f1a1ad\Default\Feature Engagement Tracker\AvailabilityDB/MANIFEST-000001
+2021/04/20-21:36:58.754 790 Recovering log #3
+2021/04/20-21:36:58.758 790 Level-0 table #3: started
+2021/04/20-21:36:58.758 790 Level-0 table #3: 0 bytes OK
+2021/04/20-21:36:58.758 790 Recovering log #22
+2021/04/20-21:36:58.759 790 Reusing old log C:\Users\Bravo\AppData\Local\Temp\flutter_tools.767b1b3f\flutter_tools_chrome_device.61f1a1ad\Default\Feature Engagement Tracker\AvailabilityDB/000022.log 
+2021/04/20-21:37:00.383 790 Delete type=0 #3
+2021/04/20-21:37:00.384 790 Delete type=2 #24
