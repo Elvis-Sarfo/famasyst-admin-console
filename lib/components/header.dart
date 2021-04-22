@@ -37,7 +37,7 @@ class Header extends StatelessWidget {
           ),
           SizedBox(width: 10),
           Text(
-            "Peta Beauty",
+            "FarmaSyst",
             style: GoogleFonts.reenieBeanie(fontSize: 18),
           ),
           Spacer(),

@@ -68,7 +68,7 @@ class FarmScreen extends StatelessWidget {
                   columns: const <DataColumn>[
                     DataColumn(
                       label: Text(
-                        'Name',
+                        'FarmID',
                       ),
                     ),
                     DataColumn(
