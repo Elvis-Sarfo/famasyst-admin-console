@@ -1,6 +1,6 @@
+import 'package:farmasyst_admin_console/constants.dart';
+import 'package:farmasyst_admin_console/root_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web/constants.dart';
-import 'package:flutter_web/root_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {

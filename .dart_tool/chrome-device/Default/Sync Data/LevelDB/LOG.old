@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-2021/04/17-04:40:50.215 a443 Reusing MANIFEST /tmp/flutter_tools.DEROXQ/flutter_tools_chrome_device.OHNJAQ/Default/Sync Data/LevelDB/MANIFEST-000001
-2021/04/17-04:40:50.215 a443 Recovering log #3
-2021/04/17-04:40:50.216 a443 Reusing old log /tmp/flutter_tools.DEROXQ/flutter_tools_chrome_device.OHNJAQ/Default/Sync Data/LevelDB/000003.log 
-=======
-2021/04/17-15:37:05.492 22fc Reusing MANIFEST C:\Users\Bravo\AppData\Local\Temp\flutter_tools.452e7af9\flutter_tools_chrome_device.2f12d842\Default\Sync Data\LevelDB/MANIFEST-000001
->>>>>>> 3e55d5883196cb5dbc758f02af834af9d1a3a89a
+2021/04/22-14:03:44.350 3abc Reusing MANIFEST C:\Users\Kanta\AppData\Local\Temp\flutter_tools.d3b9100d\flutter_tools_chrome_device.e6375cb8\Default\Sync Data\LevelDB/MANIFEST-000001
+2021/04/22-14:03:44.351 3abc Recovering log #3
+2021/04/22-14:03:44.351 3abc Reusing old log C:\Users\Kanta\AppData\Local\Temp\flutter_tools.d3b9100d\flutter_tools_chrome_device.e6375cb8\Default\Sync Data\LevelDB/000003.log 

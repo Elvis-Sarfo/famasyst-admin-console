@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_web">
+    package="com.example.farmasyst_admin_console">
    <application
-        android:label="flutter_web"
+        android:label="farmasyst_admin_console"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

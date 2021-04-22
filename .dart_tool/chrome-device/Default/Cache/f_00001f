@@ -1,23 +1,40 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/widgets/safe_area.dart', 'packages/flutter/src/widgets/single_child_scroll_view.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter_web/components/menu_item.dart'], (function load__packages__flutter_web__components__side_menu_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__widgets__safe_area$46dart, packages__flutter__src__widgets__single_child_scroll_view$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter_web__components__menu_item$46dart) {
+define(['dart_sdk', 'packages/farmasyst_admin_console/screens/home/components/jumbotron.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/google_fonts/src/google_fonts_base.dart', 'packages/flutter/src/widgets/spacer.dart', 'packages/farmasyst_admin_console/components/top_nav_bar.dart', 'packages/provider/src/provider.dart', 'packages/farmasyst_admin_console/page_routes.dart', 'packages/farmasyst_admin_console/screens/farms/farms.dart'], (function load__packages__farmasyst_admin_console__screens__home__home_dart(dart_sdk, packages__farmasyst_admin_console__screens__home__components__jumbotron$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__google_fonts__src__google_fonts_base$46dart, packages__flutter__src__widgets__spacer$46dart, packages__farmasyst_admin_console__components__top_nav_bar$46dart, packages__provider__src__provider$46dart, packages__farmasyst_admin_console__page_routes$46dart, packages__farmasyst_admin_console__screens__farms__farms$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
   const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const jumbotron = packages__farmasyst_admin_console__screens__home__components__jumbotron$46dart.screens__home__components__jumbotron;
   const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
   const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
   const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const safe_area = packages__flutter__src__widgets__safe_area$46dart.src__widgets__safe_area;
-  const single_child_scroll_view = packages__flutter__src__widgets__single_child_scroll_view$46dart.src__widgets__single_child_scroll_view;
+  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
   const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const menu_item = packages__flutter_web__components__menu_item$46dart.components__menu_item;
-  var side_menu = Object.create(dart.library);
+  const google_fonts = packages__google_fonts__src__google_fonts_base$46dart.google_fonts;
+  const spacer = packages__flutter__src__widgets__spacer$46dart.src__widgets__spacer;
+  const top_nav_bar = packages__farmasyst_admin_console__components__top_nav_bar$46dart.components__top_nav_bar;
+  const provider = packages__provider__src__provider$46dart.src__provider;
+  const page_routes = packages__farmasyst_admin_console__page_routes$46dart.page_routes;
+  const farms = packages__farmasyst_admin_console__screens__farms__farms$46dart.screens__farms__farms;
+  var home = Object.create(dart.library);
+  var header = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
     _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    BoxShadowL: () => (T.BoxShadowL = dart.constFn(dart.legacy(box_shadow.BoxShadow)))(),
+    JSArrayOfBoxShadowL: () => (T.JSArrayOfBoxShadowL = dart.constFn(_interceptors.JSArray$(T.BoxShadowL())))(),
+    PageRouterL: () => (T.PageRouterL = dart.constFn(dart.legacy(page_routes.PageRouter)))(),
+    VoidTodynamic: () => (T.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
+    MapL: () => (T.MapL = dart.constFn(dart.legacy(core.Map)))(),
+    JSArrayOfMapL: () => (T.JSArrayOfMapL = dart.constFn(_interceptors.JSArray$(T.MapL())))(),
     WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
     JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))()
   };
@@ -34,158 +51,165 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 17,
-        [_Location_line]: 17,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "tapEvent",
-        [_Location_column]: 17,
-        [_Location_line]: 18,
-        [_Location_file]: null
-      });
-    },
     get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+      return C[1] = dart.constList([], T._LocationL());
     },
     get C0() {
       return C[0] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[1] || CT.C1,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 16,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_column]: 12,
+        [_Location_line]: 22,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/screens/home/home.dart"
       });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 24,
-        [_Location_line]: 20,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.constList([C[6] || CT.C6], T._LocationL());
     },
     get C4() {
       return C[4] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[5] || CT.C5,
-        [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 20,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 13,
+        [_Location_line]: 35,
+        [_Location_file]: null
       });
     },
-    get C9() {
-      return C[9] = dart.const({
+    get C5() {
+      return C[5] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 36,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[3] || CT.C3,
+        [_Location_name]: null,
         [_Location_column]: 17,
-        [_Location_line]: 22,
+        [_Location_line]: 34,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 20,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 38,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 13,
+        [_Location_line]: 40,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 13,
+        [_Location_line]: 41,
         [_Location_file]: null
       });
     },
     get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "tapEvent",
-        [_Location_column]: 17,
-        [_Location_line]: 23,
-        [_Location_file]: null
-      });
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
     },
-    get C8() {
-      return C[8] = dart.constList([C[9] || CT.C9, C[10] || CT.C10], T._LocationL());
-    },
-    get C7() {
-      return C[7] = dart.const({
+    get C9() {
+      return C[9] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_parameterLocations]: C[10] || CT.C10,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 21,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_column]: 11,
+        [_Location_line]: 39,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
     get C13() {
       return C[13] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 24,
-        [_Location_line]: 25,
-        [_Location_file]: null
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 43,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
-    get C12() {
-      return C[12] = dart.constList([C[13] || CT.C13], T._LocationL());
-    },
-    get C11() {
-      return C[11] = dart.const({
+    get C14() {
+      return C[14] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_parameterLocations]: C[1] || CT.C1,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 25,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_column]: 56,
+        [_Location_line]: 50,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 56,
+        [_Location_line]: 55,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
     get C16() {
       return C[16] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 17,
-        [_Location_line]: 27,
-        [_Location_file]: null
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 56,
+        [_Location_line]: 60,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
     get C17() {
       return C[17] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "tapEvent",
-        [_Location_column]: 17,
-        [_Location_line]: 28,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17], T._LocationL());
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_parameterLocations]: C[1] || CT.C1,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 26,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_column]: 56,
+        [_Location_line]: 65,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
     get C20() {
       return C[20] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 24,
-        [_Location_line]: 30,
+        [_Location_name]: "navMap",
+        [_Location_column]: 15,
+        [_Location_line]: 46,
         [_Location_file]: null
       });
     },
@@ -197,74 +221,74 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[19] || CT.C19,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 30,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_column]: 20,
+        [_Location_line]: 45,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
     get C23() {
       return C[23] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 17,
-        [_Location_line]: 32,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "tapEvent",
-        [_Location_column]: 17,
-        [_Location_line]: 33,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 45,
         [_Location_file]: null
       });
     },
     get C22() {
-      return C[22] = dart.constList([C[23] || CT.C23, C[24] || CT.C24], T._LocationL());
+      return C[22] = dart.constList([C[23] || CT.C23], T._LocationL());
     },
     get C21() {
       return C[21] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[22] || CT.C22,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 31,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 24,
-        [_Location_line]: 35,
-        [_Location_file]: null
+        [_Location_column]: 11,
+        [_Location_line]: 44,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     },
     get C26() {
-      return C[26] = dart.constList([C[27] || CT.C27], T._LocationL());
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
     },
     get C25() {
-      return C[25] = dart.const({
+      return C[25] = dart.constList([C[26] || CT.C26], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_parameterLocations]: C[25] || CT.C25,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 35,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_column]: 14,
+        [_Location_line]: 32,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 7,
+        [_Location_line]: 19,
+        [_Location_file]: null
       });
     },
     get C30() {
       return C[30] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 17,
-        [_Location_line]: 37,
+        [_Location_name]: "decoration",
+        [_Location_column]: 7,
+        [_Location_line]: 20,
         [_Location_file]: null
       });
     },
@@ -272,185 +296,91 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
       return C[31] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "tapEvent",
-        [_Location_column]: 17,
-        [_Location_line]: 38,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 31,
         [_Location_file]: null
       });
-    },
-    get C29() {
-      return C[29] = dart.constList([C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[29] || CT.C29,
-        [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 36,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 13,
-        [_Location_line]: 15,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.constList([C[34] || CT.C34], T._LocationL());
     },
     get C32() {
       return C[32] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[33] || CT.C33,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 14,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 11,
-        [_Location_line]: 13,
-        [_Location_file]: null
-      });
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 14,
-        [_Location_file]: null
-      });
-    },
-    get C36() {
-      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[36] || CT.C36,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 12,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 12,
-        [_Location_file]: null
-      });
-    },
-    get C40() {
-      return C[40] = dart.constList([C[41] || CT.C41], T._LocationL());
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[40] || CT.C40,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 11,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 7,
-        [_Location_line]: 9,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 7,
-        [_Location_line]: 10,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 7,
-        [_Location_line]: 11,
+        [_Location_line]: 32,
         [_Location_file]: null
       });
     },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], T._LocationL());
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32], T._LocationL());
     },
-    get C42() {
-      return C[42] = dart.const({
+    get C27() {
+      return C[27] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_parameterLocations]: C[28] || CT.C28,
         [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 8,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/side_menu.dart"
+        [_Location_line]: 18,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/header.dart"
       });
     }
   }, false);
-  var C = Array(47).fill(void 0);
-  var I = ["package:flutter_web/components/side_menu.dart"];
+  var C = Array(33).fill(void 0);
+  var I = [
+    "package:farmasyst_admin_console/screens/home/home.dart",
+    "package:farmasyst_admin_console/components/header.dart"
+  ];
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  side_menu.SideMenu = class SideMenu extends framework.StatelessWidget {
+  home.HomeScreen = class HomeScreen extends framework.StatelessWidget {
     build(context) {
-      return new container.Container.new({height: 1 / 0, color: colors.Colors.white, child: new safe_area.SafeArea.new({child: new single_child_scroll_view.SingleChildScrollView.new({padding: new edge_insets.EdgeInsets.all(20.0), child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new menu_item.NavItem.new({title: "Home", tapEvent: dart.fn(() => {
-                  }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), new menu_item.NavItem.new({title: "Donate", tapEvent: dart.fn(() => {
-                  }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), new menu_item.NavItem.new({title: "Contact Us", tapEvent: dart.fn(() => {
-                  }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), new menu_item.NavItem.new({title: "Login", tapEvent: dart.fn(() => {
-                  }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[25] || CT.C25}), new menu_item.NavItem.new({title: "Shop", tapEvent: dart.fn(() => {
-                  }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[28] || CT.C28})]), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+      return new jumbotron.Jumbotron.new({$creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
     }
   };
-  (side_menu.SideMenu.new = function(opts) {
+  (home.HomeScreen.new = function(opts) {
     let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    side_menu.SideMenu.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    home.HomeScreen.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = side_menu.SideMenu.prototype;
-  dart.addTypeTests(side_menu.SideMenu);
-  dart.addTypeCaches(side_menu.SideMenu);
-  dart.setMethodSignature(side_menu.SideMenu, () => ({
-    __proto__: dart.getMethods(side_menu.SideMenu.__proto__),
+  }).prototype = home.HomeScreen.prototype;
+  dart.addTypeTests(home.HomeScreen);
+  dart.addTypeCaches(home.HomeScreen);
+  dart.setMethodSignature(home.HomeScreen, () => ({
+    __proto__: dart.getMethods(home.HomeScreen.__proto__),
     build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
   }));
-  dart.setLibraryUri(side_menu.SideMenu, I[0]);
-  dart.trackLibraries("packages/flutter_web/components/side_menu.dart", {
-    "package:flutter_web/components/side_menu.dart": side_menu
+  dart.setLibraryUri(home.HomeScreen, I[0]);
+  header.Header = class Header extends framework.StatelessWidget {
+    build(context) {
+      return new container.Container.new({alignment: alignment.Alignment.topCenter, decoration: new box_decoration.BoxDecoration.new({color: colors.Colors.white, boxShadow: T.JSArrayOfBoxShadowL().of([new box_shadow.BoxShadow.new({color: colors.Colors.grey.withOpacity(0.3), spreadRadius: 1.0, blurRadius: 5.0, offset: new ui.Offset.new(0.0, 3.0)})])}), padding: new edge_insets.EdgeInsets.symmetric({horizontal: 40.0}), child: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new image.Image.asset("assets/images/logo.png", {width: 50.0, $creationLocationd_0dea112b090073317d4: C[2] || CT.C2}), new basic.SizedBox.new({width: 10.0, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), new text.Text.new("Peta Beauty", {style: google_fonts.GoogleFonts.reenieBeanie({fontSize: 18.0}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9}), new spacer.Spacer.new({$creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), new basic.Expanded.new({child: new top_nav_bar.TopNavBar.new({navMap: T.JSArrayOfMapL().of([new _js_helper.LinkedMap.from(["title", "Home", "onTapCallback", dart.fn(() => provider['ReadContext|read'](T.PageRouterL(), context).route(new home.HomeScreen.new({$creationLocationd_0dea112b090073317d4: C[14] || CT.C14})), T.VoidTodynamic())]), new _js_helper.LinkedMap.from(["title", "Farms", "onTapCallback", dart.fn(() => provider['ReadContext|read'](T.PageRouterL(), context).route(new farms.FarmScreen.new({$creationLocationd_0dea112b090073317d4: C[15] || CT.C15})), T.VoidTodynamic())]), new _js_helper.LinkedMap.from(["title", "Investors", "onTapCallback", dart.fn(() => provider['ReadContext|read'](T.PageRouterL(), context).route(new home.HomeScreen.new({$creationLocationd_0dea112b090073317d4: C[16] || CT.C16})), T.VoidTodynamic())]), new _js_helper.LinkedMap.from(["title", "Supervisors", "onTapCallback", dart.fn(() => provider['ReadContext|read'](T.PageRouterL(), context).route(new home.HomeScreen.new({$creationLocationd_0dea112b090073317d4: C[17] || CT.C17})), T.VoidTodynamic())])]), $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}), $creationLocationd_0dea112b090073317d4: C[21] || CT.C21})]), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27});
+    }
+  };
+  (header.Header.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    header.Header.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = header.Header.prototype;
+  dart.addTypeTests(header.Header);
+  dart.addTypeCaches(header.Header);
+  dart.setMethodSignature(header.Header, () => ({
+    __proto__: dart.getMethods(header.Header.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(header.Header, I[1]);
+  dart.trackLibraries("packages/farmasyst_admin_console/screens/home/home.dart", {
+    "package:farmasyst_admin_console/screens/home/home.dart": home,
+    "package:farmasyst_admin_console/components/header.dart": header
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["side_menu.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAM4B;AACxB,YAAO,oDAES,4BACP,mCACE,iEACe,+BAAI,cACjB,gCACK,yBACR,kCACS,kBACG;+FAEZ,gCAAiB,+DACjB,kCACS,oBACG;+FAEZ,gCAAiB,iEACjB,kCACS,wBACG;iGAEZ,gCAAiB,iEACjB,kCACS,mBACG;iGAEZ,gCAAiB,iEACjB,kCACS,kBACG;;IAOxB;;;;;;EACF","file":"../../../../../../../packages/flutter_web/components/side_menu.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["home.dart","../../components/header.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAS4B;AAYxB,YAAO;IACT;;;;;;EACF;;;;;;;;;UCP4B;AACxB,YAAO,yCACgB,2CACT,6CACI,gCACH,4BACT,qCACgB,AAAK,+BAAY,oBACjB,iBACF,aACJ,kBAAO,KAAG,qBAIJ,kDAAsB,eACnC,6BACa,yBACV,sBACJ,kCACO,+DAET,+BAAgB,+DAChB,kBACE,uBACmB,iDAAuB,iEAE5C,kFACA,+BACS,uCACG,sBACN,+BACE,SAAS,QACT,iBAAiB,cACL,AAAmB,8CAA3B,OAAO,QAA0B,2GAEvC,+BACE,SAAS,SACT,iBAAiB,cACL,AAAmB,8CAA3B,OAAO,QAA0B,4GAEvC,+BACE,SAAS,aACT,iBAAiB,cACL,AAAmB,8CAA3B,OAAO,QAA0B,2GAEvC,+BACE,SAAS,eACT,iBAAiB,cACL,AAAmB,8CAA3B,OAAO,QAA0B;IAQrD;;;QA7DM;;AAED,iDAAW,GAAG;;EAAC","file":"../../../../../../packages/farmasyst_admin_console/screens/home/home.dart.lib.js"}');
   // Exports:
   return {
-    components__side_menu: side_menu
+    screens__home__home: home,
+    components__header: header
   };
 }));
 
-//# sourceMappingURL=side_menu.dart.lib.js.map
+//# sourceMappingURL=home.dart.lib.js.map

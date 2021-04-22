@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/constants.dart';
-import 'package:flutter_web/responsive.dart';
+import 'package:farmasyst_admin_console/constants.dart';
+import 'package:farmasyst_admin_console/responsive.dart';
 import 'menu_item.dart';
 
 class TopNavBar extends StatefulWidget {

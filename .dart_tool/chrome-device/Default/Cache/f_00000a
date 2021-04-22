@@ -1,1156 +1,1068 @@
-/* ENTRYPOINT_EXTENTION_MARKER */
-// Create the main module loaded below.
-define("main_module.bootstrap", ["web_entrypoint.dart", "dart_sdk"], function(app, dart_sdk) {
-  dart_sdk.dart.setStartAsyncSynchronously(true);
-  dart_sdk._debugger.registerDevtoolsFormatter();
-  dart_sdk.dart.nonNullAsserts(false);
-  dart_sdk.dart.nativeNonNullAsserts(true);
-
-  // See the generateMainModule doc comment.
-  var child = {};
-  child.main = app[Object.keys(app)[0]].main;
-  // Injected by dwds for debugging support.
-  if(!window.$dwdsInitialized) {
-    window.$dwdsInitialized = true;
-    window.$dartMainTearOffs = [child.main];
-    window.$dartRunMain = function() {
-      window.$dartMainExecuted = true;
-      window.$dartMainTearOffs.forEach(function(main){
-         main();
-      });
+define(['dart_sdk', 'packages/firebase_core_web/src/interop/utils/utils.dart', 'packages/firebase_core_web/src/interop/app.dart', 'packages/firebase_core_web/src/interop/utils/js.dart'], (function load__packages__cloud_firestore_web__src__interop__utils__utils_dart(dart_sdk, packages__firebase_core_web__src__interop__utils__utils$46dart, packages__firebase_core_web__src__interop__app$46dart, packages__firebase_core_web__src__interop__utils__js$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const js_util = dart_sdk.js_util;
+  const js = dart_sdk.js;
+  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const utils = packages__firebase_core_web__src__interop__utils__utils$46dart.src__interop__utils__utils;
+  const app = packages__firebase_core_web__src__interop__app$46dart.src__interop__app;
+  const js$ = packages__firebase_core_web__src__interop__utils__js$46dart.src__interop__utils__js;
+  var utils$ = Object.create(dart.library);
+  var firestore = Object.create(dart.library);
+  var $insert = dartx.insert;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    ObjectNToObjectN: () => (T$.ObjectNToObjectN = dart.constFn(dart.fnType(T$.ObjectN(), [T$.ObjectN()])))(),
+    ObjectNTodynamic: () => (T$.ObjectNTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.ObjectN()])))(),
+    QueryOfQueryJsImpl: () => (T$.QueryOfQueryJsImpl = dart.constFn(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query"))))(),
+    StreamControllerOfvoid: () => (T$.StreamControllerOfvoid = dart.constFn(async.StreamController$(dart.void)))(),
+    VoidToStreamControllerOfvoid: () => (T$.VoidToStreamControllerOfvoid = dart.constFn(dart.fnType(T$.StreamControllerOfvoid(), [])))(),
+    StreamControllerOfvoidTodynamic: () => (T$.StreamControllerOfvoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.StreamControllerOfvoid()])))(),
+    VoidTodynamic: () => (T$.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
+    VoidToFn: () => (T$.VoidToFn = dart.constFn(dart.fnType(T$.VoidTodynamic(), [])))(),
+    FnTodynamic: () => (T$.FnTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.VoidTodynamic()])))(),
+    ObjectNToNull: () => (T$.ObjectNToNull = dart.constFn(dart.fnType(core.Null, [T$.ObjectN()])))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    dynamicToPromiseJsImpl: () => (T$.dynamicToPromiseJsImpl = dart.constFn(dart.fnType(dart.lazyJSType(() => dart.global.Promise, "Promise"), [dart.dynamic])))(),
+    FutureOfObjectN: () => (T$.FutureOfObjectN = dart.constFn(async.Future$(T$.ObjectN())))(),
+    voidTodynamic: () => (T$.voidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [dart.void])))(),
+    ExpandoOfFirestore: () => (T$.ExpandoOfFirestore = dart.constFn(core.Expando$(firestore.Firestore)))(),
+    ExpandoOfWriteBatch: () => (T$.ExpandoOfWriteBatch = dart.constFn(core.Expando$(firestore.WriteBatch)))(),
+    DocumentSnapshotJsImplToDocumentSnapshot: () => (T$.DocumentSnapshotJsImplToDocumentSnapshot = dart.constFn(dart.fnType(firestore.DocumentSnapshot, [dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot")])))(),
+    StreamControllerOfDocumentSnapshot: () => (T$.StreamControllerOfDocumentSnapshot = dart.constFn(async.StreamController$(firestore.DocumentSnapshot)))(),
+    VoidToStreamControllerOfDocumentSnapshot: () => (T$.VoidToStreamControllerOfDocumentSnapshot = dart.constFn(dart.fnType(T$.StreamControllerOfDocumentSnapshot(), [])))(),
+    StreamControllerOfDocumentSnapshotTodynamic: () => (T$.StreamControllerOfDocumentSnapshotTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.StreamControllerOfDocumentSnapshot()])))(),
+    DocumentSnapshotJsImplToNull: () => (T$.DocumentSnapshotJsImplToNull = dart.constFn(dart.fnType(core.Null, [dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot")])))(),
+    dynamicTovoid: () => (T$.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    ExpandoOfDocumentReference: () => (T$.ExpandoOfDocumentReference = dart.constFn(core.Expando$(firestore.DocumentReference)))(),
+    QuerySnapshotJsImplToQuerySnapshot: () => (T$.QuerySnapshotJsImplToQuerySnapshot = dart.constFn(dart.fnType(firestore.QuerySnapshot, [dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot")])))(),
+    StreamControllerOfQuerySnapshot: () => (T$.StreamControllerOfQuerySnapshot = dart.constFn(async.StreamController$(firestore.QuerySnapshot)))(),
+    VoidToStreamControllerOfQuerySnapshot: () => (T$.VoidToStreamControllerOfQuerySnapshot = dart.constFn(dart.fnType(T$.StreamControllerOfQuerySnapshot(), [])))(),
+    StreamControllerOfQuerySnapshotTodynamic: () => (T$.StreamControllerOfQuerySnapshotTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.StreamControllerOfQuerySnapshot()])))(),
+    QuerySnapshotJsImplToNull: () => (T$.QuerySnapshotJsImplToNull = dart.constFn(dart.fnType(core.Null, [dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot")])))(),
+    JSArrayOfDocumentSnapshotJsImpl: () => (T$.JSArrayOfDocumentSnapshotJsImpl = dart.constFn(_interceptors.JSArray$(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot"))))(),
+    CollectionReferenceOfCollectionReferenceJsImpl: () => (T$.CollectionReferenceOfCollectionReferenceJsImpl = dart.constFn(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))))(),
+    DocumentReferenceJsImplToDocumentReference: () => (T$.DocumentReferenceJsImplToDocumentReference = dart.constFn(dart.fnType(firestore.DocumentReference, [dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference")])))(),
+    ExpandoOfCollectionReferenceOfCollectionReferenceJsImpl: () => (T$.ExpandoOfCollectionReferenceOfCollectionReferenceJsImpl = dart.constFn(core.Expando$(T$.CollectionReferenceOfCollectionReferenceJsImpl())))(),
+    ExpandoOfDocumentChange: () => (T$.ExpandoOfDocumentChange = dart.constFn(core.Expando$(firestore.DocumentChange)))(),
+    MapOfString$dynamic: () => (T$.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    MapNOfString$dynamic: () => (T$.MapNOfString$dynamic = dart.constFn(dart.nullable(T$.MapOfString$dynamic())))(),
+    ExpandoOfDocumentSnapshot: () => (T$.ExpandoOfDocumentSnapshot = dart.constFn(core.Expando$(firestore.DocumentSnapshot)))(),
+    dynamicToDocumentChange: () => (T$.dynamicToDocumentChange = dart.constFn(dart.fnType(firestore.DocumentChange, [dart.dynamic])))(),
+    dynamicToDocumentSnapshot: () => (T$.dynamicToDocumentSnapshot = dart.constFn(dart.fnType(firestore.DocumentSnapshot, [dart.dynamic])))(),
+    dynamicTodynamic: () => (T$.dynamicTodynamic = dart.constFn(dart.fnType(dart.dynamic, [dart.dynamic])))(),
+    ExpandoOfQuerySnapshot: () => (T$.ExpandoOfQuerySnapshot = dart.constFn(core.Expando$(firestore.QuerySnapshot)))(),
+    ExpandoOfTransaction: () => (T$.ExpandoOfTransaction = dart.constFn(core.Expando$(firestore.Transaction)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T$);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.fn(utils$.jsify, T$.ObjectNTodynamic());
+    },
+    get C1() {
+      return C[1] = dart.fn(firestore.DocumentSnapshot.getInstance, T$.DocumentSnapshotJsImplToDocumentSnapshot());
+    },
+    get C2() {
+      return C[2] = dart.fn(firestore.QuerySnapshot.getInstance, T$.QuerySnapshotJsImplToQuerySnapshot());
+    },
+    get C3() {
+      return C[3] = dart.fn(firestore.DocumentReference.getInstance, T$.DocumentReferenceJsImplToDocumentReference());
     }
-    window.$dartAppId = "s7ItYvNdQjdfQv4b1H9p1A==";
-window.$dartReloadConfiguration = "ReloadConfiguration.none";
-window.$dartModuleStrategy = "require-js";
-window.$loadModuleConfig = require;
-window.$dwdsVersion = "7.1.1";
-window.$dwdsDevHandlerPath = "http://localhost:61430/$dwdsSseHandler";
-window.$dartEntrypointPath = "main_module.bootstrap.js";
-window.$requireLoader.forceLoadModule("dwds/src/injected/client");
-window.$dartExtensionUri = "http://127.0.0.1:61437/$debug";
-
-  } else {
-    if(window.$dartMainExecuted){
-     child.main();
-    }else {
-     window.$dartMainTearOffs.push(child.main);
-    }
-  }
-  
-  window.$dartLoader = {};
-  window.$dartLoader.rootDirectories = [];
-  if (window.$requireLoader) {
-    window.$requireLoader.getModuleLibraries = dart_sdk.dart.getModuleLibraries;
-  }
-  if (window.$dartStackTraceUtility && !window.$dartStackTraceUtility.ready) {
-    window.$dartStackTraceUtility.ready = true;
-    let dart = dart_sdk.dart;
-    window.$dartStackTraceUtility.setSourceMapProvider(function(url) {
-      var baseUrl = window.location.protocol + '//' + window.location.host;
-      url = url.replace(baseUrl + '/', '');
-      if (url == 'dart_sdk.js') {
-        return dart.getSourceMap('dart_sdk');
+  }, false);
+  var C = Array(4).fill(void 0);
+  var I = [
+    "file:///C:/dev_env/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.6/lib/src/interop/firestore.dart",
+    "package:cloud_firestore_web/src/interop/firestore.dart"
+  ];
+  utils$.dartify = function dartify(jsObject) {
+    return utils.dartify(jsObject, dart.fn(object => {
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.DocumentReference))) {
+        return firestore.DocumentReference.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference").as(dart.nullCheck(object)));
       }
-      url = url.replace(".lib.js", "");
-      return dart.getSourceMap(url);
-    });
-  }
-});
-var baseUrl = (function () {
-  // Attempt to detect --precompiled mode for tests, and set the base url
-  // appropriately, otherwise set it to '/'.
-  var pathParts = location.pathname.split("/");
-  if (pathParts[0] == "") {
-    pathParts.shift();
-  }
-  if (pathParts.length > 1 && pathParts[1] == "test") {
-    return "/" + pathParts.slice(0, 2).join("/") + "/";
-  }
-  // Attempt to detect base url using <base href> html tag
-  // base href should start and end with "/"
-  if (typeof document !== 'undefined') {
-    var el = document.getElementsByTagName('base');
-    if (el && el[0] && el[0].getAttribute("href") && el[0].getAttribute
-    ("href").startsWith("/") && el[0].getAttribute("href").endsWith("/")){
-      return el[0].getAttribute("href");
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.GeoPoint))) {
+        return object;
+      }
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.Timestamp))) {
+        return new core.DateTime.fromMillisecondsSinceEpoch(dart.lazyJSType(() => dart.global.firebase.firestore.Timestamp, "firebase.firestore.Timestamp").as(dart.nullCheck(object)).toMillis());
+      }
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.Blob))) {
+        return dart.anonymousJSType("Blob").as(dart.nullCheck(object));
+      }
+      return null;
+    }, T$.ObjectNToObjectN()));
+  };
+  utils$.jsify = function jsify(dartObject) {
+    if (dartObject == null) {
+      return null;
     }
-  }
-  // return default value
-  return "/";
-}());
-
-let modulePaths = {
- "web_entrypoint.dart": "web_entrypoint.dart.lib",
- "packages/flutter_web/generated_plugin_registrant.dart": "packages/flutter_web/generated_plugin_registrant.dart.lib",
- "packages/flutter_web_plugins/flutter_web_plugins.dart": "packages/flutter_web_plugins/flutter_web_plugins.dart.lib",
- "packages/flutter_web_plugins/src/plugin_registry.dart": "packages/flutter_web_plugins/src/plugin_registry.dart.lib",
- "packages/flutter/services.dart": "packages/flutter/services.dart.lib",
- "packages/flutter/src/services/text_input.dart": "packages/flutter/src/services/text_input.dart.lib",
- "packages/flutter/src/services/text_editing.dart": "packages/flutter/src/services/text_editing.dart.lib",
- "packages/flutter/foundation.dart": "packages/flutter/foundation.dart.lib",
- "packages/flutter/src/foundation/unicode.dart": "packages/flutter/src/foundation/unicode.dart.lib",
- "packages/flutter/src/foundation/synchronous_future.dart": "packages/flutter/src/foundation/synchronous_future.dart.lib",
- "packages/flutter/src/foundation/stack_frame.dart": "packages/flutter/src/foundation/stack_frame.dart.lib",
- "packages/flutter/src/foundation/object.dart": "packages/flutter/src/foundation/object.dart.lib",
- "packages/flutter/src/foundation/constants.dart": "packages/flutter/src/foundation/constants.dart.lib",
- "packages/meta/meta.dart": "packages/meta/meta.dart.lib",
- "packages/meta/meta_meta.dart": "packages/meta/meta_meta.dart.lib",
- "packages/flutter/src/foundation/serialization.dart": "packages/flutter/src/foundation/serialization.dart.lib",
- "packages/typed_data/typed_buffers.dart": "packages/typed_data/typed_buffers.dart.lib",
- "packages/typed_data/src/typed_buffer.dart": "packages/typed_data/src/typed_buffer.dart.lib",
- "packages/flutter/src/foundation/print.dart": "packages/flutter/src/foundation/print.dart.lib",
- "packages/flutter/src/foundation/_platform_web.dart": "packages/flutter/src/foundation/_platform_web.dart.lib",
- "packages/flutter/src/foundation/observer_list.dart": "packages/flutter/src/foundation/observer_list.dart.lib",
- "packages/flutter/src/foundation/node.dart": "packages/flutter/src/foundation/node.dart.lib",
- "packages/flutter/src/foundation/licenses.dart": "packages/flutter/src/foundation/licenses.dart.lib",
- "packages/flutter/src/foundation/key.dart": "packages/flutter/src/foundation/key.dart.lib",
- "packages/flutter/src/foundation/_isolates_web.dart": "packages/flutter/src/foundation/_isolates_web.dart.lib",
- "packages/flutter/src/foundation/debug.dart": "packages/flutter/src/foundation/debug.dart.lib",
- "packages/flutter/src/foundation/basic_types.dart": "packages/flutter/src/foundation/basic_types.dart.lib",
- "packages/flutter/src/foundation/consolidate_response.dart": "packages/flutter/src/foundation/consolidate_response.dart.lib",
- "packages/flutter/src/foundation/collections.dart": "packages/flutter/src/foundation/collections.dart.lib",
- "packages/flutter/src/foundation/change_notifier.dart": "packages/flutter/src/foundation/change_notifier.dart.lib",
- "packages/flutter/src/foundation/_bitfield_web.dart": "packages/flutter/src/foundation/_bitfield_web.dart.lib",
- "packages/flutter/src/foundation/binding.dart": "packages/flutter/src/foundation/binding.dart.lib",
- "packages/flutter/src/foundation/annotations.dart": "packages/flutter/src/foundation/annotations.dart.lib",
- "packages/flutter/src/services/system_chrome.dart": "packages/flutter/src/services/system_chrome.dart.lib",
- "packages/flutter/src/services/system_channels.dart": "packages/flutter/src/services/system_channels.dart.lib",
- "packages/flutter/scheduler.dart": "packages/flutter/scheduler.dart.lib",
- "packages/flutter/src/scheduler/ticker.dart": "packages/flutter/src/scheduler/ticker.dart.lib",
- "packages/flutter/src/scheduler/binding.dart": "packages/flutter/src/scheduler/binding.dart.lib",
- "packages/flutter/src/scheduler/priority.dart": "packages/flutter/src/scheduler/priority.dart.lib",
- "packages/flutter/src/scheduler/debug.dart": "packages/flutter/src/scheduler/debug.dart.lib",
- "packages/collection/src/union_set_controller.dart": "packages/collection/src/union_set_controller.dart.lib",
- "packages/collection/src/queue_list.dart": "packages/collection/src/queue_list.dart.lib",
- "packages/collection/src/priority_queue.dart": "packages/collection/src/priority_queue.dart.lib",
- "packages/collection/src/utils.dart": "packages/collection/src/utils.dart.lib",
- "packages/collection/src/list_extensions.dart": "packages/collection/src/list_extensions.dart.lib",
- "packages/collection/src/equality.dart": "packages/collection/src/equality.dart.lib",
- "packages/collection/src/comparators.dart": "packages/collection/src/comparators.dart.lib",
- "packages/collection/src/algorithms.dart": "packages/collection/src/algorithms.dart.lib",
- "packages/collection/src/iterable_zip.dart": "packages/collection/src/iterable_zip.dart.lib",
- "packages/collection/src/iterable_extensions.dart": "packages/collection/src/iterable_extensions.dart.lib",
- "packages/collection/src/functions.dart": "packages/collection/src/functions.dart.lib",
- "packages/collection/src/combined_wrappers/combined_map.dart": "packages/collection/src/combined_wrappers/combined_map.dart.lib",
- "packages/collection/src/combined_wrappers/combined_iterable.dart": "packages/collection/src/combined_wrappers/combined_iterable.dart.lib",
- "packages/collection/src/combined_wrappers/combined_iterator.dart": "packages/collection/src/combined_wrappers/combined_iterator.dart.lib",
- "packages/collection/src/combined_wrappers/combined_list.dart": "packages/collection/src/combined_wrappers/combined_list.dart.lib",
- "packages/collection/src/canonicalized_map.dart": "packages/collection/src/canonicalized_map.dart.lib",
- "packages/vector_math/vector_math_64.dart": "packages/vector_math/vector_math_64.dart.lib",
- "packages/vector_math/hash.dart": "packages/vector_math/hash.dart.lib",
- "packages/flutter/src/services/text_formatter.dart": "packages/flutter/src/services/text_formatter.dart.lib",
- "packages/characters/characters.dart": "packages/characters/characters.dart.lib",
- "packages/characters/src/extensions.dart": "packages/characters/src/extensions.dart.lib",
- "packages/characters/src/characters_impl.dart": "packages/characters/src/characters_impl.dart.lib",
- "packages/characters/src/grapheme_clusters/breaks.dart": "packages/characters/src/grapheme_clusters/breaks.dart.lib",
- "packages/characters/src/grapheme_clusters/table.dart": "packages/characters/src/grapheme_clusters/table.dart.lib",
- "packages/characters/src/grapheme_clusters/constants.dart": "packages/characters/src/grapheme_clusters/constants.dart.lib",
- "packages/flutter/src/services/system_sound.dart": "packages/flutter/src/services/system_sound.dart.lib",
- "packages/flutter/src/services/system_navigator.dart": "packages/flutter/src/services/system_navigator.dart.lib",
- "packages/flutter/src/services/raw_keyboard_windows.dart": "packages/flutter/src/services/raw_keyboard_windows.dart.lib",
- "packages/flutter/src/services/keyboard_maps.dart": "packages/flutter/src/services/keyboard_maps.dart.lib",
- "packages/flutter/src/services/keyboard_key.dart": "packages/flutter/src/services/keyboard_key.dart.lib",
- "packages/flutter/src/services/platform_views.dart": "packages/flutter/src/services/platform_views.dart.lib",
- "packages/flutter/gestures.dart": "packages/flutter/gestures.dart.lib",
- "packages/flutter/src/gestures/velocity_tracker.dart": "packages/flutter/src/gestures/velocity_tracker.dart.lib",
- "packages/flutter/src/gestures/lsq_solver.dart": "packages/flutter/src/gestures/lsq_solver.dart.lib",
- "packages/flutter/src/gestures/events.dart": "packages/flutter/src/gestures/events.dart.lib",
- "packages/flutter/src/gestures/constants.dart": "packages/flutter/src/gestures/constants.dart.lib",
- "packages/flutter/src/gestures/team.dart": "packages/flutter/src/gestures/team.dart.lib",
- "packages/flutter/src/gestures/binding.dart": "packages/flutter/src/gestures/binding.dart.lib",
- "packages/flutter/src/gestures/resampler.dart": "packages/flutter/src/gestures/resampler.dart.lib",
- "packages/flutter/src/gestures/pointer_signal_resolver.dart": "packages/flutter/src/gestures/pointer_signal_resolver.dart.lib",
- "packages/flutter/src/gestures/pointer_router.dart": "packages/flutter/src/gestures/pointer_router.dart.lib",
- "packages/flutter/src/gestures/hit_test.dart": "packages/flutter/src/gestures/hit_test.dart.lib",
- "packages/flutter/src/gestures/debug.dart": "packages/flutter/src/gestures/debug.dart.lib",
- "packages/flutter/src/gestures/converter.dart": "packages/flutter/src/gestures/converter.dart.lib",
- "packages/flutter/src/gestures/arena.dart": "packages/flutter/src/gestures/arena.dart.lib",
- "packages/flutter/src/gestures/tap.dart": "packages/flutter/src/gestures/tap.dart.lib",
- "packages/flutter/src/gestures/recognizer.dart": "packages/flutter/src/gestures/recognizer.dart.lib",
- "packages/flutter/src/gestures/scale.dart": "packages/flutter/src/gestures/scale.dart.lib",
- "packages/flutter/src/gestures/multitap.dart": "packages/flutter/src/gestures/multitap.dart.lib",
- "packages/flutter/src/gestures/multidrag.dart": "packages/flutter/src/gestures/multidrag.dart.lib",
- "packages/flutter/src/gestures/drag_details.dart": "packages/flutter/src/gestures/drag_details.dart.lib",
- "packages/flutter/src/gestures/drag.dart": "packages/flutter/src/gestures/drag.dart.lib",
- "packages/flutter/src/gestures/monodrag.dart": "packages/flutter/src/gestures/monodrag.dart.lib",
- "packages/flutter/src/gestures/long_press.dart": "packages/flutter/src/gestures/long_press.dart.lib",
- "packages/flutter/src/gestures/force_press.dart": "packages/flutter/src/gestures/force_press.dart.lib",
- "packages/flutter/src/gestures/eager.dart": "packages/flutter/src/gestures/eager.dart.lib",
- "packages/flutter/src/services/platform_messages.dart": "packages/flutter/src/services/platform_messages.dart.lib",
- "packages/flutter/src/services/haptic_feedback.dart": "packages/flutter/src/services/haptic_feedback.dart.lib",
- "packages/flutter/src/services/font_loader.dart": "packages/flutter/src/services/font_loader.dart.lib",
- "packages/flutter/src/services/deferred_component.dart": "packages/flutter/src/services/deferred_component.dart.lib",
- "packages/flutter/src/services/clipboard.dart": "packages/flutter/src/services/clipboard.dart.lib",
- "packages/flutter_web_plugins/src/plugin_event_channel.dart": "packages/flutter_web_plugins/src/plugin_event_channel.dart.lib",
- "packages/flutter_web_plugins/src/navigation/utils.dart": "packages/flutter_web_plugins/src/navigation/utils.dart.lib",
- "packages/flutter_web_plugins/src/navigation/url_strategy.dart": "packages/flutter_web_plugins/src/navigation/url_strategy.dart.lib",
- "packages/js/js.dart": "packages/js/js.dart.lib",
- "packages/firebase_core_web/firebase_core_web.dart": "packages/firebase_core_web/firebase_core_web.dart.lib",
- "packages/firebase_core_web/src/interop/core.dart": "packages/firebase_core_web/src/interop/core.dart.lib",
- "packages/firebase_core_web/src/interop/core_interop.dart": "packages/firebase_core_web/src/interop/core_interop.dart.lib",
- "packages/firebase_core_web/src/interop/utils/es6_interop.dart": "packages/firebase_core_web/src/interop/utils/es6_interop.dart.lib",
- "packages/firebase_core_web/src/interop/utils/func.dart": "packages/firebase_core_web/src/interop/utils/func.dart.lib",
- "packages/firebase_core_web/src/interop/app.dart": "packages/firebase_core_web/src/interop/app.dart.lib",
- "packages/firebase_core_web/src/interop/utils/utils.dart": "packages/firebase_core_web/src/interop/utils/utils.dart.lib",
- "packages/firebase_core_web/src/interop/utils/js_interop.dart": "packages/firebase_core_web/src/interop/utils/js_interop.dart.lib",
- "packages/js/js_util.dart": "packages/js/js_util.dart.lib",
- "packages/firebase_core_web/src/interop/utils/js.dart": "packages/firebase_core_web/src/interop/utils/js.dart.lib",
- "packages/firebase_core_platform_interface/firebase_core_platform_interface.dart": "packages/firebase_core_platform_interface/firebase_core_platform_interface.dart.lib",
- "packages/plugin_platform_interface/plugin_platform_interface.dart": "packages/plugin_platform_interface/plugin_platform_interface.dart.lib",
- "packages/flutter/cupertino.dart": "packages/flutter/cupertino.dart.lib",
- "packages/flutter/widgets.dart": "packages/flutter/widgets.dart.lib",
- "packages/flutter/src/widgets/will_pop_scope.dart": "packages/flutter/src/widgets/will_pop_scope.dart.lib",
- "packages/flutter/src/widgets/widget_span.dart": "packages/flutter/src/widgets/widget_span.dart.lib",
- "packages/flutter/rendering.dart": "packages/flutter/rendering.dart.lib",
- "packages/flutter/src/rendering/wrap.dart": "packages/flutter/src/rendering/wrap.dart.lib",
- "packages/flutter/src/rendering/layer.dart": "packages/flutter/src/rendering/layer.dart.lib",
- "packages/flutter/painting.dart": "packages/flutter/painting.dart.lib",
- "packages/flutter/src/painting/strut_style.dart": "packages/flutter/src/painting/strut_style.dart.lib",
- "packages/flutter/src/painting/basic_types.dart": "packages/flutter/src/painting/basic_types.dart.lib",
- "packages/flutter/src/painting/colors.dart": "packages/flutter/src/painting/colors.dart.lib",
- "packages/flutter/src/painting/placeholder_span.dart": "packages/flutter/src/painting/placeholder_span.dart.lib",
- "packages/flutter/src/painting/stadium_border.dart": "packages/flutter/src/painting/stadium_border.dart.lib",
- "packages/flutter/src/painting/rounded_rectangle_border.dart": "packages/flutter/src/painting/rounded_rectangle_border.dart.lib",
- "packages/flutter/src/painting/edge_insets.dart": "packages/flutter/src/painting/edge_insets.dart.lib",
- "packages/flutter/src/painting/circle_border.dart": "packages/flutter/src/painting/circle_border.dart.lib",
- "packages/flutter/src/painting/borders.dart": "packages/flutter/src/painting/borders.dart.lib",
- "packages/flutter/src/painting/border_radius.dart": "packages/flutter/src/painting/border_radius.dart.lib",
- "packages/flutter/src/painting/shape_decoration.dart": "packages/flutter/src/painting/shape_decoration.dart.lib",
- "packages/flutter/src/painting/_network_image_web.dart": "packages/flutter/src/painting/_network_image_web.dart.lib",
- "packages/flutter/src/painting/image_stream.dart": "packages/flutter/src/painting/image_stream.dart.lib",
- "packages/flutter/src/painting/image_cache.dart": "packages/flutter/src/painting/image_cache.dart.lib",
- "packages/flutter/src/painting/binding.dart": "packages/flutter/src/painting/binding.dart.lib",
- "packages/flutter/src/painting/shader_warm_up.dart": "packages/flutter/src/painting/shader_warm_up.dart.lib",
- "packages/flutter/src/painting/gradient.dart": "packages/flutter/src/painting/gradient.dart.lib",
- "packages/flutter/src/painting/alignment.dart": "packages/flutter/src/painting/alignment.dart.lib",
- "packages/flutter/src/painting/decoration_image.dart": "packages/flutter/src/painting/decoration_image.dart.lib",
- "packages/flutter/src/painting/debug.dart": "packages/flutter/src/painting/debug.dart.lib",
- "packages/flutter/src/painting/box_fit.dart": "packages/flutter/src/painting/box_fit.dart.lib",
- "packages/flutter/src/painting/decoration.dart": "packages/flutter/src/painting/decoration.dart.lib",
- "packages/flutter/src/painting/box_shadow.dart": "packages/flutter/src/painting/box_shadow.dart.lib",
- "packages/flutter/src/painting/box_decoration.dart": "packages/flutter/src/painting/box_decoration.dart.lib",
- "packages/flutter/src/painting/box_border.dart": "packages/flutter/src/painting/box_border.dart.lib",
- "packages/flutter/src/painting/paint_utilities.dart": "packages/flutter/src/painting/paint_utilities.dart.lib",
- "packages/flutter/src/painting/notched_shapes.dart": "packages/flutter/src/painting/notched_shapes.dart.lib",
- "packages/flutter/src/painting/matrix_utils.dart": "packages/flutter/src/painting/matrix_utils.dart.lib",
- "packages/flutter/src/painting/image_resolution.dart": "packages/flutter/src/painting/image_resolution.dart.lib",
- "packages/flutter/src/painting/image_decoder.dart": "packages/flutter/src/painting/image_decoder.dart.lib",
- "packages/flutter/src/painting/geometry.dart": "packages/flutter/src/painting/geometry.dart.lib",
- "packages/flutter/src/painting/fractional_offset.dart": "packages/flutter/src/painting/fractional_offset.dart.lib",
- "packages/flutter/src/painting/flutter_logo.dart": "packages/flutter/src/painting/flutter_logo.dart.lib",
- "packages/flutter/src/painting/continuous_rectangle_border.dart": "packages/flutter/src/painting/continuous_rectangle_border.dart.lib",
- "packages/flutter/src/painting/clip.dart": "packages/flutter/src/painting/clip.dart.lib",
- "packages/flutter/src/painting/beveled_rectangle_border.dart": "packages/flutter/src/painting/beveled_rectangle_border.dart.lib",
- "packages/flutter/semantics.dart": "packages/flutter/semantics.dart.lib",
- "packages/flutter/src/semantics/semantics_service.dart": "packages/flutter/src/semantics/semantics_service.dart.lib",
- "packages/flutter/src/semantics/semantics_event.dart": "packages/flutter/src/semantics/semantics_event.dart.lib",
- "packages/flutter/src/semantics/semantics.dart": "packages/flutter/src/semantics/semantics.dart.lib",
- "packages/flutter/src/semantics/binding.dart": "packages/flutter/src/semantics/binding.dart.lib",
- "packages/flutter/src/semantics/debug.dart": "packages/flutter/src/semantics/debug.dart.lib",
- "packages/flutter/animation.dart": "packages/flutter/animation.dart.lib",
- "packages/flutter/src/animation/tween_sequence.dart": "packages/flutter/src/animation/tween_sequence.dart.lib",
- "packages/flutter/src/animation/listener_helpers.dart": "packages/flutter/src/animation/listener_helpers.dart.lib",
- "packages/flutter/src/animation/curves.dart": "packages/flutter/src/animation/curves.dart.lib",
- "packages/flutter/src/animation/animation_controller.dart": "packages/flutter/src/animation/animation_controller.dart.lib",
- "packages/flutter/physics.dart": "packages/flutter/physics.dart.lib",
- "packages/flutter/src/physics/utils.dart": "packages/flutter/src/physics/utils.dart.lib",
- "packages/flutter/src/physics/tolerance.dart": "packages/flutter/src/physics/tolerance.dart.lib",
- "packages/flutter/src/physics/spring_simulation.dart": "packages/flutter/src/physics/spring_simulation.dart.lib",
- "packages/flutter/src/physics/simulation.dart": "packages/flutter/src/physics/simulation.dart.lib",
- "packages/flutter/src/physics/gravity_simulation.dart": "packages/flutter/src/physics/gravity_simulation.dart.lib",
- "packages/flutter/src/physics/friction_simulation.dart": "packages/flutter/src/physics/friction_simulation.dart.lib",
- "packages/flutter/src/physics/clamped_simulation.dart": "packages/flutter/src/physics/clamped_simulation.dart.lib",
- "packages/flutter/src/rendering/layout_helper.dart": "packages/flutter/src/rendering/layout_helper.dart.lib",
- "packages/flutter/src/rendering/viewport_offset.dart": "packages/flutter/src/rendering/viewport_offset.dart.lib",
- "packages/flutter/src/rendering/sliver.dart": "packages/flutter/src/rendering/sliver.dart.lib",
- "packages/flutter/src/rendering/tweens.dart": "packages/flutter/src/rendering/tweens.dart.lib",
- "packages/flutter/src/rendering/texture.dart": "packages/flutter/src/rendering/texture.dart.lib",
- "packages/flutter/src/rendering/table_border.dart": "packages/flutter/src/rendering/table_border.dart.lib",
- "packages/flutter/src/rendering/table.dart": "packages/flutter/src/rendering/table.dart.lib",
- "packages/flutter/src/rendering/stack.dart": "packages/flutter/src/rendering/stack.dart.lib",
- "packages/flutter/src/rendering/sliver_persistent_header.dart": "packages/flutter/src/rendering/sliver_persistent_header.dart.lib",
- "packages/flutter/src/rendering/sliver_padding.dart": "packages/flutter/src/rendering/sliver_padding.dart.lib",
- "packages/flutter/src/rendering/sliver_multi_box_adaptor.dart": "packages/flutter/src/rendering/sliver_multi_box_adaptor.dart.lib",
- "packages/flutter/src/rendering/sliver_list.dart": "packages/flutter/src/rendering/sliver_list.dart.lib",
- "packages/flutter/src/rendering/sliver_grid.dart": "packages/flutter/src/rendering/sliver_grid.dart.lib",
- "packages/flutter/src/rendering/sliver_fixed_extent_list.dart": "packages/flutter/src/rendering/sliver_fixed_extent_list.dart.lib",
- "packages/flutter/src/rendering/sliver_fill.dart": "packages/flutter/src/rendering/sliver_fill.dart.lib",
- "packages/flutter/src/rendering/shifted_box.dart": "packages/flutter/src/rendering/shifted_box.dart.lib",
- "packages/flutter/src/rendering/debug_overflow_indicator.dart": "packages/flutter/src/rendering/debug_overflow_indicator.dart.lib",
- "packages/flutter/src/rendering/rotated_box.dart": "packages/flutter/src/rendering/rotated_box.dart.lib",
- "packages/flutter/src/rendering/proxy_sliver.dart": "packages/flutter/src/rendering/proxy_sliver.dart.lib",
- "packages/flutter/src/rendering/proxy_box.dart": "packages/flutter/src/rendering/proxy_box.dart.lib",
- "packages/flutter/src/rendering/platform_view.dart": "packages/flutter/src/rendering/platform_view.dart.lib",
- "packages/flutter/src/rendering/performance_overlay.dart": "packages/flutter/src/rendering/performance_overlay.dart.lib",
- "packages/flutter/src/rendering/paragraph.dart": "packages/flutter/src/rendering/paragraph.dart.lib",
- "packages/flutter/src/rendering/list_wheel_viewport.dart": "packages/flutter/src/rendering/list_wheel_viewport.dart.lib",
- "packages/flutter/src/rendering/list_body.dart": "packages/flutter/src/rendering/list_body.dart.lib",
- "packages/flutter/src/rendering/image.dart": "packages/flutter/src/rendering/image.dart.lib",
- "packages/flutter/src/rendering/flow.dart": "packages/flutter/src/rendering/flow.dart.lib",
- "packages/flutter/src/rendering/flex.dart": "packages/flutter/src/rendering/flex.dart.lib",
- "packages/flutter/src/rendering/error.dart": "packages/flutter/src/rendering/error.dart.lib",
- "packages/flutter/src/rendering/editable.dart": "packages/flutter/src/rendering/editable.dart.lib",
- "packages/flutter/src/rendering/custom_paint.dart": "packages/flutter/src/rendering/custom_paint.dart.lib",
- "packages/flutter/src/rendering/custom_layout.dart": "packages/flutter/src/rendering/custom_layout.dart.lib",
- "packages/flutter/src/rendering/animated_size.dart": "packages/flutter/src/rendering/animated_size.dart.lib",
- "packages/flutter/src/widgets/constants.dart": "packages/flutter/src/widgets/constants.dart.lib",
- "packages/flutter/src/widgets/scroll_simulation.dart": "packages/flutter/src/widgets/scroll_simulation.dart.lib",
- "packages/flutter/src/widgets/scroll_metrics.dart": "packages/flutter/src/widgets/scroll_metrics.dart.lib",
- "packages/flutter/src/widgets/value_listenable_builder.dart": "packages/flutter/src/widgets/value_listenable_builder.dart.lib",
- "packages/flutter/src/widgets/unique_widget.dart": "packages/flutter/src/widgets/unique_widget.dart.lib",
- "packages/flutter/src/widgets/tween_animation_builder.dart": "packages/flutter/src/widgets/tween_animation_builder.dart.lib",
- "packages/flutter/src/widgets/implicit_animations.dart": "packages/flutter/src/widgets/implicit_animations.dart.lib",
- "packages/flutter/src/widgets/texture.dart": "packages/flutter/src/widgets/texture.dart.lib",
- "packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart": "packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart.lib",
- "packages/flutter/src/widgets/status_transitions.dart": "packages/flutter/src/widgets/status_transitions.dart.lib",
- "packages/flutter/src/widgets/spacer.dart": "packages/flutter/src/widgets/spacer.dart.lib",
- "packages/flutter/src/widgets/sliver_prototype_extent_list.dart": "packages/flutter/src/widgets/sliver_prototype_extent_list.dart.lib",
- "packages/flutter/src/widgets/sliver_persistent_header.dart": "packages/flutter/src/widgets/sliver_persistent_header.dart.lib",
- "packages/flutter/src/widgets/sliver_layout_builder.dart": "packages/flutter/src/widgets/sliver_layout_builder.dart.lib",
- "packages/flutter/src/widgets/layout_builder.dart": "packages/flutter/src/widgets/layout_builder.dart.lib",
- "packages/flutter/src/widgets/sliver_fill.dart": "packages/flutter/src/widgets/sliver_fill.dart.lib",
- "packages/flutter/src/widgets/size_changed_layout_notifier.dart": "packages/flutter/src/widgets/size_changed_layout_notifier.dart.lib",
- "packages/flutter/src/widgets/single_child_scroll_view.dart": "packages/flutter/src/widgets/single_child_scroll_view.dart.lib",
- "packages/flutter/src/widgets/scrollbar.dart": "packages/flutter/src/widgets/scrollbar.dart.lib",
- "packages/flutter/src/widgets/scroll_view.dart": "packages/flutter/src/widgets/scroll_view.dart.lib",
- "packages/flutter/src/widgets/safe_area.dart": "packages/flutter/src/widgets/safe_area.dart.lib",
- "packages/flutter/src/widgets/reorderable_list.dart": "packages/flutter/src/widgets/reorderable_list.dart.lib",
- "packages/flutter/src/widgets/raw_keyboard_listener.dart": "packages/flutter/src/widgets/raw_keyboard_listener.dart.lib",
- "packages/flutter/src/widgets/preferred_size.dart": "packages/flutter/src/widgets/preferred_size.dart.lib",
- "packages/flutter/src/widgets/platform_view.dart": "packages/flutter/src/widgets/platform_view.dart.lib",
- "packages/flutter/src/widgets/placeholder.dart": "packages/flutter/src/widgets/placeholder.dart.lib",
- "packages/flutter/src/widgets/page_view.dart": "packages/flutter/src/widgets/page_view.dart.lib",
- "packages/flutter/src/widgets/overflow_bar.dart": "packages/flutter/src/widgets/overflow_bar.dart.lib",
- "packages/flutter/src/widgets/orientation_builder.dart": "packages/flutter/src/widgets/orientation_builder.dart.lib",
- "packages/flutter/src/widgets/nested_scroll_view.dart": "packages/flutter/src/widgets/nested_scroll_view.dart.lib",
- "packages/flutter/src/widgets/navigation_toolbar.dart": "packages/flutter/src/widgets/navigation_toolbar.dart.lib",
- "packages/flutter/src/widgets/list_wheel_scroll_view.dart": "packages/flutter/src/widgets/list_wheel_scroll_view.dart.lib",
- "packages/flutter/src/widgets/interactive_viewer.dart": "packages/flutter/src/widgets/interactive_viewer.dart.lib",
- "packages/flutter/src/widgets/image_icon.dart": "packages/flutter/src/widgets/image_icon.dart.lib",
- "packages/flutter/src/widgets/icon_theme_data.dart": "packages/flutter/src/widgets/icon_theme_data.dart.lib",
- "packages/flutter/src/widgets/icon_theme.dart": "packages/flutter/src/widgets/icon_theme.dart.lib",
- "packages/flutter/src/widgets/icon.dart": "packages/flutter/src/widgets/icon.dart.lib",
- "packages/flutter/src/widgets/icon_data.dart": "packages/flutter/src/widgets/icon_data.dart.lib",
- "packages/flutter/src/widgets/image_filter.dart": "packages/flutter/src/widgets/image_filter.dart.lib",
- "packages/flutter/src/widgets/grid_paper.dart": "packages/flutter/src/widgets/grid_paper.dart.lib",
- "packages/flutter/src/widgets/form.dart": "packages/flutter/src/widgets/form.dart.lib",
- "packages/flutter/src/widgets/fade_in_image.dart": "packages/flutter/src/widgets/fade_in_image.dart.lib",
- "packages/flutter/src/widgets/dual_transition_builder.dart": "packages/flutter/src/widgets/dual_transition_builder.dart.lib",
- "packages/flutter/src/widgets/draggable_scrollable_sheet.dart": "packages/flutter/src/widgets/draggable_scrollable_sheet.dart.lib",
- "packages/flutter/src/widgets/drag_target.dart": "packages/flutter/src/widgets/drag_target.dart.lib",
- "packages/flutter/src/widgets/dismissible.dart": "packages/flutter/src/widgets/dismissible.dart.lib",
- "packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart": "packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart.lib",
- "packages/flutter/src/widgets/color_filter.dart": "packages/flutter/src/widgets/color_filter.dart.lib",
- "packages/flutter/src/widgets/bottom_navigation_bar_item.dart": "packages/flutter/src/widgets/bottom_navigation_bar_item.dart.lib",
- "packages/flutter/src/widgets/autocomplete.dart": "packages/flutter/src/widgets/autocomplete.dart.lib",
- "packages/flutter/src/widgets/async.dart": "packages/flutter/src/widgets/async.dart.lib",
- "packages/flutter/src/widgets/annotated_region.dart": "packages/flutter/src/widgets/annotated_region.dart.lib",
- "packages/flutter/src/widgets/animated_switcher.dart": "packages/flutter/src/widgets/animated_switcher.dart.lib",
- "packages/flutter/src/widgets/animated_size.dart": "packages/flutter/src/widgets/animated_size.dart.lib",
- "packages/flutter/src/widgets/animated_list.dart": "packages/flutter/src/widgets/animated_list.dart.lib",
- "packages/flutter/src/widgets/animated_cross_fade.dart": "packages/flutter/src/widgets/animated_cross_fade.dart.lib",
- "packages/flutter/src/cupertino/thumb_painter.dart": "packages/flutter/src/cupertino/thumb_painter.dart.lib",
- "packages/flutter/src/cupertino/text_theme.dart": "packages/flutter/src/cupertino/text_theme.dart.lib",
- "packages/flutter/src/cupertino/interface_level.dart": "packages/flutter/src/cupertino/interface_level.dart.lib",
- "packages/flutter/src/cupertino/text_selection_toolbar_button.dart": "packages/flutter/src/cupertino/text_selection_toolbar_button.dart.lib",
- "packages/flutter/src/cupertino/button.dart": "packages/flutter/src/cupertino/button.dart.lib",
- "packages/flutter/src/cupertino/constants.dart": "packages/flutter/src/cupertino/constants.dart.lib",
- "packages/flutter/src/cupertino/text_selection_toolbar.dart": "packages/flutter/src/cupertino/text_selection_toolbar.dart.lib",
- "packages/flutter/src/cupertino/text_selection.dart": "packages/flutter/src/cupertino/text_selection.dart.lib",
- "packages/flutter/src/cupertino/debug.dart": "packages/flutter/src/cupertino/debug.dart.lib",
- "packages/flutter/src/cupertino/text_form_field_row.dart": "packages/flutter/src/cupertino/text_form_field_row.dart.lib",
- "packages/flutter/src/cupertino/text_field.dart": "packages/flutter/src/cupertino/text_field.dart.lib",
- "packages/flutter/src/cupertino/icons.dart": "packages/flutter/src/cupertino/icons.dart.lib",
- "packages/flutter/src/cupertino/desktop_text_selection.dart": "packages/flutter/src/cupertino/desktop_text_selection.dart.lib",
- "packages/flutter/src/cupertino/form_row.dart": "packages/flutter/src/cupertino/form_row.dart.lib",
- "packages/flutter/src/cupertino/tab_view.dart": "packages/flutter/src/cupertino/tab_view.dart.lib",
- "packages/flutter/src/cupertino/route.dart": "packages/flutter/src/cupertino/route.dart.lib",
- "packages/flutter/src/cupertino/app.dart": "packages/flutter/src/cupertino/app.dart.lib",
- "packages/flutter/src/cupertino/tab_scaffold.dart": "packages/flutter/src/cupertino/tab_scaffold.dart.lib",
- "packages/flutter/src/cupertino/bottom_tab_bar.dart": "packages/flutter/src/cupertino/bottom_tab_bar.dart.lib",
- "packages/flutter/src/cupertino/switch.dart": "packages/flutter/src/cupertino/switch.dart.lib",
- "packages/flutter/src/cupertino/sliding_segmented_control.dart": "packages/flutter/src/cupertino/sliding_segmented_control.dart.lib",
- "packages/flutter/src/cupertino/slider.dart": "packages/flutter/src/cupertino/slider.dart.lib",
- "packages/flutter/src/cupertino/segmented_control.dart": "packages/flutter/src/cupertino/segmented_control.dart.lib",
- "packages/flutter/src/cupertino/search_field.dart": "packages/flutter/src/cupertino/search_field.dart.lib",
- "packages/flutter/src/cupertino/scrollbar.dart": "packages/flutter/src/cupertino/scrollbar.dart.lib",
- "packages/flutter/src/cupertino/refresh.dart": "packages/flutter/src/cupertino/refresh.dart.lib",
- "packages/flutter/src/cupertino/activity_indicator.dart": "packages/flutter/src/cupertino/activity_indicator.dart.lib",
- "packages/flutter/src/cupertino/picker.dart": "packages/flutter/src/cupertino/picker.dart.lib",
- "packages/flutter/src/cupertino/page_scaffold.dart": "packages/flutter/src/cupertino/page_scaffold.dart.lib",
- "packages/flutter/src/cupertino/nav_bar.dart": "packages/flutter/src/cupertino/nav_bar.dart.lib",
- "packages/flutter/src/cupertino/form_section.dart": "packages/flutter/src/cupertino/form_section.dart.lib",
- "packages/flutter/src/cupertino/dialog.dart": "packages/flutter/src/cupertino/dialog.dart.lib",
- "packages/flutter/src/cupertino/date_picker.dart": "packages/flutter/src/cupertino/date_picker.dart.lib",
- "packages/flutter/src/cupertino/context_menu_action.dart": "packages/flutter/src/cupertino/context_menu_action.dart.lib",
- "packages/flutter/src/cupertino/context_menu.dart": "packages/flutter/src/cupertino/context_menu.dart.lib",
- "packages/flutter/src/cupertino/action_sheet.dart": "packages/flutter/src/cupertino/action_sheet.dart.lib",
- "packages/cloud_firestore_web/src/write_batch_web.dart": "packages/cloud_firestore_web/src/write_batch_web.dart.lib",
- "packages/cloud_firestore_web/src/interop/utils/utils.dart": "packages/cloud_firestore_web/src/interop/utils/utils.dart.lib",
- "packages/cloud_firestore_web/src/interop/firestore_interop.dart": "packages/cloud_firestore_web/src/interop/firestore_interop.dart.lib",
- "packages/firebase_core_web/firebase_core_web_interop.dart": "packages/firebase_core_web/firebase_core_web_interop.dart.lib",
- "packages/cloud_firestore_web/src/interop/firebase_interop.dart": "packages/cloud_firestore_web/src/interop/firebase_interop.dart.lib",
- "packages/cloud_firestore_web/src/field_value_web.dart": "packages/cloud_firestore_web/src/field_value_web.dart.lib",
- "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_write_batch.dart": "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_write_batch.dart.lib",
- "packages/cloud_firestore_platform_interface/src/persistence_settings.dart": "packages/cloud_firestore_platform_interface/src/persistence_settings.dart.lib",
- "packages/cloud_firestore_platform_interface/src/set_options.dart": "packages/cloud_firestore_platform_interface/src/set_options.dart.lib",
- "packages/cloud_firestore_platform_interface/src/field_path.dart": "packages/cloud_firestore_platform_interface/src/field_path.dart.lib",
- "packages/cloud_firestore_platform_interface/src/internal/field_path_type.dart": "packages/cloud_firestore_platform_interface/src/internal/field_path_type.dart.lib",
- "packages/cloud_firestore_platform_interface/src/get_options.dart": "packages/cloud_firestore_platform_interface/src/get_options.dart.lib",
- "packages/cloud_firestore_platform_interface/src/source.dart": "packages/cloud_firestore_platform_interface/src/source.dart.lib",
- "packages/cloud_firestore_platform_interface/src/settings.dart": "packages/cloud_firestore_platform_interface/src/settings.dart.lib",
- "packages/flutter/material.dart": "packages/flutter/material.dart.lib",
- "packages/flutter/src/material/user_accounts_drawer_header.dart": "packages/flutter/src/material/user_accounts_drawer_header.dart.lib",
- "packages/flutter/src/material/icon_button.dart": "packages/flutter/src/material/icon_button.dart.lib",
- "packages/flutter/src/material/typography.dart": "packages/flutter/src/material/typography.dart.lib",
- "packages/flutter/src/material/colors.dart": "packages/flutter/src/material/colors.dart.lib",
- "packages/flutter/src/material/input_border.dart": "packages/flutter/src/material/input_border.dart.lib",
- "packages/flutter/src/material/constants.dart": "packages/flutter/src/material/constants.dart.lib",
- "packages/flutter/src/material/material_state.dart": "packages/flutter/src/material/material_state.dart.lib",
- "packages/flutter/src/material/tab_indicator.dart": "packages/flutter/src/material/tab_indicator.dart.lib",
- "packages/flutter/src/material/tab_controller.dart": "packages/flutter/src/material/tab_controller.dart.lib",
- "packages/flutter/src/material/floating_action_button_theme.dart": "packages/flutter/src/material/floating_action_button_theme.dart.lib",
- "packages/flutter/src/material/curves.dart": "packages/flutter/src/material/curves.dart.lib",
- "packages/flutter/src/material/bottom_sheet_theme.dart": "packages/flutter/src/material/bottom_sheet_theme.dart.lib",
- "packages/flutter/src/material/icons.dart": "packages/flutter/src/material/icons.dart.lib",
- "packages/flutter/src/material/drawer_header.dart": "packages/flutter/src/material/drawer_header.dart.lib",
- "packages/flutter/src/material/toggleable.dart": "packages/flutter/src/material/toggleable.dart.lib",
- "packages/flutter/src/material/toggle_buttons.dart": "packages/flutter/src/material/toggle_buttons.dart.lib",
- "packages/flutter/src/material/time_picker.dart": "packages/flutter/src/material/time_picker.dart.lib",
- "packages/flutter/src/material/text_form_field.dart": "packages/flutter/src/material/text_form_field.dart.lib",
- "packages/flutter/src/material/text_field.dart": "packages/flutter/src/material/text_field.dart.lib",
- "packages/flutter/src/material/text_selection.dart": "packages/flutter/src/material/text_selection.dart.lib",
- "packages/flutter/src/material/text_selection_toolbar_text_button.dart": "packages/flutter/src/material/text_selection_toolbar_text_button.dart.lib",
- "packages/flutter/src/material/text_selection_toolbar.dart": "packages/flutter/src/material/text_selection_toolbar.dart.lib",
- "packages/flutter/src/material/selectable_text.dart": "packages/flutter/src/material/selectable_text.dart.lib",
- "packages/flutter/src/material/desktop_text_selection.dart": "packages/flutter/src/material/desktop_text_selection.dart.lib",
- "packages/flutter/src/material/switch_list_tile.dart": "packages/flutter/src/material/switch_list_tile.dart.lib",
- "packages/flutter/src/material/switch.dart": "packages/flutter/src/material/switch.dart.lib",
- "packages/flutter/src/material/shadows.dart": "packages/flutter/src/material/shadows.dart.lib",
- "packages/flutter/src/material/stepper.dart": "packages/flutter/src/material/stepper.dart.lib",
- "packages/flutter/src/material/slider.dart": "packages/flutter/src/material/slider.dart.lib",
- "packages/flutter/src/material/search.dart": "packages/flutter/src/material/search.dart.lib",
- "packages/flutter/src/material/scrollbar.dart": "packages/flutter/src/material/scrollbar.dart.lib",
- "packages/flutter/src/material/reorderable_list.dart": "packages/flutter/src/material/reorderable_list.dart.lib",
- "packages/flutter/src/material/refresh_indicator.dart": "packages/flutter/src/material/refresh_indicator.dart.lib",
- "packages/flutter/src/material/progress_indicator.dart": "packages/flutter/src/material/progress_indicator.dart.lib",
- "packages/flutter/src/material/range_slider.dart": "packages/flutter/src/material/range_slider.dart.lib",
- "packages/flutter/src/material/radio_list_tile.dart": "packages/flutter/src/material/radio_list_tile.dart.lib",
- "packages/flutter/src/material/radio.dart": "packages/flutter/src/material/radio.dart.lib",
- "packages/flutter/src/material/popup_menu.dart": "packages/flutter/src/material/popup_menu.dart.lib",
- "packages/flutter/src/material/paginated_data_table.dart": "packages/flutter/src/material/paginated_data_table.dart.lib",
- "packages/flutter/src/material/ink_decoration.dart": "packages/flutter/src/material/ink_decoration.dart.lib",
- "packages/flutter/src/material/dropdown.dart": "packages/flutter/src/material/dropdown.dart.lib",
- "packages/flutter/src/material/data_table_source.dart": "packages/flutter/src/material/data_table_source.dart.lib",
- "packages/flutter/src/material/data_table.dart": "packages/flutter/src/material/data_table.dart.lib",
- "packages/flutter/src/material/checkbox.dart": "packages/flutter/src/material/checkbox.dart.lib",
- "packages/flutter/src/material/card.dart": "packages/flutter/src/material/card.dart.lib",
- "packages/flutter/src/material/page.dart": "packages/flutter/src/material/page.dart.lib",
- "packages/flutter/src/material/outlined_button.dart": "packages/flutter/src/material/outlined_button.dart.lib",
- "packages/flutter/src/material/mergeable_material.dart": "packages/flutter/src/material/mergeable_material.dart.lib",
- "packages/flutter/src/material/input_date_picker_form_field.dart": "packages/flutter/src/material/input_date_picker_form_field.dart.lib",
- "packages/flutter/src/material/date.dart": "packages/flutter/src/material/date.dart.lib",
- "packages/flutter/src/material/grid_tile_bar.dart": "packages/flutter/src/material/grid_tile_bar.dart.lib",
- "packages/flutter/src/material/grid_tile.dart": "packages/flutter/src/material/grid_tile.dart.lib",
- "packages/flutter/src/material/flutter_logo.dart": "packages/flutter/src/material/flutter_logo.dart.lib",
- "packages/flutter/src/material/expansion_tile.dart": "packages/flutter/src/material/expansion_tile.dart.lib",
- "packages/flutter/src/material/expansion_panel.dart": "packages/flutter/src/material/expansion_panel.dart.lib",
- "packages/flutter/src/material/expand_icon.dart": "packages/flutter/src/material/expand_icon.dart.lib",
- "packages/flutter/src/material/elevated_button.dart": "packages/flutter/src/material/elevated_button.dart.lib",
- "packages/flutter/src/material/date_picker_deprecated.dart": "packages/flutter/src/material/date_picker_deprecated.dart.lib",
- "packages/flutter/src/material/date_picker.dart": "packages/flutter/src/material/date_picker.dart.lib",
- "packages/flutter/src/material/calendar_date_picker.dart": "packages/flutter/src/material/calendar_date_picker.dart.lib",
- "packages/flutter/src/material/circle_avatar.dart": "packages/flutter/src/material/circle_avatar.dart.lib",
- "packages/flutter/src/material/chip.dart": "packages/flutter/src/material/chip.dart.lib",
- "packages/flutter/src/material/checkbox_list_tile.dart": "packages/flutter/src/material/checkbox_list_tile.dart.lib",
- "packages/flutter/src/material/bottom_app_bar.dart": "packages/flutter/src/material/bottom_app_bar.dart.lib",
- "packages/flutter/src/material/banner.dart": "packages/flutter/src/material/banner.dart.lib",
- "packages/flutter/src/material/autocomplete.dart": "packages/flutter/src/material/autocomplete.dart.lib",
- "packages/flutter/src/material/arc.dart": "packages/flutter/src/material/arc.dart.lib",
- "packages/flutter/src/material/app.dart": "packages/flutter/src/material/app.dart.lib",
- "packages/flutter/src/material/animated_icons.dart": "packages/flutter/src/material/animated_icons.dart.lib",
- "packages/flutter/src/material/about.dart": "packages/flutter/src/material/about.dart.lib",
- "packages/cloud_firestore_platform_interface/src/timestamp.dart": "packages/cloud_firestore_platform_interface/src/timestamp.dart.lib",
- "packages/cloud_firestore_platform_interface/src/snapshot_metadata.dart": "packages/cloud_firestore_platform_interface/src/snapshot_metadata.dart.lib",
- "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_field_value.dart": "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_field_value.dart.lib",
- "packages/cloud_firestore_platform_interface/src/internal/pointer.dart": "packages/cloud_firestore_platform_interface/src/internal/pointer.dart.lib",
- "packages/cloud_firestore_platform_interface/src/method_channel/utils/exception.dart": "packages/cloud_firestore_platform_interface/src/method_channel/utils/exception.dart.lib",
- "packages/firebase_core/firebase_core.dart": "packages/firebase_core/firebase_core.dart.lib",
- "packages/cloud_firestore_platform_interface/src/method_channel/utils/source.dart": "packages/cloud_firestore_platform_interface/src/method_channel/utils/source.dart.lib",
- "packages/cloud_firestore_platform_interface/src/method_channel/utils/auto_id_generator.dart": "packages/cloud_firestore_platform_interface/src/method_channel/utils/auto_id_generator.dart.lib",
- "packages/cloud_firestore_platform_interface/src/geo_point.dart": "packages/cloud_firestore_platform_interface/src/geo_point.dart.lib",
- "packages/cloud_firestore_platform_interface/src/blob.dart": "packages/cloud_firestore_platform_interface/src/blob.dart.lib",
- "packages/flutter_web/main.dart": "packages/flutter_web/main.dart.lib",
- "packages/google_fonts/src/google_fonts_base.dart": "packages/google_fonts/src/google_fonts_base.dart.lib",
- "packages/google_fonts/src/google_fonts_variant.dart": "packages/google_fonts/src/google_fonts_variant.dart.lib",
- "packages/google_fonts/src/google_fonts_descriptor.dart": "packages/google_fonts/src/google_fonts_descriptor.dart.lib",
- "packages/google_fonts/src/google_fonts_family_with_variant.dart": "packages/google_fonts/src/google_fonts_family_with_variant.dart.lib",
- "packages/google_fonts/src/file_io.dart": "packages/google_fonts/src/file_io.dart.lib",
- "packages/google_fonts/src/asset_manifest.dart": "packages/google_fonts/src/asset_manifest.dart.lib",
- "packages/http/http.dart": "packages/http/http.dart.lib",
- "packages/http/src/browser_client.dart": "packages/http/src/browser_client.dart.lib",
- "packages/http/src/utils.dart": "packages/http/src/utils.dart.lib",
- "packages/http/src/byte_stream.dart": "packages/http/src/byte_stream.dart.lib",
- "packages/http_parser/http_parser.dart": "packages/http_parser/http_parser.dart.lib",
- "packages/http_parser/src/media_type.dart": "packages/http_parser/src/media_type.dart.lib",
- "packages/http_parser/src/utils.dart": "packages/http_parser/src/utils.dart.lib",
- "packages/source_span/source_span.dart": "packages/source_span/source_span.dart.lib",
- "packages/source_span/src/location_mixin.dart": "packages/source_span/src/location_mixin.dart.lib",
- "packages/source_span/src/colors.dart": "packages/source_span/src/colors.dart.lib",
- "packages/term_glyph/src/generated/top_level.dart": "packages/term_glyph/src/generated/top_level.dart.lib",
- "packages/term_glyph/src/generated/unicode_glyph_set.dart": "packages/term_glyph/src/generated/unicode_glyph_set.dart.lib",
- "packages/term_glyph/src/generated/glyph_set.dart": "packages/term_glyph/src/generated/glyph_set.dart.lib",
- "packages/term_glyph/src/generated/ascii_glyph_set.dart": "packages/term_glyph/src/generated/ascii_glyph_set.dart.lib",
- "packages/path/src/path_set.dart": "packages/path/src/path_set.dart.lib",
- "packages/path/src/utils.dart": "packages/path/src/utils.dart.lib",
- "packages/path/src/characters.dart": "packages/path/src/characters.dart.lib",
- "packages/path/src/path_exception.dart": "packages/path/src/path_exception.dart.lib",
- "packages/charcode/charcode.dart": "packages/charcode/charcode.dart.lib",
- "packages/charcode/html_entity.dart": "packages/charcode/html_entity.dart.lib",
- "packages/charcode/ascii.dart": "packages/charcode/ascii.dart.lib",
- "packages/source_span/src/span_exception.dart": "packages/source_span/src/span_exception.dart.lib",
- "packages/http_parser/src/scan.dart": "packages/http_parser/src/scan.dart.lib",
- "packages/string_scanner/string_scanner.dart": "packages/string_scanner/string_scanner.dart.lib",
- "packages/string_scanner/src/utils.dart": "packages/string_scanner/src/utils.dart.lib",
- "packages/string_scanner/src/relative_span_scanner.dart": "packages/string_scanner/src/relative_span_scanner.dart.lib",
- "packages/string_scanner/src/line_scanner.dart": "packages/string_scanner/src/line_scanner.dart.lib",
- "packages/http_parser/src/case_insensitive_map.dart": "packages/http_parser/src/case_insensitive_map.dart.lib",
- "packages/http_parser/src/http_date.dart": "packages/http_parser/src/http_date.dart.lib",
- "packages/http_parser/src/chunked_coding.dart": "packages/http_parser/src/chunked_coding.dart.lib",
- "packages/http_parser/src/chunked_coding/encoder.dart": "packages/http_parser/src/chunked_coding/encoder.dart.lib",
- "packages/http_parser/src/chunked_coding/decoder.dart": "packages/http_parser/src/chunked_coding/decoder.dart.lib",
- "packages/typed_data/typed_data.dart": "packages/typed_data/typed_data.dart.lib",
- "packages/typed_data/src/typed_queue.dart": "packages/typed_data/src/typed_queue.dart.lib",
- "packages/http_parser/src/authentication_challenge.dart": "packages/http_parser/src/authentication_challenge.dart.lib",
- "packages/http/src/exception.dart": "packages/http/src/exception.dart.lib",
- "packages/pedantic/pedantic.dart": "packages/pedantic/pedantic.dart.lib",
- "packages/http/src/streamed_request.dart": "packages/http/src/streamed_request.dart.lib",
- "packages/http/src/multipart_request.dart": "packages/http/src/multipart_request.dart.lib",
- "packages/http/src/multipart_file_stub.dart": "packages/http/src/multipart_file_stub.dart.lib",
- "packages/http/src/boundary_characters.dart": "packages/http/src/boundary_characters.dart.lib",
- "packages/crypto/crypto.dart": "packages/crypto/crypto.dart.lib",
- "packages/crypto/src/sha512.dart": "packages/crypto/src/sha512.dart.lib",
- "packages/crypto/src/utils.dart": "packages/crypto/src/utils.dart.lib",
- "packages/crypto/src/sha512_slowsinks.dart": "packages/crypto/src/sha512_slowsinks.dart.lib",
- "packages/crypto/src/hash_sink.dart": "packages/crypto/src/hash_sink.dart.lib",
- "packages/crypto/src/digest.dart": "packages/crypto/src/digest.dart.lib",
- "packages/convert/convert.dart": "packages/convert/convert.dart.lib",
- "packages/convert/src/string_accumulator_sink.dart": "packages/convert/src/string_accumulator_sink.dart.lib",
- "packages/convert/src/percent.dart": "packages/convert/src/percent.dart.lib",
- "packages/convert/src/percent/decoder.dart": "packages/convert/src/percent/decoder.dart.lib",
- "packages/convert/src/utils.dart": "packages/convert/src/utils.dart.lib",
- "packages/convert/src/percent/encoder.dart": "packages/convert/src/percent/encoder.dart.lib",
- "packages/convert/src/identity_codec.dart": "packages/convert/src/identity_codec.dart.lib",
- "packages/convert/src/hex.dart": "packages/convert/src/hex.dart.lib",
- "packages/convert/src/hex/decoder.dart": "packages/convert/src/hex/decoder.dart.lib",
- "packages/convert/src/hex/encoder.dart": "packages/convert/src/hex/encoder.dart.lib",
- "packages/convert/src/byte_accumulator_sink.dart": "packages/convert/src/byte_accumulator_sink.dart.lib",
- "packages/convert/src/accumulator_sink.dart": "packages/convert/src/accumulator_sink.dart.lib",
- "packages/crypto/src/hash.dart": "packages/crypto/src/hash.dart.lib",
- "packages/crypto/src/digest_sink.dart": "packages/crypto/src/digest_sink.dart.lib",
- "packages/crypto/src/sha256.dart": "packages/crypto/src/sha256.dart.lib",
- "packages/crypto/src/sha1.dart": "packages/crypto/src/sha1.dart.lib",
- "packages/crypto/src/md5.dart": "packages/crypto/src/md5.dart.lib",
- "packages/crypto/src/hmac.dart": "packages/crypto/src/hmac.dart.lib",
- "packages/flutter_web/root_container.dart": "packages/flutter_web/root_container.dart.lib",
- "packages/flutter_web/page_routes.dart": "packages/flutter_web/page_routes.dart.lib",
- "packages/provider/provider.dart": "packages/provider/provider.dart.lib",
- "packages/provider/src/value_listenable_provider.dart": "packages/provider/src/value_listenable_provider.dart.lib",
- "packages/provider/src/provider.dart": "packages/provider/src/provider.dart.lib",
- "packages/provider/src/reassemble_handler.dart": "packages/provider/src/reassemble_handler.dart.lib",
- "packages/nested/nested.dart": "packages/nested/nested.dart.lib",
- "packages/provider/src/selector.dart": "packages/provider/src/selector.dart.lib",
- "packages/provider/src/proxy_provider.dart": "packages/provider/src/proxy_provider.dart.lib",
- "packages/provider/src/listenable_provider.dart": "packages/provider/src/listenable_provider.dart.lib",
- "packages/provider/src/async_provider.dart": "packages/provider/src/async_provider.dart.lib",
- "packages/flutter_web/components/side_menu.dart": "packages/flutter_web/components/side_menu.dart.lib",
- "packages/flutter_web/components/menu_item.dart": "packages/flutter_web/components/menu_item.dart.lib",
- "packages/flutter_web/constants.dart": "packages/flutter_web/constants.dart.lib",
- "packages/flutter_web/screens/home/home.dart": "packages/flutter_web/screens/home/home.dart.lib",
- "packages/flutter_web/screens/home/components/jumbotron.dart": "packages/flutter_web/screens/home/components/jumbotron.dart.lib",
- "packages/flutter_web/responsive.dart": "packages/flutter_web/responsive.dart.lib",
- "packages/flutter_web/components/main_button.dart": "packages/flutter_web/components/main_button.dart.lib",
- "packages/flutter_web/components/footer.dart": "packages/flutter_web/components/footer.dart.lib",
- "packages/flutter_web/screens/farms/farms.dart": "packages/flutter_web/screens/farms/farms.dart.lib",
- "packages/flutter_web/screens/farms/components/jumbotron.dart": "packages/flutter_web/screens/farms/components/jumbotron.dart.lib",
- "packages/flutter_web/components/top_nav_bar.dart": "packages/flutter_web/components/top_nav_bar.dart.lib"
-};
-let moduleNames = {
- "web_entrypoint.dart.lib": "web_entrypoint.dart",
- "packages/flutter_web/generated_plugin_registrant.dart.lib": "packages/flutter_web/generated_plugin_registrant.dart",
- "packages/flutter_web_plugins/flutter_web_plugins.dart.lib": "packages/flutter_web_plugins/flutter_web_plugins.dart",
- "packages/flutter_web_plugins/src/plugin_registry.dart.lib": "packages/flutter_web_plugins/src/plugin_registry.dart",
- "packages/flutter/services.dart.lib": "packages/flutter/services.dart",
- "packages/flutter/src/services/text_input.dart.lib": "packages/flutter/src/services/text_input.dart",
- "packages/flutter/src/services/text_editing.dart.lib": "packages/flutter/src/services/text_editing.dart",
- "packages/flutter/foundation.dart.lib": "packages/flutter/foundation.dart",
- "packages/flutter/src/foundation/unicode.dart.lib": "packages/flutter/src/foundation/unicode.dart",
- "packages/flutter/src/foundation/synchronous_future.dart.lib": "packages/flutter/src/foundation/synchronous_future.dart",
- "packages/flutter/src/foundation/stack_frame.dart.lib": "packages/flutter/src/foundation/stack_frame.dart",
- "packages/flutter/src/foundation/object.dart.lib": "packages/flutter/src/foundation/object.dart",
- "packages/flutter/src/foundation/constants.dart.lib": "packages/flutter/src/foundation/constants.dart",
- "packages/meta/meta.dart.lib": "packages/meta/meta.dart",
- "packages/meta/meta_meta.dart.lib": "packages/meta/meta_meta.dart",
- "packages/flutter/src/foundation/serialization.dart.lib": "packages/flutter/src/foundation/serialization.dart",
- "packages/typed_data/typed_buffers.dart.lib": "packages/typed_data/typed_buffers.dart",
- "packages/typed_data/src/typed_buffer.dart.lib": "packages/typed_data/src/typed_buffer.dart",
- "packages/flutter/src/foundation/print.dart.lib": "packages/flutter/src/foundation/print.dart",
- "packages/flutter/src/foundation/_platform_web.dart.lib": "packages/flutter/src/foundation/_platform_web.dart",
- "packages/flutter/src/foundation/observer_list.dart.lib": "packages/flutter/src/foundation/observer_list.dart",
- "packages/flutter/src/foundation/node.dart.lib": "packages/flutter/src/foundation/node.dart",
- "packages/flutter/src/foundation/licenses.dart.lib": "packages/flutter/src/foundation/licenses.dart",
- "packages/flutter/src/foundation/key.dart.lib": "packages/flutter/src/foundation/key.dart",
- "packages/flutter/src/foundation/_isolates_web.dart.lib": "packages/flutter/src/foundation/_isolates_web.dart",
- "packages/flutter/src/foundation/debug.dart.lib": "packages/flutter/src/foundation/debug.dart",
- "packages/flutter/src/foundation/basic_types.dart.lib": "packages/flutter/src/foundation/basic_types.dart",
- "packages/flutter/src/foundation/consolidate_response.dart.lib": "packages/flutter/src/foundation/consolidate_response.dart",
- "packages/flutter/src/foundation/collections.dart.lib": "packages/flutter/src/foundation/collections.dart",
- "packages/flutter/src/foundation/change_notifier.dart.lib": "packages/flutter/src/foundation/change_notifier.dart",
- "packages/flutter/src/foundation/_bitfield_web.dart.lib": "packages/flutter/src/foundation/_bitfield_web.dart",
- "packages/flutter/src/foundation/binding.dart.lib": "packages/flutter/src/foundation/binding.dart",
- "packages/flutter/src/foundation/annotations.dart.lib": "packages/flutter/src/foundation/annotations.dart",
- "packages/flutter/src/services/system_chrome.dart.lib": "packages/flutter/src/services/system_chrome.dart",
- "packages/flutter/src/services/system_channels.dart.lib": "packages/flutter/src/services/system_channels.dart",
- "packages/flutter/scheduler.dart.lib": "packages/flutter/scheduler.dart",
- "packages/flutter/src/scheduler/ticker.dart.lib": "packages/flutter/src/scheduler/ticker.dart",
- "packages/flutter/src/scheduler/binding.dart.lib": "packages/flutter/src/scheduler/binding.dart",
- "packages/flutter/src/scheduler/priority.dart.lib": "packages/flutter/src/scheduler/priority.dart",
- "packages/flutter/src/scheduler/debug.dart.lib": "packages/flutter/src/scheduler/debug.dart",
- "packages/collection/src/union_set_controller.dart.lib": "packages/collection/src/union_set_controller.dart",
- "packages/collection/src/queue_list.dart.lib": "packages/collection/src/queue_list.dart",
- "packages/collection/src/priority_queue.dart.lib": "packages/collection/src/priority_queue.dart",
- "packages/collection/src/utils.dart.lib": "packages/collection/src/utils.dart",
- "packages/collection/src/list_extensions.dart.lib": "packages/collection/src/list_extensions.dart",
- "packages/collection/src/equality.dart.lib": "packages/collection/src/equality.dart",
- "packages/collection/src/comparators.dart.lib": "packages/collection/src/comparators.dart",
- "packages/collection/src/algorithms.dart.lib": "packages/collection/src/algorithms.dart",
- "packages/collection/src/iterable_zip.dart.lib": "packages/collection/src/iterable_zip.dart",
- "packages/collection/src/iterable_extensions.dart.lib": "packages/collection/src/iterable_extensions.dart",
- "packages/collection/src/functions.dart.lib": "packages/collection/src/functions.dart",
- "packages/collection/src/combined_wrappers/combined_map.dart.lib": "packages/collection/src/combined_wrappers/combined_map.dart",
- "packages/collection/src/combined_wrappers/combined_iterable.dart.lib": "packages/collection/src/combined_wrappers/combined_iterable.dart",
- "packages/collection/src/combined_wrappers/combined_iterator.dart.lib": "packages/collection/src/combined_wrappers/combined_iterator.dart",
- "packages/collection/src/combined_wrappers/combined_list.dart.lib": "packages/collection/src/combined_wrappers/combined_list.dart",
- "packages/collection/src/canonicalized_map.dart.lib": "packages/collection/src/canonicalized_map.dart",
- "packages/vector_math/vector_math_64.dart.lib": "packages/vector_math/vector_math_64.dart",
- "packages/vector_math/hash.dart.lib": "packages/vector_math/hash.dart",
- "packages/flutter/src/services/text_formatter.dart.lib": "packages/flutter/src/services/text_formatter.dart",
- "packages/characters/characters.dart.lib": "packages/characters/characters.dart",
- "packages/characters/src/extensions.dart.lib": "packages/characters/src/extensions.dart",
- "packages/characters/src/characters_impl.dart.lib": "packages/characters/src/characters_impl.dart",
- "packages/characters/src/grapheme_clusters/breaks.dart.lib": "packages/characters/src/grapheme_clusters/breaks.dart",
- "packages/characters/src/grapheme_clusters/table.dart.lib": "packages/characters/src/grapheme_clusters/table.dart",
- "packages/characters/src/grapheme_clusters/constants.dart.lib": "packages/characters/src/grapheme_clusters/constants.dart",
- "packages/flutter/src/services/system_sound.dart.lib": "packages/flutter/src/services/system_sound.dart",
- "packages/flutter/src/services/system_navigator.dart.lib": "packages/flutter/src/services/system_navigator.dart",
- "packages/flutter/src/services/raw_keyboard_windows.dart.lib": "packages/flutter/src/services/raw_keyboard_windows.dart",
- "packages/flutter/src/services/keyboard_maps.dart.lib": "packages/flutter/src/services/keyboard_maps.dart",
- "packages/flutter/src/services/keyboard_key.dart.lib": "packages/flutter/src/services/keyboard_key.dart",
- "packages/flutter/src/services/platform_views.dart.lib": "packages/flutter/src/services/platform_views.dart",
- "packages/flutter/gestures.dart.lib": "packages/flutter/gestures.dart",
- "packages/flutter/src/gestures/velocity_tracker.dart.lib": "packages/flutter/src/gestures/velocity_tracker.dart",
- "packages/flutter/src/gestures/lsq_solver.dart.lib": "packages/flutter/src/gestures/lsq_solver.dart",
- "packages/flutter/src/gestures/events.dart.lib": "packages/flutter/src/gestures/events.dart",
- "packages/flutter/src/gestures/constants.dart.lib": "packages/flutter/src/gestures/constants.dart",
- "packages/flutter/src/gestures/team.dart.lib": "packages/flutter/src/gestures/team.dart",
- "packages/flutter/src/gestures/binding.dart.lib": "packages/flutter/src/gestures/binding.dart",
- "packages/flutter/src/gestures/resampler.dart.lib": "packages/flutter/src/gestures/resampler.dart",
- "packages/flutter/src/gestures/pointer_signal_resolver.dart.lib": "packages/flutter/src/gestures/pointer_signal_resolver.dart",
- "packages/flutter/src/gestures/pointer_router.dart.lib": "packages/flutter/src/gestures/pointer_router.dart",
- "packages/flutter/src/gestures/hit_test.dart.lib": "packages/flutter/src/gestures/hit_test.dart",
- "packages/flutter/src/gestures/debug.dart.lib": "packages/flutter/src/gestures/debug.dart",
- "packages/flutter/src/gestures/converter.dart.lib": "packages/flutter/src/gestures/converter.dart",
- "packages/flutter/src/gestures/arena.dart.lib": "packages/flutter/src/gestures/arena.dart",
- "packages/flutter/src/gestures/tap.dart.lib": "packages/flutter/src/gestures/tap.dart",
- "packages/flutter/src/gestures/recognizer.dart.lib": "packages/flutter/src/gestures/recognizer.dart",
- "packages/flutter/src/gestures/scale.dart.lib": "packages/flutter/src/gestures/scale.dart",
- "packages/flutter/src/gestures/multitap.dart.lib": "packages/flutter/src/gestures/multitap.dart",
- "packages/flutter/src/gestures/multidrag.dart.lib": "packages/flutter/src/gestures/multidrag.dart",
- "packages/flutter/src/gestures/drag_details.dart.lib": "packages/flutter/src/gestures/drag_details.dart",
- "packages/flutter/src/gestures/drag.dart.lib": "packages/flutter/src/gestures/drag.dart",
- "packages/flutter/src/gestures/monodrag.dart.lib": "packages/flutter/src/gestures/monodrag.dart",
- "packages/flutter/src/gestures/long_press.dart.lib": "packages/flutter/src/gestures/long_press.dart",
- "packages/flutter/src/gestures/force_press.dart.lib": "packages/flutter/src/gestures/force_press.dart",
- "packages/flutter/src/gestures/eager.dart.lib": "packages/flutter/src/gestures/eager.dart",
- "packages/flutter/src/services/platform_messages.dart.lib": "packages/flutter/src/services/platform_messages.dart",
- "packages/flutter/src/services/haptic_feedback.dart.lib": "packages/flutter/src/services/haptic_feedback.dart",
- "packages/flutter/src/services/font_loader.dart.lib": "packages/flutter/src/services/font_loader.dart",
- "packages/flutter/src/services/deferred_component.dart.lib": "packages/flutter/src/services/deferred_component.dart",
- "packages/flutter/src/services/clipboard.dart.lib": "packages/flutter/src/services/clipboard.dart",
- "packages/flutter_web_plugins/src/plugin_event_channel.dart.lib": "packages/flutter_web_plugins/src/plugin_event_channel.dart",
- "packages/flutter_web_plugins/src/navigation/utils.dart.lib": "packages/flutter_web_plugins/src/navigation/utils.dart",
- "packages/flutter_web_plugins/src/navigation/url_strategy.dart.lib": "packages/flutter_web_plugins/src/navigation/url_strategy.dart",
- "packages/js/js.dart.lib": "packages/js/js.dart",
- "packages/firebase_core_web/firebase_core_web.dart.lib": "packages/firebase_core_web/firebase_core_web.dart",
- "packages/firebase_core_web/src/interop/core.dart.lib": "packages/firebase_core_web/src/interop/core.dart",
- "packages/firebase_core_web/src/interop/core_interop.dart.lib": "packages/firebase_core_web/src/interop/core_interop.dart",
- "packages/firebase_core_web/src/interop/utils/es6_interop.dart.lib": "packages/firebase_core_web/src/interop/utils/es6_interop.dart",
- "packages/firebase_core_web/src/interop/utils/func.dart.lib": "packages/firebase_core_web/src/interop/utils/func.dart",
- "packages/firebase_core_web/src/interop/app.dart.lib": "packages/firebase_core_web/src/interop/app.dart",
- "packages/firebase_core_web/src/interop/utils/utils.dart.lib": "packages/firebase_core_web/src/interop/utils/utils.dart",
- "packages/firebase_core_web/src/interop/utils/js_interop.dart.lib": "packages/firebase_core_web/src/interop/utils/js_interop.dart",
- "packages/js/js_util.dart.lib": "packages/js/js_util.dart",
- "packages/firebase_core_web/src/interop/utils/js.dart.lib": "packages/firebase_core_web/src/interop/utils/js.dart",
- "packages/firebase_core_platform_interface/firebase_core_platform_interface.dart.lib": "packages/firebase_core_platform_interface/firebase_core_platform_interface.dart",
- "packages/plugin_platform_interface/plugin_platform_interface.dart.lib": "packages/plugin_platform_interface/plugin_platform_interface.dart",
- "packages/flutter/cupertino.dart.lib": "packages/flutter/cupertino.dart",
- "packages/flutter/widgets.dart.lib": "packages/flutter/widgets.dart",
- "packages/flutter/src/widgets/will_pop_scope.dart.lib": "packages/flutter/src/widgets/will_pop_scope.dart",
- "packages/flutter/src/widgets/widget_span.dart.lib": "packages/flutter/src/widgets/widget_span.dart",
- "packages/flutter/rendering.dart.lib": "packages/flutter/rendering.dart",
- "packages/flutter/src/rendering/wrap.dart.lib": "packages/flutter/src/rendering/wrap.dart",
- "packages/flutter/src/rendering/layer.dart.lib": "packages/flutter/src/rendering/layer.dart",
- "packages/flutter/painting.dart.lib": "packages/flutter/painting.dart",
- "packages/flutter/src/painting/strut_style.dart.lib": "packages/flutter/src/painting/strut_style.dart",
- "packages/flutter/src/painting/basic_types.dart.lib": "packages/flutter/src/painting/basic_types.dart",
- "packages/flutter/src/painting/colors.dart.lib": "packages/flutter/src/painting/colors.dart",
- "packages/flutter/src/painting/placeholder_span.dart.lib": "packages/flutter/src/painting/placeholder_span.dart",
- "packages/flutter/src/painting/stadium_border.dart.lib": "packages/flutter/src/painting/stadium_border.dart",
- "packages/flutter/src/painting/rounded_rectangle_border.dart.lib": "packages/flutter/src/painting/rounded_rectangle_border.dart",
- "packages/flutter/src/painting/edge_insets.dart.lib": "packages/flutter/src/painting/edge_insets.dart",
- "packages/flutter/src/painting/circle_border.dart.lib": "packages/flutter/src/painting/circle_border.dart",
- "packages/flutter/src/painting/borders.dart.lib": "packages/flutter/src/painting/borders.dart",
- "packages/flutter/src/painting/border_radius.dart.lib": "packages/flutter/src/painting/border_radius.dart",
- "packages/flutter/src/painting/shape_decoration.dart.lib": "packages/flutter/src/painting/shape_decoration.dart",
- "packages/flutter/src/painting/_network_image_web.dart.lib": "packages/flutter/src/painting/_network_image_web.dart",
- "packages/flutter/src/painting/image_stream.dart.lib": "packages/flutter/src/painting/image_stream.dart",
- "packages/flutter/src/painting/image_cache.dart.lib": "packages/flutter/src/painting/image_cache.dart",
- "packages/flutter/src/painting/binding.dart.lib": "packages/flutter/src/painting/binding.dart",
- "packages/flutter/src/painting/shader_warm_up.dart.lib": "packages/flutter/src/painting/shader_warm_up.dart",
- "packages/flutter/src/painting/gradient.dart.lib": "packages/flutter/src/painting/gradient.dart",
- "packages/flutter/src/painting/alignment.dart.lib": "packages/flutter/src/painting/alignment.dart",
- "packages/flutter/src/painting/decoration_image.dart.lib": "packages/flutter/src/painting/decoration_image.dart",
- "packages/flutter/src/painting/debug.dart.lib": "packages/flutter/src/painting/debug.dart",
- "packages/flutter/src/painting/box_fit.dart.lib": "packages/flutter/src/painting/box_fit.dart",
- "packages/flutter/src/painting/decoration.dart.lib": "packages/flutter/src/painting/decoration.dart",
- "packages/flutter/src/painting/box_shadow.dart.lib": "packages/flutter/src/painting/box_shadow.dart",
- "packages/flutter/src/painting/box_decoration.dart.lib": "packages/flutter/src/painting/box_decoration.dart",
- "packages/flutter/src/painting/box_border.dart.lib": "packages/flutter/src/painting/box_border.dart",
- "packages/flutter/src/painting/paint_utilities.dart.lib": "packages/flutter/src/painting/paint_utilities.dart",
- "packages/flutter/src/painting/notched_shapes.dart.lib": "packages/flutter/src/painting/notched_shapes.dart",
- "packages/flutter/src/painting/matrix_utils.dart.lib": "packages/flutter/src/painting/matrix_utils.dart",
- "packages/flutter/src/painting/image_resolution.dart.lib": "packages/flutter/src/painting/image_resolution.dart",
- "packages/flutter/src/painting/image_decoder.dart.lib": "packages/flutter/src/painting/image_decoder.dart",
- "packages/flutter/src/painting/geometry.dart.lib": "packages/flutter/src/painting/geometry.dart",
- "packages/flutter/src/painting/fractional_offset.dart.lib": "packages/flutter/src/painting/fractional_offset.dart",
- "packages/flutter/src/painting/flutter_logo.dart.lib": "packages/flutter/src/painting/flutter_logo.dart",
- "packages/flutter/src/painting/continuous_rectangle_border.dart.lib": "packages/flutter/src/painting/continuous_rectangle_border.dart",
- "packages/flutter/src/painting/clip.dart.lib": "packages/flutter/src/painting/clip.dart",
- "packages/flutter/src/painting/beveled_rectangle_border.dart.lib": "packages/flutter/src/painting/beveled_rectangle_border.dart",
- "packages/flutter/semantics.dart.lib": "packages/flutter/semantics.dart",
- "packages/flutter/src/semantics/semantics_service.dart.lib": "packages/flutter/src/semantics/semantics_service.dart",
- "packages/flutter/src/semantics/semantics_event.dart.lib": "packages/flutter/src/semantics/semantics_event.dart",
- "packages/flutter/src/semantics/semantics.dart.lib": "packages/flutter/src/semantics/semantics.dart",
- "packages/flutter/src/semantics/binding.dart.lib": "packages/flutter/src/semantics/binding.dart",
- "packages/flutter/src/semantics/debug.dart.lib": "packages/flutter/src/semantics/debug.dart",
- "packages/flutter/animation.dart.lib": "packages/flutter/animation.dart",
- "packages/flutter/src/animation/tween_sequence.dart.lib": "packages/flutter/src/animation/tween_sequence.dart",
- "packages/flutter/src/animation/listener_helpers.dart.lib": "packages/flutter/src/animation/listener_helpers.dart",
- "packages/flutter/src/animation/curves.dart.lib": "packages/flutter/src/animation/curves.dart",
- "packages/flutter/src/animation/animation_controller.dart.lib": "packages/flutter/src/animation/animation_controller.dart",
- "packages/flutter/physics.dart.lib": "packages/flutter/physics.dart",
- "packages/flutter/src/physics/utils.dart.lib": "packages/flutter/src/physics/utils.dart",
- "packages/flutter/src/physics/tolerance.dart.lib": "packages/flutter/src/physics/tolerance.dart",
- "packages/flutter/src/physics/spring_simulation.dart.lib": "packages/flutter/src/physics/spring_simulation.dart",
- "packages/flutter/src/physics/simulation.dart.lib": "packages/flutter/src/physics/simulation.dart",
- "packages/flutter/src/physics/gravity_simulation.dart.lib": "packages/flutter/src/physics/gravity_simulation.dart",
- "packages/flutter/src/physics/friction_simulation.dart.lib": "packages/flutter/src/physics/friction_simulation.dart",
- "packages/flutter/src/physics/clamped_simulation.dart.lib": "packages/flutter/src/physics/clamped_simulation.dart",
- "packages/flutter/src/rendering/layout_helper.dart.lib": "packages/flutter/src/rendering/layout_helper.dart",
- "packages/flutter/src/rendering/viewport_offset.dart.lib": "packages/flutter/src/rendering/viewport_offset.dart",
- "packages/flutter/src/rendering/sliver.dart.lib": "packages/flutter/src/rendering/sliver.dart",
- "packages/flutter/src/rendering/tweens.dart.lib": "packages/flutter/src/rendering/tweens.dart",
- "packages/flutter/src/rendering/texture.dart.lib": "packages/flutter/src/rendering/texture.dart",
- "packages/flutter/src/rendering/table_border.dart.lib": "packages/flutter/src/rendering/table_border.dart",
- "packages/flutter/src/rendering/table.dart.lib": "packages/flutter/src/rendering/table.dart",
- "packages/flutter/src/rendering/stack.dart.lib": "packages/flutter/src/rendering/stack.dart",
- "packages/flutter/src/rendering/sliver_persistent_header.dart.lib": "packages/flutter/src/rendering/sliver_persistent_header.dart",
- "packages/flutter/src/rendering/sliver_padding.dart.lib": "packages/flutter/src/rendering/sliver_padding.dart",
- "packages/flutter/src/rendering/sliver_multi_box_adaptor.dart.lib": "packages/flutter/src/rendering/sliver_multi_box_adaptor.dart",
- "packages/flutter/src/rendering/sliver_list.dart.lib": "packages/flutter/src/rendering/sliver_list.dart",
- "packages/flutter/src/rendering/sliver_grid.dart.lib": "packages/flutter/src/rendering/sliver_grid.dart",
- "packages/flutter/src/rendering/sliver_fixed_extent_list.dart.lib": "packages/flutter/src/rendering/sliver_fixed_extent_list.dart",
- "packages/flutter/src/rendering/sliver_fill.dart.lib": "packages/flutter/src/rendering/sliver_fill.dart",
- "packages/flutter/src/rendering/shifted_box.dart.lib": "packages/flutter/src/rendering/shifted_box.dart",
- "packages/flutter/src/rendering/debug_overflow_indicator.dart.lib": "packages/flutter/src/rendering/debug_overflow_indicator.dart",
- "packages/flutter/src/rendering/rotated_box.dart.lib": "packages/flutter/src/rendering/rotated_box.dart",
- "packages/flutter/src/rendering/proxy_sliver.dart.lib": "packages/flutter/src/rendering/proxy_sliver.dart",
- "packages/flutter/src/rendering/proxy_box.dart.lib": "packages/flutter/src/rendering/proxy_box.dart",
- "packages/flutter/src/rendering/platform_view.dart.lib": "packages/flutter/src/rendering/platform_view.dart",
- "packages/flutter/src/rendering/performance_overlay.dart.lib": "packages/flutter/src/rendering/performance_overlay.dart",
- "packages/flutter/src/rendering/paragraph.dart.lib": "packages/flutter/src/rendering/paragraph.dart",
- "packages/flutter/src/rendering/list_wheel_viewport.dart.lib": "packages/flutter/src/rendering/list_wheel_viewport.dart",
- "packages/flutter/src/rendering/list_body.dart.lib": "packages/flutter/src/rendering/list_body.dart",
- "packages/flutter/src/rendering/image.dart.lib": "packages/flutter/src/rendering/image.dart",
- "packages/flutter/src/rendering/flow.dart.lib": "packages/flutter/src/rendering/flow.dart",
- "packages/flutter/src/rendering/flex.dart.lib": "packages/flutter/src/rendering/flex.dart",
- "packages/flutter/src/rendering/error.dart.lib": "packages/flutter/src/rendering/error.dart",
- "packages/flutter/src/rendering/editable.dart.lib": "packages/flutter/src/rendering/editable.dart",
- "packages/flutter/src/rendering/custom_paint.dart.lib": "packages/flutter/src/rendering/custom_paint.dart",
- "packages/flutter/src/rendering/custom_layout.dart.lib": "packages/flutter/src/rendering/custom_layout.dart",
- "packages/flutter/src/rendering/animated_size.dart.lib": "packages/flutter/src/rendering/animated_size.dart",
- "packages/flutter/src/widgets/constants.dart.lib": "packages/flutter/src/widgets/constants.dart",
- "packages/flutter/src/widgets/scroll_simulation.dart.lib": "packages/flutter/src/widgets/scroll_simulation.dart",
- "packages/flutter/src/widgets/scroll_metrics.dart.lib": "packages/flutter/src/widgets/scroll_metrics.dart",
- "packages/flutter/src/widgets/value_listenable_builder.dart.lib": "packages/flutter/src/widgets/value_listenable_builder.dart",
- "packages/flutter/src/widgets/unique_widget.dart.lib": "packages/flutter/src/widgets/unique_widget.dart",
- "packages/flutter/src/widgets/tween_animation_builder.dart.lib": "packages/flutter/src/widgets/tween_animation_builder.dart",
- "packages/flutter/src/widgets/implicit_animations.dart.lib": "packages/flutter/src/widgets/implicit_animations.dart",
- "packages/flutter/src/widgets/texture.dart.lib": "packages/flutter/src/widgets/texture.dart",
- "packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart.lib": "packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart",
- "packages/flutter/src/widgets/status_transitions.dart.lib": "packages/flutter/src/widgets/status_transitions.dart",
- "packages/flutter/src/widgets/spacer.dart.lib": "packages/flutter/src/widgets/spacer.dart",
- "packages/flutter/src/widgets/sliver_prototype_extent_list.dart.lib": "packages/flutter/src/widgets/sliver_prototype_extent_list.dart",
- "packages/flutter/src/widgets/sliver_persistent_header.dart.lib": "packages/flutter/src/widgets/sliver_persistent_header.dart",
- "packages/flutter/src/widgets/sliver_layout_builder.dart.lib": "packages/flutter/src/widgets/sliver_layout_builder.dart",
- "packages/flutter/src/widgets/layout_builder.dart.lib": "packages/flutter/src/widgets/layout_builder.dart",
- "packages/flutter/src/widgets/sliver_fill.dart.lib": "packages/flutter/src/widgets/sliver_fill.dart",
- "packages/flutter/src/widgets/size_changed_layout_notifier.dart.lib": "packages/flutter/src/widgets/size_changed_layout_notifier.dart",
- "packages/flutter/src/widgets/single_child_scroll_view.dart.lib": "packages/flutter/src/widgets/single_child_scroll_view.dart",
- "packages/flutter/src/widgets/scrollbar.dart.lib": "packages/flutter/src/widgets/scrollbar.dart",
- "packages/flutter/src/widgets/scroll_view.dart.lib": "packages/flutter/src/widgets/scroll_view.dart",
- "packages/flutter/src/widgets/safe_area.dart.lib": "packages/flutter/src/widgets/safe_area.dart",
- "packages/flutter/src/widgets/reorderable_list.dart.lib": "packages/flutter/src/widgets/reorderable_list.dart",
- "packages/flutter/src/widgets/raw_keyboard_listener.dart.lib": "packages/flutter/src/widgets/raw_keyboard_listener.dart",
- "packages/flutter/src/widgets/preferred_size.dart.lib": "packages/flutter/src/widgets/preferred_size.dart",
- "packages/flutter/src/widgets/platform_view.dart.lib": "packages/flutter/src/widgets/platform_view.dart",
- "packages/flutter/src/widgets/placeholder.dart.lib": "packages/flutter/src/widgets/placeholder.dart",
- "packages/flutter/src/widgets/page_view.dart.lib": "packages/flutter/src/widgets/page_view.dart",
- "packages/flutter/src/widgets/overflow_bar.dart.lib": "packages/flutter/src/widgets/overflow_bar.dart",
- "packages/flutter/src/widgets/orientation_builder.dart.lib": "packages/flutter/src/widgets/orientation_builder.dart",
- "packages/flutter/src/widgets/nested_scroll_view.dart.lib": "packages/flutter/src/widgets/nested_scroll_view.dart",
- "packages/flutter/src/widgets/navigation_toolbar.dart.lib": "packages/flutter/src/widgets/navigation_toolbar.dart",
- "packages/flutter/src/widgets/list_wheel_scroll_view.dart.lib": "packages/flutter/src/widgets/list_wheel_scroll_view.dart",
- "packages/flutter/src/widgets/interactive_viewer.dart.lib": "packages/flutter/src/widgets/interactive_viewer.dart",
- "packages/flutter/src/widgets/image_icon.dart.lib": "packages/flutter/src/widgets/image_icon.dart",
- "packages/flutter/src/widgets/icon_theme_data.dart.lib": "packages/flutter/src/widgets/icon_theme_data.dart",
- "packages/flutter/src/widgets/icon_theme.dart.lib": "packages/flutter/src/widgets/icon_theme.dart",
- "packages/flutter/src/widgets/icon.dart.lib": "packages/flutter/src/widgets/icon.dart",
- "packages/flutter/src/widgets/icon_data.dart.lib": "packages/flutter/src/widgets/icon_data.dart",
- "packages/flutter/src/widgets/image_filter.dart.lib": "packages/flutter/src/widgets/image_filter.dart",
- "packages/flutter/src/widgets/grid_paper.dart.lib": "packages/flutter/src/widgets/grid_paper.dart",
- "packages/flutter/src/widgets/form.dart.lib": "packages/flutter/src/widgets/form.dart",
- "packages/flutter/src/widgets/fade_in_image.dart.lib": "packages/flutter/src/widgets/fade_in_image.dart",
- "packages/flutter/src/widgets/dual_transition_builder.dart.lib": "packages/flutter/src/widgets/dual_transition_builder.dart",
- "packages/flutter/src/widgets/draggable_scrollable_sheet.dart.lib": "packages/flutter/src/widgets/draggable_scrollable_sheet.dart",
- "packages/flutter/src/widgets/drag_target.dart.lib": "packages/flutter/src/widgets/drag_target.dart",
- "packages/flutter/src/widgets/dismissible.dart.lib": "packages/flutter/src/widgets/dismissible.dart",
- "packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart.lib": "packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart",
- "packages/flutter/src/widgets/color_filter.dart.lib": "packages/flutter/src/widgets/color_filter.dart",
- "packages/flutter/src/widgets/bottom_navigation_bar_item.dart.lib": "packages/flutter/src/widgets/bottom_navigation_bar_item.dart",
- "packages/flutter/src/widgets/autocomplete.dart.lib": "packages/flutter/src/widgets/autocomplete.dart",
- "packages/flutter/src/widgets/async.dart.lib": "packages/flutter/src/widgets/async.dart",
- "packages/flutter/src/widgets/annotated_region.dart.lib": "packages/flutter/src/widgets/annotated_region.dart",
- "packages/flutter/src/widgets/animated_switcher.dart.lib": "packages/flutter/src/widgets/animated_switcher.dart",
- "packages/flutter/src/widgets/animated_size.dart.lib": "packages/flutter/src/widgets/animated_size.dart",
- "packages/flutter/src/widgets/animated_list.dart.lib": "packages/flutter/src/widgets/animated_list.dart",
- "packages/flutter/src/widgets/animated_cross_fade.dart.lib": "packages/flutter/src/widgets/animated_cross_fade.dart",
- "packages/flutter/src/cupertino/thumb_painter.dart.lib": "packages/flutter/src/cupertino/thumb_painter.dart",
- "packages/flutter/src/cupertino/text_theme.dart.lib": "packages/flutter/src/cupertino/text_theme.dart",
- "packages/flutter/src/cupertino/interface_level.dart.lib": "packages/flutter/src/cupertino/interface_level.dart",
- "packages/flutter/src/cupertino/text_selection_toolbar_button.dart.lib": "packages/flutter/src/cupertino/text_selection_toolbar_button.dart",
- "packages/flutter/src/cupertino/button.dart.lib": "packages/flutter/src/cupertino/button.dart",
- "packages/flutter/src/cupertino/constants.dart.lib": "packages/flutter/src/cupertino/constants.dart",
- "packages/flutter/src/cupertino/text_selection_toolbar.dart.lib": "packages/flutter/src/cupertino/text_selection_toolbar.dart",
- "packages/flutter/src/cupertino/text_selection.dart.lib": "packages/flutter/src/cupertino/text_selection.dart",
- "packages/flutter/src/cupertino/debug.dart.lib": "packages/flutter/src/cupertino/debug.dart",
- "packages/flutter/src/cupertino/text_form_field_row.dart.lib": "packages/flutter/src/cupertino/text_form_field_row.dart",
- "packages/flutter/src/cupertino/text_field.dart.lib": "packages/flutter/src/cupertino/text_field.dart",
- "packages/flutter/src/cupertino/icons.dart.lib": "packages/flutter/src/cupertino/icons.dart",
- "packages/flutter/src/cupertino/desktop_text_selection.dart.lib": "packages/flutter/src/cupertino/desktop_text_selection.dart",
- "packages/flutter/src/cupertino/form_row.dart.lib": "packages/flutter/src/cupertino/form_row.dart",
- "packages/flutter/src/cupertino/tab_view.dart.lib": "packages/flutter/src/cupertino/tab_view.dart",
- "packages/flutter/src/cupertino/route.dart.lib": "packages/flutter/src/cupertino/route.dart",
- "packages/flutter/src/cupertino/app.dart.lib": "packages/flutter/src/cupertino/app.dart",
- "packages/flutter/src/cupertino/tab_scaffold.dart.lib": "packages/flutter/src/cupertino/tab_scaffold.dart",
- "packages/flutter/src/cupertino/bottom_tab_bar.dart.lib": "packages/flutter/src/cupertino/bottom_tab_bar.dart",
- "packages/flutter/src/cupertino/switch.dart.lib": "packages/flutter/src/cupertino/switch.dart",
- "packages/flutter/src/cupertino/sliding_segmented_control.dart.lib": "packages/flutter/src/cupertino/sliding_segmented_control.dart",
- "packages/flutter/src/cupertino/slider.dart.lib": "packages/flutter/src/cupertino/slider.dart",
- "packages/flutter/src/cupertino/segmented_control.dart.lib": "packages/flutter/src/cupertino/segmented_control.dart",
- "packages/flutter/src/cupertino/search_field.dart.lib": "packages/flutter/src/cupertino/search_field.dart",
- "packages/flutter/src/cupertino/scrollbar.dart.lib": "packages/flutter/src/cupertino/scrollbar.dart",
- "packages/flutter/src/cupertino/refresh.dart.lib": "packages/flutter/src/cupertino/refresh.dart",
- "packages/flutter/src/cupertino/activity_indicator.dart.lib": "packages/flutter/src/cupertino/activity_indicator.dart",
- "packages/flutter/src/cupertino/picker.dart.lib": "packages/flutter/src/cupertino/picker.dart",
- "packages/flutter/src/cupertino/page_scaffold.dart.lib": "packages/flutter/src/cupertino/page_scaffold.dart",
- "packages/flutter/src/cupertino/nav_bar.dart.lib": "packages/flutter/src/cupertino/nav_bar.dart",
- "packages/flutter/src/cupertino/form_section.dart.lib": "packages/flutter/src/cupertino/form_section.dart",
- "packages/flutter/src/cupertino/dialog.dart.lib": "packages/flutter/src/cupertino/dialog.dart",
- "packages/flutter/src/cupertino/date_picker.dart.lib": "packages/flutter/src/cupertino/date_picker.dart",
- "packages/flutter/src/cupertino/context_menu_action.dart.lib": "packages/flutter/src/cupertino/context_menu_action.dart",
- "packages/flutter/src/cupertino/context_menu.dart.lib": "packages/flutter/src/cupertino/context_menu.dart",
- "packages/flutter/src/cupertino/action_sheet.dart.lib": "packages/flutter/src/cupertino/action_sheet.dart",
- "packages/cloud_firestore_web/src/write_batch_web.dart.lib": "packages/cloud_firestore_web/src/write_batch_web.dart",
- "packages/cloud_firestore_web/src/interop/utils/utils.dart.lib": "packages/cloud_firestore_web/src/interop/utils/utils.dart",
- "packages/cloud_firestore_web/src/interop/firestore_interop.dart.lib": "packages/cloud_firestore_web/src/interop/firestore_interop.dart",
- "packages/firebase_core_web/firebase_core_web_interop.dart.lib": "packages/firebase_core_web/firebase_core_web_interop.dart",
- "packages/cloud_firestore_web/src/interop/firebase_interop.dart.lib": "packages/cloud_firestore_web/src/interop/firebase_interop.dart",
- "packages/cloud_firestore_web/src/field_value_web.dart.lib": "packages/cloud_firestore_web/src/field_value_web.dart",
- "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_write_batch.dart.lib": "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_write_batch.dart",
- "packages/cloud_firestore_platform_interface/src/persistence_settings.dart.lib": "packages/cloud_firestore_platform_interface/src/persistence_settings.dart",
- "packages/cloud_firestore_platform_interface/src/set_options.dart.lib": "packages/cloud_firestore_platform_interface/src/set_options.dart",
- "packages/cloud_firestore_platform_interface/src/field_path.dart.lib": "packages/cloud_firestore_platform_interface/src/field_path.dart",
- "packages/cloud_firestore_platform_interface/src/internal/field_path_type.dart.lib": "packages/cloud_firestore_platform_interface/src/internal/field_path_type.dart",
- "packages/cloud_firestore_platform_interface/src/get_options.dart.lib": "packages/cloud_firestore_platform_interface/src/get_options.dart",
- "packages/cloud_firestore_platform_interface/src/source.dart.lib": "packages/cloud_firestore_platform_interface/src/source.dart",
- "packages/cloud_firestore_platform_interface/src/settings.dart.lib": "packages/cloud_firestore_platform_interface/src/settings.dart",
- "packages/flutter/material.dart.lib": "packages/flutter/material.dart",
- "packages/flutter/src/material/user_accounts_drawer_header.dart.lib": "packages/flutter/src/material/user_accounts_drawer_header.dart",
- "packages/flutter/src/material/icon_button.dart.lib": "packages/flutter/src/material/icon_button.dart",
- "packages/flutter/src/material/typography.dart.lib": "packages/flutter/src/material/typography.dart",
- "packages/flutter/src/material/colors.dart.lib": "packages/flutter/src/material/colors.dart",
- "packages/flutter/src/material/input_border.dart.lib": "packages/flutter/src/material/input_border.dart",
- "packages/flutter/src/material/constants.dart.lib": "packages/flutter/src/material/constants.dart",
- "packages/flutter/src/material/material_state.dart.lib": "packages/flutter/src/material/material_state.dart",
- "packages/flutter/src/material/tab_indicator.dart.lib": "packages/flutter/src/material/tab_indicator.dart",
- "packages/flutter/src/material/tab_controller.dart.lib": "packages/flutter/src/material/tab_controller.dart",
- "packages/flutter/src/material/floating_action_button_theme.dart.lib": "packages/flutter/src/material/floating_action_button_theme.dart",
- "packages/flutter/src/material/curves.dart.lib": "packages/flutter/src/material/curves.dart",
- "packages/flutter/src/material/bottom_sheet_theme.dart.lib": "packages/flutter/src/material/bottom_sheet_theme.dart",
- "packages/flutter/src/material/icons.dart.lib": "packages/flutter/src/material/icons.dart",
- "packages/flutter/src/material/drawer_header.dart.lib": "packages/flutter/src/material/drawer_header.dart",
- "packages/flutter/src/material/toggleable.dart.lib": "packages/flutter/src/material/toggleable.dart",
- "packages/flutter/src/material/toggle_buttons.dart.lib": "packages/flutter/src/material/toggle_buttons.dart",
- "packages/flutter/src/material/time_picker.dart.lib": "packages/flutter/src/material/time_picker.dart",
- "packages/flutter/src/material/text_form_field.dart.lib": "packages/flutter/src/material/text_form_field.dart",
- "packages/flutter/src/material/text_field.dart.lib": "packages/flutter/src/material/text_field.dart",
- "packages/flutter/src/material/text_selection.dart.lib": "packages/flutter/src/material/text_selection.dart",
- "packages/flutter/src/material/text_selection_toolbar_text_button.dart.lib": "packages/flutter/src/material/text_selection_toolbar_text_button.dart",
- "packages/flutter/src/material/text_selection_toolbar.dart.lib": "packages/flutter/src/material/text_selection_toolbar.dart",
- "packages/flutter/src/material/selectable_text.dart.lib": "packages/flutter/src/material/selectable_text.dart",
- "packages/flutter/src/material/desktop_text_selection.dart.lib": "packages/flutter/src/material/desktop_text_selection.dart",
- "packages/flutter/src/material/switch_list_tile.dart.lib": "packages/flutter/src/material/switch_list_tile.dart",
- "packages/flutter/src/material/switch.dart.lib": "packages/flutter/src/material/switch.dart",
- "packages/flutter/src/material/shadows.dart.lib": "packages/flutter/src/material/shadows.dart",
- "packages/flutter/src/material/stepper.dart.lib": "packages/flutter/src/material/stepper.dart",
- "packages/flutter/src/material/slider.dart.lib": "packages/flutter/src/material/slider.dart",
- "packages/flutter/src/material/search.dart.lib": "packages/flutter/src/material/search.dart",
- "packages/flutter/src/material/scrollbar.dart.lib": "packages/flutter/src/material/scrollbar.dart",
- "packages/flutter/src/material/reorderable_list.dart.lib": "packages/flutter/src/material/reorderable_list.dart",
- "packages/flutter/src/material/refresh_indicator.dart.lib": "packages/flutter/src/material/refresh_indicator.dart",
- "packages/flutter/src/material/progress_indicator.dart.lib": "packages/flutter/src/material/progress_indicator.dart",
- "packages/flutter/src/material/range_slider.dart.lib": "packages/flutter/src/material/range_slider.dart",
- "packages/flutter/src/material/radio_list_tile.dart.lib": "packages/flutter/src/material/radio_list_tile.dart",
- "packages/flutter/src/material/radio.dart.lib": "packages/flutter/src/material/radio.dart",
- "packages/flutter/src/material/popup_menu.dart.lib": "packages/flutter/src/material/popup_menu.dart",
- "packages/flutter/src/material/paginated_data_table.dart.lib": "packages/flutter/src/material/paginated_data_table.dart",
- "packages/flutter/src/material/ink_decoration.dart.lib": "packages/flutter/src/material/ink_decoration.dart",
- "packages/flutter/src/material/dropdown.dart.lib": "packages/flutter/src/material/dropdown.dart",
- "packages/flutter/src/material/data_table_source.dart.lib": "packages/flutter/src/material/data_table_source.dart",
- "packages/flutter/src/material/data_table.dart.lib": "packages/flutter/src/material/data_table.dart",
- "packages/flutter/src/material/checkbox.dart.lib": "packages/flutter/src/material/checkbox.dart",
- "packages/flutter/src/material/card.dart.lib": "packages/flutter/src/material/card.dart",
- "packages/flutter/src/material/page.dart.lib": "packages/flutter/src/material/page.dart",
- "packages/flutter/src/material/outlined_button.dart.lib": "packages/flutter/src/material/outlined_button.dart",
- "packages/flutter/src/material/mergeable_material.dart.lib": "packages/flutter/src/material/mergeable_material.dart",
- "packages/flutter/src/material/input_date_picker_form_field.dart.lib": "packages/flutter/src/material/input_date_picker_form_field.dart",
- "packages/flutter/src/material/date.dart.lib": "packages/flutter/src/material/date.dart",
- "packages/flutter/src/material/grid_tile_bar.dart.lib": "packages/flutter/src/material/grid_tile_bar.dart",
- "packages/flutter/src/material/grid_tile.dart.lib": "packages/flutter/src/material/grid_tile.dart",
- "packages/flutter/src/material/flutter_logo.dart.lib": "packages/flutter/src/material/flutter_logo.dart",
- "packages/flutter/src/material/expansion_tile.dart.lib": "packages/flutter/src/material/expansion_tile.dart",
- "packages/flutter/src/material/expansion_panel.dart.lib": "packages/flutter/src/material/expansion_panel.dart",
- "packages/flutter/src/material/expand_icon.dart.lib": "packages/flutter/src/material/expand_icon.dart",
- "packages/flutter/src/material/elevated_button.dart.lib": "packages/flutter/src/material/elevated_button.dart",
- "packages/flutter/src/material/date_picker_deprecated.dart.lib": "packages/flutter/src/material/date_picker_deprecated.dart",
- "packages/flutter/src/material/date_picker.dart.lib": "packages/flutter/src/material/date_picker.dart",
- "packages/flutter/src/material/calendar_date_picker.dart.lib": "packages/flutter/src/material/calendar_date_picker.dart",
- "packages/flutter/src/material/circle_avatar.dart.lib": "packages/flutter/src/material/circle_avatar.dart",
- "packages/flutter/src/material/chip.dart.lib": "packages/flutter/src/material/chip.dart",
- "packages/flutter/src/material/checkbox_list_tile.dart.lib": "packages/flutter/src/material/checkbox_list_tile.dart",
- "packages/flutter/src/material/bottom_app_bar.dart.lib": "packages/flutter/src/material/bottom_app_bar.dart",
- "packages/flutter/src/material/banner.dart.lib": "packages/flutter/src/material/banner.dart",
- "packages/flutter/src/material/autocomplete.dart.lib": "packages/flutter/src/material/autocomplete.dart",
- "packages/flutter/src/material/arc.dart.lib": "packages/flutter/src/material/arc.dart",
- "packages/flutter/src/material/app.dart.lib": "packages/flutter/src/material/app.dart",
- "packages/flutter/src/material/animated_icons.dart.lib": "packages/flutter/src/material/animated_icons.dart",
- "packages/flutter/src/material/about.dart.lib": "packages/flutter/src/material/about.dart",
- "packages/cloud_firestore_platform_interface/src/timestamp.dart.lib": "packages/cloud_firestore_platform_interface/src/timestamp.dart",
- "packages/cloud_firestore_platform_interface/src/snapshot_metadata.dart.lib": "packages/cloud_firestore_platform_interface/src/snapshot_metadata.dart",
- "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_field_value.dart.lib": "packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_field_value.dart",
- "packages/cloud_firestore_platform_interface/src/internal/pointer.dart.lib": "packages/cloud_firestore_platform_interface/src/internal/pointer.dart",
- "packages/cloud_firestore_platform_interface/src/method_channel/utils/exception.dart.lib": "packages/cloud_firestore_platform_interface/src/method_channel/utils/exception.dart",
- "packages/firebase_core/firebase_core.dart.lib": "packages/firebase_core/firebase_core.dart",
- "packages/cloud_firestore_platform_interface/src/method_channel/utils/source.dart.lib": "packages/cloud_firestore_platform_interface/src/method_channel/utils/source.dart",
- "packages/cloud_firestore_platform_interface/src/method_channel/utils/auto_id_generator.dart.lib": "packages/cloud_firestore_platform_interface/src/method_channel/utils/auto_id_generator.dart",
- "packages/cloud_firestore_platform_interface/src/geo_point.dart.lib": "packages/cloud_firestore_platform_interface/src/geo_point.dart",
- "packages/cloud_firestore_platform_interface/src/blob.dart.lib": "packages/cloud_firestore_platform_interface/src/blob.dart",
- "packages/flutter_web/main.dart.lib": "packages/flutter_web/main.dart",
- "packages/google_fonts/src/google_fonts_base.dart.lib": "packages/google_fonts/src/google_fonts_base.dart",
- "packages/google_fonts/src/google_fonts_variant.dart.lib": "packages/google_fonts/src/google_fonts_variant.dart",
- "packages/google_fonts/src/google_fonts_descriptor.dart.lib": "packages/google_fonts/src/google_fonts_descriptor.dart",
- "packages/google_fonts/src/google_fonts_family_with_variant.dart.lib": "packages/google_fonts/src/google_fonts_family_with_variant.dart",
- "packages/google_fonts/src/file_io.dart.lib": "packages/google_fonts/src/file_io.dart",
- "packages/google_fonts/src/asset_manifest.dart.lib": "packages/google_fonts/src/asset_manifest.dart",
- "packages/http/http.dart.lib": "packages/http/http.dart",
- "packages/http/src/browser_client.dart.lib": "packages/http/src/browser_client.dart",
- "packages/http/src/utils.dart.lib": "packages/http/src/utils.dart",
- "packages/http/src/byte_stream.dart.lib": "packages/http/src/byte_stream.dart",
- "packages/http_parser/http_parser.dart.lib": "packages/http_parser/http_parser.dart",
- "packages/http_parser/src/media_type.dart.lib": "packages/http_parser/src/media_type.dart",
- "packages/http_parser/src/utils.dart.lib": "packages/http_parser/src/utils.dart",
- "packages/source_span/source_span.dart.lib": "packages/source_span/source_span.dart",
- "packages/source_span/src/location_mixin.dart.lib": "packages/source_span/src/location_mixin.dart",
- "packages/source_span/src/colors.dart.lib": "packages/source_span/src/colors.dart",
- "packages/term_glyph/src/generated/top_level.dart.lib": "packages/term_glyph/src/generated/top_level.dart",
- "packages/term_glyph/src/generated/unicode_glyph_set.dart.lib": "packages/term_glyph/src/generated/unicode_glyph_set.dart",
- "packages/term_glyph/src/generated/glyph_set.dart.lib": "packages/term_glyph/src/generated/glyph_set.dart",
- "packages/term_glyph/src/generated/ascii_glyph_set.dart.lib": "packages/term_glyph/src/generated/ascii_glyph_set.dart",
- "packages/path/src/path_set.dart.lib": "packages/path/src/path_set.dart",
- "packages/path/src/utils.dart.lib": "packages/path/src/utils.dart",
- "packages/path/src/characters.dart.lib": "packages/path/src/characters.dart",
- "packages/path/src/path_exception.dart.lib": "packages/path/src/path_exception.dart",
- "packages/charcode/charcode.dart.lib": "packages/charcode/charcode.dart",
- "packages/charcode/html_entity.dart.lib": "packages/charcode/html_entity.dart",
- "packages/charcode/ascii.dart.lib": "packages/charcode/ascii.dart",
- "packages/source_span/src/span_exception.dart.lib": "packages/source_span/src/span_exception.dart",
- "packages/http_parser/src/scan.dart.lib": "packages/http_parser/src/scan.dart",
- "packages/string_scanner/string_scanner.dart.lib": "packages/string_scanner/string_scanner.dart",
- "packages/string_scanner/src/utils.dart.lib": "packages/string_scanner/src/utils.dart",
- "packages/string_scanner/src/relative_span_scanner.dart.lib": "packages/string_scanner/src/relative_span_scanner.dart",
- "packages/string_scanner/src/line_scanner.dart.lib": "packages/string_scanner/src/line_scanner.dart",
- "packages/http_parser/src/case_insensitive_map.dart.lib": "packages/http_parser/src/case_insensitive_map.dart",
- "packages/http_parser/src/http_date.dart.lib": "packages/http_parser/src/http_date.dart",
- "packages/http_parser/src/chunked_coding.dart.lib": "packages/http_parser/src/chunked_coding.dart",
- "packages/http_parser/src/chunked_coding/encoder.dart.lib": "packages/http_parser/src/chunked_coding/encoder.dart",
- "packages/http_parser/src/chunked_coding/decoder.dart.lib": "packages/http_parser/src/chunked_coding/decoder.dart",
- "packages/typed_data/typed_data.dart.lib": "packages/typed_data/typed_data.dart",
- "packages/typed_data/src/typed_queue.dart.lib": "packages/typed_data/src/typed_queue.dart",
- "packages/http_parser/src/authentication_challenge.dart.lib": "packages/http_parser/src/authentication_challenge.dart",
- "packages/http/src/exception.dart.lib": "packages/http/src/exception.dart",
- "packages/pedantic/pedantic.dart.lib": "packages/pedantic/pedantic.dart",
- "packages/http/src/streamed_request.dart.lib": "packages/http/src/streamed_request.dart",
- "packages/http/src/multipart_request.dart.lib": "packages/http/src/multipart_request.dart",
- "packages/http/src/multipart_file_stub.dart.lib": "packages/http/src/multipart_file_stub.dart",
- "packages/http/src/boundary_characters.dart.lib": "packages/http/src/boundary_characters.dart",
- "packages/crypto/crypto.dart.lib": "packages/crypto/crypto.dart",
- "packages/crypto/src/sha512.dart.lib": "packages/crypto/src/sha512.dart",
- "packages/crypto/src/utils.dart.lib": "packages/crypto/src/utils.dart",
- "packages/crypto/src/sha512_slowsinks.dart.lib": "packages/crypto/src/sha512_slowsinks.dart",
- "packages/crypto/src/hash_sink.dart.lib": "packages/crypto/src/hash_sink.dart",
- "packages/crypto/src/digest.dart.lib": "packages/crypto/src/digest.dart",
- "packages/convert/convert.dart.lib": "packages/convert/convert.dart",
- "packages/convert/src/string_accumulator_sink.dart.lib": "packages/convert/src/string_accumulator_sink.dart",
- "packages/convert/src/percent.dart.lib": "packages/convert/src/percent.dart",
- "packages/convert/src/percent/decoder.dart.lib": "packages/convert/src/percent/decoder.dart",
- "packages/convert/src/utils.dart.lib": "packages/convert/src/utils.dart",
- "packages/convert/src/percent/encoder.dart.lib": "packages/convert/src/percent/encoder.dart",
- "packages/convert/src/identity_codec.dart.lib": "packages/convert/src/identity_codec.dart",
- "packages/convert/src/hex.dart.lib": "packages/convert/src/hex.dart",
- "packages/convert/src/hex/decoder.dart.lib": "packages/convert/src/hex/decoder.dart",
- "packages/convert/src/hex/encoder.dart.lib": "packages/convert/src/hex/encoder.dart",
- "packages/convert/src/byte_accumulator_sink.dart.lib": "packages/convert/src/byte_accumulator_sink.dart",
- "packages/convert/src/accumulator_sink.dart.lib": "packages/convert/src/accumulator_sink.dart",
- "packages/crypto/src/hash.dart.lib": "packages/crypto/src/hash.dart",
- "packages/crypto/src/digest_sink.dart.lib": "packages/crypto/src/digest_sink.dart",
- "packages/crypto/src/sha256.dart.lib": "packages/crypto/src/sha256.dart",
- "packages/crypto/src/sha1.dart.lib": "packages/crypto/src/sha1.dart",
- "packages/crypto/src/md5.dart.lib": "packages/crypto/src/md5.dart",
- "packages/crypto/src/hmac.dart.lib": "packages/crypto/src/hmac.dart",
- "packages/flutter_web/root_container.dart.lib": "packages/flutter_web/root_container.dart",
- "packages/flutter_web/page_routes.dart.lib": "packages/flutter_web/page_routes.dart",
- "packages/provider/provider.dart.lib": "packages/provider/provider.dart",
- "packages/provider/src/value_listenable_provider.dart.lib": "packages/provider/src/value_listenable_provider.dart",
- "packages/provider/src/provider.dart.lib": "packages/provider/src/provider.dart",
- "packages/provider/src/reassemble_handler.dart.lib": "packages/provider/src/reassemble_handler.dart",
- "packages/nested/nested.dart.lib": "packages/nested/nested.dart",
- "packages/provider/src/selector.dart.lib": "packages/provider/src/selector.dart",
- "packages/provider/src/proxy_provider.dart.lib": "packages/provider/src/proxy_provider.dart",
- "packages/provider/src/listenable_provider.dart.lib": "packages/provider/src/listenable_provider.dart",
- "packages/provider/src/async_provider.dart.lib": "packages/provider/src/async_provider.dart",
- "packages/flutter_web/components/side_menu.dart.lib": "packages/flutter_web/components/side_menu.dart",
- "packages/flutter_web/components/menu_item.dart.lib": "packages/flutter_web/components/menu_item.dart",
- "packages/flutter_web/constants.dart.lib": "packages/flutter_web/constants.dart",
- "packages/flutter_web/screens/home/home.dart.lib": "packages/flutter_web/screens/home/home.dart",
- "packages/flutter_web/screens/home/components/jumbotron.dart.lib": "packages/flutter_web/screens/home/components/jumbotron.dart",
- "packages/flutter_web/responsive.dart.lib": "packages/flutter_web/responsive.dart",
- "packages/flutter_web/components/main_button.dart.lib": "packages/flutter_web/components/main_button.dart",
- "packages/flutter_web/components/footer.dart.lib": "packages/flutter_web/components/footer.dart",
- "packages/flutter_web/screens/farms/farms.dart.lib": "packages/flutter_web/screens/farms/farms.dart",
- "packages/flutter_web/screens/farms/components/jumbotron.dart.lib": "packages/flutter_web/screens/farms/components/jumbotron.dart",
- "packages/flutter_web/components/top_nav_bar.dart.lib": "packages/flutter_web/components/top_nav_bar.dart"
-};
-if(!window.$requireLoader) {
-   window.$requireLoader = {
-     digestsPath: '$requireDigestsPath?entrypoint=main_module.bootstrap.js',
-     // Used in package:build_runner/src/server/build_updates_client/hot_reload_client.dart
-     moduleParentsGraph: new Map(),
-     forceLoadModule: function (modulePath, callback, onError) {
-       let moduleName = moduleNames[modulePath];
-       if (moduleName == null) {
-         moduleName = modulePath;
-       }
-       requirejs.undef(moduleName);
-       try{
-        requirejs([moduleName], function() {
-          if (typeof callback != 'undefined') {
-            callback();
-          }
-        });
-       } catch (error) {
-        if (typeof onError != 'undefined') {
-          onError(error);
-        }else{
-          throw(error);
+    return utils.jsify(dartObject, dart.fn(object => {
+      if (core.DateTime.is(object)) {
+        return dart.global.firebase.firestore.Timestamp.fromMillis(object.millisecondsSinceEpoch);
+      }
+      if (firestore.DocumentReference.is(object)) {
+        return object.jsObject;
+      }
+      if (firestore.FieldValue.is(object)) {
+        return firestore.jsifyFieldValue(object);
+      }
+      if (dart.anonymousJSType("Blob").is(object)) {
+        return object;
+      }
+      if (dart.lazyJSType(() => dart.global.firebase.firestore.GeoPoint, "firebase.firestore.GeoPoint").is(object)) {
+        return dartObject;
+      }
+      if (core.Function.is(object)) {
+        return js.allowInterop(core.Function, object);
+      }
+      return null;
+    }, T$.ObjectNTodynamic()));
+  };
+  firestore.Firestore = class Firestore extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.Firestore, "firebase.firestore.Firestore")) {
+    get app() {
+      return app.App.getInstance(this.jsObject.app);
+    }
+    static getInstance(jsObject) {
+      let t3, t2, t1, t0;
+      if (jsObject == null) dart.nullFailed(I[0], 37, 66, "jsObject");
+      t0 = firestore.Firestore._expando;
+      t1 = jsObject;
+      t2 = t0._get(t1);
+      return t2 == null ? (t3 = new firestore.Firestore._fromJsObject(jsObject), t0._set(t1, t3), t3) : t2;
+    }
+    batch() {
+      return firestore.WriteBatch.getInstance(this.jsObject.batch());
+    }
+    collection(collectionPath) {
+      if (collectionPath == null) dart.nullFailed(I[0], 46, 41, "collectionPath");
+      return firestore.CollectionReference.getInstance(this.jsObject.collection(collectionPath));
+    }
+    collectionGroup(collectionId) {
+      if (collectionId == null) dart.nullFailed(I[0], 49, 32, "collectionId");
+      return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.collectionGroup(collectionId));
+    }
+    doc(documentPath) {
+      if (documentPath == null) dart.nullFailed(I[0], 52, 32, "documentPath");
+      return firestore.DocumentReference.getInstance(this.jsObject.doc(documentPath));
+    }
+    enablePersistence(settings = null) {
+      return utils.handleThenable(core.Null, this.jsObject.enablePersistence(settings));
+    }
+    snapshotsInSync() {
+      let controller = null;
+      let controller$35isSet = false;
+      function controller$35get() {
+        return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+      }
+      dart.fn(controller$35get, T$.VoidToStreamControllerOfvoid());
+      function controller$35set(t3) {
+        if (t3 == null) dart.nullFailed(I[0], 60, 33, "null");
+        controller$35isSet = true;
+        return controller = t3;
+      }
+      dart.fn(controller$35set, T$.StreamControllerOfvoidTodynamic());
+      let onSnapshotsInSyncUnsubscribe = null;
+      let onSnapshotsInSyncUnsubscribe$35isSet = false;
+      function onSnapshotsInSyncUnsubscribe$35get() {
+        return onSnapshotsInSyncUnsubscribe$35isSet ? onSnapshotsInSyncUnsubscribe : dart.throw(new _internal.LateError.localNI("onSnapshotsInSyncUnsubscribe"));
+      }
+      dart.fn(onSnapshotsInSyncUnsubscribe$35get, T$.VoidToFn());
+      function onSnapshotsInSyncUnsubscribe$35set(t8) {
+        if (t8 == null) dart.nullFailed(I[0], 61, 23, "null");
+        onSnapshotsInSyncUnsubscribe$35isSet = true;
+        return onSnapshotsInSyncUnsubscribe = t8;
+      }
+      dart.fn(onSnapshotsInSyncUnsubscribe$35set, T$.FnTodynamic());
+      let nextWrapper = js.allowInterop(T$.ObjectNToNull(), dart.fn(noValue => {
+        controller$35get().add(null);
+      }, T$.ObjectNToNull()));
+      const startListen = () => {
+        onSnapshotsInSyncUnsubscribe$35set(this.jsObject.onSnapshotsInSync(dart.assertInterop(nextWrapper)));
+      };
+      dart.fn(startListen, T$.VoidTovoid());
+      function stopListen() {
+        onSnapshotsInSyncUnsubscribe$35get()();
+        controller$35get().close();
+      }
+      dart.fn(stopListen, T$.VoidTovoid());
+      controller$35set(T$.StreamControllerOfvoid().broadcast({onListen: startListen, onCancel: stopListen}));
+      return controller$35get().stream;
+    }
+    clearPersistence() {
+      return utils.handleThenable(core.Null, this.jsObject.clearPersistence());
+    }
+    runTransaction(updateFunction) {
+      if (updateFunction == null) dart.nullFailed(I[0], 86, 48, "updateFunction");
+      let updateFunctionWrap = js.allowInterop(T$.dynamicToPromiseJsImpl(), dart.fn(transaction => utils.handleFutureWithMapper(T$.ObjectN(), dart.dynamic, T$.FutureOfObjectN().as(updateFunction(firestore.Transaction.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.Transaction, "firebase.firestore.Transaction").as(transaction)))), C[0] || CT.C0), T$.dynamicToPromiseJsImpl()));
+      return utils.handleThenable(dart.void, this.jsObject.runTransaction(dart.assertInterop(updateFunctionWrap))).then(dart.dynamic, dart.fn(value => utils$.dartify(null), T$.voidTodynamic()));
+    }
+    settings(settings) {
+      if (settings == null) dart.nullFailed(I[0], 95, 44, "settings");
+      return this.jsObject.settings(settings);
+    }
+    enableNetwork() {
+      return utils.handleThenable(dart.dynamic, this.jsObject.enableNetwork());
+    }
+    disableNetwork() {
+      return utils.handleThenable(dart.dynamic, this.jsObject.disableNetwork());
+    }
+    terminate() {
+      return utils.handleThenable(core.Null, this.jsObject.terminate());
+    }
+    waitForPendingWrites() {
+      return utils.handleThenable(core.Null, this.jsObject.waitForPendingWrites());
+    }
+  };
+  (firestore.Firestore._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 41, 61, "jsObject");
+    firestore.Firestore.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.Firestore.prototype;
+  dart.addTypeTests(firestore.Firestore);
+  dart.addTypeCaches(firestore.Firestore);
+  dart.setMethodSignature(firestore.Firestore, () => ({
+    __proto__: dart.getMethods(firestore.Firestore.__proto__),
+    batch: dart.fnType(dart.nullable(firestore.WriteBatch), []),
+    collection: dart.fnType(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference")), [core.String]),
+    collectionGroup: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [core.String]),
+    doc: dart.fnType(firestore.DocumentReference, [core.String]),
+    enablePersistence: dart.fnType(async.Future$(core.Null), [], [dart.nullable(dart.anonymousJSType("PersistenceSettings"))]),
+    snapshotsInSync: dart.fnType(async.Stream$(dart.void), []),
+    clearPersistence: dart.fnType(async.Future$(core.Null), []),
+    runTransaction: dart.fnType(async.Future, [dart.fnType(dart.dynamic, [dart.nullable(firestore.Transaction)])]),
+    settings: dart.fnType(dart.void, [dart.anonymousJSType("Settings")]),
+    enableNetwork: dart.fnType(async.Future, []),
+    disableNetwork: dart.fnType(async.Future, []),
+    terminate: dart.fnType(async.Future$(core.Null), []),
+    waitForPendingWrites: dart.fnType(async.Future$(core.Null), [])
+  }));
+  dart.setGetterSignature(firestore.Firestore, () => ({
+    __proto__: dart.getGetters(firestore.Firestore.__proto__),
+    app: app.App
+  }));
+  dart.setLibraryUri(firestore.Firestore, I[1]);
+  dart.defineLazy(firestore.Firestore, {
+    /*firestore.Firestore._expando*/get _expando() {
+      return new (T$.ExpandoOfFirestore()).new();
+    }
+  }, false);
+  var _wrapUpdateFunctionCall = dart.privateName(firestore, "_wrapUpdateFunctionCall");
+  firestore._Updatable = class _Updatable extends core.Object {
+    [_wrapUpdateFunctionCall](T, jsObject, data, documentRef = null) {
+      if (data == null) dart.nullFailed(I[0], 497, 64, "data");
+      let args = [utils$.jsify(data)];
+      if (documentRef != null) {
+        args[$insert](0, documentRef.jsObject);
+      }
+      return dart.nullable(T).as(utils.callMethod(core.Object.as(jsObject), "update", args));
+    }
+  };
+  (firestore._Updatable.new = function() {
+    ;
+  }).prototype = firestore._Updatable.prototype;
+  dart.addTypeTests(firestore._Updatable);
+  dart.addTypeCaches(firestore._Updatable);
+  dart.setMethodSignature(firestore._Updatable, () => ({
+    __proto__: dart.getMethods(firestore._Updatable.__proto__),
+    [_wrapUpdateFunctionCall]: dart.gFnType(T => [dart.nullable(T), [dart.dynamic, core.Map$(core.String, dart.dynamic)], [dart.nullable(firestore.DocumentReference)]], T => [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(firestore._Updatable, I[1]);
+  const JsObjectWrapper__Updatable$36 = class JsObjectWrapper__Updatable extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.WriteBatch, "firebase.firestore.WriteBatch")) {};
+  (JsObjectWrapper__Updatable$36.fromJsObject = function(jsObject) {
+    JsObjectWrapper__Updatable$36.__proto__.fromJsObject.call(this, jsObject);
+  }).prototype = JsObjectWrapper__Updatable$36.prototype;
+  dart.applyMixin(JsObjectWrapper__Updatable$36, firestore._Updatable);
+  firestore.WriteBatch = class WriteBatch extends JsObjectWrapper__Updatable$36 {
+    static getInstance(jsObject) {
+      let t13, t12, t11, t10;
+      if (jsObject == null) dart.nullFailed(I[0], 113, 68, "jsObject");
+      t10 = firestore.WriteBatch._expando;
+      t11 = jsObject;
+      t12 = t10._get(t11);
+      return t12 == null ? (t13 = new firestore.WriteBatch._fromJsObject(jsObject), t10._set(t11, t13), t13) : t12;
+    }
+    commit() {
+      return utils.handleThenable(core.Null, this.jsObject.commit());
+    }
+    delete(documentRef) {
+      if (documentRef == null) dart.nullFailed(I[0], 122, 39, "documentRef");
+      return firestore.WriteBatch.getInstance(this.jsObject.delete(documentRef.jsObject));
+    }
+    set(documentRef, data, options = null) {
+      if (documentRef == null) dart.nullFailed(I[0], 125, 36, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 125, 70, "data");
+      let jsObjectSet = options != null ? this.jsObject.set(documentRef.jsObject, utils$.jsify(data), options) : this.jsObject.set(documentRef.jsObject, utils$.jsify(data));
+      return firestore.WriteBatch.getInstance(jsObjectSet);
+    }
+    update(documentRef, data) {
+      if (documentRef == null) dart.nullFailed(I[0], 133, 39, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 133, 73, "data");
+      return firestore.WriteBatch.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.WriteBatch, "firebase.firestore.WriteBatch").as(this[_wrapUpdateFunctionCall](dart.dynamic, this.jsObject, data, documentRef)));
+    }
+  };
+  (firestore.WriteBatch._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 117, 63, "jsObject");
+    firestore.WriteBatch.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.WriteBatch.prototype;
+  dart.addTypeTests(firestore.WriteBatch);
+  dart.addTypeCaches(firestore.WriteBatch);
+  dart.setMethodSignature(firestore.WriteBatch, () => ({
+    __proto__: dart.getMethods(firestore.WriteBatch.__proto__),
+    commit: dart.fnType(async.Future$(core.Null), []),
+    delete: dart.fnType(firestore.WriteBatch, [firestore.DocumentReference]),
+    set: dart.fnType(firestore.WriteBatch, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)], [dart.nullable(dart.anonymousJSType("SetOptions"))]),
+    update: dart.fnType(firestore.WriteBatch, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)])
+  }));
+  dart.setLibraryUri(firestore.WriteBatch, I[1]);
+  dart.defineLazy(firestore.WriteBatch, {
+    /*firestore.WriteBatch._expando*/get _expando() {
+      return new (T$.ExpandoOfWriteBatch()).new();
+    }
+  }, false);
+  var _createStream = dart.privateName(firestore, "_createStream");
+  const JsObjectWrapper__Updatable$36$ = class JsObjectWrapper__Updatable extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference")) {};
+  (JsObjectWrapper__Updatable$36$.fromJsObject = function(jsObject) {
+    JsObjectWrapper__Updatable$36$.__proto__.fromJsObject.call(this, jsObject);
+  }).prototype = JsObjectWrapper__Updatable$36$.prototype;
+  dart.applyMixin(JsObjectWrapper__Updatable$36$, firestore._Updatable);
+  firestore.DocumentReference = class DocumentReference extends JsObjectWrapper__Updatable$36$ {
+    get firestore() {
+      return firestore.Firestore.getInstance(this.jsObject.firestore);
+    }
+    get id() {
+      return this.jsObject.id;
+    }
+    get parent() {
+      return firestore.CollectionReference.getInstance(this.jsObject.parent);
+    }
+    get path() {
+      return this.jsObject.path;
+    }
+    static getInstance(jsObject) {
+      let t13, t12, t11, t10;
+      if (jsObject == null) dart.nullFailed(I[0], 156, 49, "jsObject");
+      t10 = firestore.DocumentReference._expando;
+      t11 = jsObject;
+      t12 = t10._get(t11);
+      return t12 == null ? (t13 = new firestore.DocumentReference._fromJsObject(jsObject), t10._set(t11, t13), t13) : t12;
+    }
+    collection(collectionPath) {
+      if (collectionPath == null) dart.nullFailed(I[0], 164, 42, "collectionPath");
+      return firestore.CollectionReference.getInstance(this.jsObject.collection(collectionPath));
+    }
+    delete() {
+      return utils.handleThenable(core.Null, this.jsObject.delete());
+    }
+    get(options = null) {
+      let jsObjectSet = options != null ? this.jsObject.get(options) : this.jsObject.get();
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot"), jsObjectSet).then(firestore.DocumentSnapshot, C[1] || CT.C1);
+    }
+    get onSnapshot() {
+      return this[_createStream]();
+    }
+    get onMetadataChangesSnapshot() {
+      return this[_createStream]({includeMetadataChanges: true});
+    }
+    [_createStream](options = null) {
+      let onSnapshotUnsubscribe = null;
+      let onSnapshotUnsubscribe$35isSet = false;
+      function onSnapshotUnsubscribe$35get() {
+        return onSnapshotUnsubscribe$35isSet ? onSnapshotUnsubscribe : dart.throw(new _internal.LateError.localNI("onSnapshotUnsubscribe"));
+      }
+      dart.fn(onSnapshotUnsubscribe$35get, T$.VoidToFn());
+      function onSnapshotUnsubscribe$35set(t13) {
+        if (t13 == null) dart.nullFailed(I[0], 183, 23, "null");
+        onSnapshotUnsubscribe$35isSet = true;
+        return onSnapshotUnsubscribe = t13;
+      }
+      dart.fn(onSnapshotUnsubscribe$35set, T$.FnTodynamic());
+      let controller = null;
+      let controller$35isSet = false;
+      function controller$35get() {
+        return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+      }
+      dart.fn(controller$35get, T$.VoidToStreamControllerOfDocumentSnapshot());
+      function controller$35set(t18) {
+        if (t18 == null) dart.nullFailed(I[0], 184, 45, "null");
+        controller$35isSet = true;
+        return controller = t18;
+      }
+      dart.fn(controller$35set, T$.StreamControllerOfDocumentSnapshotTodynamic());
+      let nextWrapper = js.allowInterop(T$.DocumentSnapshotJsImplToNull(), dart.fn(snapshot => {
+        if (snapshot == null) dart.nullFailed(I[0], 187, 64, "snapshot");
+        controller$35get().add(firestore.DocumentSnapshot.getInstance(snapshot));
+      }, T$.DocumentSnapshotJsImplToNull()));
+      let errorWrapper = js.allowInterop(T$.dynamicTovoid(), dart.fn(e => controller$35get().addError(core.Object.as(e)), T$.dynamicTovoid()));
+      const startListen = () => {
+        onSnapshotUnsubscribe$35set(options != null ? this.jsObject.onSnapshot(options, dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper)) : this.jsObject.onSnapshot(dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper)));
+      };
+      dart.fn(startListen, T$.VoidTovoid());
+      function stopListen() {
+        onSnapshotUnsubscribe$35get()();
+        controller$35get().close();
+      }
+      dart.fn(stopListen, T$.VoidTovoid());
+      controller$35set(T$.StreamControllerOfDocumentSnapshot().broadcast({onListen: startListen, onCancel: stopListen, sync: true}));
+      return controller$35get().stream;
+    }
+    set(data, options = null) {
+      if (data == null) dart.nullFailed(I[0], 210, 41, "data");
+      let jsObjectSet = options != null ? this.jsObject.set(utils$.jsify(data), options) : this.jsObject.set(utils$.jsify(data));
+      return utils.handleThenable(core.Null, jsObjectSet);
+    }
+    update(data) {
+      if (data == null) dart.nullFailed(I[0], 218, 44, "data");
+      return utils.handleThenable(core.Null, dart.lazyJSType(() => dart.global.Promise, "Promise").as(this[_wrapUpdateFunctionCall](dart.dynamic, this.jsObject, data)));
+    }
+  };
+  (firestore.DocumentReference._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 161, 49, "jsObject");
+    firestore.DocumentReference.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.DocumentReference.prototype;
+  dart.addTypeTests(firestore.DocumentReference);
+  dart.addTypeCaches(firestore.DocumentReference);
+  dart.setMethodSignature(firestore.DocumentReference, () => ({
+    __proto__: dart.getMethods(firestore.DocumentReference.__proto__),
+    collection: dart.fnType(dart.nullable(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))), [core.String]),
+    delete: dart.fnType(async.Future$(core.Null), []),
+    get: dart.fnType(async.Future$(firestore.DocumentSnapshot), [], [dart.nullable(dart.anonymousJSType("GetOptions"))]),
+    [_createStream]: dart.fnType(async.Stream$(firestore.DocumentSnapshot), [], [dart.nullable(dart.anonymousJSType("DocumentListenOptions"))]),
+    set: dart.fnType(async.Future$(core.Null), [core.Map$(core.String, dart.dynamic)], [dart.nullable(dart.anonymousJSType("SetOptions"))]),
+    update: dart.fnType(async.Future$(core.Null), [core.Map$(core.String, dart.dynamic)])
+  }));
+  dart.setGetterSignature(firestore.DocumentReference, () => ({
+    __proto__: dart.getGetters(firestore.DocumentReference.__proto__),
+    firestore: firestore.Firestore,
+    id: core.String,
+    parent: dart.nullable(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))),
+    path: core.String,
+    onSnapshot: async.Stream$(firestore.DocumentSnapshot),
+    onMetadataChangesSnapshot: async.Stream$(firestore.DocumentSnapshot)
+  }));
+  dart.setLibraryUri(firestore.DocumentReference, I[1]);
+  dart.defineLazy(firestore.DocumentReference, {
+    /*firestore.DocumentReference._expando*/get _expando() {
+      return new (T$.ExpandoOfDocumentReference()).new();
+    }
+  }, false);
+  var _wrapPaginatingFunctionCall = dart.privateName(firestore, "_wrapPaginatingFunctionCall");
+  const _is_Query_default = Symbol('_is_Query_default');
+  firestore.Query$ = dart.generic(T => {
+    class Query extends js$.JsObjectWrapper$(T) {
+      get firestore() {
+        return firestore.Firestore.getInstance(this.jsObject.firestore);
+      }
+      endAt(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "endAt", snapshot, fieldValues)));
+      }
+      endBefore(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "endBefore", snapshot, fieldValues)));
+      }
+      get(options = null) {
+        return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot"), this.jsObject.get()).then(firestore.QuerySnapshot, C[2] || CT.C2);
+      }
+      limit(limit) {
+        if (limit == null) dart.nullFailed(I[0], 241, 19, "limit");
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.limit(limit));
+      }
+      limitToLast(limit) {
+        if (limit == null) dart.nullFailed(I[0], 243, 25, "limit");
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.limitToLast(limit));
+      }
+      get onSnapshot() {
+        return this[_createStream](false);
+      }
+      get onSnapshotMetadata() {
+        return this[_createStream](true);
+      }
+      [_createStream](includeMetadataChanges) {
+        if (includeMetadataChanges == null) dart.nullFailed(I[0], 250, 44, "includeMetadataChanges");
+        let onSnapshotUnsubscribe = null;
+        let onSnapshotUnsubscribe$35isSet = false;
+        function onSnapshotUnsubscribe$35get() {
+          return onSnapshotUnsubscribe$35isSet ? onSnapshotUnsubscribe : dart.throw(new _internal.LateError.localNI("onSnapshotUnsubscribe"));
         }
-       }
-     },
-     getModuleLibraries: null, // set up by _initializeTools
-   };
-}
-var baseUrl = (function () {
-  // Attempt to detect --precompiled mode for tests, and set the base url
-  // appropriately, otherwise set it to '/'.
-  var pathParts = location.pathname.split("/");
-  if (pathParts[0] == "") {
-    pathParts.shift();
-  }
-  if (pathParts.length > 1 && pathParts[1] == "test") {
-    return "/" + pathParts.slice(0, 2).join("/") + "/";
-  }
-  // Attempt to detect base url using <base href> html tag
-  // base href should start and end with "/"
-  if (typeof document !== 'undefined') {
-    var el = document.getElementsByTagName('base');
-    if (el && el[0] && el[0].getAttribute("href") && el[0].getAttribute
-    ("href").startsWith("/") && el[0].getAttribute("href").endsWith("/")){
-      return el[0].getAttribute("href");
-    }
-  }
-  // return default value
-  return "/";
-}());
-;
-require.config({
-    baseUrl: baseUrl,
-    waitSeconds: 0,
-    paths: modulePaths 
-});
-const modulesGraph = new Map();
-requirejs.onResourceLoad = function (context, map, depArray) {
-  const name = map.name;
-  const depNameArray = depArray.map((dep) => dep.name);
-  if (modulesGraph.has(name)) {
-    var previousDeps = modulesGraph.get(name);
-    var changed = previousDeps.length != depNameArray.length;
-    changed = changed || depNameArray.some(function(depName) {
-      return !previousDeps.includes(depName);
-    });
-    if (changed) {
-      console.warn("Dependencies graph change for module '" + name + "' detected. " +
-        "Dependencies was [" + previousDeps + "], now [" +  depNameArray.map((depName) => depName) +"]. " +
-        "Page can't be hot-reloaded, firing full page reload.");
-      window.location.reload();
-    }
-  } else {
-    modulesGraph.set(name, []);
-    for (const depName of depNameArray) {
-      if (!$requireLoader.moduleParentsGraph.has(depName)) {
-        $requireLoader.moduleParentsGraph.set(depName, []);
+        dart.fn(onSnapshotUnsubscribe$35get, T$.VoidToFn());
+        function onSnapshotUnsubscribe$35set(t23) {
+          if (t23 == null) dart.nullFailed(I[0], 251, 23, "null");
+          onSnapshotUnsubscribe$35isSet = true;
+          return onSnapshotUnsubscribe = t23;
+        }
+        dart.fn(onSnapshotUnsubscribe$35set, T$.FnTodynamic());
+        let controller = null;
+        let controller$35isSet = false;
+        function controller$35get() {
+          return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+        }
+        dart.fn(controller$35get, T$.VoidToStreamControllerOfQuerySnapshot());
+        function controller$35set(t28) {
+          if (t28 == null) dart.nullFailed(I[0], 252, 42, "null");
+          controller$35isSet = true;
+          return controller = t28;
+        }
+        dart.fn(controller$35set, T$.StreamControllerOfQuerySnapshotTodynamic());
+        let nextWrapper = js.allowInterop(T$.QuerySnapshotJsImplToNull(), dart.fn(snapshot => {
+          if (snapshot == null) dart.nullFailed(I[0], 255, 61, "snapshot");
+          controller$35get().add(new firestore.QuerySnapshot._fromJsObject(snapshot));
+        }, T$.QuerySnapshotJsImplToNull()));
+        let errorWrapper = js.allowInterop(T$.dynamicTovoid(), dart.fn(e => controller$35get().addError(core.Object.as(e)), T$.dynamicTovoid()));
+        let options = {includeMetadataChanges: includeMetadataChanges};
+        const startListen = () => {
+          onSnapshotUnsubscribe$35set(this.jsObject.onSnapshot(options, dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper)));
+        };
+        dart.fn(startListen, T$.VoidTovoid());
+        function stopListen() {
+          onSnapshotUnsubscribe$35get()();
+          controller$35get().close();
+        }
+        dart.fn(stopListen, T$.VoidTovoid());
+        controller$35set(T$.StreamControllerOfQuerySnapshot().broadcast({onListen: startListen, onCancel: stopListen, sync: true}));
+        return controller$35get().stream;
       }
-      $requireLoader.moduleParentsGraph.get(depName).push(name);
-      modulesGraph.get(name).push(depName);
+      orderBy(fieldPath, directionStr = null) {
+        let jsObjectOrderBy = directionStr != null ? this.jsObject.orderBy(fieldPath, directionStr) : this.jsObject.orderBy(fieldPath);
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(jsObjectOrderBy);
+      }
+      startAfter(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "startAfter", snapshot, fieldValues)));
+      }
+      startAt(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "startAt", snapshot, fieldValues)));
+      }
+      where(fieldPath, opStr, value) {
+        if (opStr == null) dart.nullFailed(I[0], 295, 45, "opStr");
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.where(fieldPath, opStr, utils$.jsify(value)));
+      }
+      [_wrapPaginatingFunctionCall](S, method, snapshot, fieldValues) {
+        if (method == null) dart.nullFailed(I[0], 303, 14, "method");
+        if (snapshot == null && fieldValues == null) {
+          dart.throw(new core.ArgumentError.new("Please provide either snapshot or fieldValues parameter."));
+        }
+        let args = snapshot != null ? T$.JSArrayOfDocumentSnapshotJsImpl().of([snapshot.jsObject]) : dart.nullCheck(fieldValues)[$map](dart.dynamic, C[0] || CT.C0)[$toList]();
+        return dart.nullable(S).as(utils.callMethod(this.jsObject, method, args));
+      }
     }
-  }
-};
+    (Query.fromJsObject = function(jsObject) {
+      if (jsObject == null) dart.nullFailed(I[0], 227, 24, "jsObject");
+      Query.__proto__.fromJsObject.call(this, jsObject);
+      ;
+    }).prototype = Query.prototype;
+    dart.addTypeTests(Query);
+    Query.prototype[_is_Query_default] = true;
+    dart.addTypeCaches(Query);
+    dart.setMethodSignature(Query, () => ({
+      __proto__: dart.getMethods(Query.__proto__),
+      endAt: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      endBefore: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      get: dart.fnType(async.Future$(firestore.QuerySnapshot), [], [dart.nullable(dart.anonymousJSType("GetOptions"))]),
+      limit: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [core.num]),
+      limitToLast: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [core.num]),
+      [_createStream]: dart.fnType(async.Stream$(firestore.QuerySnapshot), [core.bool]),
+      orderBy: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [dart.dynamic], [dart.nullable(core.String)]),
+      startAfter: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      startAt: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      where: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [dart.dynamic, core.String, dart.dynamic]),
+      [_wrapPaginatingFunctionCall]: dart.gFnType(S => [dart.nullable(S), [core.String, dart.nullable(firestore.DocumentSnapshot), dart.nullable(core.List)]], S => [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(Query, () => ({
+      __proto__: dart.getGetters(Query.__proto__),
+      firestore: firestore.Firestore,
+      onSnapshot: async.Stream$(firestore.QuerySnapshot),
+      onSnapshotMetadata: async.Stream$(firestore.QuerySnapshot)
+    }));
+    dart.setLibraryUri(Query, I[1]);
+    return Query;
+  });
+  firestore.Query = firestore.Query$();
+  dart.addTypeTests(firestore.Query, _is_Query_default);
+  const _is_CollectionReference_default = Symbol('_is_CollectionReference_default');
+  firestore.CollectionReference$ = dart.generic(T => {
+    class CollectionReference extends firestore.Query$(T) {
+      get id() {
+        return this.jsObject.id;
+      }
+      get parent() {
+        return firestore.DocumentReference.getInstance(this.jsObject.parent);
+      }
+      get path() {
+        return this.jsObject.path;
+      }
+      static getInstance(jsObject) {
+        let t33, t32, t31, t30;
+        if (jsObject == null) dart.nullFailed(I[0], 329, 51, "jsObject");
+        t30 = firestore.CollectionReference._expando;
+        t31 = jsObject;
+        t32 = t30._get(t31);
+        return t32 == null ? (t33 = new (T$.CollectionReferenceOfCollectionReferenceJsImpl())._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+      }
+      static new() {
+        return new (firestore.CollectionReference$(T))._fromJsObject(new dart.global.firebase.firestore.CollectionReference());
+      }
+      add(data) {
+        if (data == null) dart.nullFailed(I[0], 340, 54, "data");
+        return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference"), this.jsObject.add(utils$.jsify(data))).then(firestore.DocumentReference, C[3] || CT.C3);
+      }
+      doc(documentPath = null) {
+        let jsObjectDoc = documentPath != null ? this.jsObject.doc(documentPath) : this.jsObject.doc();
+        return firestore.DocumentReference.getInstance(jsObjectDoc);
+      }
+      isEqual(other) {
+        if (other == null) dart.nullFailed(I[0], 351, 36, "other");
+        return this.jsObject.isEqual(other.jsObject);
+      }
+    }
+    (CollectionReference._fromJsObject = function(jsObject) {
+      if (jsObject == null) dart.nullFailed(I[0], 337, 51, "jsObject");
+      CollectionReference.__proto__.fromJsObject.call(this, T.as(jsObject));
+      ;
+    }).prototype = CollectionReference.prototype;
+    dart.addTypeTests(CollectionReference);
+    CollectionReference.prototype[_is_CollectionReference_default] = true;
+    dart.addTypeCaches(CollectionReference);
+    dart.setMethodSignature(CollectionReference, () => ({
+      __proto__: dart.getMethods(CollectionReference.__proto__),
+      add: dart.fnType(async.Future$(firestore.DocumentReference), [core.Map$(core.String, dart.dynamic)]),
+      doc: dart.fnType(firestore.DocumentReference, [], [dart.nullable(core.String)]),
+      isEqual: dart.fnType(core.bool, [firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))])
+    }));
+    dart.setGetterSignature(CollectionReference, () => ({
+      __proto__: dart.getGetters(CollectionReference.__proto__),
+      id: core.String,
+      parent: dart.nullable(firestore.DocumentReference),
+      path: core.String
+    }));
+    dart.setLibraryUri(CollectionReference, I[1]);
+    return CollectionReference;
+  });
+  firestore.CollectionReference = firestore.CollectionReference$();
+  dart.defineLazy(firestore.CollectionReference, {
+    /*firestore.CollectionReference._expando*/get _expando() {
+      return new (T$.ExpandoOfCollectionReferenceOfCollectionReferenceJsImpl()).new();
+    }
+  }, false);
+  dart.addTypeTests(firestore.CollectionReference, _is_CollectionReference_default);
+  firestore.DocumentChange = class DocumentChange extends js$.JsObjectWrapper$(dart.anonymousJSType("DocumentChangeJsImpl")) {
+    get type() {
+      return this.jsObject.type;
+    }
+    get doc() {
+      return firestore.DocumentSnapshot.getInstance(this.jsObject.doc);
+    }
+    get oldIndex() {
+      return this.jsObject.oldIndex;
+    }
+    get newIndex() {
+      return this.jsObject.newIndex;
+    }
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 368, 46, "jsObject");
+      t30 = firestore.DocumentChange._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.DocumentChange._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+  };
+  (firestore.DocumentChange._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 372, 71, "jsObject");
+    firestore.DocumentChange.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.DocumentChange.prototype;
+  dart.addTypeTests(firestore.DocumentChange);
+  dart.addTypeCaches(firestore.DocumentChange);
+  dart.setGetterSignature(firestore.DocumentChange, () => ({
+    __proto__: dart.getGetters(firestore.DocumentChange.__proto__),
+    type: core.String,
+    doc: dart.nullable(firestore.DocumentSnapshot),
+    oldIndex: core.num,
+    newIndex: core.num
+  }));
+  dart.setLibraryUri(firestore.DocumentChange, I[1]);
+  dart.defineLazy(firestore.DocumentChange, {
+    /*firestore.DocumentChange._expando*/get _expando() {
+      return new (T$.ExpandoOfDocumentChange()).new();
+    }
+  }, false);
+  firestore.DocumentSnapshot = class DocumentSnapshot extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot")) {
+    get exists() {
+      return this.jsObject.exists;
+    }
+    get id() {
+      return this.jsObject.id;
+    }
+    get metadata() {
+      return this.jsObject.metadata;
+    }
+    get ref() {
+      return firestore.DocumentReference.getInstance(this.jsObject.ref);
+    }
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 390, 48, "jsObject");
+      t30 = firestore.DocumentSnapshot._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.DocumentSnapshot._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+    data() {
+      return T$.MapNOfString$dynamic().as(utils$.dartify(this.jsObject.data()));
+    }
+    get(fieldPath) {
+      return utils$.dartify(this.jsObject.get(fieldPath));
+    }
+    isEqual(other) {
+      if (other == null) dart.nullFailed(I[0], 403, 33, "other");
+      return this.jsObject.isEqual(other.jsObject);
+    }
+  };
+  (firestore.DocumentSnapshot._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 395, 48, "jsObject");
+    firestore.DocumentSnapshot.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.DocumentSnapshot.prototype;
+  dart.addTypeTests(firestore.DocumentSnapshot);
+  dart.addTypeCaches(firestore.DocumentSnapshot);
+  dart.setMethodSignature(firestore.DocumentSnapshot, () => ({
+    __proto__: dart.getMethods(firestore.DocumentSnapshot.__proto__),
+    data: dart.fnType(dart.nullable(core.Map$(core.String, dart.dynamic)), []),
+    get: dart.fnType(dart.dynamic, [dart.dynamic]),
+    isEqual: dart.fnType(core.bool, [firestore.DocumentSnapshot])
+  }));
+  dart.setGetterSignature(firestore.DocumentSnapshot, () => ({
+    __proto__: dart.getGetters(firestore.DocumentSnapshot.__proto__),
+    exists: core.bool,
+    id: core.String,
+    metadata: dart.lazyJSType(() => dart.global.firebase.firestore.SnapshotMetadata, "firebase.firestore.SnapshotMetadata"),
+    ref: dart.nullable(firestore.DocumentReference)
+  }));
+  dart.setLibraryUri(firestore.DocumentSnapshot, I[1]);
+  dart.defineLazy(firestore.DocumentSnapshot, {
+    /*firestore.DocumentSnapshot._expando*/get _expando() {
+      return new (T$.ExpandoOfDocumentSnapshot()).new();
+    }
+  }, false);
+  firestore.QuerySnapshot = class QuerySnapshot extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot")) {
+    docChanges(options = null) {
+      let changes = options != null ? this.jsObject.docChanges(dart.nullable(dart.anonymousJSType("SnapshotListenOptions")).as(utils$.jsify(options))) : this.jsObject.docChanges();
+      return changes[$map](firestore.DocumentChange, dart.fn(e => firestore.DocumentChange.getInstance(dart.anonymousJSType("DocumentChangeJsImpl").as(e)), T$.dynamicToDocumentChange()))[$toList]();
+    }
+    get docs() {
+      return this.jsObject.docs[$map](firestore.DocumentSnapshot, dart.fn(e => firestore.DocumentSnapshot.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot").as(e)), T$.dynamicToDocumentSnapshot()))[$toList]();
+    }
+    get empty() {
+      return this.jsObject.empty;
+    }
+    get metadata() {
+      return this.jsObject.metadata;
+    }
+    get query() {
+      return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.query);
+    }
+    get size() {
+      return this.jsObject.size;
+    }
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 441, 45, "jsObject");
+      t30 = firestore.QuerySnapshot._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.QuerySnapshot._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+    forEach(callback) {
+      if (callback == null) dart.nullFailed(I[0], 448, 44, "callback");
+      let callbackWrap = js.allowInterop(T$.dynamicTodynamic(), dart.fn(s => callback(firestore.DocumentSnapshot.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot").as(s))), T$.dynamicTodynamic()));
+      return this.jsObject.forEach(dart.assertInterop(callbackWrap));
+    }
+    isEqual(other) {
+      if (other == null) dart.nullFailed(I[0], 454, 30, "other");
+      return this.jsObject.isEqual(other.jsObject);
+    }
+  };
+  (firestore.QuerySnapshot._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 445, 69, "jsObject");
+    firestore.QuerySnapshot.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.QuerySnapshot.prototype;
+  dart.addTypeTests(firestore.QuerySnapshot);
+  dart.addTypeCaches(firestore.QuerySnapshot);
+  dart.setMethodSignature(firestore.QuerySnapshot, () => ({
+    __proto__: dart.getMethods(firestore.QuerySnapshot.__proto__),
+    docChanges: dart.fnType(core.List$(firestore.DocumentChange), [], [dart.nullable(dart.anonymousJSType("SnapshotListenOptions"))]),
+    forEach: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [dart.nullable(firestore.DocumentSnapshot)])]),
+    isEqual: dart.fnType(core.bool, [firestore.QuerySnapshot])
+  }));
+  dart.setGetterSignature(firestore.QuerySnapshot, () => ({
+    __proto__: dart.getGetters(firestore.QuerySnapshot.__proto__),
+    docs: core.List$(dart.nullable(firestore.DocumentSnapshot)),
+    empty: core.bool,
+    metadata: dart.lazyJSType(() => dart.global.firebase.firestore.SnapshotMetadata, "firebase.firestore.SnapshotMetadata"),
+    query: firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")),
+    size: core.num
+  }));
+  dart.setLibraryUri(firestore.QuerySnapshot, I[1]);
+  dart.defineLazy(firestore.QuerySnapshot, {
+    /*firestore.QuerySnapshot._expando*/get _expando() {
+      return new (T$.ExpandoOfQuerySnapshot()).new();
+    }
+  }, false);
+  const JsObjectWrapper__Updatable$36$0 = class JsObjectWrapper__Updatable extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.Transaction, "firebase.firestore.Transaction")) {};
+  (JsObjectWrapper__Updatable$36$0.fromJsObject = function(jsObject) {
+    JsObjectWrapper__Updatable$36$0.__proto__.fromJsObject.call(this, jsObject);
+  }).prototype = JsObjectWrapper__Updatable$36$0.prototype;
+  dart.applyMixin(JsObjectWrapper__Updatable$36$0, firestore._Updatable);
+  firestore.Transaction = class Transaction extends JsObjectWrapper__Updatable$36$0 {
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 462, 70, "jsObject");
+      t30 = firestore.Transaction._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.Transaction._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+    delete(documentRef) {
+      if (documentRef == null) dart.nullFailed(I[0], 469, 40, "documentRef");
+      return firestore.Transaction.getInstance(this.jsObject.delete(documentRef.jsObject));
+    }
+    get(documentRef) {
+      if (documentRef == null) dart.nullFailed(I[0], 472, 50, "documentRef");
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot"), this.jsObject.get(documentRef.jsObject)).then(firestore.DocumentSnapshot, C[1] || CT.C1);
+    }
+    set(documentRef, data, options = null) {
+      if (documentRef == null) dart.nullFailed(I[0], 477, 37, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 477, 71, "data");
+      let jsObjectSet = options != null ? this.jsObject.set(documentRef.jsObject, utils$.jsify(data), options) : this.jsObject.set(documentRef.jsObject, utils$.jsify(data));
+      return firestore.Transaction.getInstance(jsObjectSet);
+    }
+    update(documentRef, data) {
+      if (documentRef == null) dart.nullFailed(I[0], 486, 29, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 486, 63, "data");
+      return firestore.Transaction.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.Transaction, "firebase.firestore.Transaction").as(this[_wrapUpdateFunctionCall](dart.dynamic, this.jsObject, data, documentRef)));
+    }
+  };
+  (firestore.Transaction._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 466, 65, "jsObject");
+    firestore.Transaction.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.Transaction.prototype;
+  dart.addTypeTests(firestore.Transaction);
+  dart.addTypeCaches(firestore.Transaction);
+  dart.setMethodSignature(firestore.Transaction, () => ({
+    __proto__: dart.getMethods(firestore.Transaction.__proto__),
+    delete: dart.fnType(firestore.Transaction, [firestore.DocumentReference]),
+    get: dart.fnType(async.Future$(firestore.DocumentSnapshot), [firestore.DocumentReference]),
+    set: dart.fnType(firestore.Transaction, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)], [dart.nullable(dart.anonymousJSType("SetOptions"))]),
+    update: dart.fnType(firestore.Transaction, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)])
+  }));
+  dart.setLibraryUri(firestore.Transaction, I[1]);
+  dart.defineLazy(firestore.Transaction, {
+    /*firestore.Transaction._expando*/get _expando() {
+      return new (T$.ExpandoOfTransaction()).new();
+    }
+  }, false);
+  var _jsify = dart.privateName(firestore, "_jsify");
+  firestore._FieldValueDelete = class _FieldValueDelete extends core.Object {
+    [_jsify]() {
+      return dart.global.firebase.firestore.FieldValue.delete();
+    }
+    toString() {
+      return "FieldValue.delete()";
+    }
+  };
+  (firestore._FieldValueDelete.new = function() {
+    ;
+  }).prototype = firestore._FieldValueDelete.prototype;
+  dart.addTypeTests(firestore._FieldValueDelete);
+  dart.addTypeCaches(firestore._FieldValueDelete);
+  firestore._FieldValueDelete[dart.implements] = () => [firestore.FieldValue];
+  dart.setMethodSignature(firestore._FieldValueDelete, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueDelete.__proto__),
+    [_jsify]: dart.fnType(dart.anonymousJSType("FieldValue"), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueDelete, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueDelete, ['toString']);
+  firestore._FieldValueServerTimestamp = class _FieldValueServerTimestamp extends core.Object {
+    [_jsify]() {
+      return dart.global.firebase.firestore.FieldValue.serverTimestamp();
+    }
+    toString() {
+      return "FieldValue.serverTimestamp()";
+    }
+  };
+  (firestore._FieldValueServerTimestamp.new = function() {
+    ;
+  }).prototype = firestore._FieldValueServerTimestamp.prototype;
+  dart.addTypeTests(firestore._FieldValueServerTimestamp);
+  dart.addTypeCaches(firestore._FieldValueServerTimestamp);
+  firestore._FieldValueServerTimestamp[dart.implements] = () => [firestore.FieldValue];
+  dart.setMethodSignature(firestore._FieldValueServerTimestamp, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueServerTimestamp.__proto__),
+    [_jsify]: dart.fnType(dart.anonymousJSType("FieldValue"), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueServerTimestamp, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueServerTimestamp, ['toString']);
+  firestore._FieldValueArray = class _FieldValueArray extends core.Object {};
+  (firestore._FieldValueArray.new = function(elements) {
+    this.elements = elements;
+    ;
+  }).prototype = firestore._FieldValueArray.prototype;
+  dart.addTypeTests(firestore._FieldValueArray);
+  dart.addTypeCaches(firestore._FieldValueArray);
+  firestore._FieldValueArray[dart.implements] = () => [firestore.FieldValue];
+  dart.setLibraryUri(firestore._FieldValueArray, I[1]);
+  dart.setFieldSignature(firestore._FieldValueArray, () => ({
+    __proto__: dart.getFields(firestore._FieldValueArray.__proto__),
+    elements: dart.finalFieldType(dart.nullable(core.List))
+  }));
+  firestore._FieldValueArrayUnion = class _FieldValueArrayUnion extends firestore._FieldValueArray {
+    [_jsify]() {
+      return dart.nullable(dart.anonymousJSType("FieldValue")).as(utils.callMethod(core.Object.as(dart.global.firebase.firestore.FieldValue), "arrayUnion", core.List.as(utils$.jsify(this.elements))));
+    }
+    toString() {
+      return "FieldValue.arrayUnion(" + dart.str(this.elements) + ")";
+    }
+  };
+  (firestore._FieldValueArrayUnion.new = function(elements) {
+    firestore._FieldValueArrayUnion.__proto__.new.call(this, elements);
+    ;
+  }).prototype = firestore._FieldValueArrayUnion.prototype;
+  dart.addTypeTests(firestore._FieldValueArrayUnion);
+  dart.addTypeCaches(firestore._FieldValueArrayUnion);
+  dart.setMethodSignature(firestore._FieldValueArrayUnion, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueArrayUnion.__proto__),
+    [_jsify]: dart.fnType(dart.nullable(dart.anonymousJSType("FieldValue")), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueArrayUnion, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueArrayUnion, ['toString']);
+  firestore._FieldValueArrayRemove = class _FieldValueArrayRemove extends firestore._FieldValueArray {
+    [_jsify]() {
+      return dart.nullable(dart.anonymousJSType("FieldValue")).as(utils.callMethod(core.Object.as(dart.global.firebase.firestore.FieldValue), "arrayRemove", core.List.as(utils$.jsify(this.elements))));
+    }
+    toString() {
+      return "FieldValue.arrayRemove(" + dart.str(this.elements) + ")";
+    }
+  };
+  (firestore._FieldValueArrayRemove.new = function(elements) {
+    firestore._FieldValueArrayRemove.__proto__.new.call(this, elements);
+    ;
+  }).prototype = firestore._FieldValueArrayRemove.prototype;
+  dart.addTypeTests(firestore._FieldValueArrayRemove);
+  dart.addTypeCaches(firestore._FieldValueArrayRemove);
+  dart.setMethodSignature(firestore._FieldValueArrayRemove, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueArrayRemove.__proto__),
+    [_jsify]: dart.fnType(dart.nullable(dart.anonymousJSType("FieldValue")), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueArrayRemove, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueArrayRemove, ['toString']);
+  firestore._FieldValueIncrement = class _FieldValueIncrement extends core.Object {
+    [_jsify]() {
+      return dart.global.firebase.firestore.FieldValue.increment(this.n);
+    }
+    toString() {
+      return "FieldValue.increment(" + dart.str(this.n) + ")";
+    }
+  };
+  (firestore._FieldValueIncrement.new = function(n) {
+    if (n == null) dart.nullFailed(I[0], 563, 29, "n");
+    this.n = n;
+    ;
+  }).prototype = firestore._FieldValueIncrement.prototype;
+  dart.addTypeTests(firestore._FieldValueIncrement);
+  dart.addTypeCaches(firestore._FieldValueIncrement);
+  firestore._FieldValueIncrement[dart.implements] = () => [firestore.FieldValue];
+  dart.setMethodSignature(firestore._FieldValueIncrement, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueIncrement.__proto__),
+    [_jsify]: dart.fnType(dart.anonymousJSType("FieldValue"), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueIncrement, I[1]);
+  dart.setFieldSignature(firestore._FieldValueIncrement, () => ({
+    __proto__: dart.getFields(firestore._FieldValueIncrement.__proto__),
+    n: dart.finalFieldType(core.num)
+  }));
+  dart.defineExtensionMethods(firestore._FieldValueIncrement, ['toString']);
+  firestore.FieldValue = class FieldValue extends core.Object {
+    [_jsify]() {
+      dart.throw(new core.UnimplementedError.new("_jsify() has not been implemented"));
+    }
+    static serverTimestamp() {
+      return firestore.FieldValue._serverTimestamp;
+    }
+    static delete() {
+      return firestore.FieldValue._delete;
+    }
+    static arrayUnion(elements) {
+      return new firestore._FieldValueArrayUnion.new(elements);
+    }
+    static arrayRemove(elements) {
+      return new firestore._FieldValueArrayRemove.new(elements);
+    }
+    static increment(n) {
+      if (n == null) dart.nullFailed(I[0], 598, 35, "n");
+      return new firestore._FieldValueIncrement.new(n);
+    }
+  };
+  (firestore.FieldValue.__ = function() {
+    ;
+  }).prototype = firestore.FieldValue.prototype;
+  dart.addTypeTests(firestore.FieldValue);
+  dart.addTypeCaches(firestore.FieldValue);
+  dart.setMethodSignature(firestore.FieldValue, () => ({
+    __proto__: dart.getMethods(firestore.FieldValue.__proto__),
+    [_jsify]: dart.fnType(dart.nullable(dart.anonymousJSType("FieldValue")), [])
+  }));
+  dart.setLibraryUri(firestore.FieldValue, I[1]);
+  dart.defineLazy(firestore.FieldValue, {
+    /*firestore.FieldValue._serverTimestamp*/get _serverTimestamp() {
+      return new firestore._FieldValueServerTimestamp.new();
+    },
+    /*firestore.FieldValue._delete*/get _delete() {
+      return new firestore._FieldValueDelete.new();
+    }
+  }, false);
+  firestore.getFirestoreInstance = function getFirestoreInstance(app = null) {
+    return firestore.Firestore.getInstance(app != null ? dart.global.firebase.firestore(app.jsObject) : dart.global.firebase.firestore());
+  };
+  firestore.jsifyFieldValue = function jsifyFieldValue(fieldValue) {
+    if (fieldValue == null) dart.nullFailed(I[0], 573, 36, "fieldValue");
+    return fieldValue[_jsify]();
+  };
+  dart.trackLibraries("packages/cloud_firestore_web/src/interop/utils/utils.dart", {
+    "package:cloud_firestore_web/src/interop/utils/utils.dart": utils$,
+    "package:cloud_firestore_web/src/interop/firestore.dart": firestore
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["utils.dart","../firestore.dart","../../../../../firebase_core_web-1.0.2/lib/src/interop/utils/js.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../D:/packages/cloud_firestore_web/src/interop/utils/utils.dart.lib.js"}');
+  // Exports:
+  return {
+    src__interop__utils__utils: utils$,
+    src__interop__firestore: firestore
+  };
+}));
+
+//# sourceMappingURL=utils.dart.lib.js.map

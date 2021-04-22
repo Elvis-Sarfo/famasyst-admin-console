@@ -1,7 +1,6 @@
+import 'package:farmasyst_admin_console/constants.dart';
+import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web/responsive.dart';
-
-import '../constants.dart';
 
 class Footer extends StatelessWidget {
   const Footer({

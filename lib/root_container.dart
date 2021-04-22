@@ -1,10 +1,9 @@
+import 'package:farmasyst_admin_console/components/footer.dart';
+import 'package:farmasyst_admin_console/components/header.dart';
+import 'package:farmasyst_admin_console/components/side_menu.dart';
+import 'package:farmasyst_admin_console/page_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web/components/footer.dart';
-import 'package:flutter_web/components/header.dart';
-import 'package:flutter_web/components/side_menu.dart';
 import 'package:provider/provider.dart';
-
-import 'page_routes.dart';
 
 // class RootContainer extends StatefulWidget {
 //   Widget content = Container(

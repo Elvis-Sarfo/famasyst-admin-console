@@ -1,10 +1,10 @@
-define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter_web/constants.dart'], (function load__packages__flutter_web__components__footer_dart(dart_sdk, packages__flutter_web__responsive$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__colors$46dart, packages__flutter_web__constants$46dart) {
+define(['dart_sdk', 'packages/farmasyst_admin_console/responsive.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/colors.dart', 'packages/farmasyst_admin_console/constants.dart'], (function load__packages__farmasyst_admin_console__components__footer_dart(dart_sdk, packages__farmasyst_admin_console__responsive$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__colors$46dart, packages__farmasyst_admin_console__constants$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const responsive = packages__flutter_web__responsive$46dart.responsive;
+  const responsive = packages__farmasyst_admin_console__responsive$46dart.responsive;
   const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
   const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
   const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
@@ -16,7 +16,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
   const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
   const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
   const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const constants = packages__flutter_web__constants$46dart.constants;
+  const constants = packages__farmasyst_admin_console__constants$46dart.constants;
   var footer = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
   var T = {
@@ -47,8 +47,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[1] || CT.C1,
         [_Location_name]: null,
         [_Location_column]: 35,
-        [_Location_line]: 13,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 12,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C2() {
@@ -57,8 +57,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[1] || CT.C1,
         [_Location_name]: null,
         [_Location_column]: 53,
-        [_Location_line]: 13,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 12,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C5() {
@@ -67,7 +67,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "data",
         [_Location_column]: 17,
-        [_Location_line]: 33,
+        [_Location_line]: 32,
         [_Location_file]: null
       });
     },
@@ -77,7 +77,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "style",
         [_Location_column]: 17,
-        [_Location_line]: 34,
+        [_Location_line]: 33,
         [_Location_file]: null
       });
     },
@@ -90,8 +90,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[4] || CT.C4,
         [_Location_name]: null,
         [_Location_column]: 22,
-        [_Location_line]: 32,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 31,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C9() {
@@ -100,7 +100,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "flex",
         [_Location_column]: 15,
-        [_Location_line]: 31,
+        [_Location_line]: 30,
         [_Location_file]: null
       });
     },
@@ -110,7 +110,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 15,
-        [_Location_line]: 32,
+        [_Location_line]: 31,
         [_Location_file]: null
       });
     },
@@ -123,8 +123,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[8] || CT.C8,
         [_Location_name]: null,
         [_Location_column]: 11,
-        [_Location_line]: 30,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 29,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C13() {
@@ -133,7 +133,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 21,
-        [_Location_line]: 41,
+        [_Location_line]: 40,
         [_Location_file]: null
       });
     },
@@ -143,7 +143,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 21,
-        [_Location_line]: 42,
+        [_Location_line]: 41,
         [_Location_file]: null
       });
     },
@@ -156,8 +156,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[12] || CT.C12,
         [_Location_name]: null,
         [_Location_column]: 19,
-        [_Location_line]: 40,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 39,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C17() {
@@ -166,7 +166,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 21,
-        [_Location_line]: 45,
+        [_Location_line]: 44,
         [_Location_file]: null
       });
     },
@@ -176,7 +176,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 21,
-        [_Location_line]: 46,
+        [_Location_line]: 45,
         [_Location_file]: null
       });
     },
@@ -189,8 +189,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[16] || CT.C16,
         [_Location_name]: null,
         [_Location_column]: 19,
-        [_Location_line]: 44,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 43,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C21() {
@@ -199,7 +199,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 21,
-        [_Location_line]: 49,
+        [_Location_line]: 48,
         [_Location_file]: null
       });
     },
@@ -209,7 +209,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 21,
-        [_Location_line]: 50,
+        [_Location_line]: 49,
         [_Location_file]: null
       });
     },
@@ -222,8 +222,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[20] || CT.C20,
         [_Location_name]: null,
         [_Location_column]: 19,
-        [_Location_line]: 48,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 47,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C25() {
@@ -232,7 +232,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 21,
-        [_Location_line]: 53,
+        [_Location_line]: 52,
         [_Location_file]: null
       });
     },
@@ -242,7 +242,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 21,
-        [_Location_line]: 54,
+        [_Location_line]: 53,
         [_Location_file]: null
       });
     },
@@ -255,8 +255,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[24] || CT.C24,
         [_Location_name]: null,
         [_Location_column]: 19,
-        [_Location_line]: 52,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 51,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C29() {
@@ -265,7 +265,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "children",
         [_Location_column]: 17,
-        [_Location_line]: 39,
+        [_Location_line]: 38,
         [_Location_file]: null
       });
     },
@@ -278,8 +278,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[28] || CT.C28,
         [_Location_name]: null,
         [_Location_column]: 22,
-        [_Location_line]: 38,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 37,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C32() {
@@ -288,7 +288,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "flex",
         [_Location_column]: 15,
-        [_Location_line]: 37,
+        [_Location_line]: 36,
         [_Location_file]: null
       });
     },
@@ -298,7 +298,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 15,
-        [_Location_line]: 38,
+        [_Location_line]: 37,
         [_Location_file]: null
       });
     },
@@ -311,8 +311,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[31] || CT.C31,
         [_Location_name]: null,
         [_Location_column]: 11,
-        [_Location_line]: 36,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 35,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C36() {
@@ -321,7 +321,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "children",
         [_Location_column]: 9,
-        [_Location_line]: 29,
+        [_Location_line]: 28,
         [_Location_file]: null
       });
     },
@@ -334,8 +334,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[35] || CT.C35,
         [_Location_name]: null,
         [_Location_column]: 14,
-        [_Location_line]: 28,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 27,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C39() {
@@ -344,7 +344,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "alignment",
         [_Location_column]: 7,
-        [_Location_line]: 26,
+        [_Location_line]: 25,
         [_Location_file]: null
       });
     },
@@ -354,7 +354,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "margin",
         [_Location_column]: 7,
-        [_Location_line]: 27,
+        [_Location_line]: 26,
         [_Location_file]: null
       });
     },
@@ -364,7 +364,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 7,
-        [_Location_line]: 28,
+        [_Location_line]: 27,
         [_Location_file]: null
       });
     },
@@ -377,8 +377,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[38] || CT.C38,
         [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 24,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 23,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C44() {
@@ -387,7 +387,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "data",
         [_Location_column]: 13,
-        [_Location_line]: 76,
+        [_Location_line]: 75,
         [_Location_file]: null
       });
     },
@@ -397,7 +397,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "style",
         [_Location_column]: 13,
-        [_Location_line]: 77,
+        [_Location_line]: 76,
         [_Location_file]: null
       });
     },
@@ -410,8 +410,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[43] || CT.C43,
         [_Location_name]: null,
         [_Location_column]: 11,
-        [_Location_line]: 75,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 74,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C48() {
@@ -420,7 +420,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 17,
-        [_Location_line]: 83,
+        [_Location_line]: 82,
         [_Location_file]: null
       });
     },
@@ -430,7 +430,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 17,
-        [_Location_line]: 84,
+        [_Location_line]: 83,
         [_Location_file]: null
       });
     },
@@ -443,8 +443,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[47] || CT.C47,
         [_Location_name]: null,
         [_Location_column]: 15,
-        [_Location_line]: 82,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 81,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C52() {
@@ -453,7 +453,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 17,
-        [_Location_line]: 87,
+        [_Location_line]: 86,
         [_Location_file]: null
       });
     },
@@ -463,7 +463,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 17,
-        [_Location_line]: 88,
+        [_Location_line]: 87,
         [_Location_file]: null
       });
     },
@@ -476,8 +476,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[51] || CT.C51,
         [_Location_name]: null,
         [_Location_column]: 15,
-        [_Location_line]: 86,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 85,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C56() {
@@ -486,7 +486,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 17,
-        [_Location_line]: 91,
+        [_Location_line]: 90,
         [_Location_file]: null
       });
     },
@@ -496,7 +496,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 17,
-        [_Location_line]: 92,
+        [_Location_line]: 91,
         [_Location_file]: null
       });
     },
@@ -509,8 +509,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[55] || CT.C55,
         [_Location_name]: null,
         [_Location_column]: 15,
-        [_Location_line]: 90,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 89,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C60() {
@@ -519,7 +519,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "title",
         [_Location_column]: 17,
-        [_Location_line]: 95,
+        [_Location_line]: 94,
         [_Location_file]: null
       });
     },
@@ -529,7 +529,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "tapEvent",
         [_Location_column]: 17,
-        [_Location_line]: 96,
+        [_Location_line]: 95,
         [_Location_file]: null
       });
     },
@@ -542,8 +542,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[59] || CT.C59,
         [_Location_name]: null,
         [_Location_column]: 15,
-        [_Location_line]: 94,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 93,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C64() {
@@ -552,7 +552,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "mainAxisAlignment",
         [_Location_column]: 13,
-        [_Location_line]: 80,
+        [_Location_line]: 79,
         [_Location_file]: null
       });
     },
@@ -562,7 +562,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "children",
         [_Location_column]: 13,
-        [_Location_line]: 81,
+        [_Location_line]: 80,
         [_Location_file]: null
       });
     },
@@ -575,8 +575,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[63] || CT.C63,
         [_Location_name]: null,
         [_Location_column]: 11,
-        [_Location_line]: 79,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 78,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C68() {
@@ -585,7 +585,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "children",
         [_Location_column]: 9,
-        [_Location_line]: 74,
+        [_Location_line]: 73,
         [_Location_file]: null
       });
     },
@@ -598,8 +598,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[67] || CT.C67,
         [_Location_name]: null,
         [_Location_column]: 14,
-        [_Location_line]: 73,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 72,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C71() {
@@ -608,7 +608,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "margin",
         [_Location_column]: 7,
-        [_Location_line]: 72,
+        [_Location_line]: 71,
         [_Location_file]: null
       });
     },
@@ -618,7 +618,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 7,
-        [_Location_line]: 73,
+        [_Location_line]: 72,
         [_Location_file]: null
       });
     },
@@ -631,8 +631,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[70] || CT.C70,
         [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 71,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 70,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C75() {
@@ -641,7 +641,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "data",
         [_Location_column]: 11,
-        [_Location_line]: 121,
+        [_Location_line]: 120,
         [_Location_file]: null
       });
     },
@@ -651,7 +651,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "style",
         [_Location_column]: 11,
-        [_Location_line]: 122,
+        [_Location_line]: 121,
         [_Location_file]: null
       });
     },
@@ -664,8 +664,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[74] || CT.C74,
         [_Location_name]: null,
         [_Location_column]: 16,
-        [_Location_line]: 120,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 119,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C79() {
@@ -674,7 +674,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "padding",
         [_Location_column]: 9,
-        [_Location_line]: 119,
+        [_Location_line]: 118,
         [_Location_file]: null
       });
     },
@@ -684,7 +684,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 9,
-        [_Location_line]: 120,
+        [_Location_line]: 119,
         [_Location_file]: null
       });
     },
@@ -697,8 +697,8 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[78] || CT.C78,
         [_Location_name]: null,
         [_Location_column]: 14,
-        [_Location_line]: 118,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 117,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     },
     get C83() {
@@ -707,7 +707,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "onTap",
         [_Location_column]: 7,
-        [_Location_line]: 116,
+        [_Location_line]: 115,
         [_Location_file]: null
       });
     },
@@ -717,7 +717,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "hoverColor",
         [_Location_column]: 7,
-        [_Location_line]: 117,
+        [_Location_line]: 116,
         [_Location_file]: null
       });
     },
@@ -727,7 +727,7 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 7,
-        [_Location_line]: 118,
+        [_Location_line]: 117,
         [_Location_file]: null
       });
     },
@@ -740,13 +740,13 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
         [_Location_parameterLocations]: C[82] || CT.C82,
         [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 115,
-        [_Location_file]: "file:///D:/projects/flutter/Organizations/farmasyst/famasyst-web/lib/components/footer.dart"
+        [_Location_line]: 114,
+        [_Location_file]: "file:///D:/projects/farmasyst/famasyst-admin-console/lib/components/footer.dart"
       });
     }
   }, false);
   var C = Array(86).fill(void 0);
-  var I = ["package:flutter_web/components/footer.dart"];
+  var I = ["package:farmasyst_admin_console/components/footer.dart"];
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
@@ -855,10 +855,10 @@ define(['dart_sdk', 'packages/flutter_web/responsive.dart', 'packages/flutter/sr
     title: dart.finalFieldType(dart.legacy(core.String)),
     tapEvent: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [])))
   }));
-  dart.trackLibraries("packages/flutter_web/components/footer.dart", {
-    "package:flutter_web/components/footer.dart": footer
+  dart.trackLibraries("packages/farmasyst_admin_console/components/footer.dart", {
+    "package:farmasyst_admin_console/components/footer.dart": footer
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["footer.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAW4B;AACxB,YAAQ,YAAC,oBAAS,OAAO,KAAK,wFAAkB;IAClD;;;QANM;;AACD,iDAAW,GAAG;;EAAC;;;;;;;;;UAcM;AACxB,YAAO,yCAEgB,0CACF,gDAAoB,kBAAgB,eAChD,6BACa,yBAChB,8BACU,UACC,kBACL,8BACO,wCAAoB,0HAEjC,8BACU,UACC,6BACa,yBAChB,+BACS,qBACG;mGAEZ,+BACS,sBACG;mGAEZ,+BACS,sBACG;mGAEZ,+BACS,uBACG;;IAO5B;;;QA1CM;;AACD,wDAAW,GAAG;;EAAC;;;;;;;;;UAkDM;AACxB,YAAO,sCACc,gDAAoB,kBAAgB,eAChD,gCACa,yBAChB,kBACE,8BACO,wCAAoB,mEAE7B,sCACuC,yCACnB,yBAChB,+BACS,qBACG;iGAEZ,+BACS,sBACG;iGAEZ,+BACS,sBACG;iGAEZ,+BACS,uBACG;;IAOxB;;;QArCM;;AACD,uDAAW,GAAG;;EAAC;;;;;;;;;;;IA2CP;;;;;;IACY;;;;;;UAGC;AACxB,YAAO,kCACE,2BACY,kCACZ,gCACe,kDAAsB,eACnC,kBACL,oBACO,qCAAiB,mCAAyB;IAIzD;;;QAnBmB;QAAoB;QAAsB;;IAAtB;IAAsB;AACvD,kDAAW,GAAG;;EAAC","file":"../../../../../../../packages/flutter_web/components/footer.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["footer.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAU4B;AACxB,YAAQ,YAAC,oBAAS,OAAO,KAAK,wFAAkB;IAClD;;;QANM;;AACD,iDAAW,GAAG;;EAAC;;;;;;;;;UAcM;AACxB,YAAO,yCAEgB,0CACF,gDAAoB,kBAAgB,eAChD,6BACa,yBAChB,8BACU,UACC,kBACL,8BACO,wCAAoB,0HAEjC,8BACU,UACC,6BACa,yBAChB,+BACS,qBACG;mGAEZ,+BACS,sBACG;mGAEZ,+BACS,sBACG;mGAEZ,+BACS,uBACG;;IAO5B;;;QA1CM;;AACD,wDAAW,GAAG;;EAAC;;;;;;;;;UAkDM;AACxB,YAAO,sCACc,gDAAoB,kBAAgB,eAChD,gCACa,yBAChB,kBACE,8BACO,wCAAoB,mEAE7B,sCACuC,yCACnB,yBAChB,+BACS,qBACG;iGAEZ,+BACS,sBACG;iGAEZ,+BACS,sBACG;iGAEZ,+BACS,uBACG;;IAOxB;;;QArCM;;AACD,uDAAW,GAAG;;EAAC;;;;;;;;;;;IA2CP;;;;;;IACY;;;;;;UAGC;AACxB,YAAO,kCACE,2BACY,kCACZ,gCACe,kDAAsB,eACnC,kBACL,oBACO,qCAAiB,mCAAyB;IAIzD;;;QAnBmB;QAAoB;QAAsB;;IAAtB;IAAsB;AACvD,kDAAW,GAAG;;EAAC","file":"../../../../../packages/farmasyst_admin_console/components/footer.dart.lib.js"}');
   // Exports:
   return {
     components__footer: footer

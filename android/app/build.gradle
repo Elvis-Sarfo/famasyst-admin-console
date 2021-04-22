@@ -34,7 +34,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.flutter_web"
+        applicationId "com.example.farmasyst_admin_console"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -48,12 +48,6 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-}
-
-rootProject.ext {
-  set('FlutterFire', [
-    FirebaseSDKVersion: '25.12.0'
-  ])
 }
 
 flutter {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/constants.dart';
+import 'package:farmasyst_admin_console/constants.dart';
 import 'components/jumbotron.dart';
 
 class FarmScreen extends StatelessWidget {

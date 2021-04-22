@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/components/main_button.dart';
-import 'package:flutter_web/responsive.dart';
+import 'package:farmasyst_admin_console/components/main_button.dart';
+import 'package:farmasyst_admin_console/responsive.dart';
 
 import '../../../constants.dart';
 

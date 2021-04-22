@@ -1,24 +1,69 @@
-define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/border_radius.dart'], (function load__packages__flutter__src__material__input_border_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__border_radius$46dart) {
+define(['dart_sdk', 'packages/firebase_core_web/src/interop/utils/utils.dart', 'packages/firebase_core_web/src/interop/app.dart', 'packages/firebase_core_web/src/interop/utils/js.dart'], (function load__packages__cloud_firestore_web__src__interop__utils__utils_dart(dart_sdk, packages__firebase_core_web__src__interop__utils__utils$46dart, packages__firebase_core_web__src__interop__app$46dart, packages__firebase_core_web__src__interop__utils__js$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
+  const js_util = dart_sdk.js_util;
+  const js = dart_sdk.js;
   const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  var input_border = Object.create(dart.library);
-  var $runtimeType = dartx.runtimeType;
-  var $clamp = dartx.clamp;
+  const utils = packages__firebase_core_web__src__interop__utils__utils$46dart.src__interop__utils__utils;
+  const app = packages__firebase_core_web__src__interop__app$46dart.src__interop__app;
+  const js$ = packages__firebase_core_web__src__interop__utils__js$46dart.src__interop__utils__js;
+  var utils$ = Object.create(dart.library);
+  var firestore = Object.create(dart.library);
+  var $insert = dartx.insert;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
   dart._checkModuleNullSafetyMode(false);
-  var T = {
-    _: () => T
+  var T$ = {
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    ObjectNToObjectN: () => (T$.ObjectNToObjectN = dart.constFn(dart.fnType(T$.ObjectN(), [T$.ObjectN()])))(),
+    ObjectNTodynamic: () => (T$.ObjectNTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.ObjectN()])))(),
+    QueryOfQueryJsImpl: () => (T$.QueryOfQueryJsImpl = dart.constFn(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query"))))(),
+    StreamControllerOfvoid: () => (T$.StreamControllerOfvoid = dart.constFn(async.StreamController$(dart.void)))(),
+    VoidToStreamControllerOfvoid: () => (T$.VoidToStreamControllerOfvoid = dart.constFn(dart.fnType(T$.StreamControllerOfvoid(), [])))(),
+    StreamControllerOfvoidTodynamic: () => (T$.StreamControllerOfvoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.StreamControllerOfvoid()])))(),
+    VoidTodynamic: () => (T$.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
+    VoidToFn: () => (T$.VoidToFn = dart.constFn(dart.fnType(T$.VoidTodynamic(), [])))(),
+    FnTodynamic: () => (T$.FnTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.VoidTodynamic()])))(),
+    ObjectNToNull: () => (T$.ObjectNToNull = dart.constFn(dart.fnType(core.Null, [T$.ObjectN()])))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    dynamicToPromiseJsImpl: () => (T$.dynamicToPromiseJsImpl = dart.constFn(dart.fnType(dart.lazyJSType(() => dart.global.Promise, "Promise"), [dart.dynamic])))(),
+    FutureOfObjectN: () => (T$.FutureOfObjectN = dart.constFn(async.Future$(T$.ObjectN())))(),
+    voidTodynamic: () => (T$.voidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [dart.void])))(),
+    ExpandoOfFirestore: () => (T$.ExpandoOfFirestore = dart.constFn(core.Expando$(firestore.Firestore)))(),
+    ExpandoOfWriteBatch: () => (T$.ExpandoOfWriteBatch = dart.constFn(core.Expando$(firestore.WriteBatch)))(),
+    DocumentSnapshotJsImplToDocumentSnapshot: () => (T$.DocumentSnapshotJsImplToDocumentSnapshot = dart.constFn(dart.fnType(firestore.DocumentSnapshot, [dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot")])))(),
+    StreamControllerOfDocumentSnapshot: () => (T$.StreamControllerOfDocumentSnapshot = dart.constFn(async.StreamController$(firestore.DocumentSnapshot)))(),
+    VoidToStreamControllerOfDocumentSnapshot: () => (T$.VoidToStreamControllerOfDocumentSnapshot = dart.constFn(dart.fnType(T$.StreamControllerOfDocumentSnapshot(), [])))(),
+    StreamControllerOfDocumentSnapshotTodynamic: () => (T$.StreamControllerOfDocumentSnapshotTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.StreamControllerOfDocumentSnapshot()])))(),
+    DocumentSnapshotJsImplToNull: () => (T$.DocumentSnapshotJsImplToNull = dart.constFn(dart.fnType(core.Null, [dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot")])))(),
+    dynamicTovoid: () => (T$.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    ExpandoOfDocumentReference: () => (T$.ExpandoOfDocumentReference = dart.constFn(core.Expando$(firestore.DocumentReference)))(),
+    QuerySnapshotJsImplToQuerySnapshot: () => (T$.QuerySnapshotJsImplToQuerySnapshot = dart.constFn(dart.fnType(firestore.QuerySnapshot, [dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot")])))(),
+    StreamControllerOfQuerySnapshot: () => (T$.StreamControllerOfQuerySnapshot = dart.constFn(async.StreamController$(firestore.QuerySnapshot)))(),
+    VoidToStreamControllerOfQuerySnapshot: () => (T$.VoidToStreamControllerOfQuerySnapshot = dart.constFn(dart.fnType(T$.StreamControllerOfQuerySnapshot(), [])))(),
+    StreamControllerOfQuerySnapshotTodynamic: () => (T$.StreamControllerOfQuerySnapshotTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.StreamControllerOfQuerySnapshot()])))(),
+    QuerySnapshotJsImplToNull: () => (T$.QuerySnapshotJsImplToNull = dart.constFn(dart.fnType(core.Null, [dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot")])))(),
+    JSArrayOfDocumentSnapshotJsImpl: () => (T$.JSArrayOfDocumentSnapshotJsImpl = dart.constFn(_interceptors.JSArray$(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot"))))(),
+    CollectionReferenceOfCollectionReferenceJsImpl: () => (T$.CollectionReferenceOfCollectionReferenceJsImpl = dart.constFn(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))))(),
+    DocumentReferenceJsImplToDocumentReference: () => (T$.DocumentReferenceJsImplToDocumentReference = dart.constFn(dart.fnType(firestore.DocumentReference, [dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference")])))(),
+    ExpandoOfCollectionReferenceOfCollectionReferenceJsImpl: () => (T$.ExpandoOfCollectionReferenceOfCollectionReferenceJsImpl = dart.constFn(core.Expando$(T$.CollectionReferenceOfCollectionReferenceJsImpl())))(),
+    ExpandoOfDocumentChange: () => (T$.ExpandoOfDocumentChange = dart.constFn(core.Expando$(firestore.DocumentChange)))(),
+    MapOfString$dynamic: () => (T$.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    MapNOfString$dynamic: () => (T$.MapNOfString$dynamic = dart.constFn(dart.nullable(T$.MapOfString$dynamic())))(),
+    ExpandoOfDocumentSnapshot: () => (T$.ExpandoOfDocumentSnapshot = dart.constFn(core.Expando$(firestore.DocumentSnapshot)))(),
+    dynamicToDocumentChange: () => (T$.dynamicToDocumentChange = dart.constFn(dart.fnType(firestore.DocumentChange, [dart.dynamic])))(),
+    dynamicToDocumentSnapshot: () => (T$.dynamicToDocumentSnapshot = dart.constFn(dart.fnType(firestore.DocumentSnapshot, [dart.dynamic])))(),
+    dynamicTodynamic: () => (T$.dynamicTodynamic = dart.constFn(dart.fnType(dart.dynamic, [dart.dynamic])))(),
+    ExpandoOfQuerySnapshot: () => (T$.ExpandoOfQuerySnapshot = dart.constFn(core.Expando$(firestore.QuerySnapshot)))(),
+    ExpandoOfTransaction: () => (T$.ExpandoOfTransaction = dart.constFn(core.Expando$(firestore.Transaction)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
-  }, T);
+  }, T$);
   var S = {
     _: () => S
   };
@@ -29,529 +74,995 @@ define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flut
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.fn(utils$.jsify, T$.ObjectNTodynamic());
+    },
     get C1() {
-      return C[1] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.none",
-        index: 0
-      });
+      return C[1] = dart.fn(firestore.DocumentSnapshot.getInstance, T$.DocumentSnapshotJsImplToDocumentSnapshot());
     },
     get C2() {
-      return C[2] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[1] || CT.C1,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[2] || CT.C2
-      });
+      return C[2] = dart.fn(firestore.QuerySnapshot.getInstance, T$.QuerySnapshotJsImplToQuerySnapshot());
     },
     get C3() {
-      return C[3] = dart.const({
-        __proto__: input_border._NoInputBorder.prototype,
-        [borderSide$]: C[0] || CT.C0
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.solid",
-        index: 1
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[5] || CT.C5,
-        [BorderSide_width]: 1,
-        [BorderSide_color]: C[2] || CT.C2
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 0,
-        [Radius_x]: 0
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 4,
-        [Radius_x]: 4
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[7] || CT.C7,
-        [BorderRadius_bottomLeft]: C[7] || CT.C7,
-        [BorderRadius_topRight]: C[8] || CT.C8,
-        [BorderRadius_topLeft]: C[8] || CT.C8
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[8] || CT.C8,
-        [BorderRadius_bottomLeft]: C[8] || CT.C8,
-        [BorderRadius_topRight]: C[8] || CT.C8,
-        [BorderRadius_topLeft]: C[8] || CT.C8
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name$]: "TextDirection.rtl",
-        index: 0
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name$]: "TextDirection.ltr",
-        index: 1
-      });
+      return C[3] = dart.fn(firestore.DocumentReference.getInstance, T$.DocumentReferenceJsImplToDocumentReference());
     }
   }, false);
-  var C = Array(12).fill(void 0);
+  var C = Array(4).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/material/input_border.dart",
-    "package:flutter/src/material/input_border.dart"
+    "file:///C:/dev_env/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.6/lib/src/interop/firestore.dart",
+    "package:cloud_firestore_web/src/interop/firestore.dart"
   ];
-  var borderSide$ = dart.privateName(input_border, "InputBorder.borderSide");
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  input_border.InputBorder = class InputBorder extends borders.ShapeBorder {
-    get borderSide() {
-      return this[borderSide$];
+  utils$.dartify = function dartify(jsObject) {
+    return utils.dartify(jsObject, dart.fn(object => {
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.DocumentReference))) {
+        return firestore.DocumentReference.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference").as(dart.nullCheck(object)));
+      }
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.GeoPoint))) {
+        return object;
+      }
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.Timestamp))) {
+        return new core.DateTime.fromMillisecondsSinceEpoch(dart.lazyJSType(() => dart.global.firebase.firestore.Timestamp, "firebase.firestore.Timestamp").as(dart.nullCheck(object)).toMillis());
+      }
+      if (dart.test(js_util.instanceof(object, dart.global.firebase.firestore.Blob))) {
+        return dart.anonymousJSType("Blob").as(dart.nullCheck(object));
+      }
+      return null;
+    }, T$.ObjectNToObjectN()));
+  };
+  utils$.jsify = function jsify(dartObject) {
+    if (dartObject == null) {
+      return null;
     }
-    set borderSide(value) {
-      super.borderSide = value;
+    return utils.jsify(dartObject, dart.fn(object => {
+      if (core.DateTime.is(object)) {
+        return dart.global.firebase.firestore.Timestamp.fromMillis(object.millisecondsSinceEpoch);
+      }
+      if (firestore.DocumentReference.is(object)) {
+        return object.jsObject;
+      }
+      if (firestore.FieldValue.is(object)) {
+        return firestore.jsifyFieldValue(object);
+      }
+      if (dart.anonymousJSType("Blob").is(object)) {
+        return object;
+      }
+      if (dart.lazyJSType(() => dart.global.firebase.firestore.GeoPoint, "firebase.firestore.GeoPoint").is(object)) {
+        return dartObject;
+      }
+      if (core.Function.is(object)) {
+        return js.allowInterop(core.Function, object);
+      }
+      return null;
+    }, T$.ObjectNTodynamic()));
+  };
+  firestore.Firestore = class Firestore extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.Firestore, "firebase.firestore.Firestore")) {
+    get app() {
+      return app.App.getInstance(this.jsObject.app);
+    }
+    static getInstance(jsObject) {
+      let t3, t2, t1, t0;
+      if (jsObject == null) dart.nullFailed(I[0], 37, 66, "jsObject");
+      t0 = firestore.Firestore._expando;
+      t1 = jsObject;
+      t2 = t0._get(t1);
+      return t2 == null ? (t3 = new firestore.Firestore._fromJsObject(jsObject), t0._set(t1, t3), t3) : t2;
+    }
+    batch() {
+      return firestore.WriteBatch.getInstance(this.jsObject.batch());
+    }
+    collection(collectionPath) {
+      if (collectionPath == null) dart.nullFailed(I[0], 46, 41, "collectionPath");
+      return firestore.CollectionReference.getInstance(this.jsObject.collection(collectionPath));
+    }
+    collectionGroup(collectionId) {
+      if (collectionId == null) dart.nullFailed(I[0], 49, 32, "collectionId");
+      return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.collectionGroup(collectionId));
+    }
+    doc(documentPath) {
+      if (documentPath == null) dart.nullFailed(I[0], 52, 32, "documentPath");
+      return firestore.DocumentReference.getInstance(this.jsObject.doc(documentPath));
+    }
+    enablePersistence(settings = null) {
+      return utils.handleThenable(core.Null, this.jsObject.enablePersistence(settings));
+    }
+    snapshotsInSync() {
+      let controller = null;
+      let controller$35isSet = false;
+      function controller$35get() {
+        return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+      }
+      dart.fn(controller$35get, T$.VoidToStreamControllerOfvoid());
+      function controller$35set(t3) {
+        if (t3 == null) dart.nullFailed(I[0], 60, 33, "null");
+        controller$35isSet = true;
+        return controller = t3;
+      }
+      dart.fn(controller$35set, T$.StreamControllerOfvoidTodynamic());
+      let onSnapshotsInSyncUnsubscribe = null;
+      let onSnapshotsInSyncUnsubscribe$35isSet = false;
+      function onSnapshotsInSyncUnsubscribe$35get() {
+        return onSnapshotsInSyncUnsubscribe$35isSet ? onSnapshotsInSyncUnsubscribe : dart.throw(new _internal.LateError.localNI("onSnapshotsInSyncUnsubscribe"));
+      }
+      dart.fn(onSnapshotsInSyncUnsubscribe$35get, T$.VoidToFn());
+      function onSnapshotsInSyncUnsubscribe$35set(t8) {
+        if (t8 == null) dart.nullFailed(I[0], 61, 23, "null");
+        onSnapshotsInSyncUnsubscribe$35isSet = true;
+        return onSnapshotsInSyncUnsubscribe = t8;
+      }
+      dart.fn(onSnapshotsInSyncUnsubscribe$35set, T$.FnTodynamic());
+      let nextWrapper = js.allowInterop(T$.ObjectNToNull(), dart.fn(noValue => {
+        controller$35get().add(null);
+      }, T$.ObjectNToNull()));
+      const startListen = () => {
+        onSnapshotsInSyncUnsubscribe$35set(this.jsObject.onSnapshotsInSync(dart.assertInterop(nextWrapper)));
+      };
+      dart.fn(startListen, T$.VoidTovoid());
+      function stopListen() {
+        onSnapshotsInSyncUnsubscribe$35get()();
+        controller$35get().close();
+      }
+      dart.fn(stopListen, T$.VoidTovoid());
+      controller$35set(T$.StreamControllerOfvoid().broadcast({onListen: startListen, onCancel: stopListen}));
+      return controller$35get().stream;
+    }
+    clearPersistence() {
+      return utils.handleThenable(core.Null, this.jsObject.clearPersistence());
+    }
+    runTransaction(updateFunction) {
+      if (updateFunction == null) dart.nullFailed(I[0], 86, 48, "updateFunction");
+      let updateFunctionWrap = js.allowInterop(T$.dynamicToPromiseJsImpl(), dart.fn(transaction => utils.handleFutureWithMapper(T$.ObjectN(), dart.dynamic, T$.FutureOfObjectN().as(updateFunction(firestore.Transaction.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.Transaction, "firebase.firestore.Transaction").as(transaction)))), C[0] || CT.C0), T$.dynamicToPromiseJsImpl()));
+      return utils.handleThenable(dart.void, this.jsObject.runTransaction(dart.assertInterop(updateFunctionWrap))).then(dart.dynamic, dart.fn(value => utils$.dartify(null), T$.voidTodynamic()));
+    }
+    settings(settings) {
+      if (settings == null) dart.nullFailed(I[0], 95, 44, "settings");
+      return this.jsObject.settings(settings);
+    }
+    enableNetwork() {
+      return utils.handleThenable(dart.dynamic, this.jsObject.enableNetwork());
+    }
+    disableNetwork() {
+      return utils.handleThenable(dart.dynamic, this.jsObject.disableNetwork());
+    }
+    terminate() {
+      return utils.handleThenable(core.Null, this.jsObject.terminate());
+    }
+    waitForPendingWrites() {
+      return utils.handleThenable(core.Null, this.jsObject.waitForPendingWrites());
     }
   };
-  (input_border.InputBorder.new = function(opts) {
-    let borderSide = opts && 'borderSide' in opts ? opts.borderSide : C[0] || CT.C0;
-    if (borderSide == null) dart.nullFailed(I[0], 38, 10, "borderSide");
-    this[borderSide$] = borderSide;
-    if (!(borderSide != null)) dart.assertFailed(null, I[0], 39, 15, "borderSide != null");
-    input_border.InputBorder.__proto__.new.call(this);
+  (firestore.Firestore._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 41, 61, "jsObject");
+    firestore.Firestore.__proto__.fromJsObject.call(this, jsObject);
     ;
-  }).prototype = input_border.InputBorder.prototype;
-  dart.addTypeTests(input_border.InputBorder);
-  dart.addTypeCaches(input_border.InputBorder);
-  dart.setLibraryUri(input_border.InputBorder, I[1]);
-  dart.setFieldSignature(input_border.InputBorder, () => ({
-    __proto__: dart.getFields(input_border.InputBorder.__proto__),
-    borderSide: dart.finalFieldType(borders.BorderSide)
+  }).prototype = firestore.Firestore.prototype;
+  dart.addTypeTests(firestore.Firestore);
+  dart.addTypeCaches(firestore.Firestore);
+  dart.setMethodSignature(firestore.Firestore, () => ({
+    __proto__: dart.getMethods(firestore.Firestore.__proto__),
+    batch: dart.fnType(dart.nullable(firestore.WriteBatch), []),
+    collection: dart.fnType(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference")), [core.String]),
+    collectionGroup: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [core.String]),
+    doc: dart.fnType(firestore.DocumentReference, [core.String]),
+    enablePersistence: dart.fnType(async.Future$(core.Null), [], [dart.nullable(dart.anonymousJSType("PersistenceSettings"))]),
+    snapshotsInSync: dart.fnType(async.Stream$(dart.void), []),
+    clearPersistence: dart.fnType(async.Future$(core.Null), []),
+    runTransaction: dart.fnType(async.Future, [dart.fnType(dart.dynamic, [dart.nullable(firestore.Transaction)])]),
+    settings: dart.fnType(dart.void, [dart.anonymousJSType("Settings")]),
+    enableNetwork: dart.fnType(async.Future, []),
+    disableNetwork: dart.fnType(async.Future, []),
+    terminate: dart.fnType(async.Future$(core.Null), []),
+    waitForPendingWrites: dart.fnType(async.Future$(core.Null), [])
   }));
-  dart.defineLazy(input_border.InputBorder, {
-    /*input_border.InputBorder.none*/get none() {
-      return C[3] || CT.C3;
+  dart.setGetterSignature(firestore.Firestore, () => ({
+    __proto__: dart.getGetters(firestore.Firestore.__proto__),
+    app: app.App
+  }));
+  dart.setLibraryUri(firestore.Firestore, I[1]);
+  dart.defineLazy(firestore.Firestore, {
+    /*firestore.Firestore._expando*/get _expando() {
+      return new (T$.ExpandoOfFirestore()).new();
     }
   }, false);
-  input_border._NoInputBorder = class _NoInputBorder extends input_border.InputBorder {
-    copyWith(opts) {
-      let borderSide = opts && 'borderSide' in opts ? opts.borderSide : null;
-      return C[3] || CT.C3;
-    }
-    get isOutline() {
-      return false;
-    }
-    get dimensions() {
-      return edge_insets.EdgeInsets.zero;
-    }
-    scale(t) {
-      if (t == null) dart.nullFailed(I[0], 98, 31, "t");
-      return C[3] || CT.C3;
-    }
-    getInnerPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 101, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRect(rect);
-        return t0;
-      })();
-    }
-    getOuterPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 106, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRect(rect);
-        return t0;
-      })();
-    }
-    paint(canvas, rect, opts) {
-      if (canvas == null) dart.nullFailed(I[0], 112, 12, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 113, 10, "rect");
-      let gapStart = opts && 'gapStart' in opts ? opts.gapStart : null;
-      let gapExtent = opts && 'gapExtent' in opts ? opts.gapExtent : 0;
-      if (gapExtent == null) dart.nullFailed(I[0], 115, 12, "gapExtent");
-      let gapPercentage = opts && 'gapPercentage' in opts ? opts.gapPercentage : 0;
-      if (gapPercentage == null) dart.nullFailed(I[0], 116, 12, "gapPercentage");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+  var _wrapUpdateFunctionCall = dart.privateName(firestore, "_wrapUpdateFunctionCall");
+  firestore._Updatable = class _Updatable extends core.Object {
+    [_wrapUpdateFunctionCall](T, jsObject, data, documentRef = null) {
+      if (data == null) dart.nullFailed(I[0], 497, 64, "data");
+      let args = [utils$.jsify(data)];
+      if (documentRef != null) {
+        args[$insert](0, documentRef.jsObject);
+      }
+      return dart.nullable(T).as(utils.callMethod(core.Object.as(jsObject), "update", args));
     }
   };
-  (input_border._NoInputBorder.new = function() {
-    input_border._NoInputBorder.__proto__.new.call(this, {borderSide: borders.BorderSide.none});
+  (firestore._Updatable.new = function() {
     ;
-  }).prototype = input_border._NoInputBorder.prototype;
-  dart.addTypeTests(input_border._NoInputBorder);
-  dart.addTypeCaches(input_border._NoInputBorder);
-  dart.setMethodSignature(input_border._NoInputBorder, () => ({
-    __proto__: dart.getMethods(input_border._NoInputBorder.__proto__),
-    copyWith: dart.fnType(input_border._NoInputBorder, [], {borderSide: dart.nullable(borders.BorderSide)}, {}),
-    scale: dart.fnType(input_border._NoInputBorder, [core.double]),
-    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {gapExtent: core.double, gapPercentage: core.double, gapStart: dart.nullable(core.double), textDirection: dart.nullable(ui.TextDirection)}, {})
+  }).prototype = firestore._Updatable.prototype;
+  dart.addTypeTests(firestore._Updatable);
+  dart.addTypeCaches(firestore._Updatable);
+  dart.setMethodSignature(firestore._Updatable, () => ({
+    __proto__: dart.getMethods(firestore._Updatable.__proto__),
+    [_wrapUpdateFunctionCall]: dart.gFnType(T => [dart.nullable(T), [dart.dynamic, core.Map$(core.String, dart.dynamic)], [dart.nullable(firestore.DocumentReference)]], T => [dart.nullable(core.Object)])
   }));
-  dart.setGetterSignature(input_border._NoInputBorder, () => ({
-    __proto__: dart.getGetters(input_border._NoInputBorder.__proto__),
-    isOutline: core.bool,
-    dimensions: edge_insets.EdgeInsetsGeometry
-  }));
-  dart.setLibraryUri(input_border._NoInputBorder, I[1]);
-  var borderRadius$ = dart.privateName(input_border, "UnderlineInputBorder.borderRadius");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
-  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
-  input_border.UnderlineInputBorder = class UnderlineInputBorder extends input_border.InputBorder {
-    get borderRadius() {
-      return this[borderRadius$];
+  dart.setLibraryUri(firestore._Updatable, I[1]);
+  const JsObjectWrapper__Updatable$36 = class JsObjectWrapper__Updatable extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.WriteBatch, "firebase.firestore.WriteBatch")) {};
+  (JsObjectWrapper__Updatable$36.fromJsObject = function(jsObject) {
+    JsObjectWrapper__Updatable$36.__proto__.fromJsObject.call(this, jsObject);
+  }).prototype = JsObjectWrapper__Updatable$36.prototype;
+  dart.applyMixin(JsObjectWrapper__Updatable$36, firestore._Updatable);
+  firestore.WriteBatch = class WriteBatch extends JsObjectWrapper__Updatable$36 {
+    static getInstance(jsObject) {
+      let t13, t12, t11, t10;
+      if (jsObject == null) dart.nullFailed(I[0], 113, 68, "jsObject");
+      t10 = firestore.WriteBatch._expando;
+      t11 = jsObject;
+      t12 = t10._get(t11);
+      return t12 == null ? (t13 = new firestore.WriteBatch._fromJsObject(jsObject), t10._set(t11, t13), t13) : t12;
     }
-    set borderRadius(value) {
-      super.borderRadius = value;
+    commit() {
+      return utils.handleThenable(core.Null, this.jsObject.commit());
     }
-    get isOutline() {
-      return false;
+    delete(documentRef) {
+      if (documentRef == null) dart.nullFailed(I[0], 122, 39, "documentRef");
+      return firestore.WriteBatch.getInstance(this.jsObject.delete(documentRef.jsObject));
     }
-    copyWith(opts) {
-      let t0, t0$;
-      let borderSide = opts && 'borderSide' in opts ? opts.borderSide : null;
-      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
-      return new input_border.UnderlineInputBorder.new({borderSide: (t0 = borderSide, t0 == null ? this.borderSide : t0), borderRadius: (t0$ = borderRadius, t0$ == null ? this.borderRadius : t0$)});
+    set(documentRef, data, options = null) {
+      if (documentRef == null) dart.nullFailed(I[0], 125, 36, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 125, 70, "data");
+      let jsObjectSet = options != null ? this.jsObject.set(documentRef.jsObject, utils$.jsify(data), options) : this.jsObject.set(documentRef.jsObject, utils$.jsify(data));
+      return firestore.WriteBatch.getInstance(jsObjectSet);
     }
-    get dimensions() {
-      return new edge_insets.EdgeInsets.only({bottom: this.borderSide.width});
-    }
-    scale(t) {
-      if (t == null) dart.nullFailed(I[0], 182, 37, "t");
-      return new input_border.UnderlineInputBorder.new({borderSide: this.borderSide.scale(t)});
-    }
-    getInnerPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 187, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRect(new ui.Rect.fromLTWH(rect.left, rect.top, rect.width, math.max(core.double, 0.0, dart.notNull(rect.height) - dart.notNull(this.borderSide.width))));
-        return t0;
-      })();
-    }
-    getOuterPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 193, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect));
-        return t0;
-      })();
-    }
-    lerpFrom(a, t) {
-      if (t == null) dart.nullFailed(I[0], 198, 48, "t");
-      if (input_border.UnderlineInputBorder.is(a)) {
-        return new input_border.UnderlineInputBorder.new({borderSide: borders.BorderSide.lerp(a.borderSide, this.borderSide, t), borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(a.borderRadius, this.borderRadius, t))});
-      }
-      return super.lerpFrom(a, t);
-    }
-    lerpTo(b, t) {
-      if (t == null) dart.nullFailed(I[0], 209, 46, "t");
-      if (input_border.UnderlineInputBorder.is(b)) {
-        return new input_border.UnderlineInputBorder.new({borderSide: borders.BorderSide.lerp(this.borderSide, b.borderSide, t), borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(this.borderRadius, b.borderRadius, t))});
-      }
-      return super.lerpTo(b, t);
-    }
-    paint(canvas, rect, opts) {
-      if (canvas == null) dart.nullFailed(I[0], 225, 12, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 226, 10, "rect");
-      let gapStart = opts && 'gapStart' in opts ? opts.gapStart : null;
-      let gapExtent = opts && 'gapExtent' in opts ? opts.gapExtent : 0;
-      if (gapExtent == null) dart.nullFailed(I[0], 228, 12, "gapExtent");
-      let gapPercentage = opts && 'gapPercentage' in opts ? opts.gapPercentage : 0;
-      if (gapPercentage == null) dart.nullFailed(I[0], 229, 12, "gapPercentage");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      if (!dart.equals(this.borderRadius.bottomLeft, ui.Radius.zero) || !dart.equals(this.borderRadius.bottomRight, ui.Radius.zero)) canvas.clipPath(this.getOuterPath(rect, {textDirection: textDirection}));
-      canvas.drawLine(rect.bottomLeft, rect.bottomRight, this.borderSide.toPaint());
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return input_border.InputBorder.is(other) && dart.equals(other.borderSide, this.borderSide);
-    }
-    get hashCode() {
-      return dart.hashCode(this.borderSide);
+    update(documentRef, data) {
+      if (documentRef == null) dart.nullFailed(I[0], 133, 39, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 133, 73, "data");
+      return firestore.WriteBatch.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.WriteBatch, "firebase.firestore.WriteBatch").as(this[_wrapUpdateFunctionCall](dart.dynamic, this.jsObject, data, documentRef)));
     }
   };
-  (input_border.UnderlineInputBorder.new = function(opts) {
-    let borderSide = opts && 'borderSide' in opts ? opts.borderSide : C[4] || CT.C4;
-    if (borderSide == null) dart.nullFailed(I[0], 146, 16, "borderSide");
-    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : C[6] || CT.C6;
-    if (borderRadius == null) dart.nullFailed(I[0], 147, 10, "borderRadius");
-    this[borderRadius$] = borderRadius;
-    if (!(borderRadius != null)) dart.assertFailed(null, I[0], 151, 15, "borderRadius != null");
-    input_border.UnderlineInputBorder.__proto__.new.call(this, {borderSide: borderSide});
+  (firestore.WriteBatch._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 117, 63, "jsObject");
+    firestore.WriteBatch.__proto__.fromJsObject.call(this, jsObject);
     ;
-  }).prototype = input_border.UnderlineInputBorder.prototype;
-  dart.addTypeTests(input_border.UnderlineInputBorder);
-  dart.addTypeCaches(input_border.UnderlineInputBorder);
-  dart.setMethodSignature(input_border.UnderlineInputBorder, () => ({
-    __proto__: dart.getMethods(input_border.UnderlineInputBorder.__proto__),
-    copyWith: dart.fnType(input_border.UnderlineInputBorder, [], {borderRadius: dart.nullable(border_radius.BorderRadius), borderSide: dart.nullable(borders.BorderSide)}, {}),
-    scale: dart.fnType(input_border.UnderlineInputBorder, [core.double]),
-    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {gapExtent: core.double, gapPercentage: core.double, gapStart: dart.nullable(core.double), textDirection: dart.nullable(ui.TextDirection)}, {})
+  }).prototype = firestore.WriteBatch.prototype;
+  dart.addTypeTests(firestore.WriteBatch);
+  dart.addTypeCaches(firestore.WriteBatch);
+  dart.setMethodSignature(firestore.WriteBatch, () => ({
+    __proto__: dart.getMethods(firestore.WriteBatch.__proto__),
+    commit: dart.fnType(async.Future$(core.Null), []),
+    delete: dart.fnType(firestore.WriteBatch, [firestore.DocumentReference]),
+    set: dart.fnType(firestore.WriteBatch, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)], [dart.nullable(dart.anonymousJSType("SetOptions"))]),
+    update: dart.fnType(firestore.WriteBatch, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)])
   }));
-  dart.setGetterSignature(input_border.UnderlineInputBorder, () => ({
-    __proto__: dart.getGetters(input_border.UnderlineInputBorder.__proto__),
-    isOutline: core.bool,
-    dimensions: edge_insets.EdgeInsetsGeometry
+  dart.setLibraryUri(firestore.WriteBatch, I[1]);
+  dart.defineLazy(firestore.WriteBatch, {
+    /*firestore.WriteBatch._expando*/get _expando() {
+      return new (T$.ExpandoOfWriteBatch()).new();
+    }
+  }, false);
+  var _createStream = dart.privateName(firestore, "_createStream");
+  const JsObjectWrapper__Updatable$36$ = class JsObjectWrapper__Updatable extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference")) {};
+  (JsObjectWrapper__Updatable$36$.fromJsObject = function(jsObject) {
+    JsObjectWrapper__Updatable$36$.__proto__.fromJsObject.call(this, jsObject);
+  }).prototype = JsObjectWrapper__Updatable$36$.prototype;
+  dart.applyMixin(JsObjectWrapper__Updatable$36$, firestore._Updatable);
+  firestore.DocumentReference = class DocumentReference extends JsObjectWrapper__Updatable$36$ {
+    get firestore() {
+      return firestore.Firestore.getInstance(this.jsObject.firestore);
+    }
+    get id() {
+      return this.jsObject.id;
+    }
+    get parent() {
+      return firestore.CollectionReference.getInstance(this.jsObject.parent);
+    }
+    get path() {
+      return this.jsObject.path;
+    }
+    static getInstance(jsObject) {
+      let t13, t12, t11, t10;
+      if (jsObject == null) dart.nullFailed(I[0], 156, 49, "jsObject");
+      t10 = firestore.DocumentReference._expando;
+      t11 = jsObject;
+      t12 = t10._get(t11);
+      return t12 == null ? (t13 = new firestore.DocumentReference._fromJsObject(jsObject), t10._set(t11, t13), t13) : t12;
+    }
+    collection(collectionPath) {
+      if (collectionPath == null) dart.nullFailed(I[0], 164, 42, "collectionPath");
+      return firestore.CollectionReference.getInstance(this.jsObject.collection(collectionPath));
+    }
+    delete() {
+      return utils.handleThenable(core.Null, this.jsObject.delete());
+    }
+    get(options = null) {
+      let jsObjectSet = options != null ? this.jsObject.get(options) : this.jsObject.get();
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot"), jsObjectSet).then(firestore.DocumentSnapshot, C[1] || CT.C1);
+    }
+    get onSnapshot() {
+      return this[_createStream]();
+    }
+    get onMetadataChangesSnapshot() {
+      return this[_createStream]({includeMetadataChanges: true});
+    }
+    [_createStream](options = null) {
+      let onSnapshotUnsubscribe = null;
+      let onSnapshotUnsubscribe$35isSet = false;
+      function onSnapshotUnsubscribe$35get() {
+        return onSnapshotUnsubscribe$35isSet ? onSnapshotUnsubscribe : dart.throw(new _internal.LateError.localNI("onSnapshotUnsubscribe"));
+      }
+      dart.fn(onSnapshotUnsubscribe$35get, T$.VoidToFn());
+      function onSnapshotUnsubscribe$35set(t13) {
+        if (t13 == null) dart.nullFailed(I[0], 183, 23, "null");
+        onSnapshotUnsubscribe$35isSet = true;
+        return onSnapshotUnsubscribe = t13;
+      }
+      dart.fn(onSnapshotUnsubscribe$35set, T$.FnTodynamic());
+      let controller = null;
+      let controller$35isSet = false;
+      function controller$35get() {
+        return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+      }
+      dart.fn(controller$35get, T$.VoidToStreamControllerOfDocumentSnapshot());
+      function controller$35set(t18) {
+        if (t18 == null) dart.nullFailed(I[0], 184, 45, "null");
+        controller$35isSet = true;
+        return controller = t18;
+      }
+      dart.fn(controller$35set, T$.StreamControllerOfDocumentSnapshotTodynamic());
+      let nextWrapper = js.allowInterop(T$.DocumentSnapshotJsImplToNull(), dart.fn(snapshot => {
+        if (snapshot == null) dart.nullFailed(I[0], 187, 64, "snapshot");
+        controller$35get().add(firestore.DocumentSnapshot.getInstance(snapshot));
+      }, T$.DocumentSnapshotJsImplToNull()));
+      let errorWrapper = js.allowInterop(T$.dynamicTovoid(), dart.fn(e => controller$35get().addError(core.Object.as(e)), T$.dynamicTovoid()));
+      const startListen = () => {
+        onSnapshotUnsubscribe$35set(options != null ? this.jsObject.onSnapshot(options, dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper)) : this.jsObject.onSnapshot(dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper)));
+      };
+      dart.fn(startListen, T$.VoidTovoid());
+      function stopListen() {
+        onSnapshotUnsubscribe$35get()();
+        controller$35get().close();
+      }
+      dart.fn(stopListen, T$.VoidTovoid());
+      controller$35set(T$.StreamControllerOfDocumentSnapshot().broadcast({onListen: startListen, onCancel: stopListen, sync: true}));
+      return controller$35get().stream;
+    }
+    set(data, options = null) {
+      if (data == null) dart.nullFailed(I[0], 210, 41, "data");
+      let jsObjectSet = options != null ? this.jsObject.set(utils$.jsify(data), options) : this.jsObject.set(utils$.jsify(data));
+      return utils.handleThenable(core.Null, jsObjectSet);
+    }
+    update(data) {
+      if (data == null) dart.nullFailed(I[0], 218, 44, "data");
+      return utils.handleThenable(core.Null, dart.lazyJSType(() => dart.global.Promise, "Promise").as(this[_wrapUpdateFunctionCall](dart.dynamic, this.jsObject, data)));
+    }
+  };
+  (firestore.DocumentReference._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 161, 49, "jsObject");
+    firestore.DocumentReference.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.DocumentReference.prototype;
+  dart.addTypeTests(firestore.DocumentReference);
+  dart.addTypeCaches(firestore.DocumentReference);
+  dart.setMethodSignature(firestore.DocumentReference, () => ({
+    __proto__: dart.getMethods(firestore.DocumentReference.__proto__),
+    collection: dart.fnType(dart.nullable(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))), [core.String]),
+    delete: dart.fnType(async.Future$(core.Null), []),
+    get: dart.fnType(async.Future$(firestore.DocumentSnapshot), [], [dart.nullable(dart.anonymousJSType("GetOptions"))]),
+    [_createStream]: dart.fnType(async.Stream$(firestore.DocumentSnapshot), [], [dart.nullable(dart.anonymousJSType("DocumentListenOptions"))]),
+    set: dart.fnType(async.Future$(core.Null), [core.Map$(core.String, dart.dynamic)], [dart.nullable(dart.anonymousJSType("SetOptions"))]),
+    update: dart.fnType(async.Future$(core.Null), [core.Map$(core.String, dart.dynamic)])
   }));
-  dart.setLibraryUri(input_border.UnderlineInputBorder, I[1]);
-  dart.setFieldSignature(input_border.UnderlineInputBorder, () => ({
-    __proto__: dart.getFields(input_border.UnderlineInputBorder.__proto__),
-    borderRadius: dart.finalFieldType(border_radius.BorderRadius)
+  dart.setGetterSignature(firestore.DocumentReference, () => ({
+    __proto__: dart.getGetters(firestore.DocumentReference.__proto__),
+    firestore: firestore.Firestore,
+    id: core.String,
+    parent: dart.nullable(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))),
+    path: core.String,
+    onSnapshot: async.Stream$(firestore.DocumentSnapshot),
+    onMetadataChangesSnapshot: async.Stream$(firestore.DocumentSnapshot)
   }));
-  dart.defineExtensionMethods(input_border.UnderlineInputBorder, ['_equals']);
-  dart.defineExtensionAccessors(input_border.UnderlineInputBorder, ['hashCode']);
-  var gapPadding$ = dart.privateName(input_border, "OutlineInputBorder.gapPadding");
-  var borderRadius$0 = dart.privateName(input_border, "OutlineInputBorder.borderRadius");
-  var _gapBorderPath = dart.privateName(input_border, "_gapBorderPath");
-  var _name$ = dart.privateName(ui, "_name");
-  input_border.OutlineInputBorder = class OutlineInputBorder extends input_border.InputBorder {
-    get gapPadding() {
-      return this[gapPadding$];
+  dart.setLibraryUri(firestore.DocumentReference, I[1]);
+  dart.defineLazy(firestore.DocumentReference, {
+    /*firestore.DocumentReference._expando*/get _expando() {
+      return new (T$.ExpandoOfDocumentReference()).new();
     }
-    set gapPadding(value) {
-      super.gapPadding = value;
-    }
-    get borderRadius() {
-      return this[borderRadius$0];
-    }
-    set borderRadius(value) {
-      super.borderRadius = value;
-    }
-    static _cornersAreCircular(borderRadius) {
-      if (borderRadius == null) dart.nullFailed(I[0], 300, 48, "borderRadius");
-      return borderRadius.topLeft.x == borderRadius.topLeft.y && borderRadius.bottomLeft.x == borderRadius.bottomLeft.y && borderRadius.topRight.x == borderRadius.topRight.y && borderRadius.bottomRight.x == borderRadius.bottomRight.y;
-    }
-    get isOutline() {
-      return true;
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0;
-      let borderSide = opts && 'borderSide' in opts ? opts.borderSide : null;
-      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
-      let gapPadding = opts && 'gapPadding' in opts ? opts.gapPadding : null;
-      return new input_border.OutlineInputBorder.new({borderSide: (t0 = borderSide, t0 == null ? this.borderSide : t0), borderRadius: (t0$ = borderRadius, t0$ == null ? this.borderRadius : t0$), gapPadding: (t0$0 = gapPadding, t0$0 == null ? this.gapPadding : t0$0)});
-    }
-    get dimensions() {
-      return new edge_insets.EdgeInsets.all(this.borderSide.width);
-    }
-    scale(t) {
-      if (t == null) dart.nullFailed(I[0], 341, 35, "t");
-      return new input_border.OutlineInputBorder.new({borderSide: this.borderSide.scale(t), borderRadius: this.borderRadius['*'](t), gapPadding: dart.notNull(this.gapPadding) * dart.notNull(t)});
-    }
-    lerpFrom(a, t) {
-      if (t == null) dart.nullFailed(I[0], 350, 48, "t");
-      if (input_border.OutlineInputBorder.is(a)) {
-        let outline = a;
-        return new input_border.OutlineInputBorder.new({borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(outline.borderRadius, this.borderRadius, t)), borderSide: borders.BorderSide.lerp(outline.borderSide, this.borderSide, t), gapPadding: outline.gapPadding});
+  }, false);
+  var _wrapPaginatingFunctionCall = dart.privateName(firestore, "_wrapPaginatingFunctionCall");
+  const _is_Query_default = Symbol('_is_Query_default');
+  firestore.Query$ = dart.generic(T => {
+    class Query extends js$.JsObjectWrapper$(T) {
+      get firestore() {
+        return firestore.Firestore.getInstance(this.jsObject.firestore);
       }
-      return super.lerpFrom(a, t);
-    }
-    lerpTo(b, t) {
-      if (t == null) dart.nullFailed(I[0], 363, 46, "t");
-      if (input_border.OutlineInputBorder.is(b)) {
-        let outline = b;
-        return new input_border.OutlineInputBorder.new({borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(this.borderRadius, outline.borderRadius, t)), borderSide: borders.BorderSide.lerp(this.borderSide, outline.borderSide, t), gapPadding: outline.gapPadding});
+      endAt(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "endAt", snapshot, fieldValues)));
       }
-      return super.lerpTo(b, t);
-    }
-    getInnerPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 376, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect).deflate(this.borderSide.width));
-        return t0;
-      })();
-    }
-    getOuterPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 382, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect));
-        return t0;
-      })();
-    }
-    [_gapBorderPath](canvas, center, start, extent) {
-      let t0, t0$, t0$0;
-      if (canvas == null) dart.nullFailed(I[0], 387, 30, "canvas");
-      if (center == null) dart.nullFailed(I[0], 387, 44, "center");
-      if (start == null) dart.nullFailed(I[0], 387, 59, "start");
-      if (extent == null) dart.nullFailed(I[0], 387, 73, "extent");
-      let scaledRRect = center.scaleRadii();
-      let tlCorner = new ui.Rect.fromLTWH(scaledRRect.left, scaledRRect.top, dart.notNull(scaledRRect.tlRadiusX) * 2.0, dart.notNull(scaledRRect.tlRadiusY) * 2.0);
-      let trCorner = new ui.Rect.fromLTWH(dart.notNull(scaledRRect.right) - dart.notNull(scaledRRect.trRadiusX) * 2.0, scaledRRect.top, dart.notNull(scaledRRect.trRadiusX) * 2.0, dart.notNull(scaledRRect.trRadiusY) * 2.0);
-      let brCorner = new ui.Rect.fromLTWH(dart.notNull(scaledRRect.right) - dart.notNull(scaledRRect.brRadiusX) * 2.0, dart.notNull(scaledRRect.bottom) - dart.notNull(scaledRRect.brRadiusY) * 2.0, dart.notNull(scaledRRect.brRadiusX) * 2.0, dart.notNull(scaledRRect.brRadiusY) * 2.0);
-      let blCorner = new ui.Rect.fromLTWH(scaledRRect.left, dart.notNull(scaledRRect.bottom) - dart.notNull(scaledRRect.blRadiusY) * 2.0, dart.notNull(scaledRRect.blRadiusX) * 2.0, dart.notNull(scaledRRect.blRadiusX) * 2.0);
-      let tlCornerArcSweep = dart.notNull(start) < dart.notNull(scaledRRect.tlRadiusX) ? math.asin((dart.notNull(start) / dart.notNull(scaledRRect.tlRadiusX))[$clamp](-1.0, 1.0)) : 3.141592653589793 / 2.0;
-      let path = (t0 = ui.Path.new(), (() => {
-        t0.addArc(tlCorner, 3.141592653589793, tlCornerArcSweep);
-        t0.moveTo(dart.notNull(scaledRRect.left) + dart.notNull(scaledRRect.tlRadiusX), scaledRRect.top);
-        return t0;
-      })());
-      if (dart.notNull(start) > dart.notNull(scaledRRect.tlRadiusX)) path.lineTo(dart.notNull(scaledRRect.left) + dart.notNull(start), scaledRRect.top);
-      if (dart.notNull(start) + dart.notNull(extent) < dart.notNull(scaledRRect.width) - dart.notNull(scaledRRect.trRadiusX)) {
-        t0$ = path;
-        (() => {
-          t0$.relativeMoveTo(extent, 0.0);
-          t0$.lineTo(dart.notNull(scaledRRect.right) - dart.notNull(scaledRRect.trRadiusX), scaledRRect.top);
-          t0$.addArc(trCorner, 4.71238898038469, 1.5707963267948966);
-          return t0$;
-        })();
-      } else if (dart.notNull(start) + dart.notNull(extent) < dart.notNull(scaledRRect.width)) {
-        let dx = dart.notNull(scaledRRect.width) - (dart.notNull(start) + dart.notNull(extent));
-        let sweep = math.acos(dx / dart.notNull(scaledRRect.trRadiusX));
-        path.addArc(trCorner, 4.71238898038469 + sweep, 1.5707963267948966 - sweep);
+      endBefore(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "endBefore", snapshot, fieldValues)));
       }
-      t0$0 = path;
-      return (() => {
-        t0$0.moveTo(scaledRRect.right, dart.notNull(scaledRRect.top) + dart.notNull(scaledRRect.trRadiusY));
-        t0$0.lineTo(scaledRRect.right, dart.notNull(scaledRRect.bottom) - dart.notNull(scaledRRect.brRadiusY));
-        t0$0.addArc(brCorner, 0.0, 1.5707963267948966);
-        t0$0.lineTo(dart.notNull(scaledRRect.left) + dart.notNull(scaledRRect.blRadiusX), scaledRRect.bottom);
-        t0$0.addArc(blCorner, 3.141592653589793 / 2.0, 1.5707963267948966);
-        t0$0.lineTo(scaledRRect.left, dart.notNull(scaledRRect.top) + dart.notNull(scaledRRect.tlRadiusY));
-        return t0$0;
-      })();
-    }
-    paint(canvas, rect, opts) {
-      if (canvas == null) dart.nullFailed(I[0], 462, 12, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 463, 10, "rect");
-      let gapStart = opts && 'gapStart' in opts ? opts.gapStart : null;
-      let gapExtent = opts && 'gapExtent' in opts ? opts.gapExtent : 0;
-      if (gapExtent == null) dart.nullFailed(I[0], 465, 12, "gapExtent");
-      let gapPercentage = opts && 'gapPercentage' in opts ? opts.gapPercentage : 0;
-      if (gapPercentage == null) dart.nullFailed(I[0], 466, 12, "gapPercentage");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      if (!(gapExtent != null)) dart.assertFailed(null, I[0], 469, 12, "gapExtent != null");
-      if (!(dart.notNull(gapPercentage) >= 0.0 && dart.notNull(gapPercentage) <= 1.0)) dart.assertFailed(null, I[0], 470, 12, "gapPercentage >= 0.0 && gapPercentage <= 1.0");
-      if (!dart.test(input_border.OutlineInputBorder._cornersAreCircular(this.borderRadius))) dart.assertFailed(null, I[0], 471, 12, "_cornersAreCircular(borderRadius)");
-      let paint = this.borderSide.toPaint();
-      let outer = this.borderRadius.toRRect(rect);
-      let center = outer.deflate(dart.notNull(this.borderSide.width) / 2.0);
-      if (gapStart == null || dart.notNull(gapExtent) <= 0.0 || gapPercentage === 0.0) {
-        canvas.drawRRect(center, paint);
-      } else {
-        let extent = dart.nullCheck(ui.lerpDouble(0.0, dart.notNull(gapExtent) + dart.notNull(this.gapPadding) * 2.0, gapPercentage));
-        switch (dart.nullCheck(textDirection)) {
-          case C[10] || CT.C10:
-          {
-            let path = this[_gapBorderPath](canvas, center, math.max(core.double, 0.0, dart.notNull(gapStart) + dart.notNull(this.gapPadding) - extent), extent);
-            canvas.drawPath(path, paint);
-            break;
-          }
-          case C[11] || CT.C11:
-          {
-            let path = this[_gapBorderPath](canvas, center, math.max(core.double, 0.0, dart.notNull(gapStart) - dart.notNull(this.gapPadding)), extent);
-            canvas.drawPath(path, paint);
-            break;
-          }
-          default:
-          {
-            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-          }
+      get(options = null) {
+        return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot"), this.jsObject.get()).then(firestore.QuerySnapshot, C[2] || CT.C2);
+      }
+      limit(limit) {
+        if (limit == null) dart.nullFailed(I[0], 241, 19, "limit");
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.limit(limit));
+      }
+      limitToLast(limit) {
+        if (limit == null) dart.nullFailed(I[0], 243, 25, "limit");
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.limitToLast(limit));
+      }
+      get onSnapshot() {
+        return this[_createStream](false);
+      }
+      get onSnapshotMetadata() {
+        return this[_createStream](true);
+      }
+      [_createStream](includeMetadataChanges) {
+        if (includeMetadataChanges == null) dart.nullFailed(I[0], 250, 44, "includeMetadataChanges");
+        let onSnapshotUnsubscribe = null;
+        let onSnapshotUnsubscribe$35isSet = false;
+        function onSnapshotUnsubscribe$35get() {
+          return onSnapshotUnsubscribe$35isSet ? onSnapshotUnsubscribe : dart.throw(new _internal.LateError.localNI("onSnapshotUnsubscribe"));
         }
+        dart.fn(onSnapshotUnsubscribe$35get, T$.VoidToFn());
+        function onSnapshotUnsubscribe$35set(t23) {
+          if (t23 == null) dart.nullFailed(I[0], 251, 23, "null");
+          onSnapshotUnsubscribe$35isSet = true;
+          return onSnapshotUnsubscribe = t23;
+        }
+        dart.fn(onSnapshotUnsubscribe$35set, T$.FnTodynamic());
+        let controller = null;
+        let controller$35isSet = false;
+        function controller$35get() {
+          return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+        }
+        dart.fn(controller$35get, T$.VoidToStreamControllerOfQuerySnapshot());
+        function controller$35set(t28) {
+          if (t28 == null) dart.nullFailed(I[0], 252, 42, "null");
+          controller$35isSet = true;
+          return controller = t28;
+        }
+        dart.fn(controller$35set, T$.StreamControllerOfQuerySnapshotTodynamic());
+        let nextWrapper = js.allowInterop(T$.QuerySnapshotJsImplToNull(), dart.fn(snapshot => {
+          if (snapshot == null) dart.nullFailed(I[0], 255, 61, "snapshot");
+          controller$35get().add(new firestore.QuerySnapshot._fromJsObject(snapshot));
+        }, T$.QuerySnapshotJsImplToNull()));
+        let errorWrapper = js.allowInterop(T$.dynamicTovoid(), dart.fn(e => controller$35get().addError(core.Object.as(e)), T$.dynamicTovoid()));
+        let options = {includeMetadataChanges: includeMetadataChanges};
+        const startListen = () => {
+          onSnapshotUnsubscribe$35set(this.jsObject.onSnapshot(options, dart.assertInterop(nextWrapper), dart.assertInterop(errorWrapper)));
+        };
+        dart.fn(startListen, T$.VoidTovoid());
+        function stopListen() {
+          onSnapshotUnsubscribe$35get()();
+          controller$35get().close();
+        }
+        dart.fn(stopListen, T$.VoidTovoid());
+        controller$35set(T$.StreamControllerOfQuerySnapshot().broadcast({onListen: startListen, onCancel: stopListen, sync: true}));
+        return controller$35get().stream;
+      }
+      orderBy(fieldPath, directionStr = null) {
+        let jsObjectOrderBy = directionStr != null ? this.jsObject.orderBy(fieldPath, directionStr) : this.jsObject.orderBy(fieldPath);
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(jsObjectOrderBy);
+      }
+      startAfter(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "startAfter", snapshot, fieldValues)));
+      }
+      startAt(opts) {
+        let snapshot = opts && 'snapshot' in opts ? opts.snapshot : null;
+        let fieldValues = opts && 'fieldValues' in opts ? opts.fieldValues : null;
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query").as(this[_wrapPaginatingFunctionCall](dart.dynamic, "startAt", snapshot, fieldValues)));
+      }
+      where(fieldPath, opStr, value) {
+        if (opStr == null) dart.nullFailed(I[0], 295, 45, "opStr");
+        return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.where(fieldPath, opStr, utils$.jsify(value)));
+      }
+      [_wrapPaginatingFunctionCall](S, method, snapshot, fieldValues) {
+        if (method == null) dart.nullFailed(I[0], 303, 14, "method");
+        if (snapshot == null && fieldValues == null) {
+          dart.throw(new core.ArgumentError.new("Please provide either snapshot or fieldValues parameter."));
+        }
+        let args = snapshot != null ? T$.JSArrayOfDocumentSnapshotJsImpl().of([snapshot.jsObject]) : dart.nullCheck(fieldValues)[$map](dart.dynamic, C[0] || CT.C0)[$toList]();
+        return dart.nullable(S).as(utils.callMethod(this.jsObject, method, args));
       }
     }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return input_border.OutlineInputBorder.is(other) && dart.equals(other.borderSide, this.borderSide) && dart.equals(other.borderRadius, this.borderRadius) && other.gapPadding == this.gapPadding;
+    (Query.fromJsObject = function(jsObject) {
+      if (jsObject == null) dart.nullFailed(I[0], 227, 24, "jsObject");
+      Query.__proto__.fromJsObject.call(this, jsObject);
+      ;
+    }).prototype = Query.prototype;
+    dart.addTypeTests(Query);
+    Query.prototype[_is_Query_default] = true;
+    dart.addTypeCaches(Query);
+    dart.setMethodSignature(Query, () => ({
+      __proto__: dart.getMethods(Query.__proto__),
+      endAt: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      endBefore: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      get: dart.fnType(async.Future$(firestore.QuerySnapshot), [], [dart.nullable(dart.anonymousJSType("GetOptions"))]),
+      limit: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [core.num]),
+      limitToLast: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [core.num]),
+      [_createStream]: dart.fnType(async.Stream$(firestore.QuerySnapshot), [core.bool]),
+      orderBy: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [dart.dynamic], [dart.nullable(core.String)]),
+      startAfter: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      startAt: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [], {fieldValues: dart.nullable(core.List), snapshot: dart.nullable(firestore.DocumentSnapshot)}, {}),
+      where: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [dart.dynamic, core.String, dart.dynamic]),
+      [_wrapPaginatingFunctionCall]: dart.gFnType(S => [dart.nullable(S), [core.String, dart.nullable(firestore.DocumentSnapshot), dart.nullable(core.List)]], S => [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(Query, () => ({
+      __proto__: dart.getGetters(Query.__proto__),
+      firestore: firestore.Firestore,
+      onSnapshot: async.Stream$(firestore.QuerySnapshot),
+      onSnapshotMetadata: async.Stream$(firestore.QuerySnapshot)
+    }));
+    dart.setLibraryUri(Query, I[1]);
+    return Query;
+  });
+  firestore.Query = firestore.Query$();
+  dart.addTypeTests(firestore.Query, _is_Query_default);
+  const _is_CollectionReference_default = Symbol('_is_CollectionReference_default');
+  firestore.CollectionReference$ = dart.generic(T => {
+    class CollectionReference extends firestore.Query$(T) {
+      get id() {
+        return this.jsObject.id;
+      }
+      get parent() {
+        return firestore.DocumentReference.getInstance(this.jsObject.parent);
+      }
+      get path() {
+        return this.jsObject.path;
+      }
+      static getInstance(jsObject) {
+        let t33, t32, t31, t30;
+        if (jsObject == null) dart.nullFailed(I[0], 329, 51, "jsObject");
+        t30 = firestore.CollectionReference._expando;
+        t31 = jsObject;
+        t32 = t30._get(t31);
+        return t32 == null ? (t33 = new (T$.CollectionReferenceOfCollectionReferenceJsImpl())._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+      }
+      static new() {
+        return new (firestore.CollectionReference$(T))._fromJsObject(new dart.global.firebase.firestore.CollectionReference());
+      }
+      add(data) {
+        if (data == null) dart.nullFailed(I[0], 340, 54, "data");
+        return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentReference, "firebase.firestore.DocumentReference"), this.jsObject.add(utils$.jsify(data))).then(firestore.DocumentReference, C[3] || CT.C3);
+      }
+      doc(documentPath = null) {
+        let jsObjectDoc = documentPath != null ? this.jsObject.doc(documentPath) : this.jsObject.doc();
+        return firestore.DocumentReference.getInstance(jsObjectDoc);
+      }
+      isEqual(other) {
+        if (other == null) dart.nullFailed(I[0], 351, 36, "other");
+        return this.jsObject.isEqual(other.jsObject);
+      }
     }
-    get hashCode() {
-      return ui.hashValues(this.borderSide, this.borderRadius, this.gapPadding);
+    (CollectionReference._fromJsObject = function(jsObject) {
+      if (jsObject == null) dart.nullFailed(I[0], 337, 51, "jsObject");
+      CollectionReference.__proto__.fromJsObject.call(this, T.as(jsObject));
+      ;
+    }).prototype = CollectionReference.prototype;
+    dart.addTypeTests(CollectionReference);
+    CollectionReference.prototype[_is_CollectionReference_default] = true;
+    dart.addTypeCaches(CollectionReference);
+    dart.setMethodSignature(CollectionReference, () => ({
+      __proto__: dart.getMethods(CollectionReference.__proto__),
+      add: dart.fnType(async.Future$(firestore.DocumentReference), [core.Map$(core.String, dart.dynamic)]),
+      doc: dart.fnType(firestore.DocumentReference, [], [dart.nullable(core.String)]),
+      isEqual: dart.fnType(core.bool, [firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference"))])
+    }));
+    dart.setGetterSignature(CollectionReference, () => ({
+      __proto__: dart.getGetters(CollectionReference.__proto__),
+      id: core.String,
+      parent: dart.nullable(firestore.DocumentReference),
+      path: core.String
+    }));
+    dart.setLibraryUri(CollectionReference, I[1]);
+    return CollectionReference;
+  });
+  firestore.CollectionReference = firestore.CollectionReference$();
+  dart.defineLazy(firestore.CollectionReference, {
+    /*firestore.CollectionReference._expando*/get _expando() {
+      return new (T$.ExpandoOfCollectionReferenceOfCollectionReferenceJsImpl()).new();
+    }
+  }, false);
+  dart.addTypeTests(firestore.CollectionReference, _is_CollectionReference_default);
+  firestore.DocumentChange = class DocumentChange extends js$.JsObjectWrapper$(dart.anonymousJSType("DocumentChangeJsImpl")) {
+    get type() {
+      return this.jsObject.type;
+    }
+    get doc() {
+      return firestore.DocumentSnapshot.getInstance(this.jsObject.doc);
+    }
+    get oldIndex() {
+      return this.jsObject.oldIndex;
+    }
+    get newIndex() {
+      return this.jsObject.newIndex;
+    }
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 368, 46, "jsObject");
+      t30 = firestore.DocumentChange._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.DocumentChange._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
     }
   };
-  (input_border.OutlineInputBorder.new = function(opts) {
-    let borderSide = opts && 'borderSide' in opts ? opts.borderSide : C[4] || CT.C4;
-    if (borderSide == null) dart.nullFailed(I[0], 287, 16, "borderSide");
-    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : C[9] || CT.C9;
-    if (borderRadius == null) dart.nullFailed(I[0], 288, 10, "borderRadius");
-    let gapPadding = opts && 'gapPadding' in opts ? opts.gapPadding : 4;
-    if (gapPadding == null) dart.nullFailed(I[0], 289, 10, "gapPadding");
-    this[borderRadius$0] = borderRadius;
-    this[gapPadding$] = gapPadding;
-    if (!(borderRadius != null)) dart.assertFailed(null, I[0], 290, 15, "borderRadius != null");
-    if (!(gapPadding != null && dart.notNull(gapPadding) >= 0.0)) dart.assertFailed(null, I[0], 291, 15, "gapPadding != null && gapPadding >= 0.0");
-    input_border.OutlineInputBorder.__proto__.new.call(this, {borderSide: borderSide});
+  (firestore.DocumentChange._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 372, 71, "jsObject");
+    firestore.DocumentChange.__proto__.fromJsObject.call(this, jsObject);
     ;
-  }).prototype = input_border.OutlineInputBorder.prototype;
-  dart.addTypeTests(input_border.OutlineInputBorder);
-  dart.addTypeCaches(input_border.OutlineInputBorder);
-  dart.setMethodSignature(input_border.OutlineInputBorder, () => ({
-    __proto__: dart.getMethods(input_border.OutlineInputBorder.__proto__),
-    copyWith: dart.fnType(input_border.OutlineInputBorder, [], {borderRadius: dart.nullable(border_radius.BorderRadius), borderSide: dart.nullable(borders.BorderSide), gapPadding: dart.nullable(core.double)}, {}),
-    scale: dart.fnType(input_border.OutlineInputBorder, [core.double]),
-    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    [_gapBorderPath]: dart.fnType(ui.Path, [ui.Canvas, ui.RRect, core.double, core.double]),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {gapExtent: core.double, gapPercentage: core.double, gapStart: dart.nullable(core.double), textDirection: dart.nullable(ui.TextDirection)}, {})
+  }).prototype = firestore.DocumentChange.prototype;
+  dart.addTypeTests(firestore.DocumentChange);
+  dart.addTypeCaches(firestore.DocumentChange);
+  dart.setGetterSignature(firestore.DocumentChange, () => ({
+    __proto__: dart.getGetters(firestore.DocumentChange.__proto__),
+    type: core.String,
+    doc: dart.nullable(firestore.DocumentSnapshot),
+    oldIndex: core.num,
+    newIndex: core.num
   }));
-  dart.setGetterSignature(input_border.OutlineInputBorder, () => ({
-    __proto__: dart.getGetters(input_border.OutlineInputBorder.__proto__),
-    isOutline: core.bool,
-    dimensions: edge_insets.EdgeInsetsGeometry
+  dart.setLibraryUri(firestore.DocumentChange, I[1]);
+  dart.defineLazy(firestore.DocumentChange, {
+    /*firestore.DocumentChange._expando*/get _expando() {
+      return new (T$.ExpandoOfDocumentChange()).new();
+    }
+  }, false);
+  firestore.DocumentSnapshot = class DocumentSnapshot extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot")) {
+    get exists() {
+      return this.jsObject.exists;
+    }
+    get id() {
+      return this.jsObject.id;
+    }
+    get metadata() {
+      return this.jsObject.metadata;
+    }
+    get ref() {
+      return firestore.DocumentReference.getInstance(this.jsObject.ref);
+    }
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 390, 48, "jsObject");
+      t30 = firestore.DocumentSnapshot._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.DocumentSnapshot._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+    data() {
+      return T$.MapNOfString$dynamic().as(utils$.dartify(this.jsObject.data()));
+    }
+    get(fieldPath) {
+      return utils$.dartify(this.jsObject.get(fieldPath));
+    }
+    isEqual(other) {
+      if (other == null) dart.nullFailed(I[0], 403, 33, "other");
+      return this.jsObject.isEqual(other.jsObject);
+    }
+  };
+  (firestore.DocumentSnapshot._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 395, 48, "jsObject");
+    firestore.DocumentSnapshot.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.DocumentSnapshot.prototype;
+  dart.addTypeTests(firestore.DocumentSnapshot);
+  dart.addTypeCaches(firestore.DocumentSnapshot);
+  dart.setMethodSignature(firestore.DocumentSnapshot, () => ({
+    __proto__: dart.getMethods(firestore.DocumentSnapshot.__proto__),
+    data: dart.fnType(dart.nullable(core.Map$(core.String, dart.dynamic)), []),
+    get: dart.fnType(dart.dynamic, [dart.dynamic]),
+    isEqual: dart.fnType(core.bool, [firestore.DocumentSnapshot])
   }));
-  dart.setLibraryUri(input_border.OutlineInputBorder, I[1]);
-  dart.setFieldSignature(input_border.OutlineInputBorder, () => ({
-    __proto__: dart.getFields(input_border.OutlineInputBorder.__proto__),
-    gapPadding: dart.finalFieldType(core.double),
-    borderRadius: dart.finalFieldType(border_radius.BorderRadius)
+  dart.setGetterSignature(firestore.DocumentSnapshot, () => ({
+    __proto__: dart.getGetters(firestore.DocumentSnapshot.__proto__),
+    exists: core.bool,
+    id: core.String,
+    metadata: dart.lazyJSType(() => dart.global.firebase.firestore.SnapshotMetadata, "firebase.firestore.SnapshotMetadata"),
+    ref: dart.nullable(firestore.DocumentReference)
   }));
-  dart.defineExtensionMethods(input_border.OutlineInputBorder, ['_equals']);
-  dart.defineExtensionAccessors(input_border.OutlineInputBorder, ['hashCode']);
-  dart.trackLibraries("packages/flutter/src/material/input_border.dart", {
-    "package:flutter/src/material/input_border.dart": input_border
+  dart.setLibraryUri(firestore.DocumentSnapshot, I[1]);
+  dart.defineLazy(firestore.DocumentSnapshot, {
+    /*firestore.DocumentSnapshot._expando*/get _expando() {
+      return new (T$.ExpandoOfDocumentSnapshot()).new();
+    }
+  }, false);
+  firestore.QuerySnapshot = class QuerySnapshot extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.QuerySnapshot, "firebase.firestore.QuerySnapshot")) {
+    docChanges(options = null) {
+      let changes = options != null ? this.jsObject.docChanges(dart.nullable(dart.anonymousJSType("SnapshotListenOptions")).as(utils$.jsify(options))) : this.jsObject.docChanges();
+      return changes[$map](firestore.DocumentChange, dart.fn(e => firestore.DocumentChange.getInstance(dart.anonymousJSType("DocumentChangeJsImpl").as(e)), T$.dynamicToDocumentChange()))[$toList]();
+    }
+    get docs() {
+      return this.jsObject.docs[$map](firestore.DocumentSnapshot, dart.fn(e => firestore.DocumentSnapshot.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot").as(e)), T$.dynamicToDocumentSnapshot()))[$toList]();
+    }
+    get empty() {
+      return this.jsObject.empty;
+    }
+    get metadata() {
+      return this.jsObject.metadata;
+    }
+    get query() {
+      return new (T$.QueryOfQueryJsImpl()).fromJsObject(this.jsObject.query);
+    }
+    get size() {
+      return this.jsObject.size;
+    }
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 441, 45, "jsObject");
+      t30 = firestore.QuerySnapshot._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.QuerySnapshot._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+    forEach(callback) {
+      if (callback == null) dart.nullFailed(I[0], 448, 44, "callback");
+      let callbackWrap = js.allowInterop(T$.dynamicTodynamic(), dart.fn(s => callback(firestore.DocumentSnapshot.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot").as(s))), T$.dynamicTodynamic()));
+      return this.jsObject.forEach(dart.assertInterop(callbackWrap));
+    }
+    isEqual(other) {
+      if (other == null) dart.nullFailed(I[0], 454, 30, "other");
+      return this.jsObject.isEqual(other.jsObject);
+    }
+  };
+  (firestore.QuerySnapshot._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 445, 69, "jsObject");
+    firestore.QuerySnapshot.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.QuerySnapshot.prototype;
+  dart.addTypeTests(firestore.QuerySnapshot);
+  dart.addTypeCaches(firestore.QuerySnapshot);
+  dart.setMethodSignature(firestore.QuerySnapshot, () => ({
+    __proto__: dart.getMethods(firestore.QuerySnapshot.__proto__),
+    docChanges: dart.fnType(core.List$(firestore.DocumentChange), [], [dart.nullable(dart.anonymousJSType("SnapshotListenOptions"))]),
+    forEach: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [dart.nullable(firestore.DocumentSnapshot)])]),
+    isEqual: dart.fnType(core.bool, [firestore.QuerySnapshot])
+  }));
+  dart.setGetterSignature(firestore.QuerySnapshot, () => ({
+    __proto__: dart.getGetters(firestore.QuerySnapshot.__proto__),
+    docs: core.List$(dart.nullable(firestore.DocumentSnapshot)),
+    empty: core.bool,
+    metadata: dart.lazyJSType(() => dart.global.firebase.firestore.SnapshotMetadata, "firebase.firestore.SnapshotMetadata"),
+    query: firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")),
+    size: core.num
+  }));
+  dart.setLibraryUri(firestore.QuerySnapshot, I[1]);
+  dart.defineLazy(firestore.QuerySnapshot, {
+    /*firestore.QuerySnapshot._expando*/get _expando() {
+      return new (T$.ExpandoOfQuerySnapshot()).new();
+    }
+  }, false);
+  const JsObjectWrapper__Updatable$36$0 = class JsObjectWrapper__Updatable extends js$.JsObjectWrapper$(dart.lazyJSType(() => dart.global.firebase.firestore.Transaction, "firebase.firestore.Transaction")) {};
+  (JsObjectWrapper__Updatable$36$0.fromJsObject = function(jsObject) {
+    JsObjectWrapper__Updatable$36$0.__proto__.fromJsObject.call(this, jsObject);
+  }).prototype = JsObjectWrapper__Updatable$36$0.prototype;
+  dart.applyMixin(JsObjectWrapper__Updatable$36$0, firestore._Updatable);
+  firestore.Transaction = class Transaction extends JsObjectWrapper__Updatable$36$0 {
+    static getInstance(jsObject) {
+      let t33, t32, t31, t30;
+      if (jsObject == null) dart.nullFailed(I[0], 462, 70, "jsObject");
+      t30 = firestore.Transaction._expando;
+      t31 = jsObject;
+      t32 = t30._get(t31);
+      return t32 == null ? (t33 = new firestore.Transaction._fromJsObject(jsObject), t30._set(t31, t33), t33) : t32;
+    }
+    delete(documentRef) {
+      if (documentRef == null) dart.nullFailed(I[0], 469, 40, "documentRef");
+      return firestore.Transaction.getInstance(this.jsObject.delete(documentRef.jsObject));
+    }
+    get(documentRef) {
+      if (documentRef == null) dart.nullFailed(I[0], 472, 50, "documentRef");
+      return utils.handleThenable(dart.lazyJSType(() => dart.global.firebase.firestore.DocumentSnapshot, "firebase.firestore.DocumentSnapshot"), this.jsObject.get(documentRef.jsObject)).then(firestore.DocumentSnapshot, C[1] || CT.C1);
+    }
+    set(documentRef, data, options = null) {
+      if (documentRef == null) dart.nullFailed(I[0], 477, 37, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 477, 71, "data");
+      let jsObjectSet = options != null ? this.jsObject.set(documentRef.jsObject, utils$.jsify(data), options) : this.jsObject.set(documentRef.jsObject, utils$.jsify(data));
+      return firestore.Transaction.getInstance(jsObjectSet);
+    }
+    update(documentRef, data) {
+      if (documentRef == null) dart.nullFailed(I[0], 486, 29, "documentRef");
+      if (data == null) dart.nullFailed(I[0], 486, 63, "data");
+      return firestore.Transaction.getInstance(dart.lazyJSType(() => dart.global.firebase.firestore.Transaction, "firebase.firestore.Transaction").as(this[_wrapUpdateFunctionCall](dart.dynamic, this.jsObject, data, documentRef)));
+    }
+  };
+  (firestore.Transaction._fromJsObject = function(jsObject) {
+    if (jsObject == null) dart.nullFailed(I[0], 466, 65, "jsObject");
+    firestore.Transaction.__proto__.fromJsObject.call(this, jsObject);
+    ;
+  }).prototype = firestore.Transaction.prototype;
+  dart.addTypeTests(firestore.Transaction);
+  dart.addTypeCaches(firestore.Transaction);
+  dart.setMethodSignature(firestore.Transaction, () => ({
+    __proto__: dart.getMethods(firestore.Transaction.__proto__),
+    delete: dart.fnType(firestore.Transaction, [firestore.DocumentReference]),
+    get: dart.fnType(async.Future$(firestore.DocumentSnapshot), [firestore.DocumentReference]),
+    set: dart.fnType(firestore.Transaction, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)], [dart.nullable(dart.anonymousJSType("SetOptions"))]),
+    update: dart.fnType(firestore.Transaction, [firestore.DocumentReference, core.Map$(core.String, dart.dynamic)])
+  }));
+  dart.setLibraryUri(firestore.Transaction, I[1]);
+  dart.defineLazy(firestore.Transaction, {
+    /*firestore.Transaction._expando*/get _expando() {
+      return new (T$.ExpandoOfTransaction()).new();
+    }
+  }, false);
+  var _jsify = dart.privateName(firestore, "_jsify");
+  firestore._FieldValueDelete = class _FieldValueDelete extends core.Object {
+    [_jsify]() {
+      return dart.global.firebase.firestore.FieldValue.delete();
+    }
+    toString() {
+      return "FieldValue.delete()";
+    }
+  };
+  (firestore._FieldValueDelete.new = function() {
+    ;
+  }).prototype = firestore._FieldValueDelete.prototype;
+  dart.addTypeTests(firestore._FieldValueDelete);
+  dart.addTypeCaches(firestore._FieldValueDelete);
+  firestore._FieldValueDelete[dart.implements] = () => [firestore.FieldValue];
+  dart.setMethodSignature(firestore._FieldValueDelete, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueDelete.__proto__),
+    [_jsify]: dart.fnType(dart.anonymousJSType("FieldValue"), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueDelete, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueDelete, ['toString']);
+  firestore._FieldValueServerTimestamp = class _FieldValueServerTimestamp extends core.Object {
+    [_jsify]() {
+      return dart.global.firebase.firestore.FieldValue.serverTimestamp();
+    }
+    toString() {
+      return "FieldValue.serverTimestamp()";
+    }
+  };
+  (firestore._FieldValueServerTimestamp.new = function() {
+    ;
+  }).prototype = firestore._FieldValueServerTimestamp.prototype;
+  dart.addTypeTests(firestore._FieldValueServerTimestamp);
+  dart.addTypeCaches(firestore._FieldValueServerTimestamp);
+  firestore._FieldValueServerTimestamp[dart.implements] = () => [firestore.FieldValue];
+  dart.setMethodSignature(firestore._FieldValueServerTimestamp, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueServerTimestamp.__proto__),
+    [_jsify]: dart.fnType(dart.anonymousJSType("FieldValue"), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueServerTimestamp, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueServerTimestamp, ['toString']);
+  firestore._FieldValueArray = class _FieldValueArray extends core.Object {};
+  (firestore._FieldValueArray.new = function(elements) {
+    this.elements = elements;
+    ;
+  }).prototype = firestore._FieldValueArray.prototype;
+  dart.addTypeTests(firestore._FieldValueArray);
+  dart.addTypeCaches(firestore._FieldValueArray);
+  firestore._FieldValueArray[dart.implements] = () => [firestore.FieldValue];
+  dart.setLibraryUri(firestore._FieldValueArray, I[1]);
+  dart.setFieldSignature(firestore._FieldValueArray, () => ({
+    __proto__: dart.getFields(firestore._FieldValueArray.__proto__),
+    elements: dart.finalFieldType(dart.nullable(core.List))
+  }));
+  firestore._FieldValueArrayUnion = class _FieldValueArrayUnion extends firestore._FieldValueArray {
+    [_jsify]() {
+      return dart.nullable(dart.anonymousJSType("FieldValue")).as(utils.callMethod(core.Object.as(dart.global.firebase.firestore.FieldValue), "arrayUnion", core.List.as(utils$.jsify(this.elements))));
+    }
+    toString() {
+      return "FieldValue.arrayUnion(" + dart.str(this.elements) + ")";
+    }
+  };
+  (firestore._FieldValueArrayUnion.new = function(elements) {
+    firestore._FieldValueArrayUnion.__proto__.new.call(this, elements);
+    ;
+  }).prototype = firestore._FieldValueArrayUnion.prototype;
+  dart.addTypeTests(firestore._FieldValueArrayUnion);
+  dart.addTypeCaches(firestore._FieldValueArrayUnion);
+  dart.setMethodSignature(firestore._FieldValueArrayUnion, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueArrayUnion.__proto__),
+    [_jsify]: dart.fnType(dart.nullable(dart.anonymousJSType("FieldValue")), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueArrayUnion, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueArrayUnion, ['toString']);
+  firestore._FieldValueArrayRemove = class _FieldValueArrayRemove extends firestore._FieldValueArray {
+    [_jsify]() {
+      return dart.nullable(dart.anonymousJSType("FieldValue")).as(utils.callMethod(core.Object.as(dart.global.firebase.firestore.FieldValue), "arrayRemove", core.List.as(utils$.jsify(this.elements))));
+    }
+    toString() {
+      return "FieldValue.arrayRemove(" + dart.str(this.elements) + ")";
+    }
+  };
+  (firestore._FieldValueArrayRemove.new = function(elements) {
+    firestore._FieldValueArrayRemove.__proto__.new.call(this, elements);
+    ;
+  }).prototype = firestore._FieldValueArrayRemove.prototype;
+  dart.addTypeTests(firestore._FieldValueArrayRemove);
+  dart.addTypeCaches(firestore._FieldValueArrayRemove);
+  dart.setMethodSignature(firestore._FieldValueArrayRemove, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueArrayRemove.__proto__),
+    [_jsify]: dart.fnType(dart.nullable(dart.anonymousJSType("FieldValue")), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueArrayRemove, I[1]);
+  dart.defineExtensionMethods(firestore._FieldValueArrayRemove, ['toString']);
+  firestore._FieldValueIncrement = class _FieldValueIncrement extends core.Object {
+    [_jsify]() {
+      return dart.global.firebase.firestore.FieldValue.increment(this.n);
+    }
+    toString() {
+      return "FieldValue.increment(" + dart.str(this.n) + ")";
+    }
+  };
+  (firestore._FieldValueIncrement.new = function(n) {
+    if (n == null) dart.nullFailed(I[0], 563, 29, "n");
+    this.n = n;
+    ;
+  }).prototype = firestore._FieldValueIncrement.prototype;
+  dart.addTypeTests(firestore._FieldValueIncrement);
+  dart.addTypeCaches(firestore._FieldValueIncrement);
+  firestore._FieldValueIncrement[dart.implements] = () => [firestore.FieldValue];
+  dart.setMethodSignature(firestore._FieldValueIncrement, () => ({
+    __proto__: dart.getMethods(firestore._FieldValueIncrement.__proto__),
+    [_jsify]: dart.fnType(dart.anonymousJSType("FieldValue"), [])
+  }));
+  dart.setLibraryUri(firestore._FieldValueIncrement, I[1]);
+  dart.setFieldSignature(firestore._FieldValueIncrement, () => ({
+    __proto__: dart.getFields(firestore._FieldValueIncrement.__proto__),
+    n: dart.finalFieldType(core.num)
+  }));
+  dart.defineExtensionMethods(firestore._FieldValueIncrement, ['toString']);
+  firestore.FieldValue = class FieldValue extends core.Object {
+    [_jsify]() {
+      dart.throw(new core.UnimplementedError.new("_jsify() has not been implemented"));
+    }
+    static serverTimestamp() {
+      return firestore.FieldValue._serverTimestamp;
+    }
+    static delete() {
+      return firestore.FieldValue._delete;
+    }
+    static arrayUnion(elements) {
+      return new firestore._FieldValueArrayUnion.new(elements);
+    }
+    static arrayRemove(elements) {
+      return new firestore._FieldValueArrayRemove.new(elements);
+    }
+    static increment(n) {
+      if (n == null) dart.nullFailed(I[0], 598, 35, "n");
+      return new firestore._FieldValueIncrement.new(n);
+    }
+  };
+  (firestore.FieldValue.__ = function() {
+    ;
+  }).prototype = firestore.FieldValue.prototype;
+  dart.addTypeTests(firestore.FieldValue);
+  dart.addTypeCaches(firestore.FieldValue);
+  dart.setMethodSignature(firestore.FieldValue, () => ({
+    __proto__: dart.getMethods(firestore.FieldValue.__proto__),
+    [_jsify]: dart.fnType(dart.nullable(dart.anonymousJSType("FieldValue")), [])
+  }));
+  dart.setLibraryUri(firestore.FieldValue, I[1]);
+  dart.defineLazy(firestore.FieldValue, {
+    /*firestore.FieldValue._serverTimestamp*/get _serverTimestamp() {
+      return new firestore._FieldValueServerTimestamp.new();
+    },
+    /*firestore.FieldValue._delete*/get _delete() {
+      return new firestore._FieldValueDelete.new();
+    }
+  }, false);
+  firestore.getFirestoreInstance = function getFirestoreInstance(app = null) {
+    return firestore.Firestore.getInstance(app != null ? dart.global.firebase.firestore(app.jsObject) : dart.global.firebase.firestore());
+  };
+  firestore.jsifyFieldValue = function jsifyFieldValue(fieldValue) {
+    if (fieldValue == null) dart.nullFailed(I[0], 573, 36, "fieldValue");
+    return fieldValue[_jsify]();
+  };
+  dart.trackLibraries("packages/cloud_firestore_web/src/interop/utils/utils.dart", {
+    "package:cloud_firestore_web/src/interop/utils/utils.dart": utils$,
+    "package:cloud_firestore_web/src/interop/firestore.dart": firestore
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["input_border.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAmDmB;;;;;;;;QAdV;;;UACK,AAAW,UAAD;AAFhB;;EAEyB;;;;;;;;;MAON,6BAAI;;;;;;UA2CS;AAAiB;IAAsB;;AAGvD;IAAK;;AAGU,YAAW;IAAI;;UAGxB;AAAM;IAAsB;iBAGjC;;;UAAuB;AAC5C,WAAO;;AAAQ,mBAAQ,IAAI;;;IAC7B;iBAGuB;;;UAAuB;AAC5C,WAAO;;AAAQ,mBAAQ,IAAI;;;IAC7B;UAIS,QACF;UADE;UACF;UACG;UACD;;UACA;;UACQ;IAGjB;;;AAlCyB,sEAA6B;;EAAK;;;;;;;;;;;;;;;;;;;;;;;;;IA6ExC;;;;;;;AAGG;IAAK;;;UAGiB;UAA0B;AACpE,YAAO,yDACkB,KAAX,UAAU,EAAV,aAAmB,sCACJ,MAAb,YAAY,EAAZ,cAAqB;IAEvC;;AAIE,YAAkB,0CAAa,AAAW;IAC5C;;UAGkC;AAChC,YAAO,wDAAiC,AAAW,sBAAM,CAAC;IAC5D;iBAGuB;;;UAAuB;AAC5C,WAAO;;AACH,mBAAa,qBAAS,AAAK,IAAD,OAAO,AAAK,IAAD,MAAM,AAAK,IAAD,QAAQ,sBAAS,KAAiB,aAAZ,AAAK,IAAD,wBAAU,AAAW;;;IACpG;iBAGuB;;;UAAuB;AAC5C,WAAO;;AAAQ,oBAAS,AAAa,AAAuB,0BAAf,aAAa,UAAU,IAAI;;;IAC1E;aAGmC;UAAU;AAC3C,UAAM,qCAAF,CAAC;AACH,cAAO,wDACkB,wBAAK,AAAE,CAAD,aAAa,iBAAY,CAAC,iBACS,eAArC,gCAAK,AAAE,CAAD,eAAe,mBAAc,CAAC;;AAGnE,YAAa,gBAAS,CAAC,EAAE,CAAC;IAC5B;WAGiC;UAAU;AACzC,UAAM,qCAAF,CAAC;AACH,cAAO,wDACkB,wBAAK,iBAAY,AAAE,CAAD,aAAa,CAAC,iBACS,eAArC,gCAAK,mBAAc,AAAE,CAAD,eAAe,CAAC;;AAGnE,YAAa,cAAO,CAAC,EAAE,CAAC;IAC1B;UAQS,QACF;UADE;UACF;UACG;UACD;;UACA;;UACQ;AAEf,UAA4B,aAAxB,AAAa,8BAAqB,mBAAiC,aAAzB,AAAa,+BAAsB,iBAC/E,AAAO,AAA0D,MAA3D,UAAU,kBAAa,IAAI,kBAAiB,aAAa;AACO,MAAxE,AAAO,MAAD,UAAU,AAAK,IAAD,aAAa,AAAK,IAAD,cAAc,AAAW;IAChE;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,UAAsB,aAAZ,iBAAN,KAAK,GAAgB,qBACvB,MAAO;AACT,YAAa,AACT,6BADG,KAAK,KACY,YAAjB,AAAM,KAAD,aAAe;IAC7B;;AAGoB,YAAW,eAAX;IAAmB;;;QAtG1B;;QACN;;;UAIK,AAAa,YAAD;AACnB,4EAAkB,UAAU;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA+JrB;;;;;;IAMM;;;;;;;UAjB0B;AAC3C,YAAO,AAAa,AAAQ,AAAE,AAG1B,aAHe,cAAc,AAAa,AAAQ,YAAT,cACtC,AAAa,AAAW,AAAE,YAAd,iBAAiB,AAAa,AAAW,YAAZ,iBACzC,AAAa,AAAS,AAAE,YAAZ,eAAe,AAAa,AAAS,YAAV,eACvC,AAAa,AAAY,AAAE,YAAf,kBAAkB,AAAa,AAAY,YAAb;IACnD;;AAesB;IAAI;;;UAIZ;UACE;UACN;AAER,YAAO,uDACkB,KAAX,UAAU,EAAV,aAAmB,sCACJ,MAAb,YAAY,EAAZ,cAAqB,uCACZ,OAAX,UAAU,EAAV,eAAmB;IAEnC;;AAIE,YAAkB,gCAAI,AAAW;IACnC;;UAGgC;AAC9B,YAAO,sDACO,AAAW,sBAAM,CAAC,iBAChB,AAAa,uBAAE,CAAC,eACP,aAAX,gCAAa,CAAC;IAE9B;aAGmC;UAAU;AAC3C,UAAM,mCAAF,CAAC;AACsB,sBAAU,CAAC;AACpC,cAAO,wDACiE,eAA3C,gCAAK,AAAQ,OAAD,eAAe,mBAAc,CAAC,gBAC9C,wBAAK,AAAQ,OAAD,aAAa,iBAAY,CAAC,eACjD,AAAQ,OAAD;;AAGvB,YAAa,gBAAS,CAAC,EAAE,CAAC;IAC5B;WAGiC;UAAU;AACzC,UAAM,mCAAF,CAAC;AACsB,sBAAU,CAAC;AACpC,cAAO,wDACiE,eAA3C,gCAAK,mBAAc,AAAQ,OAAD,eAAe,CAAC,gBAC9C,wBAAK,iBAAY,AAAQ,OAAD,aAAa,CAAC,eACjD,AAAQ,OAAD;;AAGvB,YAAa,cAAO,CAAC,EAAE,CAAC;IAC1B;iBAGuB;;;UAAuB;AAC5C,WAAO;;AACH,oBAAS,AAAa,AAAuB,AAAc,0BAA7B,aAAa,UAAU,IAAI,UAAU,AAAW;;;IACpF;iBAGuB;;;UAAuB;AAC5C,WAAO;;AACH,oBAAS,AAAa,AAAuB,0BAAf,aAAa,UAAU,IAAI;;;IAC/D;qBAE2B,QAAc,QAAe,OAAc;;UAA3C;UAAc;UAAe;UAAc;AAIxD,wBAAc,AAAO,MAAD;AAErB,qBAAgB,qBACzB,AAAY,WAAD,OACX,AAAY,WAAD,MACW,aAAtB,AAAY,WAAD,cAAa,KACF,aAAtB,AAAY,WAAD,cAAa;AAEf,qBAAgB,qBACP,aAAlB,AAAY,WAAD,UAA+B,aAAtB,AAAY,WAAD,cAAa,KAC5C,AAAY,WAAD,MACW,aAAtB,AAAY,WAAD,cAAa,KACF,aAAtB,AAAY,WAAD,cAAa;AAEf,qBAAgB,qBACP,aAAlB,AAAY,WAAD,UAA+B,aAAtB,AAAY,WAAD,cAAa,KACzB,aAAnB,AAAY,WAAD,WAAgC,aAAtB,AAAY,WAAD,cAAa,KACvB,aAAtB,AAAY,WAAD,cAAa,KACF,aAAtB,AAAY,WAAD,cAAa;AAEf,qBAAgB,qBACzB,AAAY,WAAD,OACQ,aAAnB,AAAY,WAAD,WAAgC,aAAtB,AAAY,WAAD,cAAa,KACvB,aAAtB,AAAY,WAAD,cAAa,KACF,aAAtB,AAAY,WAAD,cAAa;AAIb,6BAAyB,aAAN,KAAK,iBAAG,AAAY,WAAD,cAC/C,UAA0C,CAAzB,aAAN,KAAK,iBAAG,AAAY,WAAD,qBAAkB,CAAC,KAAK,QAC9C,oBAAE;AAEH,sCAAO;AACd,kBAAO,QAAQ,qBAAW,gBAAgB;AAC1C,kBAAwB,aAAjB,AAAY,WAAD,sBAAQ,AAAY,WAAD,aAAY,AAAY,WAAD;;;AAEhE,UAAU,aAAN,KAAK,iBAAG,AAAY,WAAD,aACrB,AAAK,AAAiD,IAAlD,QAAyB,aAAjB,AAAY,WAAD,sBAAQ,KAAK,GAAE,AAAY,WAAD;AAInD,UAAU,AAAS,aAAf,KAAK,iBAAG,MAAM,IAAqB,aAAlB,AAAY,WAAD,uBAAS,AAAY,WAAD;AAIM,cAHxD,IAAI;QAAJ;AACI,6BAAe,MAAM,EAAE;AACvB,qBAAyB,aAAlB,AAAY,WAAD,uBAAS,AAAY,WAAD,aAAY,AAAY,WAAD;AAC7D,qBAAO,QAAQ;;;YACd,KAAU,AAAS,aAAf,KAAK,iBAAG,MAAM,iBAAG,AAAY,WAAD;AACxB,iBAAuB,aAAlB,AAAY,WAAD,WAAgB,aAAN,KAAK,iBAAG,MAAM;AACxC,oBAAQ,UAAU,AAAG,EAAD,gBAAG,AAAY,WAAD;AAC0B,QAAzE,AAAK,IAAD,QAAQ,QAAQ,EAAmB,mBAAE,KAAK,EAAmB,qBAAE,KAAK;;AAG1E,aAAO,IAAI;YAAJ;AACH,oBAAO,AAAY,WAAD,QAAwB,aAAhB,AAAY,WAAD,qBAAO,AAAY,WAAD;AACvD,oBAAO,AAAY,WAAD,QAA2B,aAAnB,AAAY,WAAD,wBAAU,AAAY,WAAD;AAC1D,oBAAO,QAAQ,EAAE;AACjB,oBAAwB,aAAjB,AAAY,WAAD,sBAAQ,AAAY,WAAD,aAAY,AAAY,WAAD;AAC5D,oBAAO,QAAQ,EAAU,oBAAE;AAC3B,oBAAO,AAAY,WAAD,OAAuB,aAAhB,AAAY,WAAD,qBAAO,AAAY,WAAD;;;IAC5D;UAYS,QACF;UADE;UACF;UACG;UACD;;UACA;;UACQ;AAEf,YAAO,AAAU,SAAD;AAChB,YAAqB,AAAO,aAArB,aAAa,KAAI,OAAqB,aAAd,aAAa,KAAI;AAChD,qBAAO,oDAAoB;AAEf,kBAAQ,AAAW;AACnB,kBAAQ,AAAa,0BAAQ,IAAI;AACjC,mBAAS,AAAM,KAAD,SAA0B,aAAjB,AAAW,yBAAQ;AACtD,UAAI,AAAS,QAAD,YAAsB,aAAV,SAAS,KAAI,OAAO,AAAc,aAAD,KAAI;AAC5B,QAA/B,AAAO,MAAD,WAAW,MAAM,EAAE,KAAK;;AAEjB,qBAAqE,eAA5D,cAAW,KAAe,aAAV,SAAS,IAAc,aAAX,mBAAa,KAAK,aAAa;AACjF,gBAAqB,eAAb,aAAa;;;AAEN,uBAAO,qBAAe,MAAM,EAAE,MAAM,EAAE,sBAAS,KAAc,AAAa,aAAtB,QAAQ,iBAAG,mBAAa,MAAM,GAAG,MAAM;AAC1E,YAA5B,AAAO,MAAD,UAAU,IAAI,EAAE,KAAK;AAC3B;;;;AAGW,uBAAO,qBAAe,MAAM,EAAE,MAAM,EAAE,sBAAS,KAAc,aAAT,QAAQ,iBAAG,mBAAa,MAAM;AACjE,YAA5B,AAAO,MAAD,UAAU,IAAI,EAAE,KAAK;AAC3B;;;;AATJ;;;;IAYJ;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,UAAsB,aAAZ,iBAAN,KAAK,GAAgB,qBACvB,MAAO;AACT,YAAa,AAGT,oCAHG,KAAK,KACY,YAAjB,AAAM,KAAD,aAAe,oBACD,YAAnB,AAAM,KAAD,eAAiB,sBACtB,AAAM,AAAW,KAAZ,eAAe;IAC7B;;AAGoB,2BAAW,iBAAY,mBAAc;IAAW;;;QA5NvD;;QACN;;QACA;;IADA;IACA;UACK,AAAa,YAAD;UACZ,AAAW,AAAQ,UAAT,YAAuB,aAAX,UAAU,KAAI;AAC3C,0EAAkB,UAAU;;EAAC","file":"../../../../../../../../D:/packages/flutter/src/material/input_border.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["utils.dart","../firestore.dart","../../../../../firebase_core_web-1.0.2/lib/src/interop/utils/js.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../D:/packages/cloud_firestore_web/src/interop/utils/utils.dart.lib.js"}');
   // Exports:
   return {
-    src__material__input_border: input_border
+    src__interop__utils__utils: utils$,
+    src__interop__firestore: firestore
   };
 }));
 
-//# sourceMappingURL=input_border.dart.lib.js.map
+//# sourceMappingURL=utils.dart.lib.js.map

@@ -1,23 +1,27 @@
-define(['dart_sdk', 'packages/nested/nested.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/collection/src/equality.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/provider/src/provider.dart'], (function load__packages__provider__src__selector_dart(dart_sdk, packages__nested__nested$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__collection__src__equality$46dart, packages__flutter__src__foundation__debug$46dart, packages__provider__src__provider$46dart) {
+define(['dart_sdk', 'packages/collection/src/comparators.dart'], (function load__packages__collection__src__equality_dart(dart_sdk, packages__collection__src__comparators$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const collection = dart_sdk.collection;
+  const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const nested = packages__nested__nested$46dart.nested;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const equality = packages__collection__src__equality$46dart.src__equality;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const provider = packages__provider__src__provider$46dart.src__provider;
-  var selector = Object.create(dart.library);
-  var consumer = Object.create(dart.library);
+  const comparators = packages__collection__src__comparators$46dart.src__comparators;
+  var equality = Object.create(dart.library);
+  var $hashCode = dartx.hashCode;
+  var $iterator = dartx.iterator;
+  var $rightShift = dartx['>>'];
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $_set = dartx._set;
+  var $keys = dartx.keys;
   dart._checkModuleNullSafetyMode(false);
-  var T$ = {
-    DefaultEqualityOfNeverL: () => (T$.DefaultEqualityOfNeverL = dart.constFn(equality.DefaultEquality$(dart.legacy(dart.Never))))(),
-    WidgetN: () => (T$.WidgetN = dart.constFn(dart.nullable(framework.Widget)))()
+  var T = {
+    DefaultEqualityOfNeverL: () => (T.DefaultEqualityOfNeverL = dart.constFn(equality.DefaultEquality$(dart.legacy(dart.Never))))(),
+    LinkedMapOf_MapEntry$int: () => (T.LinkedMapOf_MapEntry$int = dart.constFn(_js_helper.LinkedMap$(equality._MapEntry, core.int)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
-  }, T$);
+  }, T);
   var S = {
     _: () => S
   };
@@ -28,599 +32,699 @@ define(['dart_sdk', 'packages/nested/nested.dart', 'packages/flutter/src/widgets
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: T$.DefaultEqualityOfNeverL().prototype
-      });
-    },
     get C0() {
       return C[0] = dart.const({
-        __proto__: equality.DeepCollectionEquality.prototype,
-        [DeepCollectionEquality__unordered]: false,
-        [DeepCollectionEquality__base]: C[1] || CT.C1
+        __proto__: T.DefaultEqualityOfNeverL().prototype
       });
     }
   }, false);
-  var C = Array(2).fill(void 0);
+  var C = [void 0];
   var I = [
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-5.0.0/lib/src/selector.dart",
-    "package:provider/src/selector.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-5.0.0/lib/src/consumer.dart",
-    "package:provider/src/consumer.dart"
+    "package:collection/src/equality.dart",
+    "file:///C:/dev_env/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib/src/equality.dart"
   ];
-  var builder$ = dart.privateName(selector, "Selector0.builder");
-  var selector$ = dart.privateName(selector, "Selector0.selector");
-  var _shouldRebuild = dart.privateName(selector, "_shouldRebuild");
-  const _is_Selector0_default = Symbol('_is_Selector0_default');
-  selector.Selector0$ = dart.generic(T => {
-    var _Selector0StateOfT = () => (_Selector0StateOfT = dart.constFn(selector._Selector0State$(T)))();
-    class Selector0 extends nested.SingleChildStatefulWidget {
-      get builder() {
-        return this[builder$];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      get selector() {
-        return this[selector$];
-      }
-      set selector(value) {
-        super.selector = value;
-      }
-      createState() {
-        return new (_Selector0StateOfT()).new();
-      }
-    }
-    (Selector0.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 37, 19, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 38, 19, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$] = builder;
-      this[selector$] = selector;
-      this[_shouldRebuild] = shouldRebuild;
-      Selector0.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector0.prototype;
-    dart.addTypeTests(Selector0);
-    Selector0.prototype[_is_Selector0_default] = true;
-    dart.addTypeCaches(Selector0);
-    dart.setMethodSignature(Selector0, () => ({
-      __proto__: dart.getMethods(Selector0.__proto__),
-      createState: dart.fnType(selector._Selector0State$(T), [])
-    }));
-    dart.setLibraryUri(Selector0, I[1]);
-    dart.setFieldSignature(Selector0, () => ({
-      __proto__: dart.getFields(Selector0.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, T, dart.nullable(framework.Widget)])),
-      selector: dart.finalFieldType(dart.fnType(T, [framework.BuildContext])),
-      [_shouldRebuild]: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [T, T])))
-    }));
-    return Selector0;
+  const _is_Equality_default = Symbol('_is_Equality_default');
+  equality.Equality$ = dart.generic(E => {
+    class Equality extends core.Object {}
+    (Equality[dart.mixinNew] = function() {
+    }).prototype = Equality.prototype;
+    dart.addTypeTests(Equality);
+    Equality.prototype[_is_Equality_default] = true;
+    dart.addTypeCaches(Equality);
+    dart.setLibraryUri(Equality, I[0]);
+    return Equality;
   });
-  selector.Selector0 = selector.Selector0$();
-  dart.addTypeTests(selector.Selector0, _is_Selector0_default);
-  var value$ = dart.privateName(selector, "_Selector0State.value");
-  var DeepCollectionEquality__unordered = dart.privateName(equality, "DeepCollectionEquality._unordered");
-  var DeepCollectionEquality__base = dart.privateName(equality, "DeepCollectionEquality._base");
-  const _is__Selector0State_default = Symbol('_is__Selector0State_default');
-  selector._Selector0State$ = dart.generic(T => {
-    var TN = () => (TN = dart.constFn(dart.nullable(T)))();
-    var TAndTTobool = () => (TAndTTobool = dart.constFn(dart.fnType(core.bool, [T, T])))();
-    var TAndTToNbool = () => (TAndTToNbool = dart.constFn(dart.nullable(TAndTTobool())))();
-    var BuildContextAndTAndWidgetNToWidget = () => (BuildContextAndTAndWidgetNToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T, T$.WidgetN()])))();
-    var DiagnosticsPropertyOfT = () => (DiagnosticsPropertyOfT = dart.constFn(diagnostics.DiagnosticsProperty$(T)))();
-    class _Selector0State extends nested.SingleChildState$(selector.Selector0$(T)) {
-      get value() {
-        return this[value$];
+  equality.Equality = equality.Equality$();
+  dart.addTypeTests(equality.Equality, _is_Equality_default);
+  var _comparisonKey = dart.privateName(equality, "_comparisonKey");
+  var _inner = dart.privateName(equality, "_inner");
+  const _is_EqualityBy_default = Symbol('_is_EqualityBy_default');
+  equality.EqualityBy$ = dart.generic((E, F) => {
+    class EqualityBy extends core.Object {
+      equals(e1, e2) {
+        let t0, t0$;
+        E.as(e1);
+        E.as(e2);
+        return this[_inner].equals((t0 = e1, this[_comparisonKey](t0)), (t0$ = e2, this[_comparisonKey](t0$)));
       }
-      set value(value) {
-        this[value$] = TN().as(value);
+      hash(e) {
+        let t0;
+        E.as(e);
+        return this[_inner].hash((t0 = e, this[_comparisonKey](t0)));
       }
-      buildWithChild(context, child) {
-        let t1, t0, t3, t2, t1$, t0$;
-        if (context == null) dart.nullFailed(I[0], 74, 38, "context");
-        let selected = (t0 = this.widget, t1 = context, t0.selector(t1));
-        let shouldInvalidateCache = !dart.equals(this.oldWidget, this.widget) || TAndTToNbool().as(this.widget[_shouldRebuild]) != null && dart.test(dart.nullCheck(TAndTToNbool().as(this.widget[_shouldRebuild]))(T.as(this.value), selected)) || TAndTToNbool().as(this.widget[_shouldRebuild]) == null && !dart.test((C[0] || CT.C0).equals(this.value, selected));
-        if (shouldInvalidateCache) {
-          this.value = selected;
-          this.oldWidget = this.widget;
-          this.cache = (t0$ = this.widget, t1$ = context, t2 = selected, t3 = child, BuildContextAndTAndWidgetNToWidget().as(t0$.builder)(t1$, t2, t3));
+      isValidKey(o) {
+        let t0;
+        if (E.is(o)) {
+          let value = (t0 = o, this[_comparisonKey](t0));
+          return F.is(value) && dart.test(this[_inner].isValidKey(value));
         }
-        return dart.nullCheck(this.cache);
-      }
-      debugFillProperties(properties) {
-        if (properties == null) dart.nullFailed(I[0], 95, 56, "properties");
-        super.debugFillProperties(properties);
-        properties.add(new (DiagnosticsPropertyOfT()).new("value", this.value));
+        return false;
       }
     }
-    (_Selector0State.new = function() {
-      this[value$] = null;
-      this.cache = null;
-      this.oldWidget = null;
-      _Selector0State.__proto__.new.call(this);
+    (EqualityBy.new = function(comparisonKey, inner = C[0] || CT.C0) {
+      if (comparisonKey == null) dart.nullFailed(I[1], 54, 28, "comparisonKey");
+      if (inner == null) dart.nullFailed(I[1], 55, 20, "inner");
+      this[_comparisonKey] = comparisonKey;
+      this[_inner] = inner;
       ;
-    }).prototype = _Selector0State.prototype;
-    dart.addTypeTests(_Selector0State);
-    _Selector0State.prototype[_is__Selector0State_default] = true;
-    dart.addTypeCaches(_Selector0State);
-    dart.setMethodSignature(_Selector0State, () => ({
-      __proto__: dart.getMethods(_Selector0State.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = EqualityBy.prototype;
+    dart.addTypeTests(EqualityBy);
+    EqualityBy.prototype[_is_EqualityBy_default] = true;
+    dart.addTypeCaches(EqualityBy);
+    EqualityBy[dart.implements] = () => [equality.Equality$(E)];
+    dart.setMethodSignature(EqualityBy, () => ({
+      __proto__: dart.getMethods(EqualityBy.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(_Selector0State, I[1]);
-    dart.setFieldSignature(_Selector0State, () => ({
-      __proto__: dart.getFields(_Selector0State.__proto__),
-      value: dart.fieldType(dart.nullable(T)),
-      cache: dart.fieldType(dart.nullable(framework.Widget)),
-      oldWidget: dart.fieldType(dart.nullable(framework.Widget))
+    dart.setLibraryUri(EqualityBy, I[0]);
+    dart.setFieldSignature(EqualityBy, () => ({
+      __proto__: dart.getFields(EqualityBy.__proto__),
+      [_comparisonKey]: dart.finalFieldType(dart.fnType(F, [E])),
+      [_inner]: dart.finalFieldType(equality.Equality$(F))
     }));
-    return _Selector0State;
+    return EqualityBy;
   });
-  selector._Selector0State = selector._Selector0State$();
-  dart.addTypeTests(selector._Selector0State, _is__Selector0State_default);
-  const _is_Selector_default = Symbol('_is_Selector_default');
-  selector.Selector$ = dart.generic((A, S) => {
-    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
-    class Selector extends selector.Selector0$(S) {}
-    (Selector.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 143, 36, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 144, 42, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      Selector.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => {
-          if (context == null) dart.nullFailed(I[0], 151, 22, "context");
-          return selector(context, provider.Provider.of(A, context));
-        }, BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector.prototype;
-    dart.addTypeTests(Selector);
-    Selector.prototype[_is_Selector_default] = true;
-    dart.addTypeCaches(Selector);
-    dart.setLibraryUri(Selector, I[1]);
-    return Selector;
-  });
-  selector.Selector = selector.Selector$();
-  dart.addTypeTests(selector.Selector, _is_Selector_default);
-  const _is_Selector2_default = Symbol('_is_Selector2_default');
-  selector.Selector2$ = dart.generic((A, B, S) => {
-    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
-    class Selector2 extends selector.Selector0$(S) {}
-    (Selector2.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 161, 36, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 162, 45, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      Selector2.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => {
-          if (context == null) dart.nullFailed(I[0], 169, 22, "context");
-          return selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context));
-        }, BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector2.prototype;
-    dart.addTypeTests(Selector2);
-    Selector2.prototype[_is_Selector2_default] = true;
-    dart.addTypeCaches(Selector2);
-    dart.setLibraryUri(Selector2, I[1]);
-    return Selector2;
-  });
-  selector.Selector2 = selector.Selector2$();
-  dart.addTypeTests(selector.Selector2, _is_Selector2_default);
-  const _is_Selector3_default = Symbol('_is_Selector3_default');
-  selector.Selector3$ = dart.generic((A, B, C, S) => {
-    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
-    class Selector3 extends selector.Selector0$(S) {}
-    (Selector3.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 183, 36, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 184, 48, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      Selector3.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => {
-          if (context == null) dart.nullFailed(I[0], 191, 22, "context");
-          return selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context));
-        }, BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector3.prototype;
-    dart.addTypeTests(Selector3);
-    Selector3.prototype[_is_Selector3_default] = true;
-    dart.addTypeCaches(Selector3);
-    dart.setLibraryUri(Selector3, I[1]);
-    return Selector3;
-  });
-  selector.Selector3 = selector.Selector3$();
-  dart.addTypeTests(selector.Selector3, _is_Selector3_default);
-  const _is_Selector4_default = Symbol('_is_Selector4_default');
-  selector.Selector4$ = dart.generic((A, B, C, D, S) => {
-    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
-    class Selector4 extends selector.Selector0$(S) {}
-    (Selector4.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 206, 36, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 207, 51, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      Selector4.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => {
-          if (context == null) dart.nullFailed(I[0], 214, 22, "context");
-          return selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context), provider.Provider.of(D, context));
-        }, BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector4.prototype;
-    dart.addTypeTests(Selector4);
-    Selector4.prototype[_is_Selector4_default] = true;
-    dart.addTypeCaches(Selector4);
-    dart.setLibraryUri(Selector4, I[1]);
-    return Selector4;
-  });
-  selector.Selector4 = selector.Selector4$();
-  dart.addTypeTests(selector.Selector4, _is_Selector4_default);
-  const _is_Selector5_default = Symbol('_is_Selector5_default');
-  selector.Selector5$ = dart.generic((A, B, C, D, E, S) => {
-    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
-    class Selector5 extends selector.Selector0$(S) {}
-    (Selector5.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 230, 36, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 231, 54, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      Selector5.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => {
-          if (context == null) dart.nullFailed(I[0], 238, 22, "context");
-          return selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context), provider.Provider.of(D, context), provider.Provider.of(E, context));
-        }, BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector5.prototype;
-    dart.addTypeTests(Selector5);
-    Selector5.prototype[_is_Selector5_default] = true;
-    dart.addTypeCaches(Selector5);
-    dart.setLibraryUri(Selector5, I[1]);
-    return Selector5;
-  });
-  selector.Selector5 = selector.Selector5$();
-  dart.addTypeTests(selector.Selector5, _is_Selector5_default);
-  const _is_Selector6_default = Symbol('_is_Selector6_default');
-  selector.Selector6$ = dart.generic((A, B, C, D, E, F, S) => {
-    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
-    class Selector6 extends selector.Selector0$(S) {}
-    (Selector6.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 255, 36, "builder");
-      let selector = opts && 'selector' in opts ? opts.selector : null;
-      if (selector == null) dart.nullFailed(I[0], 256, 57, "selector");
-      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      Selector6.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => {
-          if (context == null) dart.nullFailed(I[0], 263, 22, "context");
-          return selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context), provider.Provider.of(D, context), provider.Provider.of(E, context), provider.Provider.of(F, context));
-        }, BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = Selector6.prototype;
-    dart.addTypeTests(Selector6);
-    Selector6.prototype[_is_Selector6_default] = true;
-    dart.addTypeCaches(Selector6);
-    dart.setLibraryUri(Selector6, I[1]);
-    return Selector6;
-  });
-  selector.Selector6 = selector.Selector6$();
-  dart.addTypeTests(selector.Selector6, _is_Selector6_default);
-  var builder$0 = dart.privateName(consumer, "Consumer.builder");
-  const _is_Consumer_default = Symbol('_is_Consumer_default');
-  consumer.Consumer$ = dart.generic(T => {
-    class Consumer extends nested.SingleChildStatelessWidget {
-      get builder() {
-        return this[builder$0];
+  equality.EqualityBy = equality.EqualityBy$();
+  dart.addTypeTests(equality.EqualityBy, _is_EqualityBy_default);
+  const _is_DefaultEquality_default = Symbol('_is_DefaultEquality_default');
+  equality.DefaultEquality$ = dart.generic(E => {
+    class DefaultEquality extends core.Object {
+      equals(e1, e2) {
+        return dart.equals(e1, e2);
       }
-      set builder(value) {
-        super.builder = value;
+      hash(e) {
+        return dart.hashCode(e);
       }
-      buildWithChild(context, child) {
-        let t2, t1, t0;
-        if (context == null) dart.nullFailed(I[2], 179, 38, "context");
-        t0 = context;
-        t1 = provider.Provider.of(T, context);
-        t2 = child;
-        return this.builder(t0, t1, t2);
+      isValidKey(o) {
+        return true;
       }
     }
-    (Consumer.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[2], 163, 19, "builder");
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$0] = builder;
-      Consumer.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    (DefaultEquality.new = function() {
       ;
-    }).prototype = Consumer.prototype;
-    dart.addTypeTests(Consumer);
-    Consumer.prototype[_is_Consumer_default] = true;
-    dart.addTypeCaches(Consumer);
-    dart.setMethodSignature(Consumer, () => ({
-      __proto__: dart.getMethods(Consumer.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = DefaultEquality.prototype;
+    dart.addTypeTests(DefaultEquality);
+    DefaultEquality.prototype[_is_DefaultEquality_default] = true;
+    dart.addTypeCaches(DefaultEquality);
+    DefaultEquality[dart.implements] = () => [equality.Equality$(E)];
+    dart.setMethodSignature(DefaultEquality, () => ({
+      __proto__: dart.getMethods(DefaultEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(Consumer, I[3]);
-    dart.setFieldSignature(Consumer, () => ({
-      __proto__: dart.getFields(Consumer.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, T, dart.nullable(framework.Widget)]))
-    }));
-    return Consumer;
+    dart.setLibraryUri(DefaultEquality, I[0]);
+    return DefaultEquality;
   });
-  consumer.Consumer = consumer.Consumer$();
-  dart.addTypeTests(consumer.Consumer, _is_Consumer_default);
-  var builder$1 = dart.privateName(consumer, "Consumer2.builder");
-  const _is_Consumer2_default = Symbol('_is_Consumer2_default');
-  consumer.Consumer2$ = dart.generic((A, B) => {
-    class Consumer2 extends nested.SingleChildStatelessWidget {
-      get builder() {
-        return this[builder$1];
+  equality.DefaultEquality = equality.DefaultEquality$();
+  dart.addTypeTests(equality.DefaultEquality, _is_DefaultEquality_default);
+  const _is_IdentityEquality_default = Symbol('_is_IdentityEquality_default');
+  equality.IdentityEquality$ = dart.generic(E => {
+    class IdentityEquality extends core.Object {
+      equals(e1, e2) {
+        E.as(e1);
+        E.as(e2);
+        return core.identical(e1, e2);
       }
-      set builder(value) {
-        super.builder = value;
+      hash(e) {
+        E.as(e);
+        return core.identityHashCode(e);
       }
-      buildWithChild(context, child) {
-        let t3, t2, t1, t0;
-        if (context == null) dart.nullFailed(I[2], 206, 38, "context");
-        t0 = context;
-        t1 = provider.Provider.of(A, context);
-        t2 = provider.Provider.of(B, context);
-        t3 = child;
-        return this.builder(t0, t1, t2, t3);
+      isValidKey(o) {
+        return true;
       }
     }
-    (Consumer2.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[2], 193, 19, "builder");
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$1] = builder;
-      Consumer2.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    (IdentityEquality.new = function() {
       ;
-    }).prototype = Consumer2.prototype;
-    dart.addTypeTests(Consumer2);
-    Consumer2.prototype[_is_Consumer2_default] = true;
-    dart.addTypeCaches(Consumer2);
-    dart.setMethodSignature(Consumer2, () => ({
-      __proto__: dart.getMethods(Consumer2.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = IdentityEquality.prototype;
+    dart.addTypeTests(IdentityEquality);
+    IdentityEquality.prototype[_is_IdentityEquality_default] = true;
+    dart.addTypeCaches(IdentityEquality);
+    IdentityEquality[dart.implements] = () => [equality.Equality$(E)];
+    dart.setMethodSignature(IdentityEquality, () => ({
+      __proto__: dart.getMethods(IdentityEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(Consumer2, I[3]);
-    dart.setFieldSignature(Consumer2, () => ({
-      __proto__: dart.getFields(Consumer2.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, dart.nullable(framework.Widget)]))
-    }));
-    return Consumer2;
+    dart.setLibraryUri(IdentityEquality, I[0]);
+    return IdentityEquality;
   });
-  consumer.Consumer2 = consumer.Consumer2$();
-  dart.addTypeTests(consumer.Consumer2, _is_Consumer2_default);
-  var builder$2 = dart.privateName(consumer, "Consumer3.builder");
-  const _is_Consumer3_default = Symbol('_is_Consumer3_default');
-  consumer.Consumer3$ = dart.generic((A, B, C) => {
-    class Consumer3 extends nested.SingleChildStatelessWidget {
-      get builder() {
-        return this[builder$2];
+  equality.IdentityEquality = equality.IdentityEquality$();
+  dart.addTypeTests(equality.IdentityEquality, _is_IdentityEquality_default);
+  var _elementEquality = dart.privateName(equality, "IterableEquality._elementEquality");
+  var _elementEquality$ = dart.privateName(equality, "_elementEquality");
+  const _is_IterableEquality_default = Symbol('_is_IterableEquality_default');
+  equality.IterableEquality$ = dart.generic(E => {
+    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
+    var IterableNOfE = () => (IterableNOfE = dart.constFn(dart.nullable(IterableOfE())))();
+    class IterableEquality extends core.Object {
+      get [_elementEquality$]() {
+        return this[_elementEquality];
       }
-      set builder(value) {
-        super.builder = value;
+      set [_elementEquality$](value) {
+        super[_elementEquality$] = value;
       }
-      buildWithChild(context, child) {
-        let t4, t3, t2, t1, t0;
-        if (context == null) dart.nullFailed(I[2], 235, 38, "context");
-        t0 = context;
-        t1 = provider.Provider.of(A, context);
-        t2 = provider.Provider.of(B, context);
-        t3 = provider.Provider.of(C, context);
-        t4 = child;
-        return this.builder(t0, t1, t2, t3, t4);
+      equals(elements1, elements2) {
+        IterableNOfE().as(elements1);
+        IterableNOfE().as(elements2);
+        if (elements1 == elements2) return true;
+        if (elements1 == null || elements2 == null) return false;
+        let it1 = elements1[$iterator];
+        let it2 = elements2[$iterator];
+        while (true) {
+          let hasNext = it1.moveNext();
+          if (hasNext != it2.moveNext()) return false;
+          if (!dart.test(hasNext)) return true;
+          if (!dart.test(this[_elementEquality$].equals(it1.current, it2.current))) return false;
+        }
+      }
+      hash(elements) {
+        IterableNOfE().as(elements);
+        if (elements == null) return dart.hashCode(null);
+        let hash = 0;
+        for (let element of elements) {
+          let c = this[_elementEquality$].hash(element);
+          hash = (hash + dart.notNull(c) & 2147483647) >>> 0;
+          hash = (hash + (hash << 10 >>> 0) & 2147483647) >>> 0;
+          hash = (hash ^ hash[$rightShift](6)) >>> 0;
+        }
+        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
+        hash = (hash ^ hash[$rightShift](11)) >>> 0;
+        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
+        return hash;
+      }
+      isValidKey(o) {
+        return IterableOfE().is(o);
       }
     }
-    (Consumer3.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[2], 221, 19, "builder");
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$2] = builder;
-      Consumer3.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    (IterableEquality.new = function(elementEquality = C[0] || CT.C0) {
+      if (elementEquality == null) dart.nullFailed(I[1], 115, 20, "elementEquality");
+      this[_elementEquality] = elementEquality;
       ;
-    }).prototype = Consumer3.prototype;
-    dart.addTypeTests(Consumer3);
-    Consumer3.prototype[_is_Consumer3_default] = true;
-    dart.addTypeCaches(Consumer3);
-    dart.setMethodSignature(Consumer3, () => ({
-      __proto__: dart.getMethods(Consumer3.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = IterableEquality.prototype;
+    dart.addTypeTests(IterableEquality);
+    IterableEquality.prototype[_is_IterableEquality_default] = true;
+    dart.addTypeCaches(IterableEquality);
+    IterableEquality[dart.implements] = () => [equality.Equality$(core.Iterable$(E))];
+    dart.setMethodSignature(IterableEquality, () => ({
+      __proto__: dart.getMethods(IterableEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(Consumer3, I[3]);
-    dart.setFieldSignature(Consumer3, () => ({
-      __proto__: dart.getFields(Consumer3.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, dart.nullable(framework.Widget)]))
+    dart.setLibraryUri(IterableEquality, I[0]);
+    dart.setFieldSignature(IterableEquality, () => ({
+      __proto__: dart.getFields(IterableEquality.__proto__),
+      [_elementEquality$]: dart.finalFieldType(equality.Equality$(dart.nullable(E)))
     }));
-    return Consumer3;
+    return IterableEquality;
   });
-  consumer.Consumer3 = consumer.Consumer3$();
-  dart.addTypeTests(consumer.Consumer3, _is_Consumer3_default);
-  var builder$3 = dart.privateName(consumer, "Consumer4.builder");
-  const _is_Consumer4_default = Symbol('_is_Consumer4_default');
-  consumer.Consumer4$ = dart.generic((A, B, C, D) => {
-    class Consumer4 extends nested.SingleChildStatelessWidget {
-      get builder() {
-        return this[builder$3];
+  equality.IterableEquality = equality.IterableEquality$();
+  dart.addTypeTests(equality.IterableEquality, _is_IterableEquality_default);
+  var _elementEquality$0 = dart.privateName(equality, "ListEquality._elementEquality");
+  const _is_ListEquality_default = Symbol('_is_ListEquality_default');
+  equality.ListEquality$ = dart.generic(E => {
+    var ListOfE = () => (ListOfE = dart.constFn(core.List$(E)))();
+    var ListNOfE = () => (ListNOfE = dart.constFn(dart.nullable(ListOfE())))();
+    class ListEquality extends core.Object {
+      get [_elementEquality$]() {
+        return this[_elementEquality$0];
       }
-      set builder(value) {
-        super.builder = value;
+      set [_elementEquality$](value) {
+        super[_elementEquality$] = value;
       }
-      buildWithChild(context, child) {
-        let t5, t4, t3, t2, t1, t0;
-        if (context == null) dart.nullFailed(I[2], 266, 38, "context");
-        t0 = context;
-        t1 = provider.Provider.of(A, context);
-        t2 = provider.Provider.of(B, context);
-        t3 = provider.Provider.of(C, context);
-        t4 = provider.Provider.of(D, context);
-        t5 = child;
-        return this.builder(t0, t1, t2, t3, t4, t5);
+      equals(list1, list2) {
+        ListNOfE().as(list1);
+        ListNOfE().as(list2);
+        if (list1 == list2) return true;
+        if (list1 == null || list2 == null) return false;
+        let length = list1[$length];
+        if (length != list2[$length]) return false;
+        for (let i = 0; i < dart.notNull(length); i = i + 1) {
+          if (!dart.test(this[_elementEquality$].equals(list1[$_get](i), list2[$_get](i)))) return false;
+        }
+        return true;
+      }
+      hash(list) {
+        ListNOfE().as(list);
+        if (list == null) return dart.hashCode(null);
+        let hash = 0;
+        for (let i = 0; i < dart.notNull(list[$length]); i = i + 1) {
+          let c = this[_elementEquality$].hash(list[$_get](i));
+          hash = (hash + dart.notNull(c) & 2147483647) >>> 0;
+          hash = (hash + (hash << 10 >>> 0) & 2147483647) >>> 0;
+          hash = (hash ^ hash[$rightShift](6)) >>> 0;
+        }
+        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
+        hash = (hash ^ hash[$rightShift](11)) >>> 0;
+        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
+        return hash;
+      }
+      isValidKey(o) {
+        return ListOfE().is(o);
       }
     }
-    (Consumer4.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[2], 251, 19, "builder");
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$3] = builder;
-      Consumer4.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    (ListEquality.new = function(elementEquality = C[0] || CT.C0) {
+      if (elementEquality == null) dart.nullFailed(I[1], 167, 20, "elementEquality");
+      this[_elementEquality$0] = elementEquality;
       ;
-    }).prototype = Consumer4.prototype;
-    dart.addTypeTests(Consumer4);
-    Consumer4.prototype[_is_Consumer4_default] = true;
-    dart.addTypeCaches(Consumer4);
-    dart.setMethodSignature(Consumer4, () => ({
-      __proto__: dart.getMethods(Consumer4.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = ListEquality.prototype;
+    dart.addTypeTests(ListEquality);
+    ListEquality.prototype[_is_ListEquality_default] = true;
+    dart.addTypeCaches(ListEquality);
+    ListEquality[dart.implements] = () => [equality.Equality$(core.List$(E))];
+    dart.setMethodSignature(ListEquality, () => ({
+      __proto__: dart.getMethods(ListEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(Consumer4, I[3]);
-    dart.setFieldSignature(Consumer4, () => ({
-      __proto__: dart.getFields(Consumer4.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, D, dart.nullable(framework.Widget)]))
+    dart.setLibraryUri(ListEquality, I[0]);
+    dart.setFieldSignature(ListEquality, () => ({
+      __proto__: dart.getFields(ListEquality.__proto__),
+      [_elementEquality$]: dart.finalFieldType(equality.Equality$(E))
     }));
-    return Consumer4;
+    return ListEquality;
   });
-  consumer.Consumer4 = consumer.Consumer4$();
-  dart.addTypeTests(consumer.Consumer4, _is_Consumer4_default);
-  var builder$4 = dart.privateName(consumer, "Consumer5.builder");
-  const _is_Consumer5_default = Symbol('_is_Consumer5_default');
-  consumer.Consumer5$ = dart.generic((A, B, C, D, E) => {
-    class Consumer5 extends nested.SingleChildStatelessWidget {
-      get builder() {
-        return this[builder$4];
+  equality.ListEquality = equality.ListEquality$();
+  dart.addTypeTests(equality.ListEquality, _is_ListEquality_default);
+  var _elementEquality$1 = dart.privateName(equality, "_UnorderedEquality._elementEquality");
+  const _is__UnorderedEquality_default = Symbol('_is__UnorderedEquality_default');
+  equality._UnorderedEquality$ = dart.generic((E, T) => {
+    var HashMapOfE$dynamic = () => (HashMapOfE$dynamic = dart.constFn(collection.HashMap$(E, dart.dynamic)))();
+    class _UnorderedEquality extends core.Object {
+      get [_elementEquality$]() {
+        return this[_elementEquality$1];
       }
-      set builder(value) {
-        super.builder = value;
+      set [_elementEquality$](value) {
+        super[_elementEquality$] = value;
       }
-      buildWithChild(context, child) {
-        let t6, t5, t4, t3, t2, t1, t0;
-        if (context == null) dart.nullFailed(I[2], 299, 38, "context");
-        t0 = context;
-        t1 = provider.Provider.of(A, context);
-        t2 = provider.Provider.of(B, context);
-        t3 = provider.Provider.of(C, context);
-        t4 = provider.Provider.of(D, context);
-        t5 = provider.Provider.of(E, context);
-        t6 = child;
-        return this.builder(t0, t1, t2, t3, t4, t5, t6);
+      equals(elements1, elements2) {
+        let t0;
+        T.as(elements1);
+        T.as(elements2);
+        if (elements1 == elements2) return true;
+        if (elements1 == null || elements2 == null) return false;
+        let counts = HashMapOfE$dynamic().new({equals: dart.bind(this[_elementEquality$], 'equals'), hashCode: dart.bind(this[_elementEquality$], 'hash'), isValidKey: dart.bind(this[_elementEquality$], 'isValidKey')});
+        let length = 0;
+        for (let e of elements1) {
+          let count = (t0 = counts[$_get](e), t0 == null ? 0 : t0);
+          counts[$_set](e, dart.dsend(count, '+', [1]));
+          length = length + 1;
+        }
+        for (let e of elements2) {
+          let count = counts[$_get](e);
+          if (count == null || dart.equals(count, 0)) return false;
+          counts[$_set](e, dart.dsend(count, '-', [1]));
+          length = length - 1;
+        }
+        return length === 0;
+      }
+      hash(elements) {
+        T.as(elements);
+        if (elements == null) return dart.hashCode(null);
+        let hash = 0;
+        for (let element of elements) {
+          let c = this[_elementEquality$].hash(element);
+          hash = (hash + dart.notNull(c) & 2147483647) >>> 0;
+        }
+        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
+        hash = (hash ^ hash[$rightShift](11)) >>> 0;
+        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
+        return hash;
       }
     }
-    (Consumer5.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[2], 283, 19, "builder");
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$4] = builder;
-      Consumer5.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    (_UnorderedEquality.new = function(_elementEquality) {
+      if (_elementEquality == null) dart.nullFailed(I[1], 209, 33, "_elementEquality");
+      this[_elementEquality$1] = _elementEquality;
       ;
-    }).prototype = Consumer5.prototype;
-    dart.addTypeTests(Consumer5);
-    Consumer5.prototype[_is_Consumer5_default] = true;
-    dart.addTypeCaches(Consumer5);
-    dart.setMethodSignature(Consumer5, () => ({
-      __proto__: dart.getMethods(Consumer5.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = _UnorderedEquality.prototype;
+    dart.addTypeTests(_UnorderedEquality);
+    _UnorderedEquality.prototype[_is__UnorderedEquality_default] = true;
+    dart.addTypeCaches(_UnorderedEquality);
+    _UnorderedEquality[dart.implements] = () => [equality.Equality$(T)];
+    dart.setMethodSignature(_UnorderedEquality, () => ({
+      __proto__: dart.getMethods(_UnorderedEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(Consumer5, I[3]);
-    dart.setFieldSignature(Consumer5, () => ({
-      __proto__: dart.getFields(Consumer5.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, D, E, dart.nullable(framework.Widget)]))
+    dart.setLibraryUri(_UnorderedEquality, I[0]);
+    dart.setFieldSignature(_UnorderedEquality, () => ({
+      __proto__: dart.getFields(_UnorderedEquality.__proto__),
+      [_elementEquality$]: dart.finalFieldType(equality.Equality$(E))
     }));
-    return Consumer5;
+    return _UnorderedEquality;
   });
-  consumer.Consumer5 = consumer.Consumer5$();
-  dart.addTypeTests(consumer.Consumer5, _is_Consumer5_default);
-  var builder$5 = dart.privateName(consumer, "Consumer6.builder");
-  const _is_Consumer6_default = Symbol('_is_Consumer6_default');
-  consumer.Consumer6$ = dart.generic((A, B, C, D, E, F) => {
-    class Consumer6 extends nested.SingleChildStatelessWidget {
-      get builder() {
-        return this[builder$5];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      buildWithChild(context, child) {
-        let t7, t6, t5, t4, t3, t2, t1, t0;
-        if (context == null) dart.nullFailed(I[2], 334, 38, "context");
-        t0 = context;
-        t1 = provider.Provider.of(A, context);
-        t2 = provider.Provider.of(B, context);
-        t3 = provider.Provider.of(C, context);
-        t4 = provider.Provider.of(D, context);
-        t5 = provider.Provider.of(E, context);
-        t6 = provider.Provider.of(F, context);
-        t7 = child;
-        return this.builder(t0, t1, t2, t3, t4, t5, t6, t7);
+  equality._UnorderedEquality = equality._UnorderedEquality$();
+  dart.addTypeTests(equality._UnorderedEquality, _is__UnorderedEquality_default);
+  const _is_UnorderedIterableEquality_default = Symbol('_is_UnorderedIterableEquality_default');
+  equality.UnorderedIterableEquality$ = dart.generic(E => {
+    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
+    class UnorderedIterableEquality extends equality._UnorderedEquality$(E, dart.nullable(core.Iterable$(E))) {
+      isValidKey(o) {
+        return IterableOfE().is(o);
       }
     }
-    (Consumer6.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[2], 317, 19, "builder");
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$5] = builder;
-      Consumer6.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    (UnorderedIterableEquality.new = function(elementEquality = C[0] || CT.C0) {
+      if (elementEquality == null) dart.nullFailed(I[1], 256, 20, "elementEquality");
+      UnorderedIterableEquality.__proto__.new.call(this, elementEquality);
       ;
-    }).prototype = Consumer6.prototype;
-    dart.addTypeTests(Consumer6);
-    Consumer6.prototype[_is_Consumer6_default] = true;
-    dart.addTypeCaches(Consumer6);
-    dart.setMethodSignature(Consumer6, () => ({
-      __proto__: dart.getMethods(Consumer6.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }).prototype = UnorderedIterableEquality.prototype;
+    dart.addTypeTests(UnorderedIterableEquality);
+    UnorderedIterableEquality.prototype[_is_UnorderedIterableEquality_default] = true;
+    dart.addTypeCaches(UnorderedIterableEquality);
+    dart.setMethodSignature(UnorderedIterableEquality, () => ({
+      __proto__: dart.getMethods(UnorderedIterableEquality.__proto__),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
     }));
-    dart.setLibraryUri(Consumer6, I[3]);
-    dart.setFieldSignature(Consumer6, () => ({
-      __proto__: dart.getFields(Consumer6.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, D, E, F, dart.nullable(framework.Widget)]))
-    }));
-    return Consumer6;
+    dart.setLibraryUri(UnorderedIterableEquality, I[0]);
+    return UnorderedIterableEquality;
   });
-  consumer.Consumer6 = consumer.Consumer6$();
-  dart.addTypeTests(consumer.Consumer6, _is_Consumer6_default);
-  dart.trackLibraries("packages/provider/src/selector.dart", {
-    "package:provider/src/selector.dart": selector,
-    "package:provider/src/consumer.dart": consumer
+  equality.UnorderedIterableEquality = equality.UnorderedIterableEquality$();
+  dart.addTypeTests(equality.UnorderedIterableEquality, _is_UnorderedIterableEquality_default);
+  const _is_SetEquality_default = Symbol('_is_SetEquality_default');
+  equality.SetEquality$ = dart.generic(E => {
+    var SetOfE = () => (SetOfE = dart.constFn(core.Set$(E)))();
+    class SetEquality extends equality._UnorderedEquality$(E, dart.nullable(core.Set$(E))) {
+      isValidKey(o) {
+        return SetOfE().is(o);
+      }
+    }
+    (SetEquality.new = function(elementEquality = C[0] || CT.C0) {
+      if (elementEquality == null) dart.nullFailed(I[1], 277, 20, "elementEquality");
+      SetEquality.__proto__.new.call(this, elementEquality);
+      ;
+    }).prototype = SetEquality.prototype;
+    dart.addTypeTests(SetEquality);
+    SetEquality.prototype[_is_SetEquality_default] = true;
+    dart.addTypeCaches(SetEquality);
+    dart.setMethodSignature(SetEquality, () => ({
+      __proto__: dart.getMethods(SetEquality.__proto__),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+    }));
+    dart.setLibraryUri(SetEquality, I[0]);
+    return SetEquality;
+  });
+  equality.SetEquality = equality.SetEquality$();
+  dart.addTypeTests(equality.SetEquality, _is_SetEquality_default);
+  var _keyEquality = dart.privateName(equality, "_keyEquality");
+  var _valueEquality = dart.privateName(equality, "_valueEquality");
+  equality._MapEntry = class _MapEntry extends core.Object {
+    get hashCode() {
+      return (3 * dart.notNull(this.equality[_keyEquality].hash(this.key)) + 7 * dart.notNull(this.equality[_valueEquality].hash(this.value)) & 2147483647) >>> 0;
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return equality._MapEntry.is(other) && dart.test(this.equality[_keyEquality].equals(this.key, other.key)) && dart.test(this.equality[_valueEquality].equals(this.value, other.value));
+    }
+  };
+  (equality._MapEntry.new = function(equality, key, value) {
+    if (equality == null) dart.nullFailed(I[1], 292, 18, "equality");
+    this.equality = equality;
+    this.key = key;
+    this.value = value;
+    ;
+  }).prototype = equality._MapEntry.prototype;
+  dart.addTypeTests(equality._MapEntry);
+  dart.addTypeCaches(equality._MapEntry);
+  dart.setLibraryUri(equality._MapEntry, I[0]);
+  dart.setFieldSignature(equality._MapEntry, () => ({
+    __proto__: dart.getFields(equality._MapEntry.__proto__),
+    equality: dart.finalFieldType(equality.MapEquality),
+    key: dart.finalFieldType(dart.dynamic),
+    value: dart.finalFieldType(dart.dynamic)
+  }));
+  dart.defineExtensionMethods(equality._MapEntry, ['_equals']);
+  dart.defineExtensionAccessors(equality._MapEntry, ['hashCode']);
+  var _keyEquality$ = dart.privateName(equality, "MapEquality._keyEquality");
+  var _valueEquality$ = dart.privateName(equality, "MapEquality._valueEquality");
+  const _is_MapEquality_default = Symbol('_is_MapEquality_default');
+  equality.MapEquality$ = dart.generic((K, V) => {
+    var MapOfK$V = () => (MapOfK$V = dart.constFn(core.Map$(K, V)))();
+    var MapNOfK$V = () => (MapNOfK$V = dart.constFn(dart.nullable(MapOfK$V())))();
+    class MapEquality extends core.Object {
+      get [_keyEquality]() {
+        return this[_keyEquality$];
+      }
+      set [_keyEquality](value) {
+        super[_keyEquality] = value;
+      }
+      get [_valueEquality]() {
+        return this[_valueEquality$];
+      }
+      set [_valueEquality](value) {
+        super[_valueEquality] = value;
+      }
+      equals(map1, map2) {
+        let t0;
+        MapNOfK$V().as(map1);
+        MapNOfK$V().as(map2);
+        if (map1 == map2) return true;
+        if (map1 == null || map2 == null) return false;
+        let length = map1[$length];
+        if (length != map2[$length]) return false;
+        let equalElementCounts = new (T.LinkedMapOf_MapEntry$int()).new();
+        for (let key of map1[$keys]) {
+          let entry = new equality._MapEntry.new(this, key, map1[$_get](key));
+          let count = (t0 = equalElementCounts[$_get](entry), t0 == null ? 0 : t0);
+          equalElementCounts[$_set](entry, dart.notNull(count) + 1);
+        }
+        for (let key of map2[$keys]) {
+          let entry = new equality._MapEntry.new(this, key, map2[$_get](key));
+          let count = equalElementCounts[$_get](entry);
+          if (count == null || count === 0) return false;
+          equalElementCounts[$_set](entry, dart.notNull(count) - 1);
+        }
+        return true;
+      }
+      hash(map) {
+        MapNOfK$V().as(map);
+        if (map == null) return dart.hashCode(null);
+        let hash = 0;
+        for (let key of map[$keys]) {
+          let keyHash = this[_keyEquality].hash(key);
+          let valueHash = this[_valueEquality].hash(V.as(map[$_get](key)));
+          hash = (hash + 3 * dart.notNull(keyHash) + 7 * dart.notNull(valueHash) & 2147483647) >>> 0;
+        }
+        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
+        hash = (hash ^ hash[$rightShift](11)) >>> 0;
+        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
+        return hash;
+      }
+      isValidKey(o) {
+        return MapOfK$V().is(o);
+      }
+    }
+    (MapEquality.new = function(opts) {
+      let keys = opts && 'keys' in opts ? opts.keys : C[0] || CT.C0;
+      if (keys == null) dart.nullFailed(I[1], 319, 20, "keys");
+      let values = opts && 'values' in opts ? opts.values : C[0] || CT.C0;
+      if (values == null) dart.nullFailed(I[1], 320, 19, "values");
+      this[_keyEquality$] = keys;
+      this[_valueEquality$] = values;
+      ;
+    }).prototype = MapEquality.prototype;
+    dart.addTypeTests(MapEquality);
+    MapEquality.prototype[_is_MapEquality_default] = true;
+    dart.addTypeCaches(MapEquality);
+    MapEquality[dart.implements] = () => [equality.Equality$(core.Map$(K, V))];
+    dart.setMethodSignature(MapEquality, () => ({
+      __proto__: dart.getMethods(MapEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+    }));
+    dart.setLibraryUri(MapEquality, I[0]);
+    dart.setFieldSignature(MapEquality, () => ({
+      __proto__: dart.getFields(MapEquality.__proto__),
+      [_keyEquality]: dart.finalFieldType(equality.Equality$(K)),
+      [_valueEquality]: dart.finalFieldType(equality.Equality$(V))
+    }));
+    return MapEquality;
+  });
+  equality.MapEquality = equality.MapEquality$();
+  dart.addTypeTests(equality.MapEquality, _is_MapEquality_default);
+  var _equalities = dart.privateName(equality, "MultiEquality._equalities");
+  var _equalities$ = dart.privateName(equality, "_equalities");
+  const _is_MultiEquality_default = Symbol('_is_MultiEquality_default');
+  equality.MultiEquality$ = dart.generic(E => {
+    class MultiEquality extends core.Object {
+      get [_equalities$]() {
+        return this[_equalities];
+      }
+      set [_equalities$](value) {
+        super[_equalities$] = value;
+      }
+      equals(e1, e2) {
+        E.as(e1);
+        E.as(e2);
+        for (let eq of this[_equalities$]) {
+          if (dart.test(eq.isValidKey(e1))) return dart.test(eq.isValidKey(e2)) && dart.test(eq.equals(e1, e2));
+        }
+        return false;
+      }
+      hash(e) {
+        E.as(e);
+        for (let eq of this[_equalities$]) {
+          if (dart.test(eq.isValidKey(e))) return eq.hash(e);
+        }
+        return 0;
+      }
+      isValidKey(o) {
+        for (let eq of this[_equalities$]) {
+          if (dart.test(eq.isValidKey(o))) return true;
+        }
+        return false;
+      }
+    }
+    (MultiEquality.new = function(equalities) {
+      if (equalities == null) dart.nullFailed(I[1], 381, 45, "equalities");
+      this[_equalities] = equalities;
+      ;
+    }).prototype = MultiEquality.prototype;
+    dart.addTypeTests(MultiEquality);
+    MultiEquality.prototype[_is_MultiEquality_default] = true;
+    dart.addTypeCaches(MultiEquality);
+    MultiEquality[dart.implements] = () => [equality.Equality$(E)];
+    dart.setMethodSignature(MultiEquality, () => ({
+      __proto__: dart.getMethods(MultiEquality.__proto__),
+      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+    }));
+    dart.setLibraryUri(MultiEquality, I[0]);
+    dart.setFieldSignature(MultiEquality, () => ({
+      __proto__: dart.getFields(MultiEquality.__proto__),
+      [_equalities$]: dart.finalFieldType(core.Iterable$(equality.Equality$(E)))
+    }));
+    return MultiEquality;
+  });
+  equality.MultiEquality = equality.MultiEquality$();
+  dart.addTypeTests(equality.MultiEquality, _is_MultiEquality_default);
+  var _base = dart.privateName(equality, "DeepCollectionEquality._base");
+  var _unordered = dart.privateName(equality, "DeepCollectionEquality._unordered");
+  var _base$ = dart.privateName(equality, "_base");
+  var _unordered$ = dart.privateName(equality, "_unordered");
+  equality.DeepCollectionEquality = class DeepCollectionEquality extends core.Object {
+    get [_base$]() {
+      return this[_base];
+    }
+    set [_base$](value) {
+      super[_base$] = value;
+    }
+    get [_unordered$]() {
+      return this[_unordered];
+    }
+    set [_unordered$](value) {
+      super[_unordered$] = value;
+    }
+    equals(e1, e2) {
+      if (core.Set.is(e1)) {
+        return core.Set.is(e2) && dart.test(new equality.SetEquality.new(this).equals(e1, e2));
+      }
+      if (core.Map.is(e1)) {
+        return core.Map.is(e2) && dart.test(new equality.MapEquality.new({keys: this, values: this}).equals(e1, e2));
+      }
+      if (!dart.test(this[_unordered$])) {
+        if (core.List.is(e1)) {
+          return core.List.is(e2) && dart.test(new equality.ListEquality.new(this).equals(e1, e2));
+        }
+        if (core.Iterable.is(e1)) {
+          return core.Iterable.is(e2) && dart.test(new equality.IterableEquality.new(this).equals(e1, e2));
+        }
+      } else if (core.Iterable.is(e1)) {
+        if (core.List.is(e1) !== core.List.is(e2)) return false;
+        return core.Iterable.is(e2) && dart.test(new equality.UnorderedIterableEquality.new(this).equals(e1, e2));
+      }
+      return this[_base$].equals(e1, e2);
+    }
+    hash(o) {
+      if (core.Set.is(o)) return new equality.SetEquality.new(this).hash(o);
+      if (core.Map.is(o)) return new equality.MapEquality.new({keys: this, values: this}).hash(o);
+      if (!dart.test(this[_unordered$])) {
+        if (core.List.is(o)) return new equality.ListEquality.new(this).hash(o);
+        if (core.Iterable.is(o)) return new equality.IterableEquality.new(this).hash(o);
+      } else if (core.Iterable.is(o)) {
+        return new equality.UnorderedIterableEquality.new(this).hash(o);
+      }
+      return this[_base$].hash(o);
+    }
+    isValidKey(o) {
+      return core.Iterable.is(o) || core.Map.is(o) || dart.test(this[_base$].isValidKey(o));
+    }
+  };
+  (equality.DeepCollectionEquality.new = function(base = C[0] || CT.C0) {
+    if (base == null) dart.nullFailed(I[1], 427, 42, "base");
+    this[_base] = base;
+    this[_unordered] = false;
+    ;
+  }).prototype = equality.DeepCollectionEquality.prototype;
+  (equality.DeepCollectionEquality.unordered = function(base = C[0] || CT.C0) {
+    if (base == null) dart.nullFailed(I[1], 435, 17, "base");
+    this[_base] = base;
+    this[_unordered] = true;
+    ;
+  }).prototype = equality.DeepCollectionEquality.prototype;
+  dart.addTypeTests(equality.DeepCollectionEquality);
+  dart.addTypeCaches(equality.DeepCollectionEquality);
+  equality.DeepCollectionEquality[dart.implements] = () => [equality.Equality];
+  dart.setMethodSignature(equality.DeepCollectionEquality, () => ({
+    __proto__: dart.getMethods(equality.DeepCollectionEquality.__proto__),
+    equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+    hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+    isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(equality.DeepCollectionEquality, I[0]);
+  dart.setFieldSignature(equality.DeepCollectionEquality, () => ({
+    __proto__: dart.getFields(equality.DeepCollectionEquality.__proto__),
+    [_base$]: dart.finalFieldType(equality.Equality),
+    [_unordered$]: dart.finalFieldType(core.bool)
+  }));
+  equality.CaseInsensitiveEquality = class CaseInsensitiveEquality extends core.Object {
+    equals(string1, string2) {
+      core.String.as(string1);
+      if (string1 == null) dart.nullFailed(I[1], 486, 22, "string1");
+      core.String.as(string2);
+      if (string2 == null) dart.nullFailed(I[1], 486, 38, "string2");
+      return comparators.equalsIgnoreAsciiCase(string1, string2);
+    }
+    hash(string) {
+      core.String.as(string);
+      if (string == null) dart.nullFailed(I[1], 490, 19, "string");
+      return comparators.hashIgnoreAsciiCase(string);
+    }
+    isValidKey(object) {
+      return typeof object == 'string';
+    }
+  };
+  (equality.CaseInsensitiveEquality.new = function() {
+    ;
+  }).prototype = equality.CaseInsensitiveEquality.prototype;
+  dart.addTypeTests(equality.CaseInsensitiveEquality);
+  dart.addTypeCaches(equality.CaseInsensitiveEquality);
+  equality.CaseInsensitiveEquality[dart.implements] = () => [equality.Equality$(core.String)];
+  dart.setMethodSignature(equality.CaseInsensitiveEquality, () => ({
+    __proto__: dart.getMethods(equality.CaseInsensitiveEquality.__proto__),
+    equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+    hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
+    isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(equality.CaseInsensitiveEquality, I[0]);
+  dart.defineLazy(equality, {
+    /*equality._HASH_MASK*/get _HASH_MASK() {
+      return 2147483647;
+    }
+  }, false);
+  dart.trackLibraries("packages/collection/src/equality.dart", {
+    "package:collection/src/equality.dart": equality
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["selector.dart","consumer.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/provider/src/selector.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["equality.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/collection/src/equality.dart.lib.js"}');
   // Exports:
   return {
-    src__selector: selector,
-    src__consumer: consumer
+    src__equality: equality
   };
 }));
 
-//# sourceMappingURL=selector.dart.lib.js.map
+//# sourceMappingURL=equality.dart.lib.js.map
