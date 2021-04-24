@@ -5,7 +5,6 @@ import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:flutter/material.dart';
 // import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_web/image_picker_web.dart';
-// import 'package:image_picker_web/image_picker_web.dart';
 
 class ImageChooser extends StatefulWidget {
   ImageChooser({Key key}) : super(key: key);
@@ -31,11 +30,11 @@ class _ImageChooserState extends State<ImageChooser> {
           child: CircleAvatar(
             radius: 70,
             backgroundColor: Colors.white,
-            child: image != null
+            child: _image != null
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image.file(
-                      image,
+                      _image,
                       width: 150,
                       height: 150,
                       fit: BoxFit.fill,
