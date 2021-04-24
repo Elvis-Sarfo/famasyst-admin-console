@@ -30,8 +30,8 @@ dependencies:
   async_loader: ^0.1.1
   floating_action_bubble: ^1.1.2
   firebase_core: ^1.0.4
-  cloud_firestore: ^1.0.6
   image_picker_web: ^2.0.1
+  cloud_firestore: ^1.0.6
   # image_picker: ^0.7.4
   
 
