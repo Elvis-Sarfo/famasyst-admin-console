@@ -1,4 +1,4 @@
-import 'package:farmasyst_admin_console/constants.dart';
+import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:flutter/material.dart';
 

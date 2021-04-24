@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:farmasyst_admin_console/constants.dart';
+import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'menu_item.dart';
 
@@ -24,7 +24,7 @@ class _TopNavBarState extends State<TopNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      margin: EdgeInsets.fromLTRB(40, 20, 0, 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[

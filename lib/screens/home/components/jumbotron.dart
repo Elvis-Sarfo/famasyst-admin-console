@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 
-import '../../../constants.dart';
+import '../../../services/constants.dart';
 
 class Jumbotron extends StatelessWidget {
   const Jumbotron({
@@ -14,11 +14,11 @@ class Jumbotron extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-                child: Padding(
+      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Padding(
               padding: EdgeInsets.only(right: !isMobile(context) ? 40 : 0),
               child: Column(
                 mainAxisAlignment: !isMobile(context)
@@ -88,14 +88,17 @@ class Jumbotron extends StatelessWidget {
                   )
                 ],
               ),
-            )),
-            if (isDesktop(context) || isTab(context))
-              Expanded(
-                  child: Image.asset(
+            ),
+          ),
+          if (isDesktop(context) || isTab(context))
+            Expanded(
+              child: Image.asset(
                 'assets/images/main.png',
                 height: size.height * 0.7,
-              ))
-          ],
-        ));
+              ),
+            )
+        ],
+      ),
+    );
   }
 }

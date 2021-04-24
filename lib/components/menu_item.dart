@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import '../services/constants.dart';
 
 class NavItem extends StatelessWidget {
   NavItem({
