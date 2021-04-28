@@ -15,6 +15,22 @@ class MyApp extends StatelessWidget {
       title: 'Farmasyst Web',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: const MaterialColor(
+          0xFF399d63,
+          const <int, Color>{
+            50: const Color(0xFF6dcf91),
+            100: const Color(0xFF6dcf91),
+            200: const Color(0xFF6dcf91),
+            300: const Color(0xFF399d63),
+            400: const Color(0xFF399d63),
+            500: const Color(0xFF399d63),
+            600: const Color(0xFF399d63),
+            700: const Color(0xFF006e38),
+            800: const Color(0xFF006e38),
+            900: const Color(0xFF006e38),
+          },
+        ),
+        primaryColorDark: kPrimaryDark,
         primaryColor: kPrimaryColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),

@@ -6,7 +6,11 @@ class PageRouter extends ChangeNotifier {
   Widget _selectedPage = Container(
     child: Center(
       // child: Text('KantaTech'),
-      child: ImageChooser(),
+      // child: ImageChooser(),
+      child: InkWell(
+        onTap: () {},
+        child: Text('Selected Date'),
+      ),
     ),
   );
 

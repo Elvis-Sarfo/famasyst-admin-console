@@ -1,71 +1,99 @@
 // import 'dart:io';
-import 'dart:html' as html;
+// import 'dart:html' as html;
+// import 'dart:html';
+// import 'dart:io';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_web/image_picker_web.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as p;
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:universal_html/html.dart' as html;
+// import 'package:image_picker_web/image_picker_web.dart';
 
 class ImageChooser extends StatefulWidget {
-  ImageChooser({Key key}) : super(key: key);
+  final double width;
+  final Function(dynamic) onImageSelected;
+  ImageChooser({Key key, this.width = 150, this.onImageSelected})
+      : super(key: key);
 
   @override
   _ImageChooserState createState() => _ImageChooserState();
 }
 
 class _ImageChooserState extends State<ImageChooser> {
-  // final picker = ImagePicker();
+  final picker = ImagePicker();
+  // variable to hold image to be displayed
+  Uint8List uploadedImage;
 
-  File image;
-  File _image;
+  var imageUrl;
+  var _image;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: widget.width,
       child: Center(
         child: GestureDetector(
           onTap: () {
-            _showPicker(context);
+            (kIsWeb) ? _startFilePicker() : _showPicker(context);
           },
           child: CircleAvatar(
             radius: 70,
             backgroundColor: Colors.white,
             child: _image != null
                 ? ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.file(
-                      _image,
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.fill,
-                    ),
+                    borderRadius: BorderRadius.circular(50),
+                    child: (kIsWeb)
+                        ? Image.memory(
+                            _image,
+                            width: 150,
+                            height: 150,
+                            fit: BoxFit.fill,
+                          )
+                        : Image.file(
+                            _image,
+                            // File.fromRawPath(uploadedImage),
+                            width: 150,
+                            height: 150,
+                            fit: BoxFit.fill,
+                          ),
                   )
                 : Container(
                     decoration: BoxDecoration(
-                        color: Colors.white24,
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(50)),
                     width: 150,
                     height: 150,
-                    child: Stack(children: <Widget>[
-                      Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Colors.black38,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, right: 8, bottom: 25),
-                          child: Text(
-                            'Take photo',
-                            style: TextStyle(color: kPrimaryDark),
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.black38,
                           ),
                         ),
-                      )
-                    ]),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8.0, right: 8, bottom: 25),
+                            child: Text(
+                              'Take photo',
+                              style: TextStyle(color: kPrimaryDark),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
           ),
         ),
@@ -84,7 +112,7 @@ class _ImageChooserState extends State<ImageChooser> {
                 new ListTile(
                   leading: new Icon(Icons.photo_library),
                   title: new Text('Photo Library'),
-                  onTap: getImageFromGallery,
+                  onTap: () => getImageFromGallery(),
                 ),
                 new ListTile(
                   leading: new Icon(Icons.photo_camera),
@@ -105,80 +133,60 @@ class _ImageChooserState extends State<ImageChooser> {
   }
 
   Future<void> getImageFromGallery() async {
-    // final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    html.File pickedFile =
-        await ImagePickerWeb.getImage(outputType: ImageType.file);
-    print(pickedFile);
+    var pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.relativePath);
+        _image = File(pickedFile.path);
+      });
+      Navigator.of(context).pop();
+    } else {
+      print('No _image selected.');
+    }
+    Navigator.of(context).pop();
+  }
+
+//method to load image and update `uploadedImage`
+  _startFilePicker() async {
+    html.InputElement uploadInput = html.FileUploadInputElement();
+    uploadInput.click();
+
+    uploadInput.onChange.listen((e) {
+      // read file content as dataURL
+      final files = uploadInput.files;
+      if (files.length == 1) {
+        final file = files[0];
+        html.FileReader reader = html.FileReader();
+
+        reader.onLoadEnd.listen((e) {
+          setState(() {
+            uploadedImage = reader.result;
+            _image = uploadedImage;
+            widget.onImageSelected(_image);
+          });
+        });
+
+        reader.onError.listen((fileEvent) {
+          setState(() {
+            // option1Text = "Some Error occured while reading the file";
+          });
+        });
+
+        reader.readAsArrayBuffer(file);
+      }
+    });
+  }
+
+  Future<void> getImageFromCamera() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
       });
     } else {
       print('No _image selected.');
     }
-  }
-
-  Future<void> getImageFromCamera() async {
-    // final pickedFile = await picker.getImage(source: ImageSource.camera);
-
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     _image = File(pickedFile.path);
-    //   });
-    // } else {
-    //   print('No _image selected.');
-    // }
+    Navigator.of(context).pop();
   }
 }
-
-// Widget imageChooser() {
-//   return Center(
-//     child: GestureDetector(
-//       onTap: () {
-//         _showPicker(context);
-//       },
-//       child: CircleAvatar(
-//         radius: 70,
-//         backgroundColor: Colors.white,
-//         child: _image != null
-//             ? ClipRRect(
-//                 borderRadius: BorderRadius.circular(100),
-//                 child: Image.file(
-//                   _image,
-//                   width: 150,
-//                   height: 150,
-//                   fit: BoxFit.fill,
-//                 ),
-//               )
-//             : Container(
-//                 decoration: BoxDecoration(
-//                     color: Colors.white24,
-//                     borderRadius: BorderRadius.circular(50)),
-//                 width: 150,
-//                 height: 150,
-//                 child: Stack(children: <Widget>[
-//                   Align(
-//                     alignment: Alignment.center,
-//                     child: Icon(
-//                       Icons.camera_alt,
-//                       color: Colors.black38,
-//                     ),
-//                   ),
-//                   Align(
-//                     alignment: Alignment.bottomCenter,
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(
-//                           left: 8.0, right: 8, bottom: 25),
-//                       child: Text(
-//                         'Take photo',
-//                         style: TextStyle(color: primaryDark),
-//                       ),
-//                     ),
-//                   )
-//                 ]),
-//               ),
-//       ),
-//     ),
-//   );
-// }

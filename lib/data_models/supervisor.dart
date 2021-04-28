@@ -1,21 +1,21 @@
-class Farmer {
-  String name, location, phone, farmerId, gender;
+class Supervisor {
+  String name, location, telephone, farmerId, gender;
   int numFarms;
   String img;
   double farmSize;
-  int dateOfBirth;
-  List<String> specializations;
-  Farmer(
+  int age;
+  String specialized;
+  Supervisor(
       {this.gender,
       this.farmerId,
       this.name,
       this.location,
-      this.phone,
+      this.telephone,
       this.numFarms,
       this.img,
-      this.dateOfBirth,
+      this.age,
       this.farmSize,
-      this.specializations});
+      this.specialized});
 
   // Convert a Farmer object into a Map object
   Map<String, dynamic> toMap() {
@@ -24,26 +24,26 @@ class Farmer {
       map['farmerId'] = farmerId;
     }
     map['name'] = name;
-    map['phone'] = phone;
+    map['telephone'] = telephone;
     map['location'] = location;
     map['numFarms'] = numFarms;
     map['img'] = img;
     map['farmSize'] = farmSize;
-    map['dateOfBirth'] = dateOfBirth;
+    map['age'] = age;
     map['gender'] = gender;
-    map['specializations'] = specializations;
+    map['specialized'] = specialized;
     return map;
   }
 
-  Farmer.fromMapObject(Map<String, dynamic> map) {
+  Supervisor.fromMapObject(Map<String, dynamic> map) {
     this.name = map['name'];
-    this.phone = map['phone'];
+    this.telephone = map['telephone'];
     this.location = map['location'];
     this.numFarms = map['numFarms'];
     this.img = map['img'];
     this.farmSize = map['farmSize'];
-    this.dateOfBirth = map['dateOfBirth'];
+    this.age = map['age'];
     this.gender = map['gender'];
-    this.specializations = map['specializations'];
+    this.specialized = map['specialized'];
   }
 }

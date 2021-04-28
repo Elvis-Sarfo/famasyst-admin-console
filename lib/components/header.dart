@@ -1,6 +1,6 @@
 import 'package:farmasyst_admin_console/components/top_nav_bar.dart';
 import 'package:farmasyst_admin_console/page_routes.dart';
-import 'package:farmasyst_admin_console/screens/farmers/farmers.dart';
+import 'package:farmasyst_admin_console/screens/farmers/farmer_screen.dart';
 import 'package:farmasyst_admin_console/screens/farms/farms.dart';
 import 'package:farmasyst_admin_console/screens/home/home.dart';
 import 'package:flutter/material.dart';

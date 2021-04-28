@@ -4,14 +4,36 @@ import 'package:flutter/material.dart';
 class CustomTextFormField extends StatelessWidget {
   final Widget prefixIcon, suffixIcon;
   final String hintText;
-  const CustomTextFormField(
-      {Key key, this.prefixIcon, this.suffixIcon, this.hintText})
-      : super(key: key);
+  final TextEditingController controller;
+  final TextInputType type;
+  final Function(String value) onChange, validator, onSaved;
+  // final Function(String value) onSaved;
+  CustomTextFormField({
+    Key key,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.hintText,
+    this.controller,
+    this.onChange,
+    this.onSaved,
+    this.validator,
+    this.type,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
+      width: size.width,
       child: TextFormField(
+        controller: controller ?? null,
+        onChanged: onChange ?? (value) {},
+        validator: validator ??
+            (value) {
+              return null;
+            },
+        onSaved: onSaved ?? (value) {},
+        keyboardType: type,
         maxLines: 1,
         minLines: 1,
         decoration: InputDecoration(
