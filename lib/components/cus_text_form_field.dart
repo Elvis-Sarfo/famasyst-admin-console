@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final TextInputType type;
+  final bool isPasswordFeild;
   final Function(String value) onChange, validator, onSaved;
   // final Function(String value) onSaved;
   CustomTextFormField({
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.validator,
     this.type,
+    this.isPasswordFeild = false,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class CustomTextFormField extends StatelessWidget {
         onSaved: onSaved ?? (value) {},
         keyboardType: type,
         maxLines: 1,
+        obscureText: isPasswordFeild,
         minLines: 1,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,

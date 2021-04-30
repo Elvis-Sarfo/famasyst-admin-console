@@ -157,12 +157,14 @@ class _ImageChooserState extends State<ImageChooser> {
       if (files.length == 1) {
         final file = files[0];
         html.FileReader reader = html.FileReader();
+        reader.readAsArrayBuffer(file);
 
         reader.onLoadEnd.listen((e) {
           setState(() {
+            // reader.readAsDataUrl(file);
             uploadedImage = reader.result;
             _image = uploadedImage;
-            widget.onImageSelected(_image);
+            widget.onImageSelected(file);
           });
         });
 
@@ -171,8 +173,6 @@ class _ImageChooserState extends State<ImageChooser> {
             // option1Text = "Some Error occured while reading the file";
           });
         });
-
-        reader.readAsArrayBuffer(file);
       }
     });
   }

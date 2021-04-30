@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class DatabaseServices {
   static Future<QuerySnapshot> getDataFromDatabase(String collection) async {
@@ -32,14 +33,21 @@ class DatabaseServices {
         .get();
   }
 
-  static Future<String> uploadFile(File file, String folederPath) async {
+  static Future<String> uploadFile(
+      var file, String folederPath, String filename) async {
+    var _filename = filename == null
+        ? (kIsWeb)
+            ? DateTime.now().toString()
+            : getFileName(file)
+        : filename;
     firebase_storage.Reference reference = firebase_storage
         .FirebaseStorage.instance
-        .ref('$folederPath/${getFileName(file)}');
-    firebase_storage.TaskSnapshot storageTaskSnapshot =
-        await reference.putFile(file);
-    final String downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
+        .ref('$folederPath/$_filename');
 
+    firebase_storage.TaskSnapshot storageTaskSnapshot = (!kIsWeb)
+        ? await reference.putFile(file)
+        : await reference.putBlob(file);
+    final String downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
     return downloadUrl;
   }
 

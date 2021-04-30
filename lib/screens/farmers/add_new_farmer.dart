@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/data_models/farmer.dart';
+import 'package:farmasyst_admin_console/modules/famer_module.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
@@ -108,7 +110,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                               Row(
                                 children: [
                                   ImageChooser(
-                                    onImageSelected: (image) {
+                                    onImageSelected: (image) async {
                                       profileImage = image;
                                     },
                                   ),
@@ -210,7 +212,8 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                         DatePicker(
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.name = value;
+                                              farmer.dateOfBirth =
+                                                  DateTime.parse(value);
                                             });
                                           },
                                         ),
@@ -265,7 +268,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                 hintText: 'Number of Farms',
                                 onSaved: (value) {
                                   setState(() {
-                                    farmer.location = value;
+                                    farmer.numFarms = int.parse(value);
                                   });
                                 },
                                 validator: (value) {
@@ -356,9 +359,11 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                         // todo: add farmer image
                                         // var imgUrl = await DatabaseServices.uploadFile(
                                         //     file, 'farmer/');
-                                        print('Saved');
+                                        await saveNewFarmer(farmer,
+                                            profilePic: profileImage,
+                                            pictureName: farmer.name
+                                                .replaceAll(' ', '_'));
                                       }
-                                      print(farmer);
                                     },
                                   ),
                                   SizedBox(width: 10),

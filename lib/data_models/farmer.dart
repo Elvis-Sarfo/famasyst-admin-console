@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Farmer {
   String name, location, phone, farmerId, gender;
   int numFarms;
-  String img;
+  String picture;
   double farmSize;
-  int dateOfBirth;
+  DateTime dateOfBirth;
   List<String> specializations;
   Farmer(
       {this.gender,
@@ -12,7 +14,7 @@ class Farmer {
       this.location,
       this.phone,
       this.numFarms,
-      this.img,
+      this.picture,
       this.dateOfBirth,
       this.farmSize,
       this.specializations});
@@ -27,7 +29,7 @@ class Farmer {
     map['phone'] = phone;
     map['location'] = location;
     map['numFarms'] = numFarms;
-    map['img'] = img;
+    map['picture'] = picture;
     map['farmSize'] = farmSize;
     map['dateOfBirth'] = dateOfBirth;
     map['gender'] = gender;
@@ -40,9 +42,11 @@ class Farmer {
     this.phone = map['phone'];
     this.location = map['location'];
     this.numFarms = map['numFarms'];
-    this.img = map['img'];
+    this.picture = map['picture'];
     this.farmSize = map['farmSize'];
-    this.dateOfBirth = map['dateOfBirth'];
+    this.dateOfBirth = (map['dateOfBirth'] is Timestamp)
+        ? map['dateOfBirth'].toDate()
+        : map['dateOfBirth'];
     this.gender = map['gender'];
     this.specializations = map['specializations'];
   }

@@ -1,7 +1,7 @@
 import 'package:farmasyst_admin_console/components/footer.dart';
 import 'package:farmasyst_admin_console/components/header.dart';
 import 'package:farmasyst_admin_console/components/side_menu.dart';
-import 'package:farmasyst_admin_console/page_routes.dart';
+import 'package:farmasyst_admin_console/page_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

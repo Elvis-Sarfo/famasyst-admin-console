@@ -77,7 +77,7 @@ class _DatePickerState extends State<DatePicker> {
                 (value) {
                   if (value != null) {
                     // _dateTime = value;
-                    var formatter = new DateFormat('MM/dd/yyyy');
+                    var formatter = new DateFormat('yyyy-MM-dd');
                     _dateFieldController.text = formatter.format(value);
                   }
                 },
