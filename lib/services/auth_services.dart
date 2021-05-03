@@ -1,3 +1,4 @@
+import 'package:farmasyst_admin_console/utils/helper_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -50,5 +51,11 @@ class Auth {
     }
     print('from method' + result);
     return result;
+  }
+
+  static Future<dynamic> sinupWithPhone(String phoneNum) async {
+    return await FirebaseAuth.instance.signInWithPhoneNumber(
+      validatePhoneNum(phoneNum),
+    );
   }
 }

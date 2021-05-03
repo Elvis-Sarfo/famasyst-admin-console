@@ -4,11 +4,13 @@ import 'package:intl/intl.dart';
 
 class DatePicker extends StatefulWidget {
   final Function(String value) onChange, validator, onSaved;
+  DateTime defaultDate;
   DatePicker({
     Key key,
     this.onChange,
     this.onSaved,
     this.validator,
+    this.defaultDate,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,10 @@ class _DatePickerState extends State<DatePicker> {
 
   @override
   void initState() {
-    _dateFieldController = TextEditingController(text: '');
+    var defaultDateString = widget.defaultDate != null
+        ? DateFormat('yyyy-MM-dd').format(widget.defaultDate)
+        : '';
+    _dateFieldController = TextEditingController(text: defaultDateString);
     super.initState();
   }
 
@@ -60,7 +65,7 @@ class _DatePickerState extends State<DatePicker> {
             onPressed: () async {
               return await showDatePicker(
                 context: context,
-                initialDate: DateTime.now(),
+                initialDate: widget.defaultDate ?? DateTime.now(),
                 firstDate: DateTime(1900, 1),
                 lastDate: DateTime.now(),
                 builder: (BuildContext context, Widget child) {

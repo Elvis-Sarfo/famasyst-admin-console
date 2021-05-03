@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class PageRouter extends ChangeNotifier {
   Widget _selectedPage = Container(
+    color: Colors.grey.withOpacity(0.1),
     child: Center(
       // child: Text('KantaTech'),
       // child: ImageChooser(),

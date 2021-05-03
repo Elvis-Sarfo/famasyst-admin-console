@@ -9,3 +9,10 @@ String validateEmail(String value) {
 
   return null;
 }
+
+String emptyFeildValidator(String value) {
+  if (value.isEmpty) {
+    return 'Feild must not be empty';
+  }
+  return null;
+}

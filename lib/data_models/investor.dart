@@ -1,15 +1,17 @@
 class InvestorsData {
   String name, investorID, phone, location, image, email;
-  List interest;
+  List interests;
+  bool enabled;
 
   InvestorsData(
       {this.name,
+      this.enabled,
       this.investorID,
       this.phone,
       this.location,
       this.image,
       this.email,
-      this.interest});
+      this.interests});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -22,7 +24,8 @@ class InvestorsData {
     map['location'] = location;
     map['image'] = image;
     map['email'] = email;
-    map['interest'] = interest;
+    map['interests'] = interests;
+    map['enabled'] = enabled;
     return map;
   }
 
@@ -33,6 +36,7 @@ class InvestorsData {
     this.location = map['location'];
     this.image = map['image'];
     this.email = map['email'];
-    this.interest = map['interest'];
+    this.interests = map['interests'];
+    this.enabled = map['enabled'];
   }
 }

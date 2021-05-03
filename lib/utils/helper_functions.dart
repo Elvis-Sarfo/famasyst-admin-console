@@ -68,3 +68,14 @@ int getYears(DateTime date) {
   int differenceInYears = (dur.inDays / 365).floor();
   return differenceInYears;
 }
+
+String validatePhoneNum(String phoneNum) {
+  String validPhoneNum = '';
+  if (phoneNum.startsWith('+233')) {
+    validPhoneNum = phoneNum;
+  }
+  if (phoneNum.startsWith('0')) {
+    validPhoneNum = phoneNum.replaceFirst('0', '+233');
+  }
+  return validPhoneNum;
+}

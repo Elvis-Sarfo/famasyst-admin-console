@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
 import 'package:farmasyst_admin_console/screens/farmers/add_new_farmer.dart';
+import 'package:farmasyst_admin_console/screens/farmers/components/dts.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 
@@ -7,6 +9,8 @@ class FarmerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    CollectionReference farmers =
+        FirebaseFirestore.instance.collection('Farmers');
 
     return Container(
       margin: EdgeInsets.fromLTRB(100, 10, 100, 20),
@@ -76,68 +80,47 @@ class FarmerScreen extends StatelessWidget {
                   );
                 },
               ),
-
-              // TextField(
-              //   decoration: InputDecoration(
-              //       border: OutlineInputBorder(),
-              //       hintText: 'Enter a search term'),
-              // ),
             ],
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                width: size.width,
-                child: DataTable(
-                  columns: const <DataColumn>[
-                    DataColumn(
-                      label: Text(
-                        'Name',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Age',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Role',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Role',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Role',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Role',
-                      ),
-                    ),
-                  ],
-                  rows: List.generate(
-                    10,
-                    (index) => DataRow(
-                      cells: <DataCell>[
-                        DataCell(Text('Sarah')),
-                        DataCell(Text('19')),
-                        DataCell(Text('Student')),
-                        DataCell(Text('Student')),
-                        DataCell(Text('Student')),
-                        DataCell(Text('Student')),
-                      ],
-                    ),
+              child: StreamBuilder<QuerySnapshot>(
+            stream: farmers.snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Center(child: Text('Something went wrong'));
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: Text("Loading..."));
+              }
+
+              return new SingleChildScrollView(
+                child: Container(
+                  width: size.width,
+                  child: PaginatedDataTable(
+                    rowsPerPage: 7,
+                    sortAscending: true,
+                    sortColumnIndex: 1,
+                    columns: const <DataColumn>[
+                      DataColumn(label: Text('')),
+                      DataColumn(label: Text('Name')),
+                      DataColumn(label: Text('Phone')),
+                      DataColumn(label: Text('Location')),
+                      DataColumn(label: Text('Gender')),
+                      DataColumn(label: Text('Enabled')),
+                      DataColumn(
+                          label: Text(
+                        'Actions',
+                        textAlign: TextAlign.center,
+                      )),
+                    ],
+                    source: DTS(snapshot, context),
                   ),
                 ),
-              ),
-            ),
-          ),
+              );
+            },
+          )),
         ],
       ),
     );

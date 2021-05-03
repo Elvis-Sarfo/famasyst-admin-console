@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/data_models/farmer.dart';
 import 'package:farmasyst_admin_console/modules/famer_module.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
 import 'package:farmasyst_admin_console/components/date_picker.dart';
@@ -13,38 +14,52 @@ import 'package:farmasyst_admin_console/components/labeled_radio_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:flutter_tags/flutter_tags.dart';
+import 'package:intl/intl.dart';
 
-class AddNewFarmerDialog extends StatefulWidget {
-  AddNewFarmerDialog({Key key}) : super(key: key);
+class UpdateFarmer extends StatefulWidget {
+  final Farmer farmer;
+  final farmerDocSnap;
+  UpdateFarmer({Key key, this.farmer, this.farmerDocSnap}) : super(key: key);
 
   @override
-  _AddNewFarmerDialogState createState() => _AddNewFarmerDialogState();
+  _UpdateFarmerState createState() => _UpdateFarmerState();
 }
 
-class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
-  List<String> _farmerSpecializations = ['Cocao', 'Tomatoe', 'Yam'];
-  String _selectedDate = '', _genderRadioGroupVal = 'value', errMsg = '';
+class _UpdateFarmerState extends State<UpdateFarmer> {
   final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
   final _formKey = GlobalKey<FormState>();
-  Farmer farmer = new Farmer();
+  Farmer farmer;
   var profileImage;
-  bool showErrorMsg = false, isLoading = false;
+  String errMsg = '';
+  bool isLoading = false, showErrorMsg = false;
+
   // Define controllers
-  TextEditingController _dateFieldController;
+  TextEditingController _nameFieldController;
+  TextEditingController _phoneFieldController;
+  TextEditingController _locationFieldController;
+  TextEditingController _numOfFarmsFieldController;
 
   @override
   void initState() {
-    _dateFieldController = TextEditingController(text: _selectedDate);
+    farmer = widget.farmer;
+    _nameFieldController = TextEditingController(text: farmer.name);
+    _phoneFieldController = TextEditingController(text: farmer.phone);
+    _locationFieldController = TextEditingController(text: farmer.location);
+    _numOfFarmsFieldController =
+        TextEditingController(text: farmer.numFarms.toString());
     super.initState();
   }
 
   @override
   void dispose() {
-    _dateFieldController.dispose();
+    _nameFieldController.dispose();
+    _phoneFieldController.dispose();
+    _locationFieldController.dispose();
+    _numOfFarmsFieldController.dispose();
     super.dispose();
   }
 
-  saveFarmer() async {
+  _updateFarmer(BuildContext context) async {
     if (!isLoading) {
       setState(() {
         isLoading = true;
@@ -52,11 +67,9 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
       });
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
-
-        // add farmer specs
-        farmer.specializations = _farmerSpecializations;
-        var results = await saveNewFarmer(
-          farmer,
+        var results = await updateFarmer(
+          widget.farmerDocSnap,
+          farmer: farmer,
           profilePic: profileImage,
           pictureName: farmer.name.replaceAll(' ', '_'),
         );
@@ -88,7 +101,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Register Farmer',
+                  'Edit Farmer Details',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -155,17 +168,13 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                         CustomTextFormField(
                                           prefixIcon: Icon(Icons.person),
                                           hintText: 'Enter Full Name',
+                                          controller: _nameFieldController,
                                           onSaved: (value) {
                                             setState(() {
                                               farmer.name = value;
                                             });
                                           },
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Name must not be empty';
-                                            }
-                                            return null;
-                                          },
+                                          validator: emptyFeildValidator,
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -204,13 +213,10 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                                           .symmetric(
                                                       horizontal: 5.0),
                                                   value: 'male',
-                                                  groupValue:
-                                                      _genderRadioGroupVal,
+                                                  groupValue: farmer.gender,
                                                   onChanged: (String newValue) {
                                                     setState(() {
                                                       print(newValue);
-                                                      _genderRadioGroupVal =
-                                                          newValue;
                                                       farmer.gender = newValue;
                                                     });
                                                   },
@@ -223,13 +229,10 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                                           .symmetric(
                                                       horizontal: 5.0),
                                                   value: 'female',
-                                                  groupValue:
-                                                      _genderRadioGroupVal,
+                                                  groupValue: farmer.gender,
                                                   onChanged: (String newValue) {
                                                     setState(() {
                                                       print(newValue);
-                                                      _genderRadioGroupVal =
-                                                          newValue;
                                                       farmer.gender = newValue;
                                                     });
                                                   },
@@ -242,6 +245,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                           height: 10,
                                         ),
                                         DatePicker(
+                                          defaultDate: farmer.dateOfBirth,
                                           onSaved: (value) {
                                             setState(() {
                                               farmer.dateOfBirth =
@@ -260,42 +264,28 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                               CustomTextFormField(
                                 prefixIcon: Icon(Icons.phone),
                                 hintText: 'Telephone',
+                                controller: _phoneFieldController,
                                 type: TextInputType.phone,
                                 onSaved: (value) {
                                   setState(() {
                                     farmer.phone = value;
                                   });
                                 },
-                                onChange: (value) {
-                                  setState(() {
-                                    showErrorMsg = false;
-                                  });
-                                },
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Phone number must not be empty';
-                                  }
-                                  return null;
-                                },
+                                validator: emptyFeildValidator,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               CustomTextFormField(
-                                prefixIcon: Icon(Icons.place),
-                                hintText: 'Place of Residence',
-                                onSaved: (value) {
-                                  setState(() {
-                                    farmer.location = value;
-                                  });
-                                },
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Place of Residence must not be empty';
-                                  }
-                                  return null;
-                                },
-                              ),
+                                  prefixIcon: Icon(Icons.place),
+                                  hintText: 'Place of Residence',
+                                  controller: _locationFieldController,
+                                  onSaved: (value) {
+                                    setState(() {
+                                      farmer.location = value;
+                                    });
+                                  },
+                                  validator: emptyFeildValidator),
                               SizedBox(
                                 height: 10,
                               ),
@@ -303,17 +293,13 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                 type: TextInputType.number,
                                 prefixIcon: Icon(Icons.grid_view),
                                 hintText: 'Number of Farms',
+                                controller: _numOfFarmsFieldController,
                                 onSaved: (value) {
                                   setState(() {
                                     farmer.numFarms = int.parse(value);
                                   });
                                 },
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Number of Farms must not be empty';
-                                  }
-                                  return null;
-                                },
+                                validator: emptyFeildValidator,
                               ),
                               SizedBox(
                                 height: 10,
@@ -341,13 +327,13 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                       // Add item to the data source.
                                       setState(() {
                                         // required
-                                        _farmerSpecializations.add(str);
+                                        farmer.specializations.add(str);
                                       });
                                     },
                                   ),
-                                  itemCount: _farmerSpecializations.length,
+                                  itemCount: farmer.specializations.length,
                                   itemBuilder: (int index) {
-                                    final item = _farmerSpecializations[index];
+                                    final item = farmer.specializations[index];
                                     return Tooltip(
                                       message: '$item farming',
                                       child: ItemTags(
@@ -362,7 +348,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                             // Remove the item from the data source.
                                             setState(() {
                                               // required
-                                              _farmerSpecializations
+                                              farmer.specializations
                                                   .removeAt(index);
                                             });
                                             //required
@@ -377,7 +363,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
                               if (showErrorMsg)
                                 Container(
@@ -402,7 +388,15 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                     isLoading: isLoading,
                                     title: 'Save',
                                     color: kPrimaryColor,
-                                    tapEvent: saveFarmer,
+                                    tapEvent: () {
+                                      _updateFarmer(context);
+                                    },
+                                  ),
+                                  SizedBox(width: 10),
+                                  MainButton(
+                                    title: 'Cancel',
+                                    color: kSecondaryColor,
+                                    tapEvent: () {},
                                   )
                                 ],
                               )

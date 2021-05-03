@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Farmer {
   String name, location, phone, farmerId, gender;
   int numFarms;
+  bool enabled;
   String picture;
   double farmSize;
   DateTime dateOfBirth;
-  List<String> specializations;
+  List specializations;
   Farmer(
       {this.gender,
       this.farmerId,
@@ -17,6 +18,7 @@ class Farmer {
       this.picture,
       this.dateOfBirth,
       this.farmSize,
+      this.enabled = false,
       this.specializations});
 
   // Convert a Farmer object into a Map object
@@ -33,6 +35,7 @@ class Farmer {
     map['farmSize'] = farmSize;
     map['dateOfBirth'] = dateOfBirth;
     map['gender'] = gender;
+    map['enabled'] = enabled;
     map['specializations'] = specializations;
     return map;
   }
@@ -48,6 +51,7 @@ class Farmer {
         ? map['dateOfBirth'].toDate()
         : map['dateOfBirth'];
     this.gender = map['gender'];
+    this.enabled = map['enabled'];
     this.specializations = map['specializations'];
   }
 }

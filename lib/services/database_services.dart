@@ -70,4 +70,13 @@ class DatabaseServices {
   static Future<DocumentReference> saveData(String collection, Map data) async {
     return await FirebaseFirestore.instance.collection(collection).add(data);
   }
+
+  static Future<void> deleteDocument(String collection, String docId) async {
+    return await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(docId)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
 }
