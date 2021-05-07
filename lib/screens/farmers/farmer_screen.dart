@@ -1,17 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
+import 'package:farmasyst_admin_console/models/farmer.dart';
 import 'package:farmasyst_admin_console/screens/farmers/add_new_farmer.dart';
 import 'package:farmasyst_admin_console/screens/farmers/components/dts.dart';
+import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
+import 'package:provider/provider.dart';
 
 class FarmerScreen extends StatelessWidget {
+  // CollectionReference farmers =
+  //     FirebaseFirestore.instance.collection('Farmers');
+  // var farmerStream =
+  //     FirebaseFirestore.instance.collection('Farmers').snapshots();
+  // List<DocumentSnapshot> farmersList, filteredFarmersList;
+  // FarmersState pageState = FarmersState();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    CollectionReference farmers =
-        FirebaseFirestore.instance.collection('Farmers');
-
+    // CollectionReference farmers =
+    //
+    Function _searchFarmer;
     return Container(
       margin: EdgeInsets.fromLTRB(100, 10, 100, 20),
       child: Column(
@@ -41,6 +51,9 @@ class FarmerScreen extends StatelessWidget {
                 child: TextFormField(
                   maxLines: 1,
                   minLines: 1,
+                  onChanged: (value) async {
+                    _searchFarmer(value);
+                  },
                   decoration: InputDecoration(
                     filled: true,
                     suffixIcon: IconButton(
@@ -83,19 +96,21 @@ class FarmerScreen extends StatelessWidget {
             ],
           ),
           Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-            stream: farmers.snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
+            child:
+                Consumer<FarmersState>(builder: (context, farmersState, child) {
+              // Assing the searchHandler to a upper scope
+              _searchFarmer = farmersState.searchFarmer;
+
+              if (farmersState.hasError) {
                 return Center(child: Text('Something went wrong'));
               }
-
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: Text("Loading..."));
+              if (farmersState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
               }
 
-              return new SingleChildScrollView(
+              return SingleChildScrollView(
                 child: Container(
                   width: size.width,
                   child: PaginatedDataTable(
@@ -115,13 +130,118 @@ class FarmerScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       )),
                     ],
-                    source: DTS(snapshot, context),
+                    source: DTS(farmersState.getFilteredFarmers, context),
                   ),
                 ),
               );
-            },
-          )),
+            }),
+
+            //
+            // StreamBuilder<QuerySnapshot>(
+            //   stream: farmerStream,
+            //   builder: (
+            //     BuildContext context,
+            //     AsyncSnapshot<QuerySnapshot> snapshot,
+            //   ) {
+            //     List _farmersList = [];
+            //     if (snapshot.hasError) {
+            //       return Center(child: Text('Something went wrong'));
+            //     }
+
+            //     if (snapshot.connectionState == ConnectionState.waiting) {
+            //       // return Center(child: Text("Loading..."));
+            //       return Center(
+            //         child: CircularProgressIndicator(
+            //             // backgroundColor: Colors.lightBlueAccent,
+            //             ),
+            //       );
+            //     }
+
+            //     if (snapshot.connectionState == ConnectionState.done &&
+            //         !snapshot.hasData) {
+            //       return Center(
+            //         child: Text('No Farmers found'),
+            //       );
+            //     }
+            //     // Populate the data in the farmersList
+            //     // farmersData = snapshot.data.docs.toList();
+            //     // if (snapshot.hasData) {
+            //     //   filteredFarmersList = snapshot.data.docs.toList();
+            //     //   farmersList = filteredFarmersList;
+            //     // }
+            //     print('object');
+            //     if (snapshot.data.docChanges.isNotEmpty) {
+            //       filteredFarmersList = snapshot.data.docs.toList();
+            //       farmersList = filteredFarmersList;
+            //       print('qqqqqqqqqqqqqqqqq');
+            //     }
+
+            //     if (snapshot.data.docChanges.isEmpty) {
+            //       filteredFarmersList = snapshot.data.docs.toList();
+            //       farmersList = [];
+            //       print('wwwwwwwwwwwwwwwwwwwwwwwwww');
+            //     }
+
+            //     return SingleChildScrollView(
+            //       child: Container(
+            //         width: size.width,
+            //         child: PaginatedDataTable(
+            //           rowsPerPage: 7,
+            //           sortAscending: true,
+            //           sortColumnIndex: 1,
+            //           columns: const <DataColumn>[
+            //             DataColumn(label: Text('')),
+            //             DataColumn(label: Text('Name')),
+            //             DataColumn(label: Text('Phone')),
+            //             DataColumn(label: Text('Location')),
+            //             DataColumn(label: Text('Gender')),
+            //             DataColumn(label: Text('Enabled')),
+            //             DataColumn(
+            //                 label: Text(
+            //               'Actions',
+            //               textAlign: TextAlign.center,
+            //             )),
+            //           ],
+            //           source: DTS(filteredFarmersList, context),
+            //         ),
+            //       ),
+            //     );
+            //   },
+            // ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget sdsd(BuildContext context, Widget h) {
+    return SingleChildScrollView(
+      child: Container(
+        // width: size.width,
+        child: Consumer<FarmersState>(
+          builder: (context, farmersState, child) {
+            farmersState.startStreaming();
+            return PaginatedDataTable(
+              rowsPerPage: 7,
+              sortAscending: true,
+              sortColumnIndex: 1,
+              columns: const <DataColumn>[
+                DataColumn(label: Text('')),
+                DataColumn(label: Text('Name')),
+                DataColumn(label: Text('Phone')),
+                DataColumn(label: Text('Location')),
+                DataColumn(label: Text('Gender')),
+                DataColumn(label: Text('Enabled')),
+                DataColumn(
+                    label: Text(
+                  'Actions',
+                  textAlign: TextAlign.center,
+                )),
+              ],
+              source: DTS(farmersState.getFilteredFarmers, context),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,31 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmasyst_admin_console/components/circular_image.dart';
 import 'package:farmasyst_admin_console/components/custom_alert_dailog.dart';
 import 'package:farmasyst_admin_console/components/custom_switch.dart';
-import 'package:farmasyst_admin_console/data_models/farmer.dart';
+import 'package:farmasyst_admin_console/models/farmer.dart';
 import 'package:farmasyst_admin_console/modules/famer_module.dart';
 import 'package:farmasyst_admin_console/screens/farmers/update_farmer.dart';
 import 'package:farmasyst_admin_console/screens/farmers/view_farmer.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
-import 'package:farmasyst_admin_console/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class DTS extends DataTableSource {
-  AsyncSnapshot<QuerySnapshot> asyncSnapshot;
+  List asyncSnapshot;
   BuildContext context;
   // Constructor
   DTS(this.asyncSnapshot, this.context);
 
+  setList(List list) {
+    asyncSnapshot = list;
+  }
+
   // Start Overides
   @override
   DataRow getRow(int index) {
-    var docSnapshot = asyncSnapshot.data.docs[index];
+    var docSnapshot = asyncSnapshot[index];
     Farmer farmer = Farmer.fromMapObject(docSnapshot.data());
     return DataRow.byIndex(
       index: index,
       cells: <DataCell>[
         // DataCell(Image.network(farmer.picture)),
-        DataCell(Text(farmer.name)),
+        DataCell(CircularImage()),
         DataCell(Text(farmer.name)),
         DataCell(Text(farmer.phone)),
         DataCell(Text(farmer.location)),
@@ -164,7 +168,7 @@ class DTS extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => asyncSnapshot.data.size;
+  int get rowCount => asyncSnapshot.length;
 
   @override
   int get selectedRowCount => 0;

@@ -2,6 +2,7 @@ import 'package:farmasyst_admin_console/components/footer.dart';
 import 'package:farmasyst_admin_console/components/header.dart';
 import 'package:farmasyst_admin_console/components/side_menu.dart';
 import 'package:farmasyst_admin_console/page_router.dart';
+import 'package:farmasyst_admin_console/screens/farms/farms.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ import 'package:provider/provider.dart';
 // }
 
 class FrameContainer extends StatelessWidget {
-  static void push(Widget contect) {}
+  // static void push(Widget contect) {}
 
   @override
   Widget build(BuildContext context) {
@@ -30,33 +31,31 @@ class FrameContainer extends StatelessWidget {
     // Looks good on browser on each screen size, let's check on iphone
     Size size = MediaQuery.of(context).size;
 
-    return ChangeNotifierProvider(
-      create: (context) => PageRouter(),
-      child: Scaffold(
-        endDrawer: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 300),
-          child: SideMenu(),
-        ),
-        body: SingleChildScrollView(
-          child: SafeArea(
-            child: Container(
-              width: size.width,
-              height: size.height,
-              constraints: BoxConstraints(minHeight: size.height),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Header(),
-                  Expanded(
-                    child: Consumer<PageRouter>(
-                      builder: (context, pageRoute, child) =>
-                          pageRoute.selectedPage,
-                    ),
+    return Scaffold(
+      endDrawer: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 300),
+        child: SideMenu(),
+      ),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Container(
+            width: size.width,
+            height: size.height,
+            constraints: BoxConstraints(minHeight: size.height),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Header(),
+                Expanded(
+                  // child: FarmScreen(),
+                  child: Consumer<PageRouter>(
+                    builder: (context, pageRoute, child) =>
+                        pageRoute.selectedPage,
                   ),
-                  Footer()
-                ],
-              ),
+                ),
+                Footer()
+              ],
             ),
           ),
         ),

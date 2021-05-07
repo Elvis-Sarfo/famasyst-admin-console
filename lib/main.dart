@@ -1,13 +1,25 @@
+import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
+import 'package:farmasyst_admin_console/page_router.dart';
 import 'package:farmasyst_admin_console/screens/auth/login_screen.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/components/frame_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<PageRouter>(
+        create: (context) => PageRouter(),
+      ),
+      ChangeNotifierProvider<FarmersState>(
+        create: (context) => FarmersState(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,0 +1,6 @@
+SETTING UP CORS CONFIG IN GCLOUD TO ALLOW ACCESS TO IMAGES IN FLUTTER WEB
+
+1. Install the Google Cloud CLI tool on your machine
+
+2. Run the command below
+gsutil cors set cors.json gs://farmasyst-eaa55.appspot.com

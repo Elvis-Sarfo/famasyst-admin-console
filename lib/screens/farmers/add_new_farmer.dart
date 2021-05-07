@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmasyst_admin_console/data_models/farmer.dart';
+import 'package:farmasyst_admin_console/models/farmer.dart';
 import 'package:farmasyst_admin_console/modules/famer_module.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
 import 'package:flutter/material.dart';

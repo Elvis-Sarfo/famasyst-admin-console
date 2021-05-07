@@ -49,9 +49,14 @@ class Farmer {
     this.farmSize = map['farmSize'];
     this.dateOfBirth = (map['dateOfBirth'] is Timestamp)
         ? map['dateOfBirth'].toDate()
-        : map['dateOfBirth'];
+        : (map['dateOfBirth'] is DateTime)
+            ? map['dateOfBirth']
+            : DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth'] * 1000);
+    ;
     this.gender = map['gender'];
-    this.enabled = map['enabled'];
-    this.specializations = map['specializations'];
+    this.enabled = map['enabled'] == null ? false : map['enabled'];
+    this.specializations = (map['specializations'] is String)
+        ? map['specializations'].toString().split(',')
+        : map['specializations'];
   }
 }

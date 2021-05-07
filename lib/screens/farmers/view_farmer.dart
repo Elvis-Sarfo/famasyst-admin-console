@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmasyst_admin_console/data_models/farmer.dart';
+import 'package:farmasyst_admin_console/models/farmer.dart';
 import 'package:farmasyst_admin_console/modules/famer_module.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
 import 'package:farmasyst_admin_console/utils/form_validator.dart';
@@ -57,6 +57,8 @@ class _ViewFarmerState extends State<ViewFarmer> {
         width: size.width * 0.3,
         constraints: BoxConstraints(minHeight: size.height * 5),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,10 +90,8 @@ class _ViewFarmerState extends State<ViewFarmer> {
             ),
             SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (farmer.picture != null)
@@ -104,187 +104,176 @@ class _ViewFarmerState extends State<ViewFarmer> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                      SizedBox(
-                        width: 20,
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Name\n'),
+                            TextSpan(
+                              text: widget.farmer.name,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  height: 1.5,
+                                  color: kPrimaryDark,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Name\n'),
-                                  TextSpan(
-                                    text: widget.farmer.name,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        height: 1.5,
-                                        color: kPrimaryDark,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Gender\n'),
+                            TextSpan(
+                              text: widget.farmer.gender.toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  height: 1.5,
+                                  color: kPrimaryDark,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Gender\n'),
-                                  TextSpan(
-                                    text: widget.farmer.gender.toUpperCase(),
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        height: 1.5,
-                                        color: kPrimaryDark,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Age\n'),
-                                  TextSpan(
-                                    text: getYears(widget.farmer.dateOfBirth)
-                                        .toString(),
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      height: 1.5,
-                                      color: kPrimaryDark,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Phone Number\n'),
-                                  TextSpan(
-                                    text: widget.farmer.phone.toString(),
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      height: 1.5,
-                                      color: kPrimaryDark,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Location\n'),
-                                  TextSpan(
-                                    text: widget.farmer.location,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      height: 1.5,
-                                      color: kPrimaryDark,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Number of Farms\n'),
-                                  TextSpan(
-                                    text: widget.farmer.numFarms.toString(),
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      height: 1.5,
-                                      color: kPrimaryDark,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.5,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'Farmer specializations\n'),
-                                ],
-                              ),
-                            ),
-                            Wrap(
-                              spacing: 5.0, // gap between adjacent chips
-                              runSpacing: 4.0, // gap between lines
-                              children: List.generate(
-                                farmer.specializations.length,
-                                (index) => Chip(
-                                  backgroundColor: kPrimaryColor,
-                                  elevation: 5,
-                                  labelStyle: TextStyle(color: Colors.white),
-                                  label:
-                                      Text('${farmer.specializations[index]}'),
-                                ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Age\n'),
+                            TextSpan(
+                              text: getYears(widget.farmer.dateOfBirth)
+                                  .toString(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                height: 1.5,
+                                color: kPrimaryDark,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Phone Number\n'),
+                            TextSpan(
+                              text: widget.farmer.phone.toString(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                height: 1.5,
+                                color: kPrimaryDark,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Location\n'),
+                            TextSpan(
+                              text: widget.farmer.location,
+                              style: TextStyle(
+                                fontSize: 20,
+                                height: 1.5,
+                                color: kPrimaryDark,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Number of Farms\n'),
+                            TextSpan(
+                              text: widget.farmer.numFarms.toString(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                height: 1.5,
+                                color: kPrimaryDark,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Farmer specializations\n'),
+                          ],
+                        ),
+                      ),
+                      Wrap(
+                        spacing: 5.0, // gap between adjacent chips
+                        runSpacing: 4.0, // gap between lines
+                        children: List.generate(
+                          farmer.specializations.length,
+                          (index) => Chip(
+                            backgroundColor: kPrimaryColor,
+                            elevation: 5,
+                            labelStyle: TextStyle(color: Colors.white),
+                            label: Text('${farmer.specializations[index]}'),
+                          ),
                         ),
                       ),
                     ],
