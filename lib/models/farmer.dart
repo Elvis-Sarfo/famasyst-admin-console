@@ -8,18 +8,19 @@ class Farmer {
   double farmSize;
   DateTime dateOfBirth;
   List specializations;
-  Farmer(
-      {this.gender,
-      this.farmerId,
-      this.name,
-      this.location,
-      this.phone,
-      this.numFarms,
-      this.picture,
-      this.dateOfBirth,
-      this.farmSize,
-      this.enabled = false,
-      this.specializations});
+  Farmer({
+    this.gender,
+    this.farmerId,
+    this.name,
+    this.location,
+    this.phone,
+    this.numFarms,
+    this.picture,
+    this.dateOfBirth,
+    this.farmSize,
+    this.enabled = false,
+    this.specializations = const [],
+  });
 
   // Convert a Farmer object into a Map object
   Map<String, dynamic> toMap() {
@@ -52,7 +53,6 @@ class Farmer {
         : (map['dateOfBirth'] is DateTime)
             ? map['dateOfBirth']
             : DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth'] * 1000);
-    ;
     this.gender = map['gender'];
     this.enabled = map['enabled'] == null ? false : map['enabled'];
     this.specializations = (map['specializations'] is String)

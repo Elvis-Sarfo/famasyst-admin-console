@@ -21,8 +21,13 @@ import 'package:universal_html/html.dart' as html;
 class ImageChooser extends StatefulWidget {
   final double width;
   final Function(dynamic) onImageSelected;
-  ImageChooser({Key key, this.width = 150, this.onImageSelected})
-      : super(key: key);
+  final String defaultNetworkImage;
+  ImageChooser({
+    Key key,
+    this.width = 150,
+    this.onImageSelected,
+    this.defaultNetworkImage,
+  }) : super(key: key);
 
   @override
   _ImageChooserState createState() => _ImageChooserState();
@@ -33,8 +38,14 @@ class _ImageChooserState extends State<ImageChooser> {
   // variable to hold image to be displayed
   Uint8List uploadedImage;
 
-  var imageUrl;
+  var _imageUrl;
   var _image;
+
+  @override
+  void initState() {
+    super.initState();
+    _imageUrl = widget.defaultNetworkImage;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,23 +59,30 @@ class _ImageChooserState extends State<ImageChooser> {
           child: CircleAvatar(
             radius: 70,
             backgroundColor: Colors.white,
-            child: _image != null
+            child: _image != null || _imageUrl != null
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(50),
-                    child: (kIsWeb)
-                        ? Image.memory(
-                            _image,
+                    child: _imageUrl != null
+                        ? Image.network(
+                            _imageUrl,
                             width: 150,
                             height: 150,
                             fit: BoxFit.fill,
                           )
-                        : Image.file(
-                            _image,
-                            // File.fromRawPath(uploadedImage),
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.fill,
-                          ),
+                        : (kIsWeb)
+                            ? Image.memory(
+                                _image,
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.fill,
+                              )
+                            : Image.file(
+                                _image,
+                                // File.fromRawPath(uploadedImage),
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.fill,
+                              ),
                   )
                 : Container(
                     decoration: BoxDecoration(
@@ -87,7 +105,7 @@ class _ImageChooserState extends State<ImageChooser> {
                             padding: const EdgeInsets.only(
                                 left: 8.0, right: 8, bottom: 25),
                             child: Text(
-                              'Take photo',
+                              'Upload photo',
                               style: TextStyle(color: kPrimaryDark),
                             ),
                           ),

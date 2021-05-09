@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class CustomTextFormField extends StatelessWidget {
   final Widget prefixIcon, suffixIcon;
   final String hintText;
+  final int maxLines, minLines;
   final TextEditingController controller;
   final TextInputType type;
   final bool isPasswordFeild;
@@ -19,6 +20,8 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.validator,
     this.type,
+    this.maxLines = 1,
+    this.minLines = 1,
     this.isPasswordFeild = false,
   }) : super(key: key);
 
@@ -36,9 +39,9 @@ class CustomTextFormField extends StatelessWidget {
             },
         onSaved: onSaved ?? (value) {},
         keyboardType: type,
-        maxLines: 1,
+        maxLines: maxLines,
         obscureText: isPasswordFeild,
-        minLines: 1,
+        minLines: minLines,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
           filled: true,

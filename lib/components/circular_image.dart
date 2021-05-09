@@ -6,14 +6,20 @@ class CircularImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: child ??
-          Image.asset(
-            'assets/images/farmer.png',
-            height: 50.0,
-            width: 50.0,
-          ),
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        // borderRadius: BorderRadius.circular(100.0),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100.0),
+        child: child ??
+            Image.asset(
+              'assets/images/farmer.png',
+            ),
+      ),
     );
   }
 }

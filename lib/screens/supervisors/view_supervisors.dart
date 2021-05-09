@@ -1,23 +1,31 @@
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/services/styles.dart';
+import 'package:farmasyst_admin_console/models/supervisor.dart';
 import 'package:farmasyst_admin_console/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
+import 'package:farmasyst_admin_console/services/styles.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 
-class ViewFarmer extends StatefulWidget {
-  final Farmer farmer;
-  final String farmerId;
-  ViewFarmer({Key key, this.farmer, this.farmerId}) : super(key: key);
+class ViewSupervisor extends StatefulWidget {
+  final Supervisor supervisor;
+  final String supervisorId;
+  ViewSupervisor({Key key, this.supervisor, this.supervisorId})
+      : super(key: key);
 
   @override
-  _ViewFarmerState createState() => _ViewFarmerState();
+  _ViewSupervisorState createState() => _ViewSupervisorState();
 }
 
-class _ViewFarmerState extends State<ViewFarmer> {
-  Farmer farmer;
+class _ViewSupervisorState extends State<ViewSupervisor> {
+  // final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+  Supervisor supervisor;
   var profileImage;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    supervisor = widget.supervisor;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Farmer Details',
+                  'Supervisor Details',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -69,9 +77,9 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: (widget.farmer.picture != null)
+                              child: (supervisor.picture != null)
                                   ? Image.network(
-                                      widget.farmer.picture,
+                                      supervisor.picture,
                                       width: 120,
                                       height: 120,
                                       fit: BoxFit.fill,
@@ -95,7 +103,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                                     children: <TextSpan>[
                                       TextSpan(text: 'Name\n'),
                                       TextSpan(
-                                        text: widget.farmer.name,
+                                        text: widget.supervisor.name,
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
@@ -108,8 +116,8 @@ class _ViewFarmerState extends State<ViewFarmer> {
                                     children: <TextSpan>[
                                       TextSpan(text: 'Gender\n'),
                                       TextSpan(
-                                        text:
-                                            widget.farmer.gender.toUpperCase(),
+                                        text: widget.supervisor.gender
+                                            .toUpperCase(),
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
@@ -123,7 +131,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                                       TextSpan(text: 'Age\n'),
                                       TextSpan(
                                         text:
-                                            '${getYears(widget.farmer.dateOfBirth).toString()} yrs',
+                                            '${getYears(widget.supervisor.dateOfBirth).toString()} yrs',
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
@@ -143,7 +151,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                             children: <TextSpan>[
                               TextSpan(text: 'Phone Number\n'),
                               TextSpan(
-                                text: widget.farmer.phone.toString(),
+                                text: widget.supervisor.phone.toString(),
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -159,7 +167,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                             children: <TextSpan>[
                               TextSpan(text: 'Location\n'),
                               TextSpan(
-                                text: widget.farmer.location,
+                                text: widget.supervisor.location,
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -181,13 +189,13 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           spacing: 5.0, // gap between adjacent chips
                           runSpacing: 4.0, // gap between lines
                           children: List.generate(
-                            widget.farmer.specializations.length,
+                            supervisor.specializations.length,
                             (index) => Chip(
                               backgroundColor: kPrimaryColor,
                               elevation: 5,
                               labelStyle: TextStyle(color: Colors.white),
-                              label: Text(
-                                  '${widget.farmer.specializations[index]}'),
+                              label:
+                                  Text('${supervisor.specializations[index]}'),
                             ),
                           ),
                         ),

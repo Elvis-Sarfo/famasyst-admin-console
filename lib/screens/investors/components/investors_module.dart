@@ -1,61 +1,60 @@
 // import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/services/auth_services.dart';
+import 'package:farmasyst_admin_console/models/investor.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
 
-Future<String> saveNewFarmer(Farmer farmer,
+Future<String> saveNewInvestor(Investor investor,
     {var profilePic, String pictureName}) async {
   var docs = await DatabaseServices.queryFromDatabaseByField(
-      'Farmers', 'phone', farmer.phone);
+      'Investors', 'phone', investor.phone);
   if (docs.docs.isEmpty) {
     DocumentReference docSnapshot =
-        await DatabaseServices.saveData('Farmers', farmer.toMap());
+        await DatabaseServices.saveData('Investors', investor.toMap());
 
     var imageUrl = (profilePic != null)
         ? await DatabaseServices.uploadFile(
-            profilePic, '/farmers/', pictureName)
+            profilePic, '/investors/', pictureName)
         : null;
     Map<String, dynamic> uppdate = {"picture": imageUrl};
     if (imageUrl != null) {
       docSnapshot = await DatabaseServices.updateDocument(
-        'Farmers',
+        'Investors',
         docSnapshot.id,
         uppdate,
       );
     }
-    farmer.picture = imageUrl;
+    investor.picture = imageUrl;
     return 'saved';
   } else {
     return 'Phone Number Already Exists';
   }
 }
 
-updateFarmer(DocumentSnapshot farmerDocSnap,
-    {Farmer farmer, var profilePic, String pictureName}) async {
-  Farmer _existingfarmer = Farmer.fromMapObject(farmerDocSnap.data());
+updateInvestor(DocumentSnapshot investorDocSnap,
+    {Investor investor, var profilePic, String pictureName}) async {
+  Investor _existinginvestor = Investor.fromMapObject(investorDocSnap.data());
 
   var snaps;
-  if (_existingfarmer.phone != farmer.phone) {
+  if (_existinginvestor.phone != investor.phone) {
     snaps = await DatabaseServices.queryFromDatabaseByField(
-        'Farmers', 'phone', farmer.phone);
+        'Investors', 'phone', investor.phone);
   }
   if (snaps == null || snaps.docs.isNotEmpty) {
     DocumentReference docSnapshot = await DatabaseServices.setDocument(
-      'Farmers',
-      farmerDocSnap.id,
-      farmer.toMap(),
+      'Investors',
+      investorDocSnap.id,
+      investor.toMap(),
     );
 
     var imageUrl = (profilePic != null)
         ? await DatabaseServices.uploadFile(
-            profilePic, '/farmers/', pictureName)
+            profilePic, '/investors/', pictureName)
         : null;
     Map<String, dynamic> uppdate = {"picture": imageUrl};
     if (imageUrl != null) {
       docSnapshot = await DatabaseServices.updateDocument(
-        'Farmers',
-        docSnapshot.id,
+        'Investors',
+        investorDocSnap.id,
         uppdate,
       );
     }
@@ -63,9 +62,9 @@ updateFarmer(DocumentSnapshot farmerDocSnap,
   } else {
     return 'Phone Number Already Exists';
   }
-  // farmer.picture = imageUrl;
+  // investor.picture = imageUrl;
 }
 
-deleteFarmer(String farmerId) async {
-  await DatabaseServices.deleteDocument('Farmers', farmerId);
+deleteInvestor(String investorId) async {
+  await DatabaseServices.deleteDocument('Investors', investorId);
 }

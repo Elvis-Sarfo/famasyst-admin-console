@@ -1,27 +1,16 @@
 import 'package:farmasyst_admin_console/components/main_button.dart';
-import 'package:farmasyst_admin_console/screens/farmers/add_new_farmer.dart';
-import 'package:farmasyst_admin_console/screens/farmers/components/farmers_data_source.dart';
-import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
+import 'package:farmasyst_admin_console/notifiers/supervisors_state%20.dart';
+import 'package:farmasyst_admin_console/screens/supervisors/add_new_supervisors.dart';
+import 'package:farmasyst_admin_console/screens/supervisors/components/supervisors_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:provider/provider.dart';
 
-class FarmerScreen extends StatelessWidget {
-  // CollectionReference farmers =
-  //     FirebaseFirestore.instance.collection('Farmers');
-  // var farmerStream =
-  //     FirebaseFirestore.instance.collection('Farmers').snapshots();
-  // List<DocumentSnapshot> farmersList, filteredFarmersList;
-  // FarmersState pageState = FarmersState();
-  // int _columnIndex = 1;
-  // bool _ascending = true;
+class SupervisorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // CollectionReference farmers =
-    //
-
-    Function _searchFarmer;
+    Function _searchSupervisor;
     return Container(
       margin: EdgeInsets.fromLTRB(100, 10, 100, 20),
       child: Column(
@@ -32,7 +21,7 @@ class FarmerScreen extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                 child: Text(
-                  'Farmers',
+                  'Supervisors',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -52,7 +41,7 @@ class FarmerScreen extends StatelessWidget {
                   maxLines: 1,
                   minLines: 1,
                   onChanged: (value) async {
-                    _searchFarmer(value);
+                    _searchSupervisor(value);
                   },
                   decoration: InputDecoration(
                     filled: true,
@@ -83,13 +72,13 @@ class FarmerScreen extends StatelessWidget {
               ),
               MainButton(
                 color: kPrimaryColor,
-                title: 'Add New Farmer',
+                title: 'Add New Supervisor',
                 iconData: Icons.person_add,
                 tapEvent: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return AddNewFarmerDialog();
+                      return AddNewSupervisorDialog();
                     },
                   );
                 },
@@ -97,10 +86,10 @@ class FarmerScreen extends StatelessWidget {
             ],
           ),
           Expanded(
-            child:
-                Consumer<FarmersState>(builder: (context, farmersState, child) {
+            child: Consumer<SupervisorsState>(
+                builder: (context, farmersState, child) {
               // Assing the searchHandler to a upper scope
-              _searchFarmer = farmersState.searchFarmer;
+              _searchSupervisor = farmersState.searchSupervisor;
 
               if (farmersState.hasError) {
                 return Center(child: Text('Something went wrong'));
@@ -128,26 +117,29 @@ class FarmerScreen extends StatelessWidget {
                       DataColumn(
                         label: Text('Name'),
                         onSort: (index, sorted) {
-                          farmersState.sortFarmerList('name', index, sorted);
+                          farmersState.sortSupervisorList(
+                              'name', index, sorted);
                         },
                       ),
                       DataColumn(
                         label: Text('Phone'),
                         onSort: (index, sorted) {
-                          farmersState.sortFarmerList('phone', index, sorted);
+                          farmersState.sortSupervisorList(
+                              'phone', index, sorted);
                         },
                       ),
                       DataColumn(
                         label: Text('Location'),
                         onSort: (index, sorted) {
-                          farmersState.sortFarmerList(
+                          farmersState.sortSupervisorList(
                               'location', index, sorted);
                         },
                       ),
                       DataColumn(
                         label: Text('Gender'),
                         onSort: (index, sorted) {
-                          farmersState.sortFarmerList('gender', index, sorted);
+                          farmersState.sortSupervisorList(
+                              'gender', index, sorted);
                         },
                       ),
                       DataColumn(label: Text('Enabled')),
@@ -157,8 +149,8 @@ class FarmerScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       )),
                     ],
-                    source: FarmerDataSource(
-                        farmersState.getFilteredFarmers, context),
+                    source: SupervisorDataSource(
+                        farmersState.getFilteredSupervisors, context),
                   ),
                 ),
               );

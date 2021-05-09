@@ -1,42 +1,49 @@
-class InvestorsData {
-  String name, investorID, phone, location, image, email;
+class Investor {
+  String name, id, phone, location, picture, email, type;
   List interests;
   bool enabled;
 
-  InvestorsData(
+  Investor(
       {this.name,
       this.enabled,
-      this.investorID,
+      this.id,
       this.phone,
       this.location,
-      this.image,
+      this.picture,
       this.email,
+      this.type,
       this.interests});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
-    if (investorID != null) {
-      map['investorID'] = investorID;
+    if (id != null) {
+      map['id'] = id;
     }
-    map['investorID'] = investorID;
+    map['id'] = id;
     map['name'] = name;
     map['phone'] = phone;
     map['location'] = location;
-    map['image'] = image;
+    map['picture'] = picture;
     map['email'] = email;
+    map['type'] = type;
     map['interests'] = interests;
     map['enabled'] = enabled;
     return map;
   }
 
-  InvestorsData.fromMapObject(Map<String, dynamic> map) {
-    this.investorID = map['investorID'];
+  Investor.fromMapObject(Map<String, dynamic> map) {
+    this.id = map['id'];
     this.name = map['name'];
     this.phone = map['phone'];
     this.location = map['location'];
-    this.image = map['image'];
+    this.picture = map['picture'];
     this.email = map['email'];
-    this.interests = map['interests'];
-    this.enabled = map['enabled'];
+    this.enabled = map['enabled'] == null ? false : map['enabled'];
+    this.type = map['type'];
+    this.interests = (map['interests'] is String)
+        ? map['interests'].toString().split(',')
+        : map['interests'] != null
+            ? map['interests']
+            : [];
   }
 }

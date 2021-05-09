@@ -10,6 +10,18 @@ String validateEmail(String value) {
   return null;
 }
 
+String validatePhone(String value) {
+  final verifyPhoneNum = RegExp(r'^(?:[+0]9)?[0-9]{10}$');
+  if (value.isEmpty) {
+    return 'Please Enter Phone Number';
+  }
+  if (!verifyPhoneNum.hasMatch(value)) {
+    return 'Enter a valid Phone Number';
+  }
+
+  return null;
+}
+
 String emptyFeildValidator(String value) {
   if (value.isEmpty) {
     return 'Feild must not be empty';

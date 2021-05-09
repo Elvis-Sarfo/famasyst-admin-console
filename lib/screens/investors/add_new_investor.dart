@@ -1,67 +1,42 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmasyst_admin_console/components/gender_selector.dart';
+import 'package:farmasyst_admin_console/components/custom_dropdown_field.dart';
 import 'package:farmasyst_admin_console/components/tags_feild.dart';
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/screens/farmers/components/famer_module.dart';
-import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:farmasyst_admin_console/models/investor.dart';
+import 'package:farmasyst_admin_console/screens/investors/components/investors_module.dart';
 import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
-import 'package:farmasyst_admin_console/components/date_picker.dart';
 import 'package:farmasyst_admin_console/components/image_chooser.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
-import 'package:farmasyst_admin_console/components/labeled_radio_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
-import 'package:flutter_tags/flutter_tags.dart';
-import 'package:intl/intl.dart';
 
-class UpdateFarmer extends StatefulWidget {
-  final Farmer farmer;
-  final farmerDocSnap;
-  UpdateFarmer({Key key, this.farmer, this.farmerDocSnap}) : super(key: key);
+class AddNewInvestorDialog extends StatefulWidget {
+  AddNewInvestorDialog({Key key}) : super(key: key);
 
   @override
-  _UpdateFarmerState createState() => _UpdateFarmerState();
+  _AddNewInvestorDialogState createState() => _AddNewInvestorDialogState();
 }
 
-class _UpdateFarmerState extends State<UpdateFarmer> {
-  final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
-  final _formKey = GlobalKey<FormState>();
-  Farmer farmer;
-  var profileImage;
+class _AddNewInvestorDialogState extends State<AddNewInvestorDialog> {
+  List<String> _investorInterests = ['Cocao', 'Tomatoe', 'Yam'];
   String errMsg = '';
-  bool isLoading = false, showErrorMsg = false;
-
-  // Define controllers
-  TextEditingController _nameFieldController;
-  TextEditingController _phoneFieldController;
-  TextEditingController _locationFieldController;
-  TextEditingController _numOfFarmsFieldController;
+  final _formKey = GlobalKey<FormState>();
+  Investor investor = new Investor();
+  String _investorType;
+  var profileImage;
+  bool showErrorMsg = false, isLoading = false;
 
   @override
   void initState() {
-    farmer = widget.farmer;
-    _nameFieldController = TextEditingController(text: farmer.name);
-    _phoneFieldController = TextEditingController(text: farmer.phone);
-    _locationFieldController = TextEditingController(text: farmer.location);
-    _numOfFarmsFieldController =
-        TextEditingController(text: farmer.numFarms.toString());
     super.initState();
   }
 
   @override
   void dispose() {
-    _nameFieldController.dispose();
-    _phoneFieldController.dispose();
-    _locationFieldController.dispose();
-    _numOfFarmsFieldController.dispose();
     super.dispose();
   }
 
-  _updateFarmer(BuildContext context) async {
+  saveInvestor() async {
     if (!isLoading) {
       setState(() {
         isLoading = true;
@@ -69,11 +44,14 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
       });
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
-        var results = await updateFarmer(
-          widget.farmerDocSnap,
-          farmer: farmer,
+
+        // add investor specs
+        investor.interests = _investorInterests;
+        investor.type = _investorType;
+        var results = await saveNewInvestor(
+          investor,
           profilePic: profileImage,
-          pictureName: farmer.name.replaceAll(' ', '_'),
+          pictureName: investor.name.replaceAll(' ', '_'),
         );
         if (results != 'saved') {
           setState(() {
@@ -108,7 +86,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Edit Farmer Details',
+                  'Register Investor',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -162,7 +140,6 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                               Row(
                                 children: [
                                   ImageChooser(
-                                    defaultNetworkImage: farmer.picture,
                                     onImageSelected: (image) async {
                                       profileImage = image;
                                     },
@@ -175,11 +152,10 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                       children: [
                                         CustomTextFormField(
                                           prefixIcon: Icon(Icons.person),
-                                          hintText: 'Enter Full Name',
-                                          controller: _nameFieldController,
+                                          hintText: 'Enter Name',
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.name = value;
+                                              investor.name = value;
                                             });
                                           },
                                           validator: emptyFeildValidator,
@@ -187,25 +163,35 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        GenderSelector(
-                                          groupValue: farmer.gender,
-                                          onChanged: (value) {
+                                        CustomTextFormField(
+                                          type: TextInputType.number,
+                                          prefixIcon: Icon(Icons.mail),
+                                          hintText: 'Enter Email',
+                                          onSaved: (value) {
                                             setState(() {
-                                              farmer.gender = value;
+                                              investor.email = value;
                                             });
                                           },
+                                          validator: validateEmail,
                                         ),
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        DatePicker(
-                                          defaultDate: farmer.dateOfBirth,
+                                        CustomTextFormField(
+                                          prefixIcon: Icon(Icons.phone),
+                                          hintText: 'Phone Number',
+                                          type: TextInputType.phone,
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.dateOfBirth =
-                                                  DateTime.parse(value);
+                                              investor.phone = value;
                                             });
                                           },
+                                          onChange: (value) {
+                                            setState(() {
+                                              showErrorMsg = false;
+                                            });
+                                          },
+                                          validator: validatePhone,
                                         ),
                                       ],
                                     ),
@@ -215,42 +201,27 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                               SizedBox(
                                 height: 10,
                               ),
-                              CustomTextFormField(
-                                prefixIcon: Icon(Icons.phone),
-                                hintText: 'Phone Number',
-                                controller: _phoneFieldController,
-                                type: TextInputType.phone,
-                                onSaved: (value) {
+                              CustomDropDownField(
+                                prefixIcon: Icon(Icons.category),
+                                hint: 'Phone Number',
+                                items: ['Company', 'Group', 'Individual'],
+                                value: _investorType,
+                                onChanged: (value) {
                                   setState(() {
-                                    farmer.phone = value;
+                                    _investorType =
+                                        value.toString().toLowerCase();
                                   });
                                 },
-                                validator: validatePhone,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               CustomTextFormField(
-                                  prefixIcon: Icon(Icons.place),
-                                  hintText: 'Place of Residence',
-                                  controller: _locationFieldController,
-                                  onSaved: (value) {
-                                    setState(() {
-                                      farmer.location = value;
-                                    });
-                                  },
-                                  validator: emptyFeildValidator),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              CustomTextFormField(
-                                type: TextInputType.number,
-                                prefixIcon: Icon(Icons.grid_view),
-                                hintText: 'Number of Farms',
-                                controller: _numOfFarmsFieldController,
+                                prefixIcon: Icon(Icons.place),
+                                hintText: 'Location',
                                 onSaved: (value) {
                                   setState(() {
-                                    farmer.numFarms = int.parse(value);
+                                    investor.location = value;
                                   });
                                 },
                                 validator: emptyFeildValidator,
@@ -258,22 +229,22 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                               SizedBox(
                                 height: 10,
                               ),
-                              // Tags
                               TagsField(
-                                tagsArray: farmer.specializations,
+                                hintText: 'Add Interest',
+                                tagsArray: _investorInterests,
                                 onRemoved: (index) {
                                   setState(() {
-                                    farmer.specializations.removeAt(index);
+                                    _investorInterests.removeAt(index);
                                   });
                                 },
                                 onSubmitted: (value) {
                                   setState(() {
-                                    farmer.specializations.add(value);
+                                    _investorInterests.add(value);
                                   });
                                 },
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               if (showErrorMsg)
                                 Container(
@@ -298,15 +269,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                     isLoading: isLoading,
                                     title: 'Save',
                                     color: kPrimaryColor,
-                                    tapEvent: () {
-                                      _updateFarmer(context);
-                                    },
-                                  ),
-                                  SizedBox(width: 10),
-                                  MainButton(
-                                    title: 'Cancel',
-                                    color: kSecondaryColor,
-                                    tapEvent: () {},
+                                    tapEvent: saveInvestor,
                                   )
                                 ],
                               )

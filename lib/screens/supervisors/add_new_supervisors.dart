@@ -1,11 +1,7 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/components/gender_selector.dart';
 import 'package:farmasyst_admin_console/components/tags_feild.dart';
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/screens/farmers/components/famer_module.dart';
-import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:farmasyst_admin_console/models/supervisor.dart';
+import 'package:farmasyst_admin_console/screens/supervisors/components/supervisor_module.dart';
 import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
@@ -16,52 +12,37 @@ import 'package:farmasyst_admin_console/components/labeled_radio_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:flutter_tags/flutter_tags.dart';
-import 'package:intl/intl.dart';
 
-class UpdateFarmer extends StatefulWidget {
-  final Farmer farmer;
-  final farmerDocSnap;
-  UpdateFarmer({Key key, this.farmer, this.farmerDocSnap}) : super(key: key);
+class AddNewSupervisorDialog extends StatefulWidget {
+  AddNewSupervisorDialog({Key key}) : super(key: key);
 
   @override
-  _UpdateFarmerState createState() => _UpdateFarmerState();
+  _AddNewSupervisorDialogState createState() => _AddNewSupervisorDialogState();
 }
 
-class _UpdateFarmerState extends State<UpdateFarmer> {
-  final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+class _AddNewSupervisorDialogState extends State<AddNewSupervisorDialog> {
+  List<String> _supervisorSpecializations = ['Cocao', 'Tomatoe', 'Yam'];
+  String _selectedDate = '', _genderRadioGroupVal = 'value', errMsg = '';
   final _formKey = GlobalKey<FormState>();
-  Farmer farmer;
+  Supervisor supervisor = new Supervisor();
   var profileImage;
-  String errMsg = '';
-  bool isLoading = false, showErrorMsg = false;
-
+  bool showErrorMsg = false, isLoading = false;
   // Define controllers
-  TextEditingController _nameFieldController;
-  TextEditingController _phoneFieldController;
-  TextEditingController _locationFieldController;
-  TextEditingController _numOfFarmsFieldController;
+  TextEditingController _dateFieldController;
 
   @override
   void initState() {
-    farmer = widget.farmer;
-    _nameFieldController = TextEditingController(text: farmer.name);
-    _phoneFieldController = TextEditingController(text: farmer.phone);
-    _locationFieldController = TextEditingController(text: farmer.location);
-    _numOfFarmsFieldController =
-        TextEditingController(text: farmer.numFarms.toString());
+    _dateFieldController = TextEditingController(text: _selectedDate);
     super.initState();
   }
 
   @override
   void dispose() {
-    _nameFieldController.dispose();
-    _phoneFieldController.dispose();
-    _locationFieldController.dispose();
-    _numOfFarmsFieldController.dispose();
+    _dateFieldController.dispose();
     super.dispose();
   }
 
-  _updateFarmer(BuildContext context) async {
+  saveSupervisor() async {
     if (!isLoading) {
       setState(() {
         isLoading = true;
@@ -69,11 +50,13 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
       });
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
-        var results = await updateFarmer(
-          widget.farmerDocSnap,
-          farmer: farmer,
+
+        // add supervisor specs
+        supervisor.specializations = _supervisorSpecializations;
+        var results = await saveNewSupervisor(
+          supervisor,
           profilePic: profileImage,
-          pictureName: farmer.name.replaceAll(' ', '_'),
+          pictureName: supervisor.name.replaceAll(' ', '_'),
         );
         if (results != 'saved') {
           setState(() {
@@ -108,7 +91,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Edit Farmer Details',
+                  'Register Supervisor',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -162,7 +145,6 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                               Row(
                                 children: [
                                   ImageChooser(
-                                    defaultNetworkImage: farmer.picture,
                                     onImageSelected: (image) async {
                                       profileImage = image;
                                     },
@@ -176,22 +158,25 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                         CustomTextFormField(
                                           prefixIcon: Icon(Icons.person),
                                           hintText: 'Enter Full Name',
-                                          controller: _nameFieldController,
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.name = value;
+                                              supervisor.name = value;
                                             });
                                           },
-                                          validator: emptyFeildValidator,
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return 'Name must not be empty';
+                                            }
+                                            return null;
+                                          },
                                         ),
                                         SizedBox(
                                           height: 10,
                                         ),
                                         GenderSelector(
-                                          groupValue: farmer.gender,
                                           onChanged: (value) {
                                             setState(() {
-                                              farmer.gender = value;
+                                              supervisor.gender = value;
                                             });
                                           },
                                         ),
@@ -199,10 +184,9 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                           height: 10,
                                         ),
                                         DatePicker(
-                                          defaultDate: farmer.dateOfBirth,
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.dateOfBirth =
+                                              supervisor.dateOfBirth =
                                                   DateTime.parse(value);
                                             });
                                           },
@@ -216,13 +200,31 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                 height: 10,
                               ),
                               CustomTextFormField(
+                                type: TextInputType.number,
+                                prefixIcon: Icon(Icons.mail),
+                                hintText: 'Enter Email',
+                                onSaved: (value) {
+                                  setState(() {
+                                    supervisor.email = value;
+                                  });
+                                },
+                                validator: validateEmail,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              CustomTextFormField(
                                 prefixIcon: Icon(Icons.phone),
                                 hintText: 'Phone Number',
-                                controller: _phoneFieldController,
                                 type: TextInputType.phone,
                                 onSaved: (value) {
                                   setState(() {
-                                    farmer.phone = value;
+                                    supervisor.phone = value;
+                                  });
+                                },
+                                onChange: (value) {
+                                  setState(() {
+                                    showErrorMsg = false;
                                   });
                                 },
                                 validator: validatePhone,
@@ -231,49 +233,40 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                 height: 10,
                               ),
                               CustomTextFormField(
-                                  prefixIcon: Icon(Icons.place),
-                                  hintText: 'Place of Residence',
-                                  controller: _locationFieldController,
-                                  onSaved: (value) {
-                                    setState(() {
-                                      farmer.location = value;
-                                    });
-                                  },
-                                  validator: emptyFeildValidator),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              CustomTextFormField(
-                                type: TextInputType.number,
-                                prefixIcon: Icon(Icons.grid_view),
-                                hintText: 'Number of Farms',
-                                controller: _numOfFarmsFieldController,
+                                prefixIcon: Icon(Icons.place),
+                                hintText: 'Place of Residence',
                                 onSaved: (value) {
                                   setState(() {
-                                    farmer.numFarms = int.parse(value);
+                                    supervisor.location = value;
                                   });
                                 },
-                                validator: emptyFeildValidator,
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Place of Residence must not be empty';
+                                  }
+                                  return null;
+                                },
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               // Tags
                               TagsField(
-                                tagsArray: farmer.specializations,
+                                // key: _supervisorSpecializationsKey,
+                                tagsArray: _supervisorSpecializations,
                                 onRemoved: (index) {
                                   setState(() {
-                                    farmer.specializations.removeAt(index);
+                                    _supervisorSpecializations.removeAt(index);
                                   });
                                 },
                                 onSubmitted: (value) {
                                   setState(() {
-                                    farmer.specializations.add(value);
+                                    _supervisorSpecializations.add(value);
                                   });
                                 },
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               if (showErrorMsg)
                                 Container(
@@ -298,15 +291,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                     isLoading: isLoading,
                                     title: 'Save',
                                     color: kPrimaryColor,
-                                    tapEvent: () {
-                                      _updateFarmer(context);
-                                    },
-                                  ),
-                                  SizedBox(width: 10),
-                                  MainButton(
-                                    title: 'Cancel',
-                                    color: kSecondaryColor,
-                                    tapEvent: () {},
+                                    tapEvent: saveSupervisor,
                                   )
                                 ],
                               )

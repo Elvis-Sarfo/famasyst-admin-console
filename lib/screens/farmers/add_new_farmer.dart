@@ -1,9 +1,8 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmasyst_admin_console/components/gender_selector.dart';
+import 'package:farmasyst_admin_console/components/tags_feild.dart';
 import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/modules/famer_module.dart';
-import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:farmasyst_admin_console/screens/farmers/components/famer_module.dart';
+import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
 import 'package:farmasyst_admin_console/components/date_picker.dart';
@@ -71,6 +70,11 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
         } else {
           Navigator.of(context).pop();
         }
+      } else {
+        setState(() {
+          isLoading = false;
+          showErrorMsg = false;
+        });
       }
     }
   }
@@ -170,73 +174,12 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                            vertical: 5,
-                                          ),
-                                          decoration: BoxDecoration(
-                                              color: kPrimaryLight
-                                                  .withOpacity(0.1),
-                                              border: Border.all(width: 1),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(30))),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                Icons.wc,
-                                                color: Colors.grey,
-                                              ),
-                                              SizedBox(
-                                                width: 8,
-                                              ),
-                                              Text(
-                                                'Gender ',
-                                                style: TextStyle(
-                                                  color: Colors.grey[600],
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: LabeledRadioButton(
-                                                  label: 'Male',
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 5.0),
-                                                  value: 'male',
-                                                  groupValue:
-                                                      _genderRadioGroupVal,
-                                                  onChanged: (String newValue) {
-                                                    setState(() {
-                                                      print(newValue);
-                                                      _genderRadioGroupVal =
-                                                          newValue;
-                                                      farmer.gender = newValue;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: LabeledRadioButton(
-                                                  label: 'Female',
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 5.0),
-                                                  value: 'female',
-                                                  groupValue:
-                                                      _genderRadioGroupVal,
-                                                  onChanged: (String newValue) {
-                                                    setState(() {
-                                                      print(newValue);
-                                                      _genderRadioGroupVal =
-                                                          newValue;
-                                                      farmer.gender = newValue;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                        GenderSelector(
+                                          onChanged: (value) {
+                                            setState(() {
+                                              farmer.gender = value;
+                                            });
+                                          },
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -259,7 +202,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                               ),
                               CustomTextFormField(
                                 prefixIcon: Icon(Icons.phone),
-                                hintText: 'Telephone',
+                                hintText: 'Phone Number',
                                 type: TextInputType.phone,
                                 onSaved: (value) {
                                   setState(() {
@@ -271,12 +214,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                                     showErrorMsg = false;
                                   });
                                 },
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Phone number must not be empty';
-                                  }
-                                  return null;
-                                },
+                                validator: validatePhone,
                               ),
                               SizedBox(
                                 height: 10,
@@ -318,63 +256,18 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                               SizedBox(
                                 height: 10,
                               ),
-                              // Tags
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(12.0),
-                                decoration: BoxDecoration(
-                                  color: kPrimaryLight.withOpacity(0.1),
-                                  border: Border.all(width: 1),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30),
-                                  ),
-                                ),
-                                child: Tags(
-                                  key: _tagStateKey,
-                                  textField: TagsTextField(
-                                    constraintSuggestion: false,
-                                    suggestions: ['Cocoa', 'Yam'],
-                                    helperText: 'Enter Specialiazation',
-                                    hintText: 'Enter Specialiazation',
-                                    //width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 10),
-                                    onSubmitted: (String str) {
-                                      // Add item to the data source.
-                                      setState(() {
-                                        // required
-                                        _farmerSpecializations.add(str);
-                                      });
-                                    },
-                                  ),
-                                  itemCount: _farmerSpecializations.length,
-                                  itemBuilder: (int index) {
-                                    final item = _farmerSpecializations[index];
-                                    return Tooltip(
-                                      message: '$item farming',
-                                      child: ItemTags(
-                                        activeColor: kPrimaryColor,
-                                        alignment: MainAxisAlignment.start,
-                                        index: index,
-                                        title: item,
-                                        removeButton: ItemTagsRemoveButton(
-                                          color: kPrimaryDark,
-                                          backgroundColor: Colors.white,
-                                          onRemoved: () {
-                                            // Remove the item from the data source.
-                                            setState(() {
-                                              // required
-                                              _farmerSpecializations
-                                                  .removeAt(index);
-                                            });
-                                            //required
-                                            return true;
-                                          },
-                                        ), // OR null,
-                                        onPressed: (item) => print(item),
-                                        onLongPressed: (item) => print(item),
-                                      ),
-                                    );
-                                  },
-                                ),
+                              TagsField(
+                                tagsArray: _farmerSpecializations,
+                                onRemoved: (index) {
+                                  setState(() {
+                                    _farmerSpecializations.removeAt(index);
+                                  });
+                                },
+                                onSubmitted: (value) {
+                                  setState(() {
+                                    _farmerSpecializations.add(value);
+                                  });
+                                },
                               ),
                               SizedBox(
                                 height: 20,

@@ -1,9 +1,11 @@
 import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
+import 'package:farmasyst_admin_console/notifiers/farms_state.dart';
+import 'package:farmasyst_admin_console/notifiers/investors_state%20.dart';
+import 'package:farmasyst_admin_console/notifiers/supervisors_state%20.dart';
 import 'package:farmasyst_admin_console/page_router.dart';
 import 'package:farmasyst_admin_console/screens/auth/login_screen.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/components/frame_container.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +19,15 @@ void main() {
       ChangeNotifierProvider<FarmersState>(
         create: (context) => FarmersState(),
       ),
+      ChangeNotifierProvider<SupervisorsState>(
+        create: (context) => SupervisorsState(),
+      ),
+      ChangeNotifierProvider<InvestorsState>(
+        create: (context) => InvestorsState(),
+      ),
+      ChangeNotifierProvider<FarmsState>(
+        create: (context) => FarmsState(),
+      ),
     ],
     child: MyApp(),
   ));
@@ -27,32 +38,54 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Farmasyst Web',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: const MaterialColor(
-          0xFF399d63,
-          const <int, Color>{
-            50: const Color(0xFF6dcf91),
-            100: const Color(0xFF6dcf91),
-            200: const Color(0xFF6dcf91),
-            300: const Color(0xFF399d63),
-            400: const Color(0xFF399d63),
-            500: const Color(0xFF399d63),
-            600: const Color(0xFF399d63),
-            700: const Color(0xFF006e38),
-            800: const Color(0xFF006e38),
-            900: const Color(0xFF006e38),
-          },
+        title: 'Farmasyst Admin',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: const MaterialColor(
+            0xFF399d63,
+            const <int, Color>{
+              50: const Color(0xFF6dcf91),
+              100: const Color(0xFF6dcf91),
+              200: const Color(0xFF6dcf91),
+              300: const Color(0xFF399d63),
+              400: const Color(0xFF399d63),
+              500: const Color(0xFF399d63),
+              600: const Color(0xFF399d63),
+              700: const Color(0xFF006e38),
+              800: const Color(0xFF006e38),
+              900: const Color(0xFF006e38),
+            },
+          ),
+          primaryColorDark: kPrimaryDark,
+          primaryColor: kPrimaryColor,
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         ),
-        primaryColorDark: kPrimaryDark,
-        primaryColor: kPrimaryColor,
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-      ),
-      home: FirebaseAuth.instance.currentUser == null
-          ? LoginScreen()
-          : FrameContainer(),
-    );
+        home: false // FirebaseAuth.instance.currentUser == null
+            ? LoginScreen()
+            : FrameContainer()
+
+        // MultiProvider(
+        //     providers: [
+        //       ChangeNotifierProvider<PageRouter>(
+        //         create: (context) => PageRouter(),
+        //       ),
+        //       ChangeNotifierProvider<FarmersState>(
+        //         create: (context) => FarmersState(),
+        //       ),
+        //       ChangeNotifierProvider<SupervisorsState>(
+        //         create: (context) => SupervisorsState(),
+        //       ),
+        //     ],
+        //     child: FrameContainer(),
+        //   )
+        // ChangeNotifierProvider<PageRouter>(
+        //     create: (context) => PageRouter(),
+        //     child: FrameContainer(),
+        //   ),
+
+        //     : FrameContainer(),
+        // home: FrameContainer(),
+        );
   }
 }
 

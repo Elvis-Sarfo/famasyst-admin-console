@@ -1,21 +1,22 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmasyst_admin_console/models/farm.dart';
 import 'package:farmasyst_admin_console/models/farmer.dart';
 import 'package:flutter/material.dart';
 
-class FarmersState extends ChangeNotifier {
-  List<DocumentSnapshot> _farmers = [], _filteredFarmers = [];
+class FarmsState extends ChangeNotifier {
+  List<DocumentSnapshot> _farmers = [], _filteredFarms = [];
   StreamSubscription _subscription;
   int sortColumnIndex = 1;
   bool waiting = true, hasError = false, done = false, sortAscending = true;
 
-  FarmersState() {
+  FarmsState() {
     startStreaming();
   }
 
-  List get getFarmers => _farmers;
-  List get getFilteredFarmers => _filteredFarmers;
+  List get getFarms => _farmers;
+  List get getFilteredFarms => _filteredFarms;
 
   @override
   void dispose() {
@@ -25,16 +26,16 @@ class FarmersState extends ChangeNotifier {
 
   // List setFamers
 
-  void updateSearchFarmers(List filteredData) {
+  void updateSearchFarms(List filteredData) {
     _farmers = filteredData;
     notifyListeners();
   }
 
   startStreaming() async {
     _subscription =
-        FirebaseFirestore.instance.collection('Farmers').snapshots().listen(
+        FirebaseFirestore.instance.collection('Farms').snapshots().listen(
       (data) {
-        _filteredFarmers = _farmers = data.docs.toList();
+        _filteredFarms = _farmers = data.docs.toList();
         waiting = false;
         notifyListeners();
       },
@@ -54,11 +55,11 @@ class FarmersState extends ChangeNotifier {
 
   // void subscribe() {
   //   Stream<QuerySnapshot> stream =
-  //       FirebaseFirestore.instance.collection('Farmers').snapshots();
+  //       FirebaseFirestore.instance.collection('Farms').snapshots();
   //   if (stream = null) {
   //     _subscription = stream.listen(
   //       (data) {
-  //         _filteredFarmers = _farmers = data.docs.toList();
+  //         _filteredFarms = _farmers = data.docs.toList();
   //         notifyListeners();
   //       },
   //       onError: (Object error, StackTrace stackTrace) {},
@@ -77,32 +78,32 @@ class FarmersState extends ChangeNotifier {
     }
   }
 
-  searchFarmer(String searchKey) {
-    _filteredFarmers = _farmers.where((docSnapshot) {
+  searchFarm(String searchKey) {
+    _filteredFarms = _farmers.where((docSnapshot) {
       // print(docSnapshot.data()['dateOfBirth'] is Timestamp);
       // return false;
-      Farmer farmer = Farmer.fromMapObject(docSnapshot.data());
-      return farmer.name.toLowerCase().contains(searchKey.toLowerCase());
+      Farm farmer = Farm.fromMapObject(docSnapshot.data());
+      return farmer.farmId.toLowerCase().contains(searchKey.toLowerCase());
     }).toList();
     notifyListeners();
   }
 
-  sortFarmerList(String columnName, int index, bool sorted) {
+  sortFarmList(String columnName, int index, bool sorted) {
     sortColumnIndex = index;
     if (sortAscending) {
       sortAscending = false;
-      _filteredFarmers.sort((a, b) {
-        Farmer farmer1 = Farmer.fromMapObject(a.data());
-        Farmer farmer2 = Farmer.fromMapObject(b.data());
+      _filteredFarms.sort((a, b) {
+        Farm farmer1 = Farm.fromMapObject(a.data());
+        Farm farmer2 = Farm.fromMapObject(b.data());
         return farmer1
             .toMap()[columnName]
             .compareTo(farmer2.toMap()[columnName]);
       });
     } else {
       sortAscending = true;
-      _filteredFarmers.sort((a, b) {
-        Farmer farmer1 = Farmer.fromMapObject(a.data());
-        Farmer farmer2 = Farmer.fromMapObject(b.data());
+      _filteredFarms.sort((a, b) {
+        Farm farmer1 = Farm.fromMapObject(a.data());
+        Farm farmer2 = Farm.fromMapObject(b.data());
         return farmer2
             .toMap()[columnName]
             .compareTo(farmer1.toMap()[columnName]);

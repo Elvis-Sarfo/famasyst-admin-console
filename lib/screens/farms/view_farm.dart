@@ -1,23 +1,31 @@
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/services/styles.dart';
+import 'package:farmasyst_admin_console/models/farm.dart';
+import 'package:farmasyst_admin_console/models/farm.dart';
 import 'package:farmasyst_admin_console/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
+import 'package:farmasyst_admin_console/services/styles.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 
-class ViewFarmer extends StatefulWidget {
-  final Farmer farmer;
-  final String farmerId;
-  ViewFarmer({Key key, this.farmer, this.farmerId}) : super(key: key);
+class ViewFarm extends StatefulWidget {
+  final Farm farm;
+  final String farmId;
+  ViewFarm({Key key, this.farm, this.farmId}) : super(key: key);
 
   @override
-  _ViewFarmerState createState() => _ViewFarmerState();
+  _ViewFarmState createState() => _ViewFarmState();
 }
 
-class _ViewFarmerState extends State<ViewFarmer> {
-  Farmer farmer;
+class _ViewFarmState extends State<ViewFarm> {
+  // final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+  Farm farm;
   var profileImage;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    farm = widget.farm;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Farmer Details',
+                  'Farm Details',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -67,22 +75,22 @@ class _ViewFarmerState extends State<ViewFarmer> {
                       children: [
                         Row(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: (widget.farmer.picture != null)
-                                  ? Image.network(
-                                      widget.farmer.picture,
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.fill,
-                                    )
-                                  : Image.asset(
-                                      'assets/images/farmer.png',
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.fill,
-                                    ),
-                            ),
+                            // ClipRRect(
+                            //   borderRadius: BorderRadius.circular(10),
+                            //   child: (farm.picture != null)
+                            //       ? Image.network(
+                            //           farm.picture,
+                            //           width: 120,
+                            //           height: 120,
+                            //           fit: BoxFit.fill,
+                            //         )
+                            //       : Image.asset(
+                            //           'assets/images/farmer.png',
+                            //           width: 120,
+                            //           height: 120,
+                            //           fit: BoxFit.fill,
+                            //         ),
+                            // ),
                             SizedBox(width: 5),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -95,40 +103,26 @@ class _ViewFarmerState extends State<ViewFarmer> {
                                     children: <TextSpan>[
                                       TextSpan(text: 'Name\n'),
                                       TextSpan(
-                                        text: widget.farmer.name,
+                                        text: widget.farm.farmId,
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
                                   ),
                                 ),
-                                RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    style: Styles.kRichTextStyle16,
-                                    children: <TextSpan>[
-                                      TextSpan(text: 'Gender\n'),
-                                      TextSpan(
-                                        text:
-                                            widget.farmer.gender.toUpperCase(),
-                                        style: Styles.kRichTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    style: Styles.kRichTextStyle16,
-                                    children: <TextSpan>[
-                                      TextSpan(text: 'Age\n'),
-                                      TextSpan(
-                                        text:
-                                            '${getYears(widget.farmer.dateOfBirth).toString()} yrs',
-                                        style: Styles.kRichTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // RichText(
+                                //   textAlign: TextAlign.start,
+                                //   text: TextSpan(
+                                //     style: Styles.kRichTextStyle16,
+                                //     children: <TextSpan>[
+                                //       TextSpan(text: 'Type\n'),
+                                //       TextSpan(
+                                //         text: widget.farm.type.toUpperCase() ??
+                                //             '',
+                                //         style: Styles.kRichTextStyle,
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             )
                           ],
@@ -141,11 +135,27 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
+                              TextSpan(text: 'Email\n'),
+                              // TextSpan(
+                              //   text: widget.farm.email.toString(),
+                              //   style: Styles.kRichTextStyle,
+                              // ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(
+                            style: Styles.kRichTextStyle16,
+                            children: <TextSpan>[
                               TextSpan(text: 'Phone Number\n'),
-                              TextSpan(
-                                text: widget.farmer.phone.toString(),
-                                style: Styles.kRichTextStyle,
-                              ),
+                              // TextSpan(
+                              //   text: widget.farm.phone.toString(),
+                              //   style: Styles.kRichTextStyle,
+                              // ),
                             ],
                           ),
                         ),
@@ -159,7 +169,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                             children: <TextSpan>[
                               TextSpan(text: 'Location\n'),
                               TextSpan(
-                                text: widget.farmer.location,
+                                text: widget.farm.location,
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -173,7 +183,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
-                              TextSpan(text: 'Supervisor specializations\n'),
+                              TextSpan(text: 'Farm Interests\n'),
                             ],
                           ),
                         ),
@@ -181,13 +191,12 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           spacing: 5.0, // gap between adjacent chips
                           runSpacing: 4.0, // gap between lines
                           children: List.generate(
-                            widget.farmer.specializations.length,
+                            farm.crops.length,
                             (index) => Chip(
                               backgroundColor: kPrimaryColor,
                               elevation: 5,
                               labelStyle: TextStyle(color: Colors.white),
-                              label: Text(
-                                  '${widget.farmer.specializations[index]}'),
+                              label: Text('${farm.crops[index]}'),
                             ),
                           ),
                         ),

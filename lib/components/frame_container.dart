@@ -2,7 +2,6 @@ import 'package:farmasyst_admin_console/components/footer.dart';
 import 'package:farmasyst_admin_console/components/header.dart';
 import 'package:farmasyst_admin_console/components/side_menu.dart';
 import 'package:farmasyst_admin_console/page_router.dart';
-import 'package:farmasyst_admin_console/screens/farms/farms.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,6 +40,7 @@ class FrameContainer extends StatelessWidget {
           child: Container(
             width: size.width,
             height: size.height,
+            color: Colors.grey.withOpacity(0.1),
             constraints: BoxConstraints(minHeight: size.height),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,11 +48,25 @@ class FrameContainer extends StatelessWidget {
               children: <Widget>[
                 Header(),
                 Expanded(
-                  // child: FarmScreen(),
                   child: Consumer<PageRouter>(
                     builder: (context, pageRoute, child) =>
                         pageRoute.selectedPage,
                   ),
+                  // child: FarmScreen(),
+                  //     child: MultiProvider(
+                  //   providers: [
+                  //     ChangeNotifierProvider<FarmersState>(
+                  //       create: (context) => FarmersState(),
+                  //     ),
+                  //     ChangeNotifierProvider<SupervisorsState>(
+                  //       create: (context) => SupervisorsState(),
+                  //     ),
+                  //   ],
+                  //   child: Consumer<PageRouter>(
+                  //     builder: (context, pageRoute, child) =>
+                  //         pageRoute.selectedPage,
+                  //   ),
+                  // )
                 ),
                 Footer()
               ],

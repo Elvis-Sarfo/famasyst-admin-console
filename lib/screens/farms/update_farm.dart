@@ -1,36 +1,28 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmasyst_admin_console/components/gender_selector.dart';
+import 'package:farmasyst_admin_console/components/custom_dropdown_field.dart';
 import 'package:farmasyst_admin_console/components/tags_feild.dart';
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/screens/farmers/components/famer_module.dart';
-import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:farmasyst_admin_console/models/farm.dart';
+import 'package:farmasyst_admin_console/screens/farms/components/farms_module.dart';
 import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
-import 'package:farmasyst_admin_console/components/date_picker.dart';
 import 'package:farmasyst_admin_console/components/image_chooser.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
-import 'package:farmasyst_admin_console/components/labeled_radio_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
-import 'package:flutter_tags/flutter_tags.dart';
-import 'package:intl/intl.dart';
 
-class UpdateFarmer extends StatefulWidget {
-  final Farmer farmer;
-  final farmerDocSnap;
-  UpdateFarmer({Key key, this.farmer, this.farmerDocSnap}) : super(key: key);
+class UpdateFarm extends StatefulWidget {
+  final Farm farm;
+  final DocumentSnapshot farmDocSnap;
+  UpdateFarm({Key key, this.farm, this.farmDocSnap}) : super(key: key);
 
   @override
-  _UpdateFarmerState createState() => _UpdateFarmerState();
+  _UpdateFarmState createState() => _UpdateFarmState();
 }
 
-class _UpdateFarmerState extends State<UpdateFarmer> {
-  final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+class _UpdateFarmState extends State<UpdateFarm> {
   final _formKey = GlobalKey<FormState>();
-  Farmer farmer;
+  Farm farm;
   var profileImage;
   String errMsg = '';
   bool isLoading = false, showErrorMsg = false;
@@ -39,16 +31,17 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
   TextEditingController _nameFieldController;
   TextEditingController _phoneFieldController;
   TextEditingController _locationFieldController;
-  TextEditingController _numOfFarmsFieldController;
+  TextEditingController _emailFieldController;
 
   @override
   void initState() {
-    farmer = widget.farmer;
-    _nameFieldController = TextEditingController(text: farmer.name);
-    _phoneFieldController = TextEditingController(text: farmer.phone);
-    _locationFieldController = TextEditingController(text: farmer.location);
-    _numOfFarmsFieldController =
-        TextEditingController(text: farmer.numFarms.toString());
+    farm = widget.farm;
+    // _nameFieldController = TextEditingController(text: farm.name);
+    // _phoneFieldController = TextEditingController(text: farm.phone);
+    // _locationFieldController = TextEditingController(text: farm.location);
+    // _emailFieldController = TextEditingController(text: farm.email);
+    // _numOfFarmsFieldController =
+    //     TextEditingController(text: farm.numFarms.toString());
     super.initState();
   }
 
@@ -57,11 +50,11 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
     _nameFieldController.dispose();
     _phoneFieldController.dispose();
     _locationFieldController.dispose();
-    _numOfFarmsFieldController.dispose();
+    _emailFieldController.dispose();
     super.dispose();
   }
 
-  _updateFarmer(BuildContext context) async {
+  _updateFarm(BuildContext context) async {
     if (!isLoading) {
       setState(() {
         isLoading = true;
@@ -69,11 +62,11 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
       });
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
-        var results = await updateFarmer(
-          widget.farmerDocSnap,
-          farmer: farmer,
+        var results = await updateFarm(
+          widget.farmDocSnap,
+          farm: farm,
           profilePic: profileImage,
-          pictureName: farmer.name.replaceAll(' ', '_'),
+          pictureName: farm.farmId.replaceAll(' ', '_'),
         );
         if (results != 'saved') {
           setState(() {
@@ -108,7 +101,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Edit Farmer Details',
+                  'Edit Farm Details',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -161,12 +154,12 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                 ),
                               Row(
                                 children: [
-                                  ImageChooser(
-                                    defaultNetworkImage: farmer.picture,
-                                    onImageSelected: (image) async {
-                                      profileImage = image;
-                                    },
-                                  ),
+                                  // ImageChooser(
+                                  //   defaultNetworkImage: farm.picture,
+                                  //   onImageSelected: (image) async {
+                                  //     profileImage = image;
+                                  //   },
+                                  // ),
                                   SizedBox(
                                     width: 20,
                                   ),
@@ -179,7 +172,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                           controller: _nameFieldController,
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.name = value;
+                                              // farm.name = value;
                                             });
                                           },
                                           validator: emptyFeildValidator,
@@ -187,25 +180,35 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        GenderSelector(
-                                          groupValue: farmer.gender,
-                                          onChanged: (value) {
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        CustomTextFormField(
+                                          controller: _emailFieldController,
+                                          type: TextInputType.number,
+                                          prefixIcon: Icon(Icons.mail),
+                                          hintText: 'Enter Email',
+                                          onSaved: (value) {
                                             setState(() {
-                                              farmer.gender = value;
+                                              // farm.email = value;
                                             });
                                           },
+                                          validator: validateEmail,
                                         ),
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        DatePicker(
-                                          defaultDate: farmer.dateOfBirth,
+                                        CustomTextFormField(
+                                          prefixIcon: Icon(Icons.phone),
+                                          hintText: 'Phone Number',
+                                          controller: _phoneFieldController,
+                                          type: TextInputType.phone,
                                           onSaved: (value) {
                                             setState(() {
-                                              farmer.dateOfBirth =
-                                                  DateTime.parse(value);
+                                              // farm.phone = value;
                                             });
                                           },
+                                          validator: validatePhone,
                                         ),
                                       ],
                                     ),
@@ -215,18 +218,17 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                               SizedBox(
                                 height: 10,
                               ),
-                              CustomTextFormField(
-                                prefixIcon: Icon(Icons.phone),
-                                hintText: 'Phone Number',
-                                controller: _phoneFieldController,
-                                type: TextInputType.phone,
-                                onSaved: (value) {
-                                  setState(() {
-                                    farmer.phone = value;
-                                  });
-                                },
-                                validator: validatePhone,
-                              ),
+                              // CustomDropDownField(
+                              //   prefixIcon: Icon(Icons.category),
+                              //   hint: 'Select Registration Type',
+                              //   items: ['Company', 'Group', 'Individual'],
+                              //   value: farm.type,
+                              //   onChanged: (value) {
+                              //     setState(() {
+                              //       farm.type = value.toString().toLowerCase();
+                              //     });
+                              //   },
+                              // ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -236,39 +238,26 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                   controller: _locationFieldController,
                                   onSaved: (value) {
                                     setState(() {
-                                      farmer.location = value;
+                                      farm.location = value;
                                     });
                                   },
                                   validator: emptyFeildValidator),
                               SizedBox(
                                 height: 10,
                               ),
-                              CustomTextFormField(
-                                type: TextInputType.number,
-                                prefixIcon: Icon(Icons.grid_view),
-                                hintText: 'Number of Farms',
-                                controller: _numOfFarmsFieldController,
-                                onSaved: (value) {
-                                  setState(() {
-                                    farmer.numFarms = int.parse(value);
-                                  });
-                                },
-                                validator: emptyFeildValidator,
-                              ),
                               SizedBox(
                                 height: 10,
                               ),
-                              // Tags
                               TagsField(
-                                tagsArray: farmer.specializations,
+                                tagsArray: farm.crops,
                                 onRemoved: (index) {
                                   setState(() {
-                                    farmer.specializations.removeAt(index);
+                                    farm.crops.removeAt(index);
                                   });
                                 },
                                 onSubmitted: (value) {
                                   setState(() {
-                                    farmer.specializations.add(value);
+                                    farm.crops.add(value);
                                   });
                                 },
                               ),
@@ -299,7 +288,7 @@ class _UpdateFarmerState extends State<UpdateFarmer> {
                                     title: 'Save',
                                     color: kPrimaryColor,
                                     tapEvent: () {
-                                      _updateFarmer(context);
+                                      _updateFarm(context);
                                     },
                                   ),
                                   SizedBox(width: 10),

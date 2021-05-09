@@ -3,18 +3,18 @@ import 'package:farmasyst_admin_console/components/circular_image.dart';
 import 'package:farmasyst_admin_console/components/custom_alert_dailog.dart';
 import 'package:farmasyst_admin_console/components/custom_switch.dart';
 import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/modules/famer_module.dart';
+import 'package:farmasyst_admin_console/screens/farmers/components/famer_module.dart';
 import 'package:farmasyst_admin_console/screens/farmers/update_farmer.dart';
 import 'package:farmasyst_admin_console/screens/farmers/view_farmer.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
 import 'package:flutter/material.dart';
 
-class DTS extends DataTableSource {
+class FarmerDataSource extends DataTableSource {
   List asyncSnapshot;
   BuildContext context;
   // Constructor
-  DTS(this.asyncSnapshot, this.context);
+  FarmerDataSource(this.asyncSnapshot, this.context);
 
   setList(List list) {
     asyncSnapshot = list;
@@ -25,15 +25,38 @@ class DTS extends DataTableSource {
   DataRow getRow(int index) {
     var docSnapshot = asyncSnapshot[index];
     Farmer farmer = Farmer.fromMapObject(docSnapshot.data());
+    bool selected = false;
     return DataRow.byIndex(
+      selected: selected,
+      // onSelectChanged: (value) {
+      //   selected = value;
+      //   // showDialog(
+      //   //   context: context,
+      //   //   builder: (BuildContext context) {
+      //   //     return ViewFarmer(
+      //   //       farmer: farmer,
+      //   //       farmerId: docSnapshot.id,
+      //   //     );
+      //   //   },
+      //   // );
+      // },
       index: index,
       cells: <DataCell>[
         // DataCell(Image.network(farmer.picture)),
-        DataCell(CircularImage()),
+        DataCell(Align(
+          child: farmer.picture != null
+              ? CircularImage(
+                  child: Image.network(farmer.picture),
+                )
+              : CircularImage(
+                  child: null,
+                ),
+          alignment: Alignment.center,
+        )),
         DataCell(Text(farmer.name)),
         DataCell(Text(farmer.phone)),
         DataCell(Text(farmer.location)),
-        DataCell(Text(farmer.gender)),
+        DataCell(Text(farmer.gender.toUpperCase())),
         DataCell(
           CustomSwitch(
             isSwitched: farmer.enabled,

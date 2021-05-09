@@ -1,8 +1,10 @@
 import 'package:farmasyst_admin_console/components/top_nav_bar.dart';
 import 'package:farmasyst_admin_console/page_router.dart';
 import 'package:farmasyst_admin_console/screens/farmers/farmer_screen.dart';
-import 'package:farmasyst_admin_console/screens/farms/farms.dart';
+import 'package:farmasyst_admin_console/screens/farms/farms_screen.dart';
 import 'package:farmasyst_admin_console/screens/home/home.dart';
+import 'package:farmasyst_admin_console/screens/investors/investors_screen.dart';
+import 'package:farmasyst_admin_console/screens/supervisors/supervisors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -53,7 +55,7 @@ class Header extends StatelessWidget {
                 {
                   'title': 'Farms',
                   'onTapCallback': () =>
-                      context.read<PageRouter>().route(FarmScreen()),
+                      context.read<PageRouter>().route(FarmsScreen()),
                 },
                 {
                   'title': 'Farmers',
@@ -63,16 +65,17 @@ class Header extends StatelessWidget {
                 {
                   'title': 'Investors',
                   'onTapCallback': () =>
-                      context.read<PageRouter>().route(HomeScreen()),
+                      context.read<PageRouter>().route(InvestorsScreen()),
                 },
                 {
                   'title': 'Supervisors',
                   'onTapCallback': () =>
-                      context.read<PageRouter>().route(HomeScreen()),
+                      context.read<PageRouter>().route(SupervisorScreen()),
                 }
               ],
             ),
           ),
+          SizedBox(width: 10),
           Text('Admin')
         ],
       ),

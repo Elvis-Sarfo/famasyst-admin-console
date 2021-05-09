@@ -21,42 +21,53 @@ class DesktopFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 20,
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-              flex: 1,
-              child: Text(
-                'All Right Reserved',
-                style: TextStyle(fontSize: 10),
-              )),
-          Expanded(
-              flex: 2,
-              child: Row(
-                children: <Widget>[
-                  NavItem(
-                    title: 'Twitter',
-                    tapEvent: () {},
-                  ),
-                  NavItem(
-                    title: 'Facebook',
-                    tapEvent: () {},
-                  ),
-                  NavItem(
-                    title: 'Linkedin',
-                    tapEvent: () {},
-                  ),
-                  NavItem(
-                    title: 'Instagram',
-                    tapEvent: () {},
-                  ),
-                ],
-              )),
-        ],
-      ),
-    );
+        // height: 20,
+        alignment: Alignment.bottomCenter,
+        // margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        color: Colors.white,
+        height: 30.0,
+        width: double.infinity,
+        child: Center(
+          child: Text(
+            'All Right Reserved',
+          ),
+        )
+
+        // Row(
+        //   children: <Widget>[
+        //     Expanded(
+        //       flex: 1,
+        //       child: Text(
+        //         'All Right Reserved',
+        //         style: TextStyle(fontSize: 10),
+        //       ),
+        //     ),
+        //     Expanded(
+        //         flex: 2,
+        //         child: Row(
+        //           children: <Widget>[
+        //             NavItem(
+        //               title: 'Twitter',
+        //               tapEvent: () {},
+        //             ),
+        //             NavItem(
+        //               title: 'Facebook',
+        //               tapEvent: () {},
+        //             ),
+        //             NavItem(
+        //               title: 'Linkedin',
+        //               tapEvent: () {},
+        //             ),
+        //             NavItem(
+        //               title: 'Instagram',
+        //               tapEvent: () {},
+        //             ),
+        //           ],
+        //         )),
+        //   ],
+        // ),
+
+        );
   }
 }
 
@@ -68,37 +79,45 @@ class MobileFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-      child: Column(
-        children: <Widget>[
-          Text(
+        // margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        color: Colors.white,
+        height: 30.0,
+        width: double.infinity,
+        child: Center(
+          child: Text(
             'All Right Reserved',
-            style: TextStyle(fontSize: 10),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              NavItem(
-                title: 'Twitter',
-                tapEvent: () {},
-              ),
-              NavItem(
-                title: 'Facebook',
-                tapEvent: () {},
-              ),
-              NavItem(
-                title: 'Linkedin',
-                tapEvent: () {},
-              ),
-              NavItem(
-                title: 'Instagram',
-                tapEvent: () {},
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+        )
+        // Column(
+        //   children: <Widget>[
+        //     Text(
+        //       'All Right Reserved',
+        //       style: TextStyle(fontSize: 10),
+        //     ),
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: <Widget>[
+        //         NavItem(
+        //           title: 'Twitter',
+        //           tapEvent: () {},
+        //         ),
+        //         NavItem(
+        //           title: 'Facebook',
+        //           tapEvent: () {},
+        //         ),
+        //         NavItem(
+        //           title: 'Linkedin',
+        //           tapEvent: () {},
+        //         ),
+        //         NavItem(
+        //           title: 'Instagram',
+        //           tapEvent: () {},
+        //         ),
+        //       ],
+        //     )
+        //   ],
+        // ),
+        );
   }
 }
 

@@ -1,23 +1,31 @@
-import 'package:farmasyst_admin_console/models/farmer.dart';
-import 'package:farmasyst_admin_console/services/styles.dart';
+import 'package:farmasyst_admin_console/models/investor.dart';
+import 'package:farmasyst_admin_console/models/investor.dart';
 import 'package:farmasyst_admin_console/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
+import 'package:farmasyst_admin_console/services/styles.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 
-class ViewFarmer extends StatefulWidget {
-  final Farmer farmer;
-  final String farmerId;
-  ViewFarmer({Key key, this.farmer, this.farmerId}) : super(key: key);
+class ViewInvestor extends StatefulWidget {
+  final Investor investor;
+  final String investorId;
+  ViewInvestor({Key key, this.investor, this.investorId}) : super(key: key);
 
   @override
-  _ViewFarmerState createState() => _ViewFarmerState();
+  _ViewInvestorState createState() => _ViewInvestorState();
 }
 
-class _ViewFarmerState extends State<ViewFarmer> {
-  Farmer farmer;
+class _ViewInvestorState extends State<ViewInvestor> {
+  // final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+  Investor investor;
   var profileImage;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    investor = widget.investor;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Farmer Details',
+                  'Investor Details',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -69,9 +77,9 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: (widget.farmer.picture != null)
+                              child: (investor.picture != null)
                                   ? Image.network(
-                                      widget.farmer.picture,
+                                      investor.picture,
                                       width: 120,
                                       height: 120,
                                       fit: BoxFit.fill,
@@ -95,7 +103,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                                     children: <TextSpan>[
                                       TextSpan(text: 'Name\n'),
                                       TextSpan(
-                                        text: widget.farmer.name,
+                                        text: widget.investor.name,
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
@@ -106,24 +114,11 @@ class _ViewFarmerState extends State<ViewFarmer> {
                                   text: TextSpan(
                                     style: Styles.kRichTextStyle16,
                                     children: <TextSpan>[
-                                      TextSpan(text: 'Gender\n'),
+                                      TextSpan(text: 'Type\n'),
                                       TextSpan(
-                                        text:
-                                            widget.farmer.gender.toUpperCase(),
-                                        style: Styles.kRichTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    style: Styles.kRichTextStyle16,
-                                    children: <TextSpan>[
-                                      TextSpan(text: 'Age\n'),
-                                      TextSpan(
-                                        text:
-                                            '${getYears(widget.farmer.dateOfBirth).toString()} yrs',
+                                        text: widget.investor.type
+                                                .toUpperCase() ??
+                                            '',
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
@@ -141,9 +136,25 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
+                              TextSpan(text: 'Email\n'),
+                              TextSpan(
+                                text: widget.investor.email.toString(),
+                                style: Styles.kRichTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(
+                            style: Styles.kRichTextStyle16,
+                            children: <TextSpan>[
                               TextSpan(text: 'Phone Number\n'),
                               TextSpan(
-                                text: widget.farmer.phone.toString(),
+                                text: widget.investor.phone.toString(),
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -159,7 +170,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                             children: <TextSpan>[
                               TextSpan(text: 'Location\n'),
                               TextSpan(
-                                text: widget.farmer.location,
+                                text: widget.investor.location,
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -173,7 +184,7 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
-                              TextSpan(text: 'Supervisor specializations\n'),
+                              TextSpan(text: 'Investor Interests\n'),
                             ],
                           ),
                         ),
@@ -181,13 +192,12 @@ class _ViewFarmerState extends State<ViewFarmer> {
                           spacing: 5.0, // gap between adjacent chips
                           runSpacing: 4.0, // gap between lines
                           children: List.generate(
-                            widget.farmer.specializations.length,
+                            investor.interests.length,
                             (index) => Chip(
                               backgroundColor: kPrimaryColor,
                               elevation: 5,
                               labelStyle: TextStyle(color: Colors.white),
-                              label: Text(
-                                  '${widget.farmer.specializations[index]}'),
+                              label: Text('${investor.interests[index]}'),
                             ),
                           ),
                         ),
