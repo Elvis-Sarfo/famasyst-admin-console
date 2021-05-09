@@ -2,6 +2,7 @@ import 'package:farmasyst_admin_console/components/custom_dropdown_field.dart';
 import 'package:farmasyst_admin_console/components/tags_feild.dart';
 import 'package:farmasyst_admin_console/models/farm.dart';
 import 'package:farmasyst_admin_console/screens/farms/components/farms_module.dart';
+import 'package:farmasyst_admin_console/services/database_services.dart';
 import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
@@ -45,12 +46,10 @@ class _AddNewFarmDialogState extends State<AddNewFarmDialog> {
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
 
-        // add farm specs
-        farm.crops = _farmInterests;
         var results = await saveNewFarm(
           farm,
           profilePic: profileImage,
-          pictureName: farm.farmId.replaceAll(' ', '_'),
+          pictureName: null,
         );
         if (results != 'saved') {
           setState(() {
@@ -172,7 +171,7 @@ class _AddNewFarmDialogState extends State<AddNewFarmDialog> {
                                                   double.parse(value);
                                             });
                                           },
-                                          validator: validateEmail,
+                                          validator: emptyFeildValidator,
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -181,9 +180,9 @@ class _AddNewFarmDialogState extends State<AddNewFarmDialog> {
                                           prefixIcon: Icon(Icons.person),
                                           hint: 'Select Farmer',
                                           items: [
-                                            'Farmer 1',
-                                            'Farmer 2',
-                                            'Farmer 3'
+                                            {'value': '1', 'label': 'Farmer 1'},
+                                            {'value': '2', 'label': 'Farmer 2'},
+                                            {'value': '3', 'label': 'Farmer 3'},
                                           ],
                                           value: farm.farmerId,
                                           onChanged: (value) {
@@ -207,7 +206,7 @@ class _AddNewFarmDialogState extends State<AddNewFarmDialog> {
                               ),
                               CustomTextFormField(
                                 maxLines: 5,
-                                minLines: 3,
+                                minLines: 2,
                                 prefixIcon: Icon(Icons.description),
                                 hintText: 'Farm Description',
                                 onSaved: (value) {

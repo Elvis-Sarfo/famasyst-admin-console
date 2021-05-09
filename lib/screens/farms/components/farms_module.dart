@@ -5,63 +5,72 @@ import 'package:farmasyst_admin_console/services/database_services.dart';
 
 Future<String> saveNewFarm(Farm farm,
     {var profilePic, String pictureName}) async {
-  // var docs = await DatabaseServices.queryFromDatabaseByField(
-  //     'Farms', 'phone', farm.phone);
-  // if (docs.docs.isEmpty) {
-  //   DocumentReference docSnapshot =
-  //       await DatabaseServices.saveData('Farms', farm.toMap());
+  // Get farm sequence counter from the db meta data
+  var databaseSchema = await DatabaseServices.querySingleUserById(
+      'counters', 'database_meta_data');
 
-  //   var imageUrl = (profilePic != null)
-  //       ? await DatabaseServices.uploadFile(
-  //           profilePic, '/farms/', pictureName)
-  //       : null;
-  //   Map<String, dynamic> uppdate = {"picture": imageUrl};
-  //   if (imageUrl != null) {
-  //     docSnapshot = await DatabaseServices.updateDocument(
-  //       'Farms',
-  //       docSnapshot.id,
-  //       uppdate,
-  //     );
-  //   }
-  //   farm.pictures = imageUrl;
-  //   return 'saved';
-  // } else {
-  //   return 'Phone Number Already Exists';
-  // }
+  if (databaseSchema.exists) {
+    // Add one to the counter and assign to the farmIdfilled of the new farm
+    farm.farmId = ++databaseSchema.data()['farms_counter'];
+    DocumentReference docSnapshot =
+        await DatabaseServices.saveData('Farms', farm.toMap());
+
+    // Upload image if there is any
+    var imageUrl = (profilePic != null)
+        ? await DatabaseServices.uploadFile(
+            profilePic, '/farms/', farm.farmId.toString())
+        : null;
+
+    // Update the images list of the farm
+    if (imageUrl != null) {
+      Map<String, dynamic> uppdate = {
+        "pictures": [imageUrl]
+      };
+      docSnapshot = await DatabaseServices.updateDocument(
+        'Farms',
+        docSnapshot.id,
+        uppdate,
+      );
+      farm.pictures.add(imageUrl);
+    }
+
+    // Update the farmer counter
+    Map<String, dynamic> counterUpdate = {'farms_counter': farm.farmId};
+    await DatabaseServices.updateDocument(
+      'database_meta_data',
+      'counters',
+      counterUpdate,
+    );
+    return 'saved';
+  } else {
+    return 'Error';
+  }
 }
 
 updateFarm(DocumentSnapshot farmDocSnap,
     {Farm farm, var profilePic, String pictureName}) async {
-  // Farm _existingfarm = Farm.fromMapObject(farmDocSnap.data());
+  Farm _existingfarm = Farm.fromMapObject(farmDocSnap.data());
 
-  // var snaps;
-  // if (_existingfarm.phone != farm.phone) {
-  //   snaps = await DatabaseServices.queryFromDatabaseByField(
-  //       'Farms', 'phone', farm.phone);
-  // }
-  // if (snaps == null || snaps.docs.isNotEmpty) {
-  //   DocumentReference docSnapshot = await DatabaseServices.setDocument(
-  //     'Farms',
-  //     farmDocSnap.id,
-  //     farm.toMap(),
-  //   );
+  DocumentReference docSnapshot = await DatabaseServices.setDocument(
+    'Farms',
+    farmDocSnap.id,
+    farm.toMap(),
+  );
 
-  //   var imageUrl = (profilePic != null)
-  //       ? await DatabaseServices.uploadFile(profilePic, '/farms/', pictureName)
-  //       : null;
-  //   Map<String, dynamic> uppdate = {"picture": imageUrl};
-  //   if (imageUrl != null) {
-  //     docSnapshot = await DatabaseServices.updateDocument(
-  //       'Farms',
-  //       farmDocSnap.id,
-  //       uppdate,
-  //     );
-  //   }
-  //   return 'saved';
-  // } else {
-  //   return 'Phone Number Already Exists';
-  // }
-  // farm.picture = imageUrl;
+  var imageUrl = (profilePic != null)
+      ? await DatabaseServices.uploadFile(profilePic, '/farms/', pictureName)
+      : null;
+
+  if (imageUrl != null) {
+    Map<String, dynamic> uppdate = {"picture": imageUrl};
+    docSnapshot = await DatabaseServices.updateDocument(
+      'Farms',
+      farmDocSnap.id,
+      uppdate,
+    );
+    farm.pictures.add(imageUrl);
+  }
+  return 'saved';
 }
 
 deleteFarm(String farmId) async {

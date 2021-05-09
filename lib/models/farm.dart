@@ -1,9 +1,10 @@
 class Farm {
-  String farmerId, farmId, description;
+  String farmerId, description;
   List farmState, pictures, crops;
   Map farmerDetails;
   double farmSize;
   String location;
+  int farmId;
 
   Farm(
       {this.farmerId,

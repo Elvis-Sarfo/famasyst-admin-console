@@ -103,7 +103,7 @@ class _ViewFarmState extends State<ViewFarm> {
                                     children: <TextSpan>[
                                       TextSpan(text: 'Name\n'),
                                       TextSpan(
-                                        text: widget.farm.farmId,
+                                        text: widget.farm.farmId.toString(),
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],

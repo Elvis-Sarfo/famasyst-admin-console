@@ -83,7 +83,7 @@ class FarmsState extends ChangeNotifier {
       // print(docSnapshot.data()['dateOfBirth'] is Timestamp);
       // return false;
       Farm farmer = Farm.fromMapObject(docSnapshot.data());
-      return farmer.farmId.toLowerCase().contains(searchKey.toLowerCase());
+      return farmer.farmId.toString().contains(searchKey.toLowerCase());
     }).toList();
     notifyListeners();
   }

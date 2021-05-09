@@ -1,13 +1,21 @@
 // import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/models/supervisor.dart';
+import 'package:farmasyst_admin_console/services/auth_services.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<String> saveNewSupervisor(Supervisor supervisor,
     {var profilePic, String pictureName}) async {
   var docs = await DatabaseServices.queryFromDatabaseByField(
       'Supervisors', 'phone', supervisor.phone);
-  if (docs.docs.isEmpty) {
+
+  var userCredentials = await Auth.signUpWithEmailandPassword(
+    email: supervisor.email,
+    password: '123456',
+  );
+
+  if (docs.docs.isEmpty && (userCredentials is UserCredential)) {
     DocumentReference docSnapshot =
         await DatabaseServices.saveData('Supervisors', supervisor.toMap());
 
@@ -40,6 +48,7 @@ updateSupervisor(DocumentSnapshot supervisorDocSnap,
     snaps = await DatabaseServices.queryFromDatabaseByField(
         'Supervisors', 'phone', supervisor.phone);
   }
+
   if (snaps == null || snaps.docs.isNotEmpty) {
     DocumentReference docSnapshot = await DatabaseServices.setDocument(
       'Supervisors',
@@ -51,8 +60,9 @@ updateSupervisor(DocumentSnapshot supervisorDocSnap,
         ? await DatabaseServices.uploadFile(
             profilePic, '/supervisors/', pictureName)
         : null;
-    Map<String, dynamic> uppdate = {"picture": imageUrl};
+
     if (imageUrl != null) {
+      Map<String, dynamic> uppdate = {"picture": imageUrl};
       docSnapshot = await DatabaseServices.updateDocument(
         'Supervisors',
         supervisorDocSnap.id,

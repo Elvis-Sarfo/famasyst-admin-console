@@ -66,7 +66,6 @@ class _UpdateFarmState extends State<UpdateFarm> {
           widget.farmDocSnap,
           farm: farm,
           profilePic: profileImage,
-          pictureName: farm.farmId.replaceAll(' ', '_'),
         );
         if (results != 'saved') {
           setState(() {

@@ -33,7 +33,7 @@ class FarmsDataSource extends DataTableSource {
                 ),
           alignment: Alignment.center,
         )),
-        DataCell(Text(farm.farmId)),
+        DataCell(Text(farm.farmId.toString())),
         DataCell(Text(farm.farmerId.toUpperCase() ?? '')),
         DataCell(Text(farm.farmSize.toString())),
         DataCell(Text(farm.location)),

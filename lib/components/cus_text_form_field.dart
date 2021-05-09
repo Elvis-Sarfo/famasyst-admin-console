@@ -48,7 +48,7 @@ class CustomTextFormField extends StatelessWidget {
           suffixIcon: suffixIcon,
           fillColor: kPrimaryLight.withOpacity(0.1),
           focusColor: kPrimaryLight.withOpacity(0.2),
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
           ),

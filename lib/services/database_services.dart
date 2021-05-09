@@ -15,13 +15,10 @@ class DatabaseServices {
     return reference.get();
   }
 
-  static Future<QuerySnapshot> querySingleUserById(
-      String userId, String collection) async {
+  static Future<DocumentSnapshot> querySingleUserById(
+      String docId, String collection) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    return firebaseFirestore
-        .collection(collection)
-        .where('id', isEqualTo: userId)
-        .get();
+    return firebaseFirestore.collection(collection).doc(docId).get();
   }
 
   static Future<QuerySnapshot> queryFromDatabaseByField(
@@ -69,6 +66,20 @@ class DatabaseServices {
 
   static Future<DocumentReference> saveData(String collection, Map data) async {
     return await FirebaseFirestore.instance.collection(collection).add(data);
+  }
+
+  static Future<void> saveDataWithId(
+      String collection, Map data, String docId) async {
+    var _existinfDoc =
+        await DatabaseServices.querySingleUserById(docId, collection);
+    if (!_existinfDoc.exists) {
+      await FirebaseFirestore.instance
+          .collection(collection)
+          .doc(docId)
+          .set(data);
+    } else {
+      throw ('Doument Id already Exist');
+    }
   }
 
   static Future<void> deleteDocument(String collection, String docId) async {

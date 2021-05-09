@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomDropDownField extends StatelessWidget {
   final String value;
-  final List<String> items;
+  final List<Map<dynamic, String>> items;
   final Color dropdownColor;
   final Function(dynamic value) onChanged;
   final String hint;
@@ -42,10 +42,10 @@ class CustomDropDownField extends StatelessWidget {
               isDense: true,
               isExpanded: true,
               onChanged: (newValue) => onChanged(newValue),
-              items: items.map((value) {
+              items: items.map((item) {
                 return DropdownMenuItem(
-                  value: value.toLowerCase(),
-                  child: Text(value),
+                  value: item['value'].toLowerCase(),
+                  child: Text(item['label']),
                 );
               }).toList(),
             ),

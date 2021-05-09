@@ -222,7 +222,20 @@ class _UpdateInvestorState extends State<UpdateInvestor> {
                               CustomDropDownField(
                                 prefixIcon: Icon(Icons.category),
                                 hint: 'Select Registration Type',
-                                items: ['Company', 'Group', 'Individual'],
+                                items: [
+                                  {
+                                    'value': 'company',
+                                    'label': 'Company',
+                                  },
+                                  {
+                                    'value': 'croup',
+                                    'label': 'Group',
+                                  },
+                                  {
+                                    'value': 'individual',
+                                    'label': 'Individual'
+                                  },
+                                ],
                                 value: investor.type,
                                 onChanged: (value) {
                                   setState(() {

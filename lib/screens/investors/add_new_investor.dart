@@ -204,7 +204,20 @@ class _AddNewInvestorDialogState extends State<AddNewInvestorDialog> {
                               CustomDropDownField(
                                 prefixIcon: Icon(Icons.category),
                                 hint: 'Phone Number',
-                                items: ['Company', 'Group', 'Individual'],
+                                items: [
+                                  {
+                                    'value': 'company',
+                                    'label': 'Company',
+                                  },
+                                  {
+                                    'value': 'croup',
+                                    'label': 'Group',
+                                  },
+                                  {
+                                    'value': 'individual',
+                                    'label': 'Individual'
+                                  },
+                                ],
                                 value: _investorType,
                                 onChanged: (value) {
                                   setState(() {

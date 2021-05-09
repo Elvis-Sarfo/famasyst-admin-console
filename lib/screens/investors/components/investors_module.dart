@@ -1,13 +1,23 @@
 // import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/models/investor.dart';
+import 'package:farmasyst_admin_console/services/auth_services.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<String> saveNewInvestor(Investor investor,
     {var profilePic, String pictureName}) async {
   var docs = await DatabaseServices.queryFromDatabaseByField(
       'Investors', 'phone', investor.phone);
-  if (docs.docs.isEmpty) {
+
+  // Create user in the auth users
+  var userCredentials = await Auth.signUpWithEmailandPassword(
+    email: investor.email,
+    password: '123456',
+  );
+
+  // Save the user
+  if (docs.docs.isEmpty && (userCredentials is UserCredential)) {
     DocumentReference docSnapshot =
         await DatabaseServices.saveData('Investors', investor.toMap());
 
@@ -26,7 +36,7 @@ Future<String> saveNewInvestor(Investor investor,
     investor.picture = imageUrl;
     return 'saved';
   } else {
-    return 'Phone Number Already Exists';
+    return 'Email or Phone Number Already Exists';
   }
 }
 
