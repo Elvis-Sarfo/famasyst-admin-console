@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          flutter build web --release
+      - run: sudo snap install flutter --classic && flutter build web --release
         working-directory: ./
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
