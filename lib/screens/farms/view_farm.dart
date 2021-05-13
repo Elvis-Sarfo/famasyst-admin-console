@@ -235,14 +235,12 @@ class _ViewFarmState extends State<ViewFarm> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    color: kPrimaryColor,
-                    child: Center(
-                      // child: Text('data'),
-                      child: Image.asset(
-                        'assets/images/farm_map.png',
-                        fit: BoxFit.fill,
-                      ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/farm_map.png',
+                      fit: BoxFit.fill,
+                      height: 400,
                     ),
                   ),
                 )
