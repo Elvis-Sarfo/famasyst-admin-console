@@ -6,6 +6,7 @@ class Supervisor {
   DateTime dateOfBirth;
   bool enabled;
   List specializations;
+  Map manager;
   Supervisor({
     this.gender,
     this.id,
