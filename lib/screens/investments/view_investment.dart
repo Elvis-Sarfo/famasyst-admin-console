@@ -1,29 +1,30 @@
-import 'package:farmasyst_admin_console/models/supervisor.dart';
+import 'package:farmasyst_admin_console/models/investment.dart';
+import 'package:farmasyst_admin_console/models/investment.dart';
+import 'package:farmasyst_admin_console/models/investment.dart';
 import 'package:farmasyst_admin_console/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/services/styles.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 
-class ViewSupervisor extends StatefulWidget {
-  final Supervisor supervisor;
-  final String supervisorId;
-  ViewSupervisor({Key key, this.supervisor, this.supervisorId})
-      : super(key: key);
+class ViewInvestment extends StatefulWidget {
+  final Investment investment;
+  final String farmId;
+  ViewInvestment({Key key, this.investment, this.farmId}) : super(key: key);
 
   @override
-  _ViewSupervisorState createState() => _ViewSupervisorState();
+  _ViewInvestmentState createState() => _ViewInvestmentState();
 }
 
-class _ViewSupervisorState extends State<ViewSupervisor> {
+class _ViewInvestmentState extends State<ViewInvestment> {
   // final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
-  Supervisor supervisor;
+  Investment investment;
   var profileImage;
   bool isLoading = false;
 
   @override
   void initState() {
-    supervisor = widget.supervisor;
+    investment = widget.investment;
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Supervisor Details',
+                  'Investment Details',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -75,22 +76,22 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
                       children: [
                         Row(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: (supervisor.picture != null)
-                                  ? Image.network(
-                                      supervisor.picture,
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.fill,
-                                    )
-                                  : Image.asset(
-                                      'assets/images/farmer.png',
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.fill,
-                                    ),
-                            ),
+                            // ClipRRect(
+                            //   borderRadius: BorderRadius.circular(10),
+                            //   child: (investment.picture != null)
+                            //       ? Image.network(
+                            //           investment.picture,
+                            //           width: 120,
+                            //           height: 120,
+                            //           fit: BoxFit.fill,
+                            //         )
+                            //       : Image.asset(
+                            //           'assets/images/farmer.png',
+                            //           width: 120,
+                            //           height: 120,
+                            //           fit: BoxFit.fill,
+                            //         ),
+                            // ),
                             SizedBox(width: 5),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -103,40 +104,26 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
                                     children: <TextSpan>[
                                       TextSpan(text: 'Name\n'),
                                       TextSpan(
-                                        text: widget.supervisor.name,
+                                        text: widget.investment.id.toString(),
                                         style: Styles.kRichTextStyle,
                                       ),
                                     ],
                                   ),
                                 ),
-                                RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    style: Styles.kRichTextStyle16,
-                                    children: <TextSpan>[
-                                      TextSpan(text: 'Gender\n'),
-                                      TextSpan(
-                                        text: widget.supervisor.gender
-                                            .toUpperCase(),
-                                        style: Styles.kRichTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    style: Styles.kRichTextStyle16,
-                                    children: <TextSpan>[
-                                      TextSpan(text: 'Age\n'),
-                                      TextSpan(
-                                        text:
-                                            '${getYears(widget.supervisor.dateOfBirth).toString()} yrs',
-                                        style: Styles.kRichTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // RichText(
+                                //   textAlign: TextAlign.start,
+                                //   text: TextSpan(
+                                //     style: Styles.kRichTextStyle16,
+                                //     children: <TextSpan>[
+                                //       TextSpan(text: 'Type\n'),
+                                //       TextSpan(
+                                //         text: widget.investment.type.toUpperCase() ??
+                                //             '',
+                                //         style: Styles.kRichTextStyle,
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             )
                           ],
@@ -150,10 +137,10 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
                               TextSpan(text: 'Email\n'),
-                              TextSpan(
-                                text: widget.supervisor.email.toString(),
-                                style: Styles.kRichTextStyle,
-                              ),
+                              // TextSpan(
+                              //   text: widget.investment.email.toString(),
+                              //   style: Styles.kRichTextStyle,
+                              // ),
                             ],
                           ),
                         ),
@@ -166,10 +153,10 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
                               TextSpan(text: 'Phone Number\n'),
-                              TextSpan(
-                                text: widget.supervisor.phone.toString(),
-                                style: Styles.kRichTextStyle,
-                              ),
+                              // TextSpan(
+                              //   text: widget.investment.phone.toString(),
+                              //   style: Styles.kRichTextStyle,
+                              // ),
                             ],
                           ),
                         ),
@@ -183,7 +170,7 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
                             children: <TextSpan>[
                               TextSpan(text: 'Location\n'),
                               TextSpan(
-                                text: widget.supervisor.location,
+                                text: widget.investment.payback,
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -197,24 +184,23 @@ class _ViewSupervisorState extends State<ViewSupervisor> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
-                              TextSpan(text: 'Supervisor specializations\n'),
+                              TextSpan(text: 'Investment Interests\n'),
                             ],
                           ),
                         ),
-                        Wrap(
-                          spacing: 5.0, // gap between adjacent chips
-                          runSpacing: 4.0, // gap between lines
-                          children: List.generate(
-                            supervisor.specializations.length,
-                            (index) => Chip(
-                              backgroundColor: kPrimaryColor,
-                              elevation: 5,
-                              labelStyle: TextStyle(color: Colors.white),
-                              label:
-                                  Text('${supervisor.specializations[index]}'),
-                            ),
-                          ),
-                        ),
+                        // Wrap(
+                        //   spacing: 5.0, // gap between adjacent chips
+                        //   runSpacing: 4.0, // gap between lines
+                        //   children: List.generate(
+                        //     investment.crops.length,
+                        //     (index) => Chip(
+                        //       backgroundColor: kPrimaryColor,
+                        //       elevation: 5,
+                        //       labelStyle: TextStyle(color: Colors.white),
+                        //       label: Text('${investment.crops[index]}'),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

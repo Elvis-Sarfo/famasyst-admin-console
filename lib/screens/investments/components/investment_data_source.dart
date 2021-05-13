@@ -1,64 +1,66 @@
 import 'package:farmasyst_admin_console/components/circular_image.dart';
 import 'package:farmasyst_admin_console/components/custom_alert_dailog.dart';
 import 'package:farmasyst_admin_console/components/custom_switch.dart';
+import 'package:farmasyst_admin_console/components/popup_button.dart';
+import 'package:farmasyst_admin_console/models/investment.dart';
+import 'package:farmasyst_admin_console/models/investment.dart';
 import 'package:farmasyst_admin_console/models/supervisor.dart';
-import 'package:farmasyst_admin_console/screens/supervisors/components/supervisor_module.dart';
-import 'package:farmasyst_admin_console/screens/supervisors/update_supervisor.dart';
-import 'package:farmasyst_admin_console/screens/supervisors/view_supervisors.dart';
+import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
+import 'package:farmasyst_admin_console/notifiers/supervisors_state%20.dart';
+import 'package:farmasyst_admin_console/screens/farms/components/farms_module.dart';
+import 'package:farmasyst_admin_console/screens/farms/update_farm.dart';
+import 'package:farmasyst_admin_console/screens/farms/view_farm.dart';
+import 'package:farmasyst_admin_console/screens/investments/components/investment_module.dart';
+import 'package:farmasyst_admin_console/screens/investments/view_investment.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/services/database_services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class SupervisorDataSource extends DataTableSource {
+class InvestmentsDataSource extends DataTableSource {
   List asyncSnapshot;
   BuildContext context;
   // Constructor
-  SupervisorDataSource(this.asyncSnapshot, this.context);
+  InvestmentsDataSource(this.asyncSnapshot, this.context);
 
   // Start Overides
   @override
   DataRow getRow(int index) {
     var docSnapshot = asyncSnapshot[index];
-    Supervisor supervisor = Supervisor.fromMapObject(docSnapshot.data());
+    Investment investment = Investment.fromMapObject(docSnapshot.data());
     bool selected = false;
     return DataRow.byIndex(
       selected: selected,
-      // onSelectChanged: (value) {
-      //   selected = value;
-      //   // showDialog(
-      //   //   context: context,
-      //   //   builder: (BuildContext context) {
-      //   //     return ViewSupervisor(
-      //   //       supervisor: supervisor,
-      //   //       supervisorId: docSnapshot.id,
-      //   //     );
-      //   //   },
-      //   // );
-      // },
       index: index,
       cells: <DataCell>[
-        // DataCell(Image.network(supervisor.picture)),
         DataCell(Align(
-          child: supervisor.picture != null
+          child: investment.farm['pictures'] != null
               ? CircularImage(
-                  child: Image.network(supervisor.picture),
+                  child: Image.network(investment.farm['pictures'][0]),
                 )
               : CircularImage(
                   child: null,
                 ),
           alignment: Alignment.center,
         )),
-        DataCell(Text(supervisor.name)),
-        DataCell(Text(supervisor.phone)),
-        DataCell(Text(supervisor.location)),
-        DataCell(Text(supervisor.gender.toUpperCase())),
+        DataCell(Text(investment.id.toString())),
+        DataCell(Text(investment.farm['farmId'])),
+        // todo: chnage name to id
+        DataCell(Text(investment.farmer['name'])),
+        DataCell(Text(investment.inverstor['name'])),
+        // DataCell(Text(investment.id.toString())),
+        // DataCell(Text(investment.farm['id'])),
+        // // todo: chnage name to id
+        // DataCell(Text(investment.farmer['name'])),
+        // DataCell(Text(investment.inverstor['name'])),
         DataCell(
           CustomSwitch(
-            isSwitched: supervisor.enabled,
+            isSwitched: investment.approved,
             onChanged: (value) async {
-              Map<String, dynamic> update = {'enabled': value};
+              Map<String, dynamic> update = {'approved': value};
               await DatabaseServices.updateDocument(
-                'Supervisors',
+                'Investments',
                 docSnapshot.id,
                 update,
               );
@@ -79,9 +81,9 @@ class SupervisorDataSource extends DataTableSource {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return ViewSupervisor(
-                        supervisor: supervisor,
-                        supervisorId: docSnapshot.id,
+                      return ViewInvestment(
+                        investment: investment,
+                        farmId: docSnapshot.id,
                       );
                     },
                   );
@@ -98,10 +100,10 @@ class SupervisorDataSource extends DataTableSource {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return UpdateSupervisor(
-                        supervisor: supervisor,
-                        supervisorDocSnap: docSnapshot,
-                      );
+                      // return UpdateInvestment(
+                      //   investment: investment,
+                      //   farmDocSnap: docSnapshot,
+                      // );
                     },
                   );
                 },
@@ -138,7 +140,7 @@ class SupervisorDataSource extends DataTableSource {
                               ),
                             ),
                             onPressed: () {
-                              deleteSupervisor(docSnapshot.id);
+                              deleteInvestment(docSnapshot.id);
                               Navigator.of(context).pop();
                             },
                             child: Text(

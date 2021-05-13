@@ -64,6 +64,7 @@ class CustomAlertDialog extends StatelessWidget {
               Center(
                 child: Text(
                   title,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
@@ -82,7 +83,7 @@ class CustomAlertDialog extends StatelessWidget {
                 height: 30,
               ),
               Align(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.bottomCenter,
                 child: Container(
                   child: Wrap(
                     spacing: 10,

@@ -1,11 +1,13 @@
 import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
 import 'package:farmasyst_admin_console/notifiers/farms_state.dart';
+import 'package:farmasyst_admin_console/notifiers/investments_state.dart';
 import 'package:farmasyst_admin_console/notifiers/investors_state%20.dart';
 import 'package:farmasyst_admin_console/notifiers/supervisors_state%20.dart';
 import 'package:farmasyst_admin_console/page_router.dart';
 import 'package:farmasyst_admin_console/screens/auth/login_screen.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/components/frame_container.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +29,9 @@ void main() {
       ),
       ChangeNotifierProvider<FarmsState>(
         create: (context) => FarmsState(),
+      ),
+      ChangeNotifierProvider<InvestmentsState>(
+        create: (context) => InvestmentsState(),
       ),
     ],
     child: MyApp(),
@@ -60,7 +65,7 @@ class MyApp extends StatelessWidget {
           primaryColor: kPrimaryColor,
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         ),
-        home: false // FirebaseAuth.instance.currentUser == null
+        home: FirebaseAuth.instance.currentUser == null
             ? LoginScreen()
             : FrameContainer()
 

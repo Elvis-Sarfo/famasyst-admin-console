@@ -122,7 +122,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                     Expanded(
                       flex: 1,
                       child: Image.asset(
-                        'assets/images/main.png',
+                        'assets/images/logo.png',
                         height: size.height * 0.3,
                       ),
                     ),
@@ -140,7 +140,7 @@ class _AddNewFarmerDialogState extends State<AddNewFarmerDialog> {
                             children: <Widget>[
                               if (isMobile(context))
                                 Image.asset(
-                                  'assets/images/main.png',
+                                  'assets/images/logo.png',
                                   height: size.height * 0.3,
                                 ),
                               Row(

@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Investment {
-  String input, payback, investmentID;
-  Map farmDetails, inverstorDetails, farmerDetails;
+  String input, payback, id;
+  Map farm, inverstor, farmer;
   bool approved, accepted;
   DateTime time, startTime, endTime;
   Investment({
     this.input,
     this.payback,
-    this.farmDetails,
-    this.farmerDetails,
-    this.inverstorDetails,
-    this.investmentID,
+    this.farm,
+    this.farmer,
+    this.inverstor,
+    this.id,
     this.approved = false,
     this.accepted = false,
   }) : this.time = DateTime.now();
@@ -20,24 +20,24 @@ class Investment {
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     map['input'] = input;
-    map['investmentID'] = investmentID;
+    map['id'] = id;
     map['payback'] = payback;
-    map['farmDetails'] = farmDetails;
-    map['farmerDetails'] = farmerDetails;
-    map['inverstorDetails'] = inverstorDetails;
+    map['farm'] = farm;
+    map['farmer'] = farmer;
+    map['inverstor'] = inverstor;
     map['accepted'] = accepted;
-    map['approved'] = accepted;
+    map['approved'] = approved;
     map['time'] = time;
     return map;
   }
 
   Investment.fromMapObject(Map<String, dynamic> map) {
-    investmentID = map['investmentID'];
+    id = map['id'];
     input = map['input'];
     payback = map['payback'];
-    farmDetails = map['farmDetails'];
-    farmerDetails = map['farmerDetails'];
-    inverstorDetails = map['inverstorDetails'];
+    farm = map['farm'];
+    farmer = map['farmer'];
+    inverstor = map['inverstor'];
     accepted = map['accepted'];
     approved = map['approved'];
     time = (map['time'] is Timestamp) ? map['time'].toDate() : map['time'];

@@ -1,3 +1,4 @@
+import 'package:farmasyst_admin_console/components/animated_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
@@ -16,76 +17,72 @@ class Jumbotron extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(right: !isMobile(context) ? 40 : 0),
               child: Column(
                 mainAxisAlignment: !isMobile(context)
-                    ? MainAxisAlignment.start
+                    ? MainAxisAlignment.center
                     : MainAxisAlignment.center,
                 crossAxisAlignment: !isMobile(context)
-                    ? CrossAxisAlignment.start
+                    ? CrossAxisAlignment.center
                     : CrossAxisAlignment.center,
                 children: <Widget>[
+                  Container(
+                    width: 200,
+                    height: 200,
+                    child: AnimatedImage(),
+                  ),
                   if (isMobile(context))
                     Image.asset(
-                      'assets/images/main.png',
+                      'assets/images/logo.png',
                       height: size.height * 0.3,
                     ),
                   RichText(
                       text: TextSpan(children: [
                     TextSpan(
-                        text: 'Buy ',
+                        text: 'FARM',
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 64 : 32,
                             fontWeight: FontWeight.w800,
                             color: kTextColor)),
                     TextSpan(
-                        text: 'Cruelty Free',
+                        text: 'ASYST',
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 64 : 32,
                             fontWeight: FontWeight.w800,
                             color: kPrimaryColor)),
                   ])),
-                  Text(
-                    'Makeup Products',
-                    style: TextStyle(
-                        fontSize: isDesktop(context) ? 64 : 32,
-                        fontWeight: FontWeight.w800),
-                  ),
-                  Text(
-                    'Online Today!',
-                    style: TextStyle(
-                        fontSize: isDesktop(context) ? 64 : 32,
-                        fontWeight: FontWeight.w800),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Help us in making this world a better place for animals.',
-                    textAlign:
-                        isMobile(context) ? TextAlign.center : TextAlign.start,
-                    style: TextStyle(
-                        fontSize: isDesktop(context) ? 36 : 18,
-                        fontWeight: FontWeight.w300),
-                  ),
-                  SizedBox(height: 10),
-                  Wrap(
-                    runSpacing: 10,
-                    children: <Widget>[
-                      MainButton(
-                        title: 'GET STARTED',
-                        color: kPrimaryColor,
-                        tapEvent: () {},
-                      ),
-                      SizedBox(width: 10),
-                      MainButton(
-                        title: 'WATCH VIDEO',
-                        color: kSecondaryColor,
-                        tapEvent: () {},
-                      )
-                    ],
-                  )
+                  SizedBox(height: 50),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: 'Farmer-',
+                        style: TextStyle(
+                            fontSize: isDesktop(context) ? 45 : 32,
+                            fontWeight: FontWeight.w800,
+                            color: kSecondaryColor)),
+                    TextSpan(
+                        text: 'Investor',
+                        style: TextStyle(
+                            fontSize: isDesktop(context) ? 45 : 32,
+                            fontWeight: FontWeight.w800,
+                            color: kPrimaryColor)),
+                    TextSpan(
+                        text: ' Assembly',
+                        style: TextStyle(
+                            fontSize: isDesktop(context) ? 45 : 32,
+                            fontWeight: FontWeight.w800,
+                            color: kPrimaryDark)),
+                    TextSpan(
+                        text: ' Point',
+                        style: TextStyle(
+                          fontSize: isDesktop(context) ? 45 : 32,
+                          fontWeight: FontWeight.w800,
+                        )),
+                  ])),
                 ],
               ),
             ),
@@ -93,7 +90,7 @@ class Jumbotron extends StatelessWidget {
           if (isDesktop(context) || isTab(context))
             Expanded(
               child: Image.asset(
-                'assets/images/main.png',
+                'assets/images/farm.png',
                 height: size.height * 0.7,
               ),
             )

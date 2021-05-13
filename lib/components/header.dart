@@ -3,6 +3,7 @@ import 'package:farmasyst_admin_console/page_router.dart';
 import 'package:farmasyst_admin_console/screens/farmers/farmer_screen.dart';
 import 'package:farmasyst_admin_console/screens/farms/farms_screen.dart';
 import 'package:farmasyst_admin_console/screens/home/home.dart';
+import 'package:farmasyst_admin_console/screens/investments/investments_screen.dart';
 import 'package:farmasyst_admin_console/screens/investors/investors_screen.dart';
 import 'package:farmasyst_admin_console/screens/supervisors/supervisors_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,8 +41,8 @@ class Header extends StatelessWidget {
           ),
           SizedBox(width: 10),
           Text(
-            "FarmaSyst",
-            style: GoogleFonts.reenieBeanie(fontSize: 18),
+            "FARMASYST",
+            style: GoogleFonts.robotoCondensed(fontSize: 32),
           ),
           // Spacer(),
           Expanded(
@@ -52,6 +53,16 @@ class Header extends StatelessWidget {
                   'onTapCallback': () =>
                       context.read<PageRouter>().route(HomeScreen()),
                 },
+                {
+                  'title': 'Investments',
+                  'onTapCallback': () =>
+                      context.read<PageRouter>().route(InvestmentsScreen()),
+                },
+                // {
+                //   'title': 'Diseases',
+                //   'onTapCallback': () =>
+                //       context.read<PageRouter>().route(InvestorsScreen()),
+                // },
                 {
                   'title': 'Farms',
                   'onTapCallback': () =>

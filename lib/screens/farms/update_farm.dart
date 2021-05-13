@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmasyst_admin_console/components/custom_dropdown_field.dart';
 import 'package:farmasyst_admin_console/components/tags_feild.dart';
 import 'package:farmasyst_admin_console/models/farm.dart';
+import 'package:farmasyst_admin_console/models/farmer.dart';
+import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
 import 'package:farmasyst_admin_console/screens/farms/components/farms_module.dart';
 import 'package:farmasyst_admin_console/utils/form_validator.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:farmasyst_admin_console/components/image_chooser.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
+import 'package:provider/provider.dart';
 
 class UpdateFarm extends StatefulWidget {
   final Farm farm;
@@ -28,29 +31,27 @@ class _UpdateFarmState extends State<UpdateFarm> {
   bool isLoading = false, showErrorMsg = false;
 
   // Define controllers
-  TextEditingController _nameFieldController;
-  TextEditingController _phoneFieldController;
   TextEditingController _locationFieldController;
-  TextEditingController _emailFieldController;
+  TextEditingController _farmSizeFieldController;
+  TextEditingController _descFieldController;
+  // TextEditingController _emailFieldController;
 
   @override
   void initState() {
     farm = widget.farm;
-    // _nameFieldController = TextEditingController(text: farm.name);
-    // _phoneFieldController = TextEditingController(text: farm.phone);
-    // _locationFieldController = TextEditingController(text: farm.location);
-    // _emailFieldController = TextEditingController(text: farm.email);
-    // _numOfFarmsFieldController =
-    //     TextEditingController(text: farm.numFarms.toString());
+    _locationFieldController = TextEditingController(text: farm.location);
+    _farmSizeFieldController =
+        TextEditingController(text: farm.farmSize.toString());
+    _descFieldController = TextEditingController(text: farm.description);
     super.initState();
   }
 
   @override
   void dispose() {
-    _nameFieldController.dispose();
-    _phoneFieldController.dispose();
+    _farmSizeFieldController.dispose();
+    _descFieldController.dispose();
     _locationFieldController.dispose();
-    _emailFieldController.dispose();
+    // _emailFieldController.dispose();
     super.dispose();
   }
 
@@ -62,6 +63,7 @@ class _UpdateFarmState extends State<UpdateFarm> {
       });
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
+
         var results = await updateFarm(
           widget.farmDocSnap,
           farm: farm,
@@ -130,7 +132,7 @@ class _UpdateFarmState extends State<UpdateFarm> {
                     Expanded(
                       flex: 1,
                       child: Image.asset(
-                        'assets/images/main.png',
+                        'assets/images/logo.png',
                         height: size.height * 0.3,
                       ),
                     ),
@@ -148,17 +150,21 @@ class _UpdateFarmState extends State<UpdateFarm> {
                             children: <Widget>[
                               if (isMobile(context))
                                 Image.asset(
-                                  'assets/images/main.png',
+                                  'assets/images/logo.png',
                                   height: size.height * 0.3,
                                 ),
                               Row(
                                 children: [
-                                  // ImageChooser(
-                                  //   defaultNetworkImage: farm.picture,
-                                  //   onImageSelected: (image) async {
-                                  //     profileImage = image;
-                                  //   },
-                                  // ),
+                                  ImageChooser(
+                                    defaultNetworkImage: farm.pictures != null
+                                        ? farm.pictures.length > 0
+                                            ? farm.pictures.first
+                                            : null
+                                        : null,
+                                    onImageSelected: (image) async {
+                                      profileImage = image;
+                                    },
+                                  ),
                                   SizedBox(
                                     width: 20,
                                   ),
@@ -166,12 +172,12 @@ class _UpdateFarmState extends State<UpdateFarm> {
                                     child: Column(
                                       children: [
                                         CustomTextFormField(
-                                          prefixIcon: Icon(Icons.person),
-                                          hintText: 'Enter Full Name',
-                                          controller: _nameFieldController,
+                                          prefixIcon: Icon(Icons.place),
+                                          hintText: 'Locaiton',
+                                          controller: _locationFieldController,
                                           onSaved: (value) {
                                             setState(() {
-                                              // farm.name = value;
+                                              farm.location = value;
                                             });
                                           },
                                           validator: emptyFeildValidator,
@@ -179,36 +185,65 @@ class _UpdateFarmState extends State<UpdateFarm> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
                                         CustomTextFormField(
-                                          controller: _emailFieldController,
+                                          controller: _farmSizeFieldController,
                                           type: TextInputType.number,
-                                          prefixIcon: Icon(Icons.mail),
-                                          hintText: 'Enter Email',
+                                          prefixIcon: Icon(Icons.tag),
+                                          hintText: 'Farm Size',
                                           onSaved: (value) {
                                             setState(() {
-                                              // farm.email = value;
+                                              farm.farmSize =
+                                                  double.parse(value);
                                             });
                                           },
-                                          validator: validateEmail,
+                                          validator: validateNumberValue,
                                         ),
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        CustomTextFormField(
-                                          prefixIcon: Icon(Icons.phone),
-                                          hintText: 'Phone Number',
-                                          controller: _phoneFieldController,
-                                          type: TextInputType.phone,
-                                          onSaved: (value) {
-                                            setState(() {
-                                              // farm.phone = value;
-                                            });
-                                          },
-                                          validator: validatePhone,
-                                        ),
+                                        Consumer<FarmersState>(builder:
+                                            (context, farmersState, child) {
+                                          var _items = farmersState.getFarmers
+                                              .map((farmer) {
+                                            Farmer _farmer =
+                                                Farmer.fromMapObject(
+                                                    farmer.data());
+                                            return {
+                                              'value': farmer.id,
+                                              'label':
+                                                  '${_farmer.name} @ ${_farmer.location} -  ${_farmer.phone} '
+                                            };
+                                          }).toList();
+                                          return CustomDropDownField(
+                                            prefixIcon: Icon(Icons.person),
+                                            hint: 'Select Farmer',
+                                            items: _items,
+                                            value: farm.farmer['id'],
+                                            onChanged: (value) {
+                                              // setState(() {
+                                              farmersState.getFarmers
+                                                  .forEach((farmer) {
+                                                if (value == farmer.id) {
+                                                  Farmer _farmer =
+                                                      Farmer.fromMapObject(
+                                                          farmer.data());
+                                                  setState(() {
+                                                    farm.farmer = {
+                                                      'id': farmer.id,
+                                                      'name': _farmer.name,
+                                                      'phone': _farmer.phone,
+                                                      'location':
+                                                          _farmer.location,
+                                                      'specializations': _farmer
+                                                          .specializations
+                                                    };
+                                                  });
+                                                }
+                                              });
+                                              // });
+                                            },
+                                          );
+                                        }),
                                       ],
                                     ),
                                   ),
@@ -217,33 +252,18 @@ class _UpdateFarmState extends State<UpdateFarm> {
                               SizedBox(
                                 height: 10,
                               ),
-                              // CustomDropDownField(
-                              //   prefixIcon: Icon(Icons.category),
-                              //   hint: 'Select Registration Type',
-                              //   items: ['Company', 'Group', 'Individual'],
-                              //   value: farm.type,
-                              //   onChanged: (value) {
-                              //     setState(() {
-                              //       farm.type = value.toString().toLowerCase();
-                              //     });
-                              //   },
-                              // ),
-                              SizedBox(
-                                height: 10,
-                              ),
                               CustomTextFormField(
-                                  prefixIcon: Icon(Icons.place),
-                                  hintText: 'Place of Residence',
-                                  controller: _locationFieldController,
+                                  maxLines: 5,
+                                  minLines: 2,
+                                  prefixIcon: Icon(Icons.description),
+                                  hintText: 'Farm Description',
+                                  controller: _descFieldController,
                                   onSaved: (value) {
                                     setState(() {
-                                      farm.location = value;
+                                      farm.description = value;
                                     });
                                   },
                                   validator: emptyFeildValidator),
-                              SizedBox(
-                                height: 10,
-                              ),
                               SizedBox(
                                 height: 10,
                               ),

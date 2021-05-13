@@ -1,16 +1,18 @@
 import 'package:farmasyst_admin_console/components/main_button.dart';
 import 'package:farmasyst_admin_console/notifiers/farms_state.dart';
+import 'package:farmasyst_admin_console/notifiers/investments_state.dart';
 import 'package:farmasyst_admin_console/screens/farms/add_new_farm.dart';
 import 'package:farmasyst_admin_console/screens/farms/components/farms_data_source.dart';
+import 'package:farmasyst_admin_console/screens/investments/components/investment_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:provider/provider.dart';
 
-class FarmsScreen extends StatelessWidget {
+class InvestmentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Function _searchFarms;
+    Function _searchInvestments;
     return Container(
       margin: EdgeInsets.fromLTRB(100, 10, 100, 20),
       child: Column(
@@ -21,7 +23,7 @@ class FarmsScreen extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                 child: Text(
-                  'Farms',
+                  'Investments',
                   style: TextStyle(
                     fontSize: 32,
                   ),
@@ -41,7 +43,7 @@ class FarmsScreen extends StatelessWidget {
                   maxLines: 1,
                   minLines: 1,
                   onChanged: (value) async {
-                    _searchFarms(value);
+                    _searchInvestments(value);
                   },
                   decoration: InputDecoration(
                     filled: true,
@@ -70,31 +72,31 @@ class FarmsScreen extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              MainButton(
-                color: kPrimaryColor,
-                title: 'Add New Farm',
-                iconData: Icons.person_add,
-                tapEvent: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AddNewFarmDialog();
-                    },
-                  );
-                },
-              ),
+              // MainButton(
+              //   color: kPrimaryColor,
+              //   title: 'Add New Investment',
+              //   iconData: Icons.person_add,
+              //   tapEvent: () {
+              //     showDialog(
+              //       context: context,
+              //       builder: (BuildContext context) {
+              //         // return AddNewInvestmentDialog();
+              //       },
+              //     );
+              //   },
+              // ),
             ],
           ),
           Expanded(
-            child: Consumer<FarmsState>(
-              builder: (context, farmState, child) {
+            child: Consumer<InvestmentsState>(
+              builder: (context, investmentState, child) {
                 // Assing the searchHandler to a upper scope
-                _searchFarms = farmState.searchFarm;
+                _searchInvestments = investmentState.searchInvestment;
 
-                if (farmState.hasError) {
+                if (investmentState.hasError) {
                   return Center(child: Text('Something went wrong'));
                 }
-                if (farmState.waiting) {
+                if (investmentState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
@@ -108,36 +110,39 @@ class FarmsScreen extends StatelessWidget {
                       rowsPerPage: 7,
                       horizontalMargin: 5,
                       columnSpacing: 5,
-                      sortAscending: farmState.sortAscending,
-                      sortColumnIndex: farmState.sortColumnIndex,
+                      sortAscending: investmentState.sortAscending,
+                      sortColumnIndex: investmentState.sortColumnIndex,
                       columns: <DataColumn>[
                         DataColumn(
                           label: Text(''),
                         ),
                         DataColumn(
-                          label: Text('Farm ID'),
+                          label: Text('Investment ID'),
                           onSort: (index, sorted) {
-                            farmState.sortFarmList('name', index, sorted);
+                            investmentState.sortInvestmentList(
+                                'id', index, sorted);
                           },
                         ),
                         DataColumn(
-                          label: Text('Farmer'),
+                          label: Text('Farm'),
                           onSort: (index, sorted) {},
                         ),
                         DataColumn(
-                          label: Text('Farmer Size'),
+                          label: Text('Farmer'),
                           onSort: (index, sorted) {
-                            farmState.sortFarmList('farmSize', index, sorted);
+                            investmentState.sortInvestmentList(
+                                'farmSize', index, sorted);
                           },
                         ),
                         DataColumn(
-                          label: Text('Location'),
+                          label: Text('Investor'),
                           onSort: (index, sorted) {
-                            farmState.sortFarmList('location', index, sorted);
+                            investmentState.sortInvestmentList(
+                                'location', index, sorted);
                           },
                         ),
                         DataColumn(
-                          label: Text('Pop up'),
+                          label: Text('Approved'),
                           onSort: (index, sorted) {},
                         ),
                         // DataColumn(label: Text('Enabled')),
@@ -147,8 +152,8 @@ class FarmsScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         )),
                       ],
-                      source:
-                          FarmsDataSource(farmState.getFilteredFarms, context),
+                      source: InvestmentsDataSource(
+                          investmentState.getFilteredInvestments, context),
                     ),
                   ),
                 );

@@ -16,8 +16,8 @@ Future<String> saveNewSupervisor(Supervisor supervisor,
   );
 
   if (docs.docs.isEmpty && (userCredentials is UserCredential)) {
-    DocumentReference docSnapshot =
-        await DatabaseServices.saveData('Supervisors', supervisor.toMap());
+    await DatabaseServices.setDocument(
+        'Supervisors', userCredentials.user.uid, supervisor.toMap());
 
     var imageUrl = (profilePic != null)
         ? await DatabaseServices.uploadFile(
@@ -25,9 +25,9 @@ Future<String> saveNewSupervisor(Supervisor supervisor,
         : null;
     Map<String, dynamic> uppdate = {"picture": imageUrl};
     if (imageUrl != null) {
-      docSnapshot = await DatabaseServices.updateDocument(
+      await DatabaseServices.updateDocument(
         'Supervisors',
-        docSnapshot.id,
+        userCredentials.user.uid,
         uppdate,
       );
     }
