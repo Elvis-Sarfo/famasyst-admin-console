@@ -22,6 +22,17 @@ String validatePhone(String value) {
   return null;
 }
 
+String validateNumberValue(String value) {
+  final verifyPhoneNum = RegExp(r'^[0-9]*$');
+  if (value.isEmpty) {
+    return 'Please Enter a Number';
+  }
+  if (!verifyPhoneNum.hasMatch(value)) {
+    return 'Enter a valid a Number';
+  }
+  return null;
+}
+
 String emptyFeildValidator(String value) {
   if (value.isEmpty) {
     return 'Feild must not be empty';

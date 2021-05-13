@@ -11,9 +11,10 @@ Future<String> saveNewFarm(Farm farm,
 
   if (databaseSchema.exists) {
     // Add one to the counter and assign to the farmIdfilled of the new farm
-    farm.farmId = ++databaseSchema.data()['farms_counter'];
+    var counter = ++databaseSchema.data()['farms_counter'];
+    farm.farmId = 'FRM' + counter.toString();
     DocumentReference docSnapshot =
-        await DatabaseServices.saveData('Farms', farm.toMap());
+        await DatabaseServices.setDocument('Farms', farm.farmId, farm.toMap());
 
     // Upload image if there is any
     var imageUrl = (profilePic != null)
@@ -35,7 +36,7 @@ Future<String> saveNewFarm(Farm farm,
     }
 
     // Update the farmer counter
-    Map<String, dynamic> counterUpdate = {'farms_counter': farm.farmId};
+    Map<String, dynamic> counterUpdate = {'farms_counter': counter};
     await DatabaseServices.updateDocument(
       'database_meta_data',
       'counters',
@@ -49,7 +50,7 @@ Future<String> saveNewFarm(Farm farm,
 
 updateFarm(DocumentSnapshot farmDocSnap,
     {Farm farm, var profilePic, String pictureName}) async {
-  Farm _existingfarm = Farm.fromMapObject(farmDocSnap.data());
+  // Farm _existingfarm = Farm.fromMapObject(farmDocSnap.data());
 
   DocumentReference docSnapshot = await DatabaseServices.setDocument(
     'Farms',
@@ -57,12 +58,17 @@ updateFarm(DocumentSnapshot farmDocSnap,
     farm.toMap(),
   );
 
+  // Upload image if there is any
   var imageUrl = (profilePic != null)
-      ? await DatabaseServices.uploadFile(profilePic, '/farms/', pictureName)
+      ? await DatabaseServices.uploadFile(
+          profilePic, '/farms/', farm.farmId.toString())
       : null;
 
+  // Update the images list of the farm
   if (imageUrl != null) {
-    Map<String, dynamic> uppdate = {"picture": imageUrl};
+    Map<String, dynamic> uppdate = {
+      "pictures": [imageUrl]
+    };
     docSnapshot = await DatabaseServices.updateDocument(
       'Farms',
       farmDocSnap.id,
@@ -75,4 +81,13 @@ updateFarm(DocumentSnapshot farmDocSnap,
 
 deleteFarm(String farmId) async {
   await DatabaseServices.deleteDocument('Farms', farmId);
+}
+
+assignFarmToSupervisor(String farmId, dynamic update) async {
+  Map<String, dynamic> _update = {'supervisor': update};
+  await DatabaseServices.updateDocument(
+    'Farms',
+    farmId,
+    _update,
+  );
 }

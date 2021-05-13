@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                             Expanded(
                               flex: 1,
                               child: Image.asset(
-                                'assets/images/main.png',
+                                'assets/images/logo.png',
                                 height: size.height * 0.3,
                               ),
                             ),
@@ -73,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                                     children: <Widget>[
                                       if (isMobile(context))
                                         Image.asset(
-                                          'assets/images/main.png',
+                                          'assets/images/logo.png',
                                           height: size.height * 0.3,
                                         ),
                                       Text(

@@ -126,14 +126,14 @@ class InvestorDataSource extends DataTableSource {
                           size: 70,
                         ),
                         actionsButtons: [
-                          ElevatedButton(
+                          TextButton(
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all<Color>(Colors.red),
                               padding: MaterialStateProperty.all(
                                 EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 7,
+                                  horizontal: 15,
+                                  vertical: 12,
                                 ),
                               ),
                             ),
@@ -147,14 +147,14 @@ class InvestorDataSource extends DataTableSource {
                                   TextStyle(color: Colors.white, fontSize: 18),
                             ),
                           ),
-                          ElevatedButton(
+                          TextButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
+                                  kPrimaryColor),
                               padding: MaterialStateProperty.all(
                                 EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 7,
+                                  horizontal: 15,
+                                  vertical: 12,
                                 ),
                               ),
                             ),
@@ -165,7 +165,7 @@ class InvestorDataSource extends DataTableSource {
                               'Cancel',
                               style: TextStyle(
                                 fontSize: 18,
-                                color: kPrimaryColor,
+                                color: Colors.white,
                               ),
                             ),
                           ),

@@ -121,7 +121,7 @@ class _AddNewSupervisorDialogState extends State<AddNewSupervisorDialog> {
                     Expanded(
                       flex: 1,
                       child: Image.asset(
-                        'assets/images/main.png',
+                        'assets/images/logo.png',
                         height: size.height * 0.3,
                       ),
                     ),
@@ -139,7 +139,7 @@ class _AddNewSupervisorDialogState extends State<AddNewSupervisorDialog> {
                             children: <Widget>[
                               if (isMobile(context))
                                 Image.asset(
-                                  'assets/images/main.png',
+                                  'assets/images/logo.png',
                                   height: size.height * 0.3,
                                 ),
                               Row(

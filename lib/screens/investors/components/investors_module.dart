@@ -18,8 +18,8 @@ Future<String> saveNewInvestor(Investor investor,
 
   // Save the user
   if (docs.docs.isEmpty && (userCredentials is UserCredential)) {
-    DocumentReference docSnapshot =
-        await DatabaseServices.saveData('Investors', investor.toMap());
+    await DatabaseServices.setDocument(
+        'Investors', userCredentials.user.uid, investor.toMap());
 
     var imageUrl = (profilePic != null)
         ? await DatabaseServices.uploadFile(
@@ -27,9 +27,9 @@ Future<String> saveNewInvestor(Investor investor,
         : null;
     Map<String, dynamic> uppdate = {"picture": imageUrl};
     if (imageUrl != null) {
-      docSnapshot = await DatabaseServices.updateDocument(
+      await DatabaseServices.updateDocument(
         'Investors',
-        docSnapshot.id,
+        userCredentials.user.uid,
         uppdate,
       );
     }

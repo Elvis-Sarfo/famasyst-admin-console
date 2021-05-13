@@ -101,7 +101,7 @@ class _ViewFarmState extends State<ViewFarm> {
                                   text: TextSpan(
                                     style: Styles.kRichTextStyle16,
                                     children: <TextSpan>[
-                                      TextSpan(text: 'Name\n'),
+                                      TextSpan(text: 'Farm Id\n'),
                                       TextSpan(
                                         text: widget.farm.farmId.toString(),
                                         style: Styles.kRichTextStyle,
@@ -109,20 +109,33 @@ class _ViewFarmState extends State<ViewFarm> {
                                     ],
                                   ),
                                 ),
-                                // RichText(
-                                //   textAlign: TextAlign.start,
-                                //   text: TextSpan(
-                                //     style: Styles.kRichTextStyle16,
-                                //     children: <TextSpan>[
-                                //       TextSpan(text: 'Type\n'),
-                                //       TextSpan(
-                                //         text: widget.farm.type.toUpperCase() ??
-                                //             '',
-                                //         style: Styles.kRichTextStyle,
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
+                                RichText(
+                                  textAlign: TextAlign.start,
+                                  text: TextSpan(
+                                    style: Styles.kRichTextStyle16,
+                                    children: <TextSpan>[
+                                      TextSpan(text: 'Location\n'),
+                                      TextSpan(
+                                        text: widget.farm.location,
+                                        style: Styles.kRichTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                RichText(
+                                  textAlign: TextAlign.start,
+                                  text: TextSpan(
+                                    style: Styles.kRichTextStyle16,
+                                    children: <TextSpan>[
+                                      TextSpan(text: 'Farm Size\n'),
+                                      TextSpan(
+                                        text: widget.farm.farmSize.toString() ??
+                                            '',
+                                        style: Styles.kRichTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             )
                           ],
@@ -135,41 +148,9 @@ class _ViewFarmState extends State<ViewFarm> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
-                              TextSpan(text: 'Email\n'),
-                              // TextSpan(
-                              //   text: widget.farm.email.toString(),
-                              //   style: Styles.kRichTextStyle,
-                              // ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RichText(
-                          textAlign: TextAlign.start,
-                          text: TextSpan(
-                            style: Styles.kRichTextStyle16,
-                            children: <TextSpan>[
-                              TextSpan(text: 'Phone Number\n'),
-                              // TextSpan(
-                              //   text: widget.farm.phone.toString(),
-                              //   style: Styles.kRichTextStyle,
-                              // ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RichText(
-                          textAlign: TextAlign.start,
-                          text: TextSpan(
-                            style: Styles.kRichTextStyle16,
-                            children: <TextSpan>[
-                              TextSpan(text: 'Location\n'),
+                              TextSpan(text: 'Description\n'),
                               TextSpan(
-                                text: widget.farm.location,
+                                text: widget.farm.description,
                                 style: Styles.kRichTextStyle,
                               ),
                             ],
@@ -183,7 +164,56 @@ class _ViewFarmState extends State<ViewFarm> {
                           text: TextSpan(
                             style: Styles.kRichTextStyle16,
                             children: <TextSpan>[
-                              TextSpan(text: 'Farm Interests\n'),
+                              TextSpan(text: 'Supervisor\n'),
+                              if (widget.farm.supervisor != null) ...[
+                                TextSpan(
+                                  text: 'Name: ',
+                                ),
+                                TextSpan(
+                                  text: widget.farm.supervisor['name'],
+                                  style: Styles.kRichTextStyle16,
+                                ),
+                                TextSpan(
+                                  text: 'Phone: ',
+                                ),
+                                TextSpan(
+                                  text: widget.farm.supervisor['name'],
+                                  style: Styles.kRichTextStyle16,
+                                ),
+                              ],
+                              if (widget.farm.supervisor == null)
+                                TextSpan(
+                                  text: 'Not Assigned',
+                                  style: Styles.kRichTextStyle,
+                                ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        // RichText(
+                        //   textAlign: TextAlign.start,
+                        //   text: TextSpan(
+                        //     style: Styles.kRichTextStyle16,
+                        //     children: <TextSpan>[
+                        //       TextSpan(text: 'Location\n'),
+                        //       TextSpan(
+                        //         text: widget.farm.location,
+                        //         style: Styles.kRichTextStyle,
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(
+                            style: Styles.kRichTextStyle16,
+                            children: <TextSpan>[
+                              TextSpan(text: 'Crops on Farm\n'),
                             ],
                           ),
                         ),
@@ -208,7 +238,11 @@ class _ViewFarmState extends State<ViewFarm> {
                   child: Container(
                     color: kPrimaryColor,
                     child: Center(
-                      child: Text('data'),
+                      // child: Text('data'),
+                      child: Image.asset(
+                        'assets/images/farm_map.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 )
