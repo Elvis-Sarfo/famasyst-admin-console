@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:farmasyst_admin_console/models/farm.dart';
 import 'package:farmasyst_admin_console/models/farm.dart';
 import 'package:farmasyst_admin_console/utils/helper_functions.dart';
@@ -5,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:farmasyst_admin_console/services/styles.dart';
 import 'package:flutter_tags/flutter_tags.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class ViewFarm extends StatefulWidget {
   final Farm farm;
@@ -21,11 +25,65 @@ class _ViewFarmState extends State<ViewFarm> {
   var profileImage;
   bool isLoading = false;
 
+  // Location
+  Location location = new Location();
+  bool _serviceEnabled;
+  PermissionStatus _permissionGranted;
+  LocationData _locationData;
+
+  void enableLocationService() async {
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+  }
+
+  void grantLocationPermission() async {
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+  }
+
+  Future<void> getLocationData() async {
+    _locationData = await location.getLocation();
+    print(_locationData);
+  }
+
   @override
   void initState() {
     farm = widget.farm;
+    enableLocationService();
+    grantLocationPermission();
+    getLocationData();
     super.initState();
   }
+
+// Maps
+  Completer<GoogleMapController> _mapController = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(5.8142835999999996, 0.0746767),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
+
+  // @override
+  // void dispose() {
+  //   _mapController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +91,8 @@ class _ViewFarmState extends State<ViewFarm> {
     return Dialog(
       child: Container(
         padding: EdgeInsets.all(24.0),
-        width: size.width * 0.7,
-        height: size.height * 0.7,
+        width: size.width * 0.8,
+        height: size.height * 0.9,
         child: Column(
           children: [
             Row(
@@ -68,6 +126,7 @@ class _ViewFarmState extends State<ViewFarm> {
             Row(
               children: [
                 Expanded(
+                  flex: 2,
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -235,15 +294,20 @@ class _ViewFarmState extends State<ViewFarm> {
                   ),
                 ),
                 Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/farm_map.png',
-                      fit: BoxFit.fill,
-                      height: 400,
-                    ),
-                  ),
-                )
+                    flex: 4,
+                    child: Container(
+                      height: 550,
+                      child: GoogleMap(
+                        mapType: MapType.hybrid,
+                        myLocationButtonEnabled: true,
+                        compassEnabled: true,
+                        mapToolbarEnabled: true,
+                        initialCameraPosition: _kLake,
+                        onMapCreated: (GoogleMapController controller) {
+                          _mapController.complete(controller);
+                        },
+                      ),
+                    ))
               ],
             ),
           ],
