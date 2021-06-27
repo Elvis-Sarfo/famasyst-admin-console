@@ -30,6 +30,25 @@ class _ViewFarmState extends State<ViewFarm> {
   bool _serviceEnabled;
   PermissionStatus _permissionGranted;
   LocationData _locationData;
+  MapType _currentMapType = MapType.normal;
+  Set<Marker> _markers = {
+    Marker(
+      markerId: MarkerId(
+        'test_marker_id_1',
+      ),
+      position: LatLng(6.699046065574141, -1.682570765007632),
+      infoWindow:
+          InfoWindow(title: 'Test Loc 1', snippet: 'A really good test'),
+    ),
+    Marker(
+      markerId: MarkerId(
+        'test_marker_id_2',
+      ),
+      position: LatLng(6.704757426069938, -1.6301282164668127),
+      infoWindow:
+          InfoWindow(title: 'Test Loc 2', snippet: 'A really good test'),
+    ),
+  };
 
   void enableLocationService() async {
     _serviceEnabled = await location.serviceEnabled();
@@ -77,8 +96,15 @@ class _ViewFarmState extends State<ViewFarm> {
       bearing: 192.8334901395799,
       target: LatLng(5.8142835999999996, 0.0746767),
       tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+      zoom: 10.151926040649414);
 
+  void _onMapTypeBtnPressed() {
+    setState(() {
+      _currentMapType = _currentMapType == MapType.normal
+          ? MapType.satellite
+          : MapType.normal;
+    });
+  }
   // @override
   // void dispose() {
   //   _mapController.dispose();
@@ -297,15 +323,35 @@ class _ViewFarmState extends State<ViewFarm> {
                     flex: 4,
                     child: Container(
                       height: 550,
-                      child: GoogleMap(
-                        mapType: MapType.hybrid,
-                        myLocationButtonEnabled: true,
-                        compassEnabled: true,
-                        mapToolbarEnabled: true,
-                        initialCameraPosition: _kLake,
-                        onMapCreated: (GoogleMapController controller) {
-                          _mapController.complete(controller);
-                        },
+                      child: Stack(
+                        children: [
+                          GoogleMap(
+                            mapType: _currentMapType,
+                            myLocationButtonEnabled: true,
+                            compassEnabled: true,
+                            mapToolbarEnabled: true,
+                            markers: _markers,
+                            initialCameraPosition: _kLake,
+                            onMapCreated: (GoogleMapController controller) {
+                              _mapController.complete(controller);
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: FloatingActionButton(
+                                onPressed: _onMapTypeBtnPressed,
+                                backgroundColor: Colors.white,
+                                child: Icon(
+                                  Icons.map,
+                                  size: 32.0,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ))
               ],
