@@ -8,7 +8,6 @@ import 'package:farmasyst_admin_console/components/cus_text_form_field.dart';
 import 'package:farmasyst_admin_console/components/date_picker.dart';
 import 'package:farmasyst_admin_console/components/image_chooser.dart';
 import 'package:farmasyst_admin_console/components/main_button.dart';
-import 'package:farmasyst_admin_console/components/labeled_radio_button.dart';
 import 'package:farmasyst_admin_console/responsive.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:flutter_tags/flutter_tags.dart';

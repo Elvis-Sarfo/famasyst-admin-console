@@ -3,13 +3,11 @@ import 'package:farmasyst_admin_console/components/custom_alert_dailog.dart';
 import 'package:farmasyst_admin_console/components/popup_button.dart';
 import 'package:farmasyst_admin_console/models/farm.dart';
 import 'package:farmasyst_admin_console/models/supervisor.dart';
-import 'package:farmasyst_admin_console/notifiers/farmers_state.dart';
 import 'package:farmasyst_admin_console/notifiers/supervisors_state%20.dart';
 import 'package:farmasyst_admin_console/screens/farms/components/farms_module.dart';
 import 'package:farmasyst_admin_console/screens/farms/update_farm.dart';
 import 'package:farmasyst_admin_console/screens/farms/view_farm.dart';
 import 'package:farmasyst_admin_console/services/constants.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

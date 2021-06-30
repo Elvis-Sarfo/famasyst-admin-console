@@ -2,19 +2,12 @@
 // import 'dart:html' as html;
 // import 'dart:html';
 // import 'dart:io';
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:farmasyst_admin_console/services/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as p;
-import 'package:http/http.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 // import 'package:image_picker_web/image_picker_web.dart';
 
