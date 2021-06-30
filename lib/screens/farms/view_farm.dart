@@ -36,15 +36,14 @@ class _ViewFarmState extends State<ViewFarm> {
       markerId: MarkerId(
         'test_marker_id_1',
       ),
-      position: LatLng(6.699046065574141, -1.682570765007632),
-      infoWindow:
-          InfoWindow(title: 'Test Loc 1', snippet: 'A really good test'),
+      position: LatLng(6.108899323160398, -3.0227784693653263),
+      infoWindow: InfoWindow(title: 'Sewfi', snippet: 'A really good test'),
     ),
     Marker(
       markerId: MarkerId(
         'test_marker_id_2',
       ),
-      position: LatLng(6.704757426069938, -1.6301282164668127),
+      position: LatLng(6.698008383617172, -1.6830568990118582),
       infoWindow:
           InfoWindow(title: 'Test Loc 2', snippet: 'A really good test'),
     ),
@@ -87,16 +86,16 @@ class _ViewFarmState extends State<ViewFarm> {
 // Maps
   Completer<GoogleMapController> _mapController = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+  static final CameraPosition _mapPosition = CameraPosition(
+    target: LatLng(6.108899323160398, -3.0227784693653263),
+    zoom: 7.4746,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(5.8142835999999996, 0.0746767),
-      tilt: 59.440717697143555,
-      zoom: 10.151926040649414);
+  // static final CameraPosition _kLake = CameraPosition(
+  //     bearing: 192.8334901395799,
+  //     target: LatLng(5.8142835999999996, 0.0746767),
+  //     tilt: 59.440717697143555,
+  //     zoom: 10.151926040649414);
 
   void _onMapTypeBtnPressed() {
     setState(() {
@@ -331,7 +330,7 @@ class _ViewFarmState extends State<ViewFarm> {
                             compassEnabled: true,
                             mapToolbarEnabled: true,
                             markers: _markers,
-                            initialCameraPosition: _kLake,
+                            initialCameraPosition: _mapPosition,
                             onMapCreated: (GoogleMapController controller) {
                               _mapController.complete(controller);
                             },
